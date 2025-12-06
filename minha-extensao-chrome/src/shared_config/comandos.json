@@ -1,0 +1,98 @@
+{
+    "comandos": {
+                "abrir_aba": {
+                    "descricao": "Abre uma nova aba",
+                    "parametros": {
+                    "url": {
+                        "tipo": "string",
+                        "descricao": "URL da aba a ser aberta"
+                    }
+                    },
+                    "permissao": "tabs",
+                    "permissao_usuario": true
+                },
+        
+                "execute_steps": {
+                    "descricao": "Executa uma lista de ações na aba",
+                    "parametros": {
+                    "dados": {
+                        "tipo": "object",
+                        "descricao": "Objeto com os passos a serem executados",
+                        "propriedades": {
+                        "steps": {
+                            "tipo": "list",
+                            "descricao": "Lista de passos (ações) a executar"
+                        }
+                        }
+                    }
+                    },
+                    "permissao": "tabs",
+                    "permissao_usuario": true
+                },
+            
+                "log": {
+                    "descricao": "Exibe mensagem no console",
+                    "parametros": {
+                    "mensagem": {
+                        "tipo": "string",
+                        "descricao": "Mensagem a ser exibida no console"
+                    }
+                    },
+                    "permissao": "tabs",
+                    "permissao_usuario": true
+                },
+                       
+                "preencher_formulario": {
+                    "descricao": "Preencher formulário de contato",
+                    "parametros": {"dados": {
+                        "tipo": "object",
+                        "descricao": "Objeto com os campos e valores a serem preenchidos no formulário"
+                    }
+                    },
+                    "permissao_usuario":false
+                },
+
+                "fechar_aba": {
+                    "descricao": "Fechar a aba do navegador",
+                    "parametros": {
+                        "url": {
+                            "tipo": "string",
+                            "descricao": "URL da aba a ser fechada"
+                        }
+                    },
+                    "permissao": "tabs",
+                    "permissao_usuario": true
+
+                    },
+
+                "ativar_aba": {
+                    "descricao": "ativar a aba do navegador, caso esteja em segundo plano",
+                    "parametros": {
+                        "url": {
+                        "tipo": "string",
+                        "descricao": "URL da aba a ser ativada"
+                        }
+                    },
+                    "permissao": "tabs",
+                    "permissao_usuario": true
+
+                },
+      
+                "comandBackGround": {
+                    "descricao": "Comando para ser executado no background",
+                    "parametros": {
+                        "acao": {
+                            "tipo":"string",
+                            "descricao": "Ação a ser executada no background"
+                        },
+                        "dados": {
+                            "tipo":"list",
+                            "descricao": "Lista de passos (ações) a executar"
+                        }
+                    },
+                    "permissao": "tabs",
+                    "permissao_usuario": true
+                }   
+
+    }
+}

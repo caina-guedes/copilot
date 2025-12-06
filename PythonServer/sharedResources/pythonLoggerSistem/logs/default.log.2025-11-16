@@ -1,0 +1,223 @@
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 10:42:58 server WebSocket rodando em ws://localhost:8765  [2025-11-16 10:42:58,762]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 10:43:02  SOWatcher Conection Started!  [2025-11-16 10:43:02,239]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 10:43:27 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 10:43:27,832]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 10:43:27,832]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 10:43:40 server WebSocket rodando em ws://localhost:8765  [2025-11-16 10:43:40,758]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 10:43:49  SOWatcher Conection Started!  [2025-11-16 10:43:49,799]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 10:44:00 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 10:44:00,794]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 10:44:00,794]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 10:45:35  SOWatcher Conection Started!  [2025-11-16 10:45:35,264]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 10:45:44 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 10:45:44,631]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 10:45:44,631]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 10:45:54 server WebSocket rodando em ws://localhost:8765  [2025-11-16 10:45:54,778]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 10:45:57  SOWatcher Conection Started!  [2025-11-16 10:45:57,271]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 10:46:08 server WebSocket rodando em ws://localhost:8765  [2025-11-16 10:46:08,859]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 10:46:09  SOWatcher Conection Started!  [2025-11-16 10:46:09,669]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 10:46:17 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 10:46:17,127]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 10:46:17,127]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 10:46:28 server WebSocket rodando em ws://localhost:8765  [2025-11-16 10:46:28,857]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 10:46:38  SOWatcher Conection Started!  [2025-11-16 10:46:38,875]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 10:46:46 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 10:46:46,757]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 10:46:46,757]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 10:46:54 server WebSocket rodando em ws://localhost:8765  [2025-11-16 10:46:54,815]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 10:47:13  SOWatcher Conection Started!  [2025-11-16 10:47:13,199]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 10:47:22 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 10:47:22,113]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 10:47:22,113]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 10:56:08 server WebSocket rodando em ws://localhost:8765  [2025-11-16 10:56:08,264]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 10:56:20  SOWatcher Conection Started!  [2025-11-16 10:56:20,113]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 10:56:27 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 10:56:27,969]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 10:56:27,969]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 10:57:27 server WebSocket rodando em ws://localhost:8765  [2025-11-16 10:57:27,741]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 10:57:32  SOWatcher Conection Started!  [2025-11-16 10:57:32,015]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 10:57:38 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 10:57:38,777]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 10:57:38,777]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:00:09 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:00:09,171]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:00:14  SOWatcher Conection Started!  [2025-11-16 11:00:14,773]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:00:21 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:00:21,641]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:00:21,641]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:00:53 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:00:53,720]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:01:01  SOWatcher Conection Started!  [2025-11-16 11:01:01,443]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:01:08 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:01:08,415]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:01:08,416]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:03:06  SOWatcher Conection Started!  [2025-11-16 11:03:06,043]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:03:10 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:03:10,294]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:03:10,294]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:03:16 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:03:16,818]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:03:20  SOWatcher Conection Started!  [2025-11-16 11:03:20,242]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:03:30 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:03:30,550]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:03:30,551]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:16:44 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:16:44,960]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:16:48  SOWatcher Conection Started!  [2025-11-16 11:16:48,936]
+ERROR  in server:121 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:16:50 Erro ao receber mensagem do SOWatcher: local variable 'destiny' referenced before assignment
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 109, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 22, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 137, in sendMacroToExecute
+    await cls.sendCommand({"action":"endMacro"}, getattr(cls.connections, destiny).receiver)
+UnboundLocalError: local variable 'destiny' referenced before assignment  [2025-11-16 11:16:50,551]
+ERROR  in server:121 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:16:58 Erro ao receber mensagem do SOWatcher: local variable 'destiny' referenced before assignment
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 109, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 22, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 137, in sendMacroToExecute
+    await cls.sendCommand({"action":"endMacro"}, getattr(cls.connections, destiny).receiver)
+UnboundLocalError: local variable 'destiny' referenced before assignment  [2025-11-16 11:16:58,244]
+ERROR  in server:121 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:16:58 Erro ao receber mensagem do SOWatcher: local variable 'destiny' referenced before assignment
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 109, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 22, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 137, in sendMacroToExecute
+    await cls.sendCommand({"action":"endMacro"}, getattr(cls.connections, destiny).receiver)
+UnboundLocalError: local variable 'destiny' referenced before assignment  [2025-11-16 11:16:58,546]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:16:58 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:16:58,847]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:16:58,847]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:17:22 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:17:22,214]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:17:28  SOWatcher Conection Started!  [2025-11-16 11:17:28,302]
+ERROR  in server:121 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:17:29 Erro ao receber mensagem do SOWatcher: local variable 'destiny' referenced before assignment
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 109, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 138, in sendMacroToExecute
+    await cls.sendCommand({"action":"endMacro"}, getattr(cls.connections, destiny).receiver)
+UnboundLocalError: local variable 'destiny' referenced before assignment  [2025-11-16 11:17:29,316]
+ERROR  in server:121 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:17:35 Erro ao receber mensagem do SOWatcher: local variable 'destiny' referenced before assignment
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 109, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 138, in sendMacroToExecute
+    await cls.sendCommand({"action":"endMacro"}, getattr(cls.connections, destiny).receiver)
+UnboundLocalError: local variable 'destiny' referenced before assignment  [2025-11-16 11:17:35,242]
+ERROR  in server:121 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:17:35 Erro ao receber mensagem do SOWatcher: local variable 'destiny' referenced before assignment
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 109, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 138, in sendMacroToExecute
+    await cls.sendCommand({"action":"endMacro"}, getattr(cls.connections, destiny).receiver)
+UnboundLocalError: local variable 'destiny' referenced before assignment  [2025-11-16 11:17:35,545]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:17:35 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:17:35,846]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:17:35,846]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:18:57 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:18:57,560]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:19:02  SOWatcher Conection Started!  [2025-11-16 11:19:02,062]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:19:18 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:19:18,358]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:19:18,358]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:24:12 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:24:12,933]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:24:23  SOWatcher Conection Started!  [2025-11-16 11:24:23,108]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:24:33 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:24:33,959]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:24:33,959]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:33:38 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:33:38,994]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:33:43  SOWatcher Conection Started!  [2025-11-16 11:33:43,253]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:33:50 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:33:50,391]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:33:50,392]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:37:30 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:37:30,036]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:37:57 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:37:57,015]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:38:11  SOWatcher Conection Started!  [2025-11-16 11:38:11,523]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:38:18 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:38:18,859]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:38:18,860]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:41:48 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:41:48,013]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:41:53  SOWatcher Conection Started!  [2025-11-16 11:41:53,795]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:42:04 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:42:04,990]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:42:04,990]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:44:44 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:44:44,068]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:44:49  SOWatcher Conection Started!  [2025-11-16 11:44:49,802]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:45:02 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:45:02,552]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:45:02,552]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:54:53 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:54:53,905]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:55:00  SOWatcher Conection Started!  [2025-11-16 11:55:00,149]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:55:22 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:55:22,998]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:55:22,998]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:55:47 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:55:47,721]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:55:53  SOWatcher Conection Started!  [2025-11-16 11:55:53,826]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:56:10 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:56:10,283]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:56:10,283]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:56:16 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:56:16,800]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:56:20  SOWatcher Conection Started!  [2025-11-16 11:56:20,895]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:57:38 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:57:38,474]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:57:38,474]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:57:42  SOWatcher Conection Started!  [2025-11-16 11:57:42,498]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:57:54 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:57:54,262]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:57:54,262]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:57:58  SOWatcher Conection Started!  [2025-11-16 11:57:58,318]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:58:10 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:58:10,659]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:58:10,660]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 11:59:24 server WebSocket rodando em ws://localhost:8765  [2025-11-16 11:59:24,109]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 11:59:32  SOWatcher Conection Started!  [2025-11-16 11:59:32,260]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 11:59:43 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 11:59:43,443]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 11:59:43,443]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 12:11:55 server WebSocket rodando em ws://localhost:8765  [2025-11-16 12:11:55,808]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 12:11:58  SOWatcher Conection Started!  [2025-11-16 12:11:58,322]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 12:12:12 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 12:12:12,203]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 12:12:12,203]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 12:16:11 server WebSocket rodando em ws://localhost:8765  [2025-11-16 12:16:11,002]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 12:16:19  SOWatcher Conection Started!  [2025-11-16 12:16:19,609]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 12:16:28 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 12:16:28,461]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 12:16:28,461]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 12:21:43 server WebSocket rodando em ws://localhost:8765  [2025-11-16 12:21:43,558]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 12:21:46  SOWatcher Conection Started!  [2025-11-16 12:21:46,532]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 12:21:55 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 12:21:55,053]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 12:21:55,053]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 12:30:33 server WebSocket rodando em ws://localhost:8765  [2025-11-16 12:30:33,749]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 12:30:42  SOWatcher Conection Started!  [2025-11-16 12:30:42,503]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 12:30:50 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 12:30:50,355]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 12:30:50,355]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 12:31:27 server WebSocket rodando em ws://localhost:8765  [2025-11-16 12:31:27,139]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 12:31:31  SOWatcher Conection Started!  [2025-11-16 12:31:31,654]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 12:31:38 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 12:31:38,633]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 12:31:38,634]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 12:34:33 server WebSocket rodando em ws://localhost:8765  [2025-11-16 12:34:33,082]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 12:34:34  SOWatcher Conection Started!  [2025-11-16 12:34:34,854]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 12:35:07 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 12:35:07,387]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 12:35:07,387]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 12:35:51  SOWatcher Conection Started!  [2025-11-16 12:35:51,347]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 12:36:44 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 12:36:44,036]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 12:36:44,036]
+WARNING  in server:246 [MainProcess/Thread-3 (iniciar_server)] → 🚀 12:43:46 server WebSocket rodando em ws://localhost:8765  [2025-11-16 12:43:46,648]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 12:43:54  SOWatcher Conection Started!  [2025-11-16 12:43:54,358]
+WARNING  in server:112 [MainProcess/Thread-3 (iniciar_server)] → ❌ 12:44:06 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 12:44:06,558]
+WARNING  in server:114 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 12:44:06,558]
+WARNING  in server:247 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:02:48 server WebSocket rodando em ws://localhost:8765  [2025-11-16 13:02:48,402]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:02:55  SOWatcher Conection Started!  [2025-11-16 13:02:55,107]
+WARNING  in server:113 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:03:07 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 13:03:07,841]
+WARNING  in server:115 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 13:03:07,841]
+WARNING  in server:247 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:05:39 server WebSocket rodando em ws://localhost:8765  [2025-11-16 13:05:39,357]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:05:48  SOWatcher Conection Started!  [2025-11-16 13:05:48,227]
+WARNING  in server:113 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:05:56 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 13:05:56,947]
+WARNING  in server:115 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 13:05:56,947]
+WARNING  in server:247 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:07:08 server WebSocket rodando em ws://localhost:8765  [2025-11-16 13:07:08,038]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:07:10  SOWatcher Conection Started!  [2025-11-16 13:07:10,812]
+WARNING  in server:113 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:07:59 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 13:07:59,399]
+WARNING  in server:115 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 13:07:59,400]
+WARNING  in server:247 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:30:57 server WebSocket rodando em ws://localhost:8765  [2025-11-16 13:30:57,608]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:31:01  SOWatcher Conection Started!  [2025-11-16 13:31:01,586]
+WARNING  in server:113 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:31:14 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 13:31:14,943]
+WARNING  in server:115 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 13:31:14,943]
+WARNING  in server:247 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:36:20 server WebSocket rodando em ws://localhost:8765  [2025-11-16 13:36:20,336]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:36:27  SOWatcher Conection Started!  [2025-11-16 13:36:27,655]
+WARNING  in server:113 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:36:38 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 13:36:38,684]
+WARNING  in server:115 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 13:36:38,684]
+WARNING  in server:247 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:40:37 server WebSocket rodando em ws://localhost:8765  [2025-11-16 13:40:37,964]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:40:47  SOWatcher Conection Started!  [2025-11-16 13:40:47,850]
+WARNING  in server:113 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:40:59 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 13:40:59,523]
+WARNING  in server:115 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 13:40:59,523]
+WARNING  in server:247 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:43:25 server WebSocket rodando em ws://localhost:8765  [2025-11-16 13:43:25,034]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:43:54  SOWatcher Conection Started!  [2025-11-16 13:43:54,499]
+WARNING  in server:247 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:45:25 server WebSocket rodando em ws://localhost:8765  [2025-11-16 13:45:25,233]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:45:25  SOWatcher Conection Started!  [2025-11-16 13:45:25,627]
+WARNING  in server:113 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:45:37 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 13:45:37,013]
+WARNING  in server:115 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 13:45:37,013]
+WARNING  in server:247 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:45:44 server WebSocket rodando em ws://localhost:8765  [2025-11-16 13:45:44,785]
+WARNING  in server:71 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:45:48  SOWatcher Conection Started!  [2025-11-16 13:45:48,020]
+WARNING  in server:113 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:46:00 Conexão encerrada com o SOWatcher Sender.  [2025-11-16 13:46:00,795]
+WARNING  in server:115 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-16 13:46:00,795]
+WARNING  in server:247 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:46:07 server WebSocket rodando em ws://localhost:8765  [2025-11-16 13:46:07,967]

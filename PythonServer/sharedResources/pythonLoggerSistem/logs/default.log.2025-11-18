@@ -1,0 +1,228 @@
+WARNING  in server:251 [MainProcess/Thread-3 (iniciar_server)] → 🚀 21:21:38 server WebSocket rodando em ws://localhost:8765  [2025-11-18 21:21:38,949]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 21:21:46  SOWatcher Conection Started!  [2025-11-18 21:21:46,819]
+WARNING  in server:117 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:21:53 Conexão encerrada com o SOWatcher Sender.  [2025-11-18 21:21:53,571]
+WARNING  in server:119 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-18 21:21:53,571]
+WARNING  in server:251 [MainProcess/Thread-3 (iniciar_server)] → 🚀 21:22:56 server WebSocket rodando em ws://localhost:8765  [2025-11-18 21:22:56,674]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 21:22:59  SOWatcher Conection Started!  [2025-11-18 21:22:59,262]
+WARNING  in server:117 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:23:13 Conexão encerrada com o SOWatcher Sender.  [2025-11-18 21:23:13,665]
+WARNING  in server:119 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-18 21:23:13,665]
+WARNING  in server:251 [MainProcess/Thread-3 (iniciar_server)] → 🚀 21:25:59 server WebSocket rodando em ws://localhost:8765  [2025-11-18 21:25:59,812]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 21:26:08  SOWatcher Conection Started!  [2025-11-18 21:26:08,770]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:10 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:10,895]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:11 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:11,198]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:13 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:13,863]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:14 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:14,165]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:14 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:14,467]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:14 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:14,769]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:15 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:15,070]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:15 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:15,373]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:15 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:15,675]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:15 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:15,977]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:16 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:16,279]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:16 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:16,581]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:17 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:17,523]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:17 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:17,825]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:18 Erro ao receber mensagem do SOWatcher: cannot unpack non-iterable bool object
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 94, in server
+    isSpecialCommand , isPress = handleSpecialCommand(message,serverConfig.specialCommands, commands, conditionsMap)
+TypeError: cannot unpack non-iterable bool object  [2025-11-18 21:26:18,798]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:19 Erro ao receber mensagem do SOWatcher: cannot unpack non-iterable bool object
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 94, in server
+    isSpecialCommand , isPress = handleSpecialCommand(message,serverConfig.specialCommands, commands, conditionsMap)
+TypeError: cannot unpack non-iterable bool object  [2025-11-18 21:26:19,100]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:19 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:19,607]
+ERROR  in server:126 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:19 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 112, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:26:19,908]
+WARNING  in server:117 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:26:20 Conexão encerrada com o SOWatcher Sender.  [2025-11-18 21:26:20,210]
+WARNING  in server:119 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-18 21:26:20,210]
+WARNING  in server:253 [MainProcess/Thread-3 (iniciar_server)] → 🚀 21:30:55 server WebSocket rodando em ws://localhost:8765  [2025-11-18 21:30:55,866]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 21:31:02  SOWatcher Conection Started!  [2025-11-18 21:31:02,149]
+ERROR  in server:128 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:31:03 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 114, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:31:03,717]
+ERROR  in server:128 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:31:04 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 114, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:31:04,019]
+ERROR  in server:128 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:31:12 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 114, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:31:12,834]
+ERROR  in server:128 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:31:13 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 114, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:31:13,136]
+ERROR  in server:128 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:31:13 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 114, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:31:13,437]
+ERROR  in server:128 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:31:13 Erro ao receber mensagem do SOWatcher: MainDatabase.add_event() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 114, in server
+    mainDb.log_background_event(message,isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+TypeError: MainDatabase.add_event() takes 2 positional arguments but 3 were given  [2025-11-18 21:31:13,739]
+WARNING  in server:119 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:31:14 Conexão encerrada com o SOWatcher Sender.  [2025-11-18 21:31:14,041]
+WARNING  in server:121 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-18 21:31:14,041]
+WARNING  in server:253 [MainProcess/Thread-3 (iniciar_server)] → 🚀 21:40:38 server WebSocket rodando em ws://localhost:8765  [2025-11-18 21:40:38,983]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 21:40:44  SOWatcher Conection Started!  [2025-11-18 21:40:44,695]
+WARNING  in server:119 [MainProcess/Thread-3 (iniciar_server)] → ❌ 21:40:52 Conexão encerrada com o SOWatcher Sender.  [2025-11-18 21:40:52,099]
+WARNING  in server:121 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-18 21:40:52,100]

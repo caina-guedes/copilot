@@ -1,0 +1,7 @@
+ERROR  in logger:137 [MainProcess/MainThread] → Exception occurred: CalledProcessError - Command '['wmctrl', '-l', '-p']' died with <Signals.SIGINT: 2>.  [2025-11-25 20:19:57,645]
+ERROR  in logger:139 [MainProcess/MainThread] → File: /usr/lib/python3.10/subprocess.py, Line: 526, Function: run  [2025-11-25 20:19:57,645]
+ERROR  in logger:140 [MainProcess/MainThread] → Locals at error point:  [2025-11-25 20:19:57,646]
+ERROR  in logger:147 [MainProcess/MainThread] →     event = {'timestamp': '2025-11-25T23:19:57.421512+00:00', 'type': 'keyboard', 'action': 'press', 'key': 'Key.ctrl'}  [2025-11-25 20:19:57,646]
+ERROR  in logger:147 [MainProcess/MainThread] →     father = <__main__.AutomationSystem object at 0x756663920910>  [2025-11-25 20:19:57,646]
+ERROR  in logger:147 [MainProcess/MainThread] →     e = CalledProcessError(-2, ['wmctrl', '-l', '-p'])  [2025-11-25 20:19:57,646]
+ERROR  in logger:197 [MainProcess/MainThread] → [LoggerManager] Error inside log_exception_with_context: Command '['wmctrl', '-l', '-p']' died with <Signals.SIGINT: 2>.  [2025-11-25 20:19:57,646]

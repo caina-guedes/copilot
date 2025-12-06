@@ -1,0 +1,65 @@
+.
+├── estrutura.txt
+├── package.json
+├── package-lock.json
+├── public
+│   ├── icon.png
+│   ├── manifest.json
+│   ├── modularScrips
+│   │   ├── observadorCliques.js
+│   │   ├── teste.js
+│   │   └── verificarFlags.js
+│   └── popup.html
+├── scripts
+│   └── mergeDist.js
+├── src
+│   ├── background
+│   │   ├── background.test.js
+│   │   ├── index.js
+│   │   ├── subFiles
+│   │   │   ├── chromeEvents
+│   │   │   ├── pinger
+│   │   │   ├── serverHandlers
+│   │   │   ├── tabMessenger
+│   │   │   ├── utils
+│   │   │   └── websocket
+│   │   └── tests
+│   ├── content
+│   │   ├── content.test.js
+│   │   ├── index.js
+│   │   ├── subFiles
+│   │   │   ├── executarETirarDaAba
+│   │   │   ├── observerUtils
+│   │   │   └── utils
+│   │   └── tests
+│   ├── mensageria
+│   │   ├── mensageria.js
+│   │   ├── mensageria.test.js
+│   │   └── tests
+│   ├── pageScrips
+│   │   └── injectScripts.js
+│   ├── permissions
+│   │   ├── index.js
+│   │   ├── permissions.test.js
+│   │   └── tests
+│   ├── shared_config
+│   │   ├── comandos.json
+│   │   └── constants.js
+│   ├── tests
+│   │   └── integration
+│   │       └── mensageria.integration.test.js
+│   └── utils
+│       ├── generalUtils
+│       │   ├── generalUtils.js
+│       │   ├── generalUtils.test.js
+│       │   └── tests
+│       └── validadorComandos
+│           ├── tests
+│           ├── validadorComandos.js
+│           └── validadorComandos.test.js
+├── stats.html
+├── vite.config.background.js
+├── vite.config.content.js
+└── vite.config.tests.js
+
+32 directories, 30 files

@@ -1,0 +1,52 @@
+# =============================
+# NODE / JAVASCRIPT / ELECTRON
+# =============================
+
+# Ignora qualquer node_modules em qualquer nível
+node_modules/
+**/node_modules/
+
+# Ignora builds de Electron
+build/
+dist/
+**/dist/
+release/
+out/
+
+# Ignora caches do npm/yarn
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =============================
+# PYTHON
+# =============================
+
+__pycache__/
+*.py[cod]
+*.pdb
+*.egg-info/
+*.egg
+
+# venv
+venv/
+.env/
+.env.*
+.venv/
+
+# =============================
+# LOGS E OUTROS
+# =============================
+
+*.log
+
+# VSCode
+.vscode/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+target/
+*.db

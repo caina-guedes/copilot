@@ -1,0 +1,598 @@
+WARNING  in server:255 [MainProcess/Thread-3 (iniciar_server)] → 🚀 12:37:58 server WebSocket rodando em ws://localhost:8765  [2025-11-20 12:37:58,948]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 12:38:02  SOWatcher Conection Started!  [2025-11-20 12:38:02,167]
+WARNING  in server:121 [MainProcess/Thread-3 (iniciar_server)] → ❌ 12:38:13 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 12:38:13,007]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 12:38:13,007]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 12:59:17 server WebSocket rodando em ws://localhost:8765  [2025-11-20 12:59:17,224]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 12:59:26  SOWatcher Conection Started!  [2025-11-20 12:59:26,526]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 12:59:32 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 12:59:32,830]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 12:59:32,830]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:00:33  SOWatcher Conection Started!  [2025-11-20 13:00:33,396]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:00:41 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 13:00:41,726]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 13:00:41,726]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:01:48  SOWatcher Conection Started!  [2025-11-20 13:01:48,798]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:01:55 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 13:01:55,491]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 13:01:55,491]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:03:47 server WebSocket rodando em ws://localhost:8765  [2025-11-20 13:03:47,072]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:03:54  SOWatcher Conection Started!  [2025-11-20 13:03:54,299]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:04:07 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 13:04:07,910]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 13:04:07,910]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:04:27  SOWatcher Conection Started!  [2025-11-20 13:04:27,019]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:05:04 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 13:05:04,332]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 13:05:04,332]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:05:28  SOWatcher Conection Started!  [2025-11-20 13:05:28,347]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:05:37 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 13:05:37,607]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 13:05:37,607]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:05:44  SOWatcher Conection Started!  [2025-11-20 13:05:44,445]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:06:00 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 13:06:00,812]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 13:06:00,812]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:06:43  SOWatcher Conection Started!  [2025-11-20 13:06:43,232]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:07:22 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 13:07:22,201]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 13:07:22,202]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:07:25  SOWatcher Conection Started!  [2025-11-20 13:07:25,302]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:08:06 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 13:08:06,489]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 13:08:06,489]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:08:14 server WebSocket rodando em ws://localhost:8765  [2025-11-20 13:08:14,976]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:08:22  SOWatcher Conection Started!  [2025-11-20 13:08:22,277]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:08:28 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 13:08:28,915]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 13:08:28,915]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 13:21:22 server WebSocket rodando em ws://localhost:8765  [2025-11-20 13:21:22,904]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 13:21:28  SOWatcher Conection Started!  [2025-11-20 13:21:28,947]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 13:21:36 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 13:21:36,877]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 13:21:36,877]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 14:01:22  SOWatcher Conection Started!  [2025-11-20 14:01:22,982]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 14:02:51 server WebSocket rodando em ws://localhost:8765  [2025-11-20 14:02:51,267]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 14:06:45  SOWatcher Conection Started!  [2025-11-20 14:06:45,061]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 14:06:51 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 14:06:51,697]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 14:06:51,697]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 14:09:13  SOWatcher Conection Started!  [2025-11-20 14:09:13,736]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 14:09:19 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 14:09:19,773]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 14:09:19,773]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 15:24:26 server WebSocket rodando em ws://localhost:8765  [2025-11-20 15:24:26,888]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 15:24:30  SOWatcher Conection Started!  [2025-11-20 15:24:30,044]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:24:35 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 15:24:35,551]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 15:24:35,551]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 15:26:36 server WebSocket rodando em ws://localhost:8765  [2025-11-20 15:26:36,837]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 15:26:39  SOWatcher Conection Started!  [2025-11-20 15:26:39,984]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:26:46 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 15:26:46,814]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 15:26:46,814]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 15:48:17 server WebSocket rodando em ws://localhost:8765  [2025-11-20 15:48:17,320]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 15:48:19  SOWatcher Conection Started!  [2025-11-20 15:48:19,805]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:20 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:20,754]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:27 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:27,820]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:28 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:28,123]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:32 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:32,821]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:33 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:33,126]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:33 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:33,763]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:34 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:34,068]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:34 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:34,600]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:34 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:34,902]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:35 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:35,206]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:35 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:35,508]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:35 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:35,812]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:36 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:36,114]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:36 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:36,416]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:36 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:36,720]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:37 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:37,025]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:37 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:37,328]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:37 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:37,631]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:37 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:37,935]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:38 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:38,239]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:38 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:38,543]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:38 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:38,847]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:39 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:39,151]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:39 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:39,455]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:39 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:48:39,759]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:48:40 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 15:48:40,060]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 15:48:40,060]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 15:49:04 server WebSocket rodando em ws://localhost:8765  [2025-11-20 15:49:04,035]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 15:49:10  SOWatcher Conection Started!  [2025-11-20 15:49:10,655]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:49:13 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:49:13,613]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:49:19 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:49:19,621]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:49:19 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:49:19,925]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:49:36 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:49:36,059]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:49:36 Erro ao receber mensagem do SOWatcher: 'module' object is not callable
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 114, in sendMacroToExecute
+    cls.serverConfig.MacroConfig.currentPendingCommands = copy({})
+TypeError: 'module' object is not callable  [2025-11-20 15:49:36,362]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:49:36 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 15:49:36,666]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 15:49:36,666]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 15:51:11 server WebSocket rodando em ws://localhost:8765  [2025-11-20 15:51:11,402]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 15:51:18  SOWatcher Conection Started!  [2025-11-20 15:51:18,732]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:51:19 Erro ao receber mensagem do SOWatcher: name 'currentPendingCommands' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 120, in server
+    mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 23, in create
+    await cls.sendMacroToExecute()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/serverReactions.py", line 115, in sendMacroToExecute
+    aprint("iniciated the currentPendingCommands var into ",currentPendingCommands)
+NameError: name 'currentPendingCommands' is not defined  [2025-11-20 15:51:19,768]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:51:26 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 15:51:26,849]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 15:51:26,849]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 15:52:27 server WebSocket rodando em ws://localhost:8765  [2025-11-20 15:52:27,199]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 15:52:32  SOWatcher Conection Started!  [2025-11-20 15:52:32,320]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:52:37 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 15:52:37,386]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 15:52:37,386]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 15:54:51 server WebSocket rodando em ws://localhost:8765  [2025-11-20 15:54:51,529]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 15:54:58  SOWatcher Conection Started!  [2025-11-20 15:54:58,985]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 15:55:04 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 15:55:04,351]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 15:55:04,351]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 16:02:28 server WebSocket rodando em ws://localhost:8765  [2025-11-20 16:02:28,491]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 16:02:33  SOWatcher Conection Started!  [2025-11-20 16:02:33,524]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 16:02:39 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 16:02:39,441]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 16:02:39,441]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 16:05:39 server WebSocket rodando em ws://localhost:8765  [2025-11-20 16:05:39,846]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 16:05:54  SOWatcher Conection Started!  [2025-11-20 16:05:54,126]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 16:06:00 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 16:06:00,243]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 16:06:00,243]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 16:06:35 server WebSocket rodando em ws://localhost:8765  [2025-11-20 16:06:35,537]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 16:06:41  SOWatcher Conection Started!  [2025-11-20 16:06:41,158]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 16:06:46 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 16:06:46,675]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 16:06:46,675]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 16:17:02 server WebSocket rodando em ws://localhost:8765  [2025-11-20 16:17:02,846]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 16:17:05  SOWatcher Conection Started!  [2025-11-20 16:17:05,993]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 16:17:11 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 16:17:11,460]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 16:17:11,460]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 17:18:53 server WebSocket rodando em ws://localhost:8765  [2025-11-20 17:18:53,767]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 17:18:57  SOWatcher Conection Started!  [2025-11-20 17:18:57,357]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:19:03 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 17:19:03,780]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 17:19:03,780]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 17:22:28 server WebSocket rodando em ws://localhost:8765  [2025-11-20 17:22:28,621]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 17:22:33  SOWatcher Conection Started!  [2025-11-20 17:22:33,379]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:22:34 Erro ao receber mensagem do SOWatcher: name 'serverConf' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    cls.pendingCommands = serverConf.MacroConfig.currentPendingCommands
+NameError: name 'serverConf' is not defined  [2025-11-20 17:22:34,347]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:22:34 Erro ao receber mensagem do SOWatcher: name 'serverConf' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    cls.pendingCommands = serverConf.MacroConfig.currentPendingCommands
+NameError: name 'serverConf' is not defined  [2025-11-20 17:22:34,651]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:22:43 Erro ao receber mensagem do SOWatcher: name 'serverConf' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    cls.pendingCommands = serverConf.MacroConfig.currentPendingCommands
+NameError: name 'serverConf' is not defined  [2025-11-20 17:22:43,038]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:22:43 Erro ao receber mensagem do SOWatcher: name 'serverConf' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    cls.pendingCommands = serverConf.MacroConfig.currentPendingCommands
+NameError: name 'serverConf' is not defined  [2025-11-20 17:22:43,341]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:22:45 Erro ao receber mensagem do SOWatcher: name 'serverConf' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    cls.pendingCommands = serverConf.MacroConfig.currentPendingCommands
+NameError: name 'serverConf' is not defined  [2025-11-20 17:22:45,357]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:22:45 Erro ao receber mensagem do SOWatcher: name 'serverConf' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    cls.pendingCommands = serverConf.MacroConfig.currentPendingCommands
+NameError: name 'serverConf' is not defined  [2025-11-20 17:22:45,659]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:22:45 Erro ao receber mensagem do SOWatcher: name 'serverConf' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    cls.pendingCommands = serverConf.MacroConfig.currentPendingCommands
+NameError: name 'serverConf' is not defined  [2025-11-20 17:22:45,960]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:22:46 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 17:22:46,261]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 17:22:46,261]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 17:34:25 server WebSocket rodando em ws://localhost:8765  [2025-11-20 17:34:25,841]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 17:34:32  SOWatcher Conection Started!  [2025-11-20 17:34:32,430]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:34:38 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 17:34:38,953]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 17:34:38,953]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 17:41:15 server WebSocket rodando em ws://localhost:8765  [2025-11-20 17:41:15,087]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 17:41:19  SOWatcher Conection Started!  [2025-11-20 17:41:19,419]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:41:25 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 17:41:25,738]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 17:41:25,738]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 17:44:10 server WebSocket rodando em ws://localhost:8765  [2025-11-20 17:44:10,669]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 17:44:16  SOWatcher Conection Started!  [2025-11-20 17:44:16,084]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:44:17 Erro ao receber mensagem do SOWatcher: name 'pendingCommands' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 97, in handlePendingMacroCommand
+    aprint(f"{doneCommands/float(len(pendingCommands))}", " of the task done")
+NameError: name 'pendingCommands' is not defined  [2025-11-20 17:44:17,999]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:44:18 Erro ao receber mensagem do SOWatcher: name 'pendingCommands' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 97, in handlePendingMacroCommand
+    aprint(f"{doneCommands/float(len(pendingCommands))}", " of the task done")
+NameError: name 'pendingCommands' is not defined  [2025-11-20 17:44:18,303]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:44:18 Erro ao receber mensagem do SOWatcher: name 'pendingCommands' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 97, in handlePendingMacroCommand
+    aprint(f"{doneCommands/float(len(pendingCommands))}", " of the task done")
+NameError: name 'pendingCommands' is not defined  [2025-11-20 17:44:18,605]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:44:18 Erro ao receber mensagem do SOWatcher: name 'pendingCommands' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 97, in handlePendingMacroCommand
+    aprint(f"{doneCommands/float(len(pendingCommands))}", " of the task done")
+NameError: name 'pendingCommands' is not defined  [2025-11-20 17:44:18,907]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:44:19 Erro ao receber mensagem do SOWatcher: name 'pendingCommands' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 97, in handlePendingMacroCommand
+    aprint(f"{doneCommands/float(len(pendingCommands))}", " of the task done")
+NameError: name 'pendingCommands' is not defined  [2025-11-20 17:44:19,209]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:44:19 Erro ao receber mensagem do SOWatcher: name 'pendingCommands' is not defined
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 90, in server
+    if macroManager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 97, in handlePendingMacroCommand
+    aprint(f"{doneCommands/float(len(pendingCommands))}", " of the task done")
+NameError: name 'pendingCommands' is not defined  [2025-11-20 17:44:19,511]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:44:22 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 17:44:22,853]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 17:44:22,853]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 17:50:07 server WebSocket rodando em ws://localhost:8765  [2025-11-20 17:50:07,748]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 17:50:11  SOWatcher Conection Started!  [2025-11-20 17:50:11,367]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:50:13 Erro ao receber mensagem do SOWatcher: 'equipment'
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 91, in server
+    aprint("macro command being ignored ",resumedMesssage(message))
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/utils.py", line 18, in resumedMesssage
+    if message["equipment"] == "keyboard":
+KeyError: 'equipment'  [2025-11-20 17:50:13,468]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:50:13 Erro ao receber mensagem do SOWatcher: 'equipment'
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 91, in server
+    aprint("macro command being ignored ",resumedMesssage(message))
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/utils.py", line 18, in resumedMesssage
+    if message["equipment"] == "keyboard":
+KeyError: 'equipment'  [2025-11-20 17:50:13,770]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:50:14 Erro ao receber mensagem do SOWatcher: 'equipment'
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 91, in server
+    aprint("macro command being ignored ",resumedMesssage(message))
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/utils.py", line 18, in resumedMesssage
+    if message["equipment"] == "keyboard":
+KeyError: 'equipment'  [2025-11-20 17:50:14,072]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:50:14 Erro ao receber mensagem do SOWatcher: 'equipment'
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 91, in server
+    aprint("macro command being ignored ",resumedMesssage(message))
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/utils.py", line 18, in resumedMesssage
+    if message["equipment"] == "keyboard":
+KeyError: 'equipment'  [2025-11-20 17:50:14,375]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:50:14 Erro ao receber mensagem do SOWatcher: 'equipment'
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 91, in server
+    aprint("macro command being ignored ",resumedMesssage(message))
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/utils.py", line 18, in resumedMesssage
+    if message["equipment"] == "keyboard":
+KeyError: 'equipment'  [2025-11-20 17:50:14,676]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:50:14 Erro ao receber mensagem do SOWatcher: 'equipment'
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 91, in server
+    aprint("macro command being ignored ",resumedMesssage(message))
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/utils.py", line 18, in resumedMesssage
+    if message["equipment"] == "keyboard":
+KeyError: 'equipment'  [2025-11-20 17:50:14,977]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:50:17 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 17:50:17,428]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 17:50:17,428]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 17:53:10 server WebSocket rodando em ws://localhost:8765  [2025-11-20 17:53:10,953]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 17:53:15  SOWatcher Conection Started!  [2025-11-20 17:53:15,682]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:53:17 Erro ao receber mensagem do SOWatcher: 'equipment'
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 91, in server
+    aprint("macro command being ignored ",resumedMesssage(message))
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/utils.py", line 19, in resumedMesssage
+    return message["equipment"], message["action"], message["key"]
+KeyError: 'equipment'  [2025-11-20 17:53:17,341]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:53:17 Erro ao receber mensagem do SOWatcher: 'equipment'
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 91, in server
+    aprint("macro command being ignored ",resumedMesssage(message))
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/utils.py", line 19, in resumedMesssage
+    return message["equipment"], message["action"], message["key"]
+KeyError: 'equipment'  [2025-11-20 17:53:17,643]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:53:17 Erro ao receber mensagem do SOWatcher: 'equipment'
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 91, in server
+    aprint("macro command being ignored ",resumedMesssage(message))
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/utils.py", line 19, in resumedMesssage
+    return message["equipment"], message["action"], message["key"]
+KeyError: 'equipment'  [2025-11-20 17:53:17,944]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:53:18 Erro ao receber mensagem do SOWatcher: 'equipment'
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 91, in server
+    aprint("macro command being ignored ",resumedMesssage(message))
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/utils.py", line 19, in resumedMesssage
+    return message["equipment"], message["action"], message["key"]
+KeyError: 'equipment'  [2025-11-20 17:53:18,245]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:53:18 Erro ao receber mensagem do SOWatcher: 'equipment'
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 91, in server
+    aprint("macro command being ignored ",resumedMesssage(message))
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/utils.py", line 19, in resumedMesssage
+    return message["equipment"], message["action"], message["key"]
+KeyError: 'equipment'  [2025-11-20 17:53:18,547]
+ERROR  in server:132 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:53:18 Erro ao receber mensagem do SOWatcher: 'equipment'
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 91, in server
+    aprint("macro command being ignored ",resumedMesssage(message))
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/utils.py", line 19, in resumedMesssage
+    return message["equipment"], message["action"], message["key"]
+KeyError: 'equipment'  [2025-11-20 17:53:18,849]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:53:21 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 17:53:21,388]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 17:53:21,388]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 17:54:00 server WebSocket rodando em ws://localhost:8765  [2025-11-20 17:54:00,738]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 17:54:05  SOWatcher Conection Started!  [2025-11-20 17:54:05,957]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:54:10 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 17:54:10,796]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 17:54:10,796]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 17:58:37 server WebSocket rodando em ws://localhost:8765  [2025-11-20 17:58:37,829]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 17:58:41  SOWatcher Conection Started!  [2025-11-20 17:58:41,855]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 17:58:48 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 17:58:48,478]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 17:58:48,478]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 18:01:49  SOWatcher Conection Started!  [2025-11-20 18:01:49,344]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 18:01:53 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 18:01:53,182]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 18:01:53,183]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 18:02:01 server WebSocket rodando em ws://localhost:8765  [2025-11-20 18:02:01,565]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 18:02:05  SOWatcher Conection Started!  [2025-11-20 18:02:05,422]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 18:02:11 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 18:02:11,071]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 18:02:11,071]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 18:08:14 server WebSocket rodando em ws://localhost:8765  [2025-11-20 18:08:14,029]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 18:08:18  SOWatcher Conection Started!  [2025-11-20 18:08:18,778]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 18:08:26 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 18:08:26,686]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 18:08:26,686]
+WARNING  in server:257 [MainProcess/Thread-3 (iniciar_server)] → 🚀 18:11:44 server WebSocket rodando em ws://localhost:8765  [2025-11-20 18:11:44,717]
+WARNING  in server:72 [MainProcess/Thread-3 (iniciar_server)] → 🖥️ 18:11:47  SOWatcher Conection Started!  [2025-11-20 18:11:47,764]
+WARNING  in server:123 [MainProcess/Thread-3 (iniciar_server)] → ❌ 18:11:53 Conexão encerrada com o SOWatcher Sender.  [2025-11-20 18:11:53,548]
+WARNING  in server:125 [MainProcess/Thread-3 (iniciar_server)] → connection was not discarded correctly  [2025-11-20 18:11:53,548]

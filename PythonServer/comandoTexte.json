@@ -1,0 +1,24 @@
+{
+    "texte1": {
+      "tipo": "execute_steps",
+      "url": "https://www.google.com/",
+      "parametros": {
+        "steps": [
+          {
+            "action": "log",
+            "message": "Testando console.log no content script!"
+          }
+        ]
+      }
+    },
+  
+   "texte2":{ "tipo": "execute_steps",
+    "parametros": {
+   "comando":"execute_steps",
+      "steps": [{"action":"log", "message":"Testando console.log no content script!"}],
+      "dados": {},
+      "url": "https://www.google.com/"
+    },
+      "url": "https://www.google.com/"
+  }
+}
