@@ -18,6 +18,9 @@
         "open": true
       }
     },
+    "systemTray": {
+      "iconPath": "icons/icon.png"
+    },
     "windows": [
       {
         "title": "automation-ui-tauri",
