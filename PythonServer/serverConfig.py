@@ -9,7 +9,7 @@ class serverConfig:
     """Central configuration for the software"""
     _threading_rlock = threading.RLock()
     serverPort = 8765
-    # Comandos especiais
+    # Comandos especiais de teclado
     specialCommands = {
         "ExecCurrentMacro": KeyRef("f2"),
         "toggleRecording": KeyRef("f1"),
@@ -174,8 +174,8 @@ class SOWatcherActions:
         "get_stopKey": self.get_stopKeyHasCondition, # has condition
         "set_stopKey": self.set_stopKeyHasCondition, # has condition
         "toggleRecording": self.toggleRecordingHasCondition # só para constar essa string na lista de comandos
-            
         }
+
         self.actionDispatch = {
         "StartWatcher": self.StartWatcherFunction,
 
@@ -375,7 +375,7 @@ connection_types = {
     "OSwatcherReceiver" : "Operating System Watcher Receiver",
     "ping": "Ping to check connection",
     "extension": "Browser Extension",
-    "control": "Control Connection",
+    "front_end": "front_end",
 }
 
 mouseMovementMinimumDelay = 0.75
