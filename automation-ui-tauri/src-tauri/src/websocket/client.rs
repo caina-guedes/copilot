@@ -1,46 +1,96 @@
+
 use tokio_tungstenite::{connect_async, tungstenite::Message};
-use tokio::sync::Mutex;
+use tokio_tungstenite::tungstenite::Error as WsError;
 use futures_util::{SinkExt, StreamExt};
+use once_cell::sync::OnceCell;
+use serde_json::{json,Value};
+use tokio::sync::Mutex;
 use std::sync::Arc;
 use url::Url;
-use once_cell::sync::OnceCell;
-use serde_json::json;
 
-// Armazena o sender globalmente
+// -------------------------
+// Global WS sender
+// -------------------------
 pub static WS_SENDER: OnceCell<WsSender> = OnceCell::new();
 
+// -------------------------
 // Tipo do sender
-pub type WsSender = Arc<Mutex<
+// -------------------------
+#[derive(Clone)]
+pub struct WsSender(pub Arc<Mutex<
     futures_util::stream::SplitSink<
         tokio_tungstenite::WebSocketStream<tokio_tungstenite::MaybeTlsStream<tokio::net::TcpStream>>,
         Message
     >
->>;
+>>);
 
-// Inicializa a conexão e guarda o sender global
-pub async fn connect_ws() -> WsSender {
-    let url = Url::parse("ws://localhost:8765").unwrap();
-    let (ws_stream, _) = connect_async(url).await.expect("Erro ao conectar WS");
-    let (mut write, read) = ws_stream.split();
-    // envia a primeira mensagem para registrar como "front_end"
-    let handshake = json!({"tipo": "front_end" });
-    write.send(Message::Text(handshake.to_string())).await
-        .expect("Erro ao enviar handshake para o servidor");
 
-    let sender = Arc::new(Mutex::new(write));
-    WS_SENDER.set(sender.clone()).ok(); // armazena globalmente
-    sender
+impl WsSender {
+
+    // -------------------------
+    // Métodos do WsSender
+    // -------------------------
+
+    /// Envia qualquer JSON como mensagem WS
+    pub async fn send_message(&self, msg: Value) -> Result<(), WsError>{
+        println!("Enviando mensagem WS: {}", msg);
+        let mut locked = self.0.lock().await;
+        println!("Locked WS sender para enviar mensagem.");
+        locked.send(Message::Text(msg.to_string())).await 
+
+    }
+
+    pub async fn send_command(&self, cmd: &str) -> Result<(), WsError> {
+        self.send_message(json!({"command": cmd})).await
+    }
+    // Envia comando no formato {"command": "..."}
+    // pub async fn send_command(&self, cmd: &str) {
+    //     self.send_message(json!({"command": cmd})).await;
+    // }
 }
 
-// Função para enviar comando
-pub async fn send_command(cmd: &str) {
-    if let Some(sender) = WS_SENDER.get() {
-        let msg = json!({ "command": cmd }).to_string();
-        let mut locked = sender.lock().await;
-        if let Err(e) = locked.send(Message::Text(msg)).await {
-            eprintln!("Erro ao enviar comando WS: {:?}", e);
+// -------------------------
+// Inicializa conexão WS e armazena globalmente
+// -------------------------
+pub async fn connect_ws() -> Result<WsSender, WsError> {
+    let url = Url::parse("ws://localhost:8765").unwrap();
+    let (ws_stream, _) = connect_async(url).await?;
+    let (write, mut read) = ws_stream.split();
+
+    let sender = WsSender(Arc::new(Mutex::new(write)));
+
+    // spawn task para ler mensagens (apenas para evitar bloqueio)
+    tokio::spawn(async move {
+        while let Some(msg) = read.next().await {
+            match msg {
+                Ok(m) => println!("WS recv: {:?}", m),
+                Err(e) => {
+                    eprintln!("WS read error: {:?}", e);
+                    break;
+                }
+            }
         }
+    });
+    // envia handshake inicial
+    sender.send_message(json!({"tipo": "front_end"})).await?;
+
+    // armazena globalmente
+    WS_SENDER.set(sender.clone()).ok();
+
+    Ok(sender)
+}
+
+
+// -------------------------
+// Função de conveniência usando global
+// -------------------------
+pub async fn send_command_global(cmd: &str) -> Result<(), WsError> {
+    println!("send_command_global: {}", cmd);
+    if let Some(sender) = WS_SENDER.get() {
+        sender.send_command(cmd).await
     } else {
         eprintln!("WS não inicializado!");
+        Err(WsError::AlreadyClosed)
     }
 }
+

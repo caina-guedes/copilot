@@ -112,7 +112,7 @@ class answerMapping():
         ### need to send this command above to all connections that will execute the macro
         if cls.serverConfig.MacroConfig.currentPendingCommands["current"] is None and cls.currentMacro is not None:
             cls.serverConfig.MacroConfig.currentPendingCommands["current"] = {}
-            print("iniciated the currentPendingCommands var into ",cls.serverConfig.MacroConfig.currentPendingCommands["current"])
+            # print("iniciated the currentPendingCommands var into ",cls.serverConfig.MacroConfig.currentPendingCommands["current"])
         
         timegap = 0
         # cls.macroPendingCommands = {}
@@ -131,8 +131,8 @@ class answerMapping():
                 print("o commando que entrou no filtered command é: ",command)
                 print("o windowChange cru nesse caso é: ", command[-1])
                 continue
-            if filteredCommand["equipment"] == "mouse":
-                print("mouse command detected in the macro execution sender")
+            # if filteredCommand["equipment"] == "mouse":
+                # print("mouse command detected in the macro execution sender")
             if index > 0:
                 timegap = filteredCommand["deltaTime"] - cls.currentMacro[index-1][1]
             # print("o calculo da diferençe de tempo é: ", command[1], " - ", cls.currentMacro[index-1][1], " = ", timegap)
@@ -161,5 +161,5 @@ class answerMapping():
   
         cls.reset_state()
         # print("the currentPendingCommands after the reset_state is:", cls.serverConfig.MacroConfig.currentPendingCommands["current"])
-        print(f"the answer mapping received is : {cls.answer} and the current macro is : {cls.currentMacro}")
+        # print(f"the answer mapping received is : {cls.answer} and the current macro is : {cls.currentMacro}")
 

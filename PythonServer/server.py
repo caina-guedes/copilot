@@ -169,13 +169,22 @@ async def server(websocket):
 
             while True:
                 try:
+                    error = True
                     message = await websocket.recv()
-                    logger.info(f"📨 {get_current_time()} Comando recebido do front_end: {message}")
+                    print(f"📨 {get_current_time()} Comando recebido do front_end: {message}")
+                    message = json.loads(message)
                     # Supondo que message seja um dict com {"command": "start_recording"}
-                    command_name = message.get("command")
-                    
+                    print(type(message))
+                    # try:
+
+                    command_name = message.get("command", None)
+                    if command_name:
+                        print(f"o command_name é: {command_name}")
                     if command_name in commands:
                         # Executa a função correspondente
+                        print(f"executando o comando: {command_name}")
+                        # continue 
+                        # if False:  # Placeholder para validação futura    
                         commands[command_name]()
                         logger.info(f"✅ {get_current_time()} Comando {command_name} executado com sucesso!")
                         
@@ -185,10 +194,24 @@ async def server(websocket):
                         await websocket.send_json({"status": "ok", "command": command_name})
                     else:
                         logger.warning(f"⚠️ Comando desconhecido: {command_name}")
+                    error = False
 
+
+                
+                except websockets.exceptions.ConnectionClosed:
+                    logger.warning(f"❌ {get_current_time()} Conexão encerrada com {tipo}.")
+                    
+                    # break  # sai do loop
+                except asyncio.CancelledError:
+                    logger.info(f"⚠️ {get_current_time()} Loop de {tipo} cancelado.")
+                    # break
                 except Exception as e:
                     logger.error(f"❌ Erro ao processar comando: {e}")
-
+                    # break
+                if error:
+                    await asyncio.sleep(0.3)
+        else:
+            print(f"⚠️ {get_current_time()} Unknown connection type. info: {initial_data}")
 
                 
                     # ok, err = validar_comando(json.loads(message))
@@ -229,19 +252,6 @@ async def server(websocket):
                     
                     # await websocket.send(json.dumps(response))
                     # logger.info(f"📥 {get_current_time()} Response sent to the controller: {response}")
-                except websockets.exceptions.ConnectionClosed:
-                    logger.warning(f"❌ {get_current_time()} Conexão encerrada com {tipo}.")
-                    
-                    break  # sai do loop
-                except asyncio.CancelledError:
-                    logger.info(f"⚠️ {get_current_time()} Loop de {tipo} cancelado.")
-                    break
-                except Exception as e:
-                    LoggerManager.log_exception_with_context(f"[server.py] Erro no loop de {tipo}: {e}", e)
-                    # opcional: sleep curto para não virar busy-wait
-                    await asyncio.sleep(0.3)
-        else:
-            print(f"⚠️ {get_current_time()} Unknown connection type. info: {initial_data}")
             
 
     except websockets.exceptions.ConnectionClosed:
@@ -269,23 +279,76 @@ async def check_connections(period = 10):
 async def start_ws_server():
     async with websockets.serve(server, "localhost", 8765):
         logger.warning(f"🚀 {get_current_time()} server WebSocket rodando em ws://localhost:{serverConfig.serverPort}")
-        # await asyncio.gather(
-            # asyncio.Future(),  # Mantém o server ativo
-        while True:   
-            await check_connections()  # Verifica as conexões periodicamente
-        # )
+        await asyncio.gather(
+            asyncio.Future(),  # Mantém o server ativo
+            check_connections()  # Verifica as conexões periodicamente
+            )
 
 # Roda o server em uma thread separada
 def iniciar_server():
     asyncio.run(start_ws_server())
 
-# 
-if __name__ == "__main__":
-    threading.Thread(target=iniciar_server, daemon=True).start()
+# Envia comandos para todos os navegadores conectados
+async def enviar_comando(comandoInicial  =  ''  ):
+    if comandoInicial:
+        message = {
+            "acao": comandoInicial,
+        }
+        logger.info(f"recebi o comando , {comandoInicial}")
+        logger.info(f"tenho {len([connections.browser.unique])} conexões ativas")
+        data = json.dumps(message)
+        
+        if connections.browser.unique is None:
+            logger.info(f"⚠️ {get_current_time()} Nenhum navegador conectado para enviar o comando.")
+            return
+        logger.info(f" {get_current_time()} Enviando comando para navegador conectado...")
+        await connections.browser.unique.send(data)
+        logger.info(f"📤 Comando enviado: {data}")
+    else:
+        while True:
+            comando = input("💻 Digite o comando para enviar ao navegador (ex: preencher_formulario):\n> ")
+            if comando.lower() == "list":
+                logger.info(f"Conexões ativas: {len([connections.browser.unique])}")
+                for conn in connections.browser.unique:
+                    logger.info(f"Conexão ativa: {conn}")
+                continue
+            elif comando.lower() == "exit":
+                logger.info("Saindo...")
+                break
+            message = {
+                "acao": comando,
+                "dados": {
+                    "nome": "João",
+                    "email": "joao@email.com",
+                    "telefone": "123456789"
+                }
+            }
+            data = json.dumps(message)
+            await connections.browser.unique.send(data)
+            logger.info(f"📤 Comando enviado: {data}")
+
+def main():
+    # Inicializa o server na thread principal ou não-daemon
+    server_thread = threading.Thread(target=iniciar_server)
+    server_thread.start()
+
+    # Aguarda server estar pronto (opcional: pode colocar sleep ou flag)
     # asyncio.run(enviar_comando())
-    while True:
-        time.sleep(1)
-    LoggerManager.stop_listener()  # Stop logger listener when script ends
+
+    # Fecha listener do logger quando tudo terminar
+    LoggerManager.stop_listener()
+
+    # Espera server terminar se necessário
+    server_thread.join()
+
+if __name__ == "__main__":
+    # threading.Thread(target=iniciar_server, daemon=True).start()
+    # asyncio.run(enviar_comando())
+    # LoggerManager.stop_listener()  # Stop logger listener when script ends
+    main()
+    # iniciar_server()
+    # while True:
+    #     time.sleep(5)
     
     # Inicia o server WebSocket
 
@@ -295,41 +358,3 @@ if __name__ == "__main__":
 # # Inicia o input de comandos
 # enviar_comando()
 
-# Envia comandos para todos os navegadores conectados
-# async def enviar_comando(comandoInicial  =  ''  ):
-#     if comandoInicial:
-#         message = {
-#             "acao": comandoInicial,
-#         }
-#         logger.info(f"recebi o comando , {comandoInicial}")
-#         logger.info(f"tenho {len([connections.browser.unique])} conexões ativas")
-#         data = json.dumps(message)
-        
-#         if connections.browser.unique is None:
-#             logger.info(f"⚠️ {get_current_time()} Nenhum navegador conectado para enviar o comando.")
-#             return
-#         logger.info(f" {get_current_time()} Enviando comando para navegador conectado...")
-#         await connections.browser.unique.send(data)
-#         logger.info(f"📤 Comando enviado: {data}")
-#     else:
-#         while True:
-#             comando = input("💻 Digite o comando para enviar ao navegador (ex: preencher_formulario):\n> ")
-#             if comando.lower() == "list":
-#                 logger.info(f"Conexões ativas: {len([connections.browser.unique])}")
-#                 for conn in connections.browser.unique:
-#                     logger.info(f"Conexão ativa: {conn}")
-#                 continue
-#             elif comando.lower() == "exit":
-#                 logger.info("Saindo...")
-#                 break
-#             message = {
-#                 "acao": comando,
-#                 "dados": {
-#                     "nome": "João",
-#                     "email": "joao@email.com",
-#                     "telefone": "123456789"
-#                 }
-#             }
-#             data = json.dumps(message)
-#             await connections.browser.unique.send(data)
-#             logger.info(f"📤 Comando enviado: {data}")

@@ -100,9 +100,9 @@ class macroManager:
                     # deletePendingCommand(convenientWatcherInfo,pendingCommands)
                     return True
                 else:
-                    print("não deu match")
-                    print("o comando que não deu match foi: ", convenientWatcherInfo)
-                    print(" e a lista de comandos de macro pendentes ja filtrada de forma conveniente é:", convenientPendingListOfCommands)
+                    # print("não deu match")
+                    # print("o comando que não deu match foi: ", convenientWatcherInfo)
+                    # print(" e a lista de comandos de macro pendentes ja filtrada de forma conveniente é:", convenientPendingListOfCommands)
                     return False
             else:
                 # print("não tem nenhum comando de macro pendente e a lista é:",cls.pendingCommands["current"])

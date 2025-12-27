@@ -89,9 +89,9 @@ class LinuxWindowBackend(BaseWindowBackend):
             # print("and it is: ",ActiveWindow_ip)
             
             if ActiveWindow_ip.lower() in ("0x0", "0x00000000"):
-                print("[WARN] Nenhuma janela ativa real detectada")
-                print("[WARN] and the ActiveWindow_ip is:",ActiveWindow_ip)
-                print("[WARN] and the output is: ",output)
+                # print("[WARN] Nenhuma janela ativa real detectada")
+                # print("[WARN] and the ActiveWindow_ip is:",ActiveWindow_ip)
+                # print("[WARN] and the output is: ",output)
                 return None
             # Padroniza o formato do ID retornado pelo xprop
             if ActiveWindow_ip.startswith("0x"):
@@ -167,7 +167,7 @@ class LinuxWindowBackend(BaseWindowBackend):
         """with WindowFingerPrint"""
         active_id = self.get_active_window_id(lastKnowId)
         if not active_id:
-            print("couldn't find an active id")
+            # print("couldn't find an active id")
             return None
         
         for window in self.list_windows():

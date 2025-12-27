@@ -1,8 +1,13 @@
-use crate::websocket::client::send_command;
+use tauri::{State};
+use crate::app::setup::WsState;
+
+
 #[tauri::command]
-pub async fn play_macro() {
+pub async fn play_macro(ws: State<'_, WsState>) -> Result<(), String> {
     println!("Play macro activated!");
-    send_command("ExecCurrentMacro")
-    .await;
+    ws.0.send_command("ExecCurrentMacro")
+        .await
+        .map_err(|e| e.to_string())?;
+    Ok(())
     // enviar evento pro server via WebSocket
 }

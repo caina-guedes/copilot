@@ -45,7 +45,7 @@ class WindowManager:
         self.__class__.current_window = self.backend.get_active_window(self.__class__.lastKnowWindowId)
         
         if self.__class__.current_window is None:
-            print("o current_window deu None mesmo depois da função de pegar a janela ativa")
+            # print("o current_window deu None mesmo depois da função de pegar a janela ativa")
             return self.__class__.lastKnowWindow , changed 
         else:
             self.__class__.lastKnowWindow = copy.deepcopy(self.__class__.current_window)

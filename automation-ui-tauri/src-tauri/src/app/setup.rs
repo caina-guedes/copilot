@@ -1,33 +1,39 @@
 use tauri::{App, Manager };
-use crate::process::launcher::{start_server, start_watcher};
-use crate::websocket::client::{connect_ws,WsSender};
-
+use crate::process::launcher::{AppProcesses};
+use crate::websocket::client::{connect_ws,WsSender,send_command_global};
+use std::process::Child;
+use tokio_tungstenite::tungstenite::Message;
 pub struct WsState(pub WsSender);
+use serde_json::json;
 
 pub fn setup_app(app: &App) -> Result<(), Box<dyn std::error::Error>> {
     let app_handle = app.handle(); // cria um AppHandle 'static
     if cfg!(debug_assertions) {
-        start_server();
-        start_watcher();
+        let processes = AppProcesses::new();
+        // processes.start_server();
+        // processes.start_watcher();
+        app_handle.manage(processes);
     };
 
-    println!("setup_app foi executado!");
+    println!("setup_app sendo executado!");
     tauri::async_runtime::spawn(async move {
-        let ws = connect_ws().await;
-        app_handle.manage(WsState(ws));
-    });
+     match connect_ws().await {
+        Ok(ws) => {
+            println!("WS conectado com sucesso!");
+            // envia mensagem inicial
+            if let Err(e) = send_command_global("Conexão do front-end estabelecida").await {
+                eprintln!("Erro ao enviar mensagem inicial: {:?}", e);
+            }
+            // registra WSState no Tauri
+            println!("registrando o WsState no Tauri");
+            app_handle.manage(WsState(ws));
+            println!("WsState registrado com sucesso!");
+        }
+        Err(e) => eprintln!("Falha ao conectar WS: {:?}", e),
+    
+    }});
+
     println!("websocket inicializado!");
 
-    // let handle = app.handle();
-
-    // let handle2 = handle.clone();
-    // // app.listen_global("tauri://ready", move |_| {
-
-    //     handle.listen_global("janela_escondida", move |_| {
-    //         println!("cheguei no codigo de esconder a janela");
-    //         let tray = handle2.tray_handle().get_item("toggle");
-    //         tray.set_title("Mostrar").ok();
-    //     });
-    // });
     Ok(())
 }

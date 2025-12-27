@@ -41,7 +41,7 @@ def _log_browser_event(self, url, title, js_payload, device='browser-ext', sourc
 
 def _log_mouse(self, x, y, action, button=None, clicks=None, wheel_delta=None,
                 device='mouse', source='background', windowEvent = None):
-    print(f"mouse event: x={x}, y={y}, action={action}, button={button}, clicks={clicks}, wheel_delta={wheel_delta}, device={device}, source={source}")
+    # print(f"mouse event: x={x}, y={y}, action={action}, button={button}, clicks={clicks}, wheel_delta={wheel_delta}, device={device}, source={source}")
     
     
     
@@ -70,7 +70,7 @@ def _log_mouse(self, x, y, action, button=None, clicks=None, wheel_delta=None,
         # print("a janela mudou nesse evento de mouse!")
         # print(windowEvent["newCurrentWindow"])
         event_dict["newCurrentWindow"] = windowEvent["newCurrentWindow"]
-    print("o evento que será adicionado a lista de flush na função de mouse é: ", event_dict)
+    # print("o evento que será adicionado a lista de flush na função de mouse é: ", event_dict)
     
     self.add_event(event_dict)
 

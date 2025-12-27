@@ -21,10 +21,10 @@ function App() {
       <h1>Automation UI</h1>
 
       <button onClick={handleClick}>
-        Falar com o Rust
+        play macro
       </button>
       <button onClick={testPing}>
-        Falar com o Rust sobre ping
+        start recording
       </button>
 
       {response && <p>{response}</p>}

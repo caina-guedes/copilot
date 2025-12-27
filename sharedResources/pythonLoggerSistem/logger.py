@@ -10,11 +10,13 @@ import traceback
 from rich.console import Console
 from sharedResources.generalUtils.aprint import aprint
 
+BASE_DIR = Path(__file__).resolve().parent
+
 class LoggerManager:
     _log_queue = Queue()
     _listener = None
     _listener_started = False
-    _logs_path = "sharedResources/pythonLoggerSistem/logs"
+    _logs_path = BASE_DIR / "logs"
     _general_level = logging.WARN
     _general_filename = "default.log"
     _DevMode = True
