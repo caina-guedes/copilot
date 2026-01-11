@@ -1,5 +1,7 @@
 import threading
 from sharedResources.generalUtils.aprint import aprint
+import time 
+
 
 class KeyRef:
     def __init__(self, value):
@@ -55,7 +57,8 @@ class serverConfig:
     # Configurações de flush/buffer
     class FlushConfig:
         batchSize: int = 100
-        flushInterval: int = 5
+        flushInterval: int = 2  # seconds
+        minimumTimeForEventToBeFlushed: int = 1  # seconds
 
     # Outros parâmetros globais
     debug: bool = False
@@ -201,23 +204,24 @@ class SOWatcherActions:
             
 
     def toggleRecording(self,*args,**Kargs):
-        
-        current = serverConfig.MacroConfig.get_flag("isRecording")
-        new_state = not current
-        serverConfig.MacroConfig.set_flag("isRecording", new_state)
-        # serverConfig.MacroConfig.isRecording = not serverConfig.MacroConfig.isRecording
-        print("comecei a função toggle recording")
-        # print(args)
-        # print(args[0])
-        macro_time = args[0].get("MacroTime") if args else None
-        if serverConfig.MacroConfig.isRecording:
-            serverConfig.MacroConfig.set_flag("startMacroTime" , macro_time)
-            print(f"o valor de startMacroTime é {serverConfig.MacroConfig.startMacroTime} e o tipo é {type(serverConfig.MacroConfig.startMacroTime)}")
-        else:
-            serverConfig.MacroConfig.set_flag("stopMacroTime" , macro_time)
-            print(f"o valor de stopMacroTime é {serverConfig.MacroConfig.stopMacroTime} e o tipo é {type(serverConfig.MacroConfig.stopMacroTime)}")
-        print(f'consegui mexer no Isrecording do serverConfig e agora ele é {serverConfig.MacroConfig.isRecording}')
-    
+        try:
+            print("comecei a função toggle recording")
+            current = serverConfig.MacroConfig.get_flag("isRecording")
+            new_state = not current
+            serverConfig.MacroConfig.set_flag("isRecording", new_state)
+            # serverConfig.MacroConfig.isRecording = not serverConfig.MacroConfig.isRecording
+            # print(args)
+            # print(args[0])
+            macro_time = args[0].get("MacroTime") if args else str(time.time())
+            if serverConfig.MacroConfig.isRecording:
+                serverConfig.MacroConfig.set_flag("startMacroTime" , macro_time)
+                print(f"o valor de startMacroTime é {serverConfig.MacroConfig.startMacroTime} e o tipo é {type(serverConfig.MacroConfig.startMacroTime)}")
+            else:
+                serverConfig.MacroConfig.set_flag("stopMacroTime" , macro_time)
+                print(f"o valor de stopMacroTime é {serverConfig.MacroConfig.stopMacroTime} e o tipo é {type(serverConfig.MacroConfig.stopMacroTime)}")
+            print(f'consegui mexer no Isrecording do serverConfig e agora ele é {serverConfig.MacroConfig.isRecording}')
+        except Exception as e:
+            print(f"Error toggling recording: {e}")
     
 
     

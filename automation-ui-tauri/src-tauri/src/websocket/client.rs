@@ -35,7 +35,6 @@ impl WsSender {
     pub async fn send_message(&self, msg: Value) -> Result<(), WsError>{
         println!("Enviando mensagem WS: {}", msg);
         let mut locked = self.0.lock().await;
-        println!("Locked WS sender para enviar mensagem.");
         locked.send(Message::Text(msg.to_string())).await 
 
     }

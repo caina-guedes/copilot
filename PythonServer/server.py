@@ -174,12 +174,15 @@ async def server(websocket):
                     print(f"📨 {get_current_time()} Comando recebido do front_end: {message}")
                     message = json.loads(message)
                     # Supondo que message seja um dict com {"command": "start_recording"}
-                    print(type(message))
+                    # print(type(message))
                     # try:
 
                     command_name = message.get("command", None)
-                    if command_name:
-                        print(f"o command_name é: {command_name}")
+                    # if command_name:
+                    #     print(f"o command_name é: {command_name}")
+                    if not commands:
+                        print("⚠️ Nenhum comando disponível para execução.")
+                    
                     if command_name in commands:
                         # Executa a função correspondente
                         print(f"executando o comando: {command_name}")
@@ -193,6 +196,7 @@ async def server(websocket):
                         # Opcional: enviar confirmação para o front-end
                         await websocket.send_json({"status": "ok", "command": command_name})
                     else:
+                        print(f"⚠️ Comando desconhecido: {command_name}")
                         logger.warning(f"⚠️ Comando desconhecido: {command_name}")
                     error = False
 

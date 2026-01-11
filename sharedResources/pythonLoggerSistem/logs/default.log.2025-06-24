@@ -1,8 +1,0 @@
-WARNING  in server:41 [MainProcess/Thread-2 (iniciar_server)] → 🖥️ 04:01:54  SOWatcher Conection Started!  [2025-06-25 04:01:54,110]
-WARNING  in server:41 [MainProcess/Thread-2 (iniciar_server)] → 🖥️ 04:01:54  SOWatcher Conection Started!  [2025-06-25 04:01:54,113]
-WARNING  in server:55 [MainProcess/Thread-2 (iniciar_server)] → ❌ 04:02:00 Conexão encerrada com o SOWatcher.  [2025-06-25 04:02:00,975]
-WARNING  in server:55 [MainProcess/Thread-2 (iniciar_server)] → ❌ 04:02:00 Conexão encerrada com o SOWatcher.  [2025-06-25 04:02:00,976]
-WARNING  in server:41 [MainProcess/Thread-2 (iniciar_server)] → 🖥️ 04:03:17  SOWatcher Conection Started!  [2025-06-25 04:03:17,645]
-WARNING  in server:41 [MainProcess/Thread-2 (iniciar_server)] → 🖥️ 04:03:17  SOWatcher Conection Started!  [2025-06-25 04:03:17,648]
-WARNING  in server:55 [MainProcess/Thread-2 (iniciar_server)] → ❌ 04:03:32 Conexão encerrada com o SOWatcher.  [2025-06-25 04:03:32,062]
-WARNING  in server:55 [MainProcess/Thread-2 (iniciar_server)] → ❌ 04:03:32 Conexão encerrada com o SOWatcher.  [2025-06-25 04:03:32,062]

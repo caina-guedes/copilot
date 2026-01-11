@@ -10,17 +10,21 @@ from sharedResources.DataBases.utils.mainDbUtils import preparedQuerryes
 
 def startNewMacro(self):
     with self.serverConfig.MacroConfig._threading_lock:
-        self.cursor.execute("select id from macros where end_time is null ")
-        row = self.cursor.fetchone()
-        if row:
-            print(f"Macro em andamento com ID: {row[0]} setarei esse id como o atual")
-            self.recordingMacroId = row[0]
-        else:
-            print("Nenhuma macro em andamento.isso é bom")
-            name = "Minha Macro"
-            self.cursor.execute("INSERT INTO macros (name, start_time) VALUES (?, ?)", (name, self.serverConfig.MacroConfig.startMacroTime))
-            self.recordingMacroId = self.cursor.lastrowid
-            self.conn.commit()
+        try:
+            self.cursor.execute("select id from macros where end_time is null ")
+            row = self.cursor.fetchone()
+            if row:
+                print(f"Macro em andamento com ID: {row[0]} setarei esse id como o atual")
+                self.recordingMacroId = row[0]
+            else:
+                print("Nenhuma macro em andamento.isso é bom")
+                name = "Minha Macro"
+                self.cursor.execute("INSERT INTO macros (name, start_time) VALUES (?, ?)", (name, self.serverConfig.MacroConfig.startMacroTime))
+                self.recordingMacroId = self.cursor.lastrowid
+                self.conn.commit()
+                print(f"Nova macro iniciada com ID: {self.recordingMacroId}")
+        except Exception as e:
+            print("exception occurrent while trying to start a new macro: (?)",e)
 
 def stopMacro(self):
     self.cursor.execute("select id from macros where end_time is null ")

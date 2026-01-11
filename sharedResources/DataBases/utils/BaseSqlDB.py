@@ -4,7 +4,7 @@ BaseDbCommands = [
     name TEXT NOT NULL,
     start_time TEXT NOT NULL,
     end_time TEXT NULL,
-    hotkey TEXT UNIQUE
+    hotkey TEXT UNIQUE NULL
 );
 """,
     

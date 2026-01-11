@@ -120,4 +120,4 @@ if __name__ == "__main__":
         {"ts": int(time.time()*1000), "type":"mouse", "action":"move", "x":100, "y":200, "device":"mouse", "source":"background"},
     ]
     insert_events_batch(conn, cache, evs)
-    aprint("inserido", len(evs))
+    print("inserido", len(evs))

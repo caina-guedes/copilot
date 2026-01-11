@@ -164,7 +164,7 @@ class TwoWayConnection:
                     if noError:
                         await self._handle_message_from_server(message)
                     else:
-                        asyncio.sleep(1)
+                        await asyncio.sleep(1)
 
                 except asyncio.TimeoutError:
                     Error = True
@@ -254,7 +254,8 @@ class TwoWayConnection:
 
                 # print(f"[TwoWayConnection] type of Message sent: {type(json.dumps(message))}")
                 # traceback.print_stack(limit=6)
-                print(f"[TwoWayConnection {time.time()}] Message sent: {json.dumps(message)}")
+                # print(f"Message sent: {json.dumps(message)}")
+                # print(f"[TwoWayConnection {time.time()}] Message sent: {json.dumps(message)}")
                 return True
 
             except ConnectionRefusedError:

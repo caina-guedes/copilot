@@ -111,7 +111,7 @@ class MainDatabase:
             if self.recordingMacroId is None :
                 self.startNewMacro()
             event_dict['macro_id'] = self.recordingMacroId
-            print("the key beeing recorded is: ",event_dict['key'])
+            # print("the key beeing recorded is: ",event_dict['key'])
             if str(event_dict['key']) == str(self.serverConfig.MacroConfig.stoppingKey) :
                 event_dict['macro_id'] = None
         else:
@@ -207,4 +207,27 @@ if __name__ == "__main__":
     
     # a=db.exec("select * from events where window_event_id is not null")
     events = db.exec("select * from events")
+
+
+
+
+
+
+
+
+    """
+    SERVER] the command to be sent is :  {'action': 'startMacro'}
+[SERVER] the command to be sent is :  {'deltaTime': 0.0, 'equipment': 'mouse', 'button': 'Button.left', 'action': 'press', 'x': 274, 'y': 218, 'details': None, 'window_event': {'app': 'automation-ui-tauri', 'class_name': 'automation-ui-tauri', 'pid': 139627, 'win_id': '0x05600003', 'title': 'automation-ui-tauri', 'details': '{"titles_history": ["automation-ui-tauri"], "first_seen": 1767912658.7493122, "last_seen": 1767912658.7493176, "confidence_score": 1.0, "priority_fields": {}}', 'ts': 1767912658755}}
+[SERVER] the command to be sent is :  {'deltaTime': 0.091, 'equipment': 'mouse', 'button': 'Button.left', 'action': 'release', 'x': 274, 'y': 218, 'details': None}
+[SERVER] the command to be sent is :  {'deltaTime': 1.649, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'press', 'modifiers': '{"modifiers": []}'}
+[SERVER] the command to be sent is :  {'deltaTime': 0.106, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'press', 'modifiers': '{"modifiers": []}'}
+[SERVER] the command to be sent is :  {'deltaTime': 0.099, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'release', 'modifiers': '{"modifiers": []}'}
+[SERVER] the command to be sent is :  {'deltaTime': 0.136, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'release', 'modifiers': '{"modifiers": []}', 'window_event': {'app': 'gnome-terminal-server', 'class_name': 'gnome-terminal-server', 'pid': 36904, 'win_id': '0x03e0000a', 'title': 'cain@cain-Aspire-F5-573: ~/Documentos/automacaoPythonJs', 'details': '{"titles_history": ["cain@cain-Aspire-F5-573: ~/Documentos/automacaoPythonJs"], "first_seen": 1767912660.808087, "last_seen": 1767912660.808092, "confidence_score": 1.0, "priority_fields": {}}', 'ts': 1767912660836}}
+[SERVER] the command to be sent is :  {'deltaTime': 0.429, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'press', 'modifiers': '{"modifiers": []}'}
+[SERVER] the command to be sent is :  {'deltaTime': 0.059, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'press', 'modifiers': '{"modifiers": []}'}
+[SERVER] the command to be sent is :  {'deltaTime': 0.163, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'release', 'modifiers': '{"modifiers": []}', 'window_event': {'app': 'automation-ui-tauri', 'class_name': 'automation-ui-tauri', 'pid': 139627, 'win_id': '0x05600003', 'title': 'automation-ui-tauri', 'details': '{"titles_history": ["automation-ui-tauri"], "first_seen": 1767912661.4821124, "last_seen": 1767912661.4821193, "confidence_score": 1.0, "priority_fields": {}}', 'ts': 1767912661487}}
+[SERVER] the command to be sent is :  {'deltaTime': 0.104, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'release', 'modifiers': '{"modifiers": []}'}
+[SERVER] the command to be sent is :  {'action': 'endMacro'}
+
+    """
         

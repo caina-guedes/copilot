@@ -51,9 +51,10 @@ fn main() {
                 // AQUI é o fechamento REAL do app
                 println!("App está encerrando");
 
-                if let Some(processes) = app_handle.try_state::<AppProcesses>() {
+                if let Some(_processes) = app_handle.try_state::<AppProcesses>() {
                     // let mut processes = processes.inner().lock().unwrap();
-                    processes.stop_all();
+                    println!("Finalizando processos em segundo plano...");
+                    // processes.stop_all();
                 }
             }
             _ => {}

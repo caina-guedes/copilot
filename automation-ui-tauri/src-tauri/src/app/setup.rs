@@ -1,10 +1,10 @@
 use tauri::{App, Manager };
 use crate::process::launcher::{AppProcesses};
 use crate::websocket::client::{connect_ws,WsSender,send_command_global};
-use std::process::Child;
-use tokio_tungstenite::tungstenite::Message;
+// use std::process::Child;
+// use tokio_tungstenite::tungstenite::Message;
 pub struct WsState(pub WsSender);
-use serde_json::json;
+// use serde_json::json;
 
 pub fn setup_app(app: &App) -> Result<(), Box<dyn std::error::Error>> {
     let app_handle = app.handle(); // cria um AppHandle 'static

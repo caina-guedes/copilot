@@ -1,18 +1,23 @@
 // use sysinfo::{ProcessExt, SystemExt, Signal, System};
 use std::process::{Child, Command};
 use std::sync::{Arc, Mutex};
-use std::net::TcpStream;
-use std::thread;
-use std::time::Duration;
+// use std::net::TcpStream;
+// use std::thread;
+// use std::time::Duration;
 
 
 #[derive(Clone)]
 pub struct AppProcesses {
+    #[allow(dead_code)]
     inner: Arc<Mutex<InnerProcesses>>,
 }
 
 struct InnerProcesses {
+
+    #[allow(dead_code)]
     server: Option<Child>,
+
+    #[allow(dead_code)]
     watcher: Option<Child>,
 }
 
@@ -26,71 +31,72 @@ impl AppProcesses {
         }
     }
 
-    pub fn start_server(&self) {
-        let mut processes = self.inner.lock().unwrap();
-        kill_port(8765); // libera a porta antes de iniciar
-        let child = Command::new("python3")
-            .arg("/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py")
-            .spawn()
-            .expect("Erro ao iniciar o server");
-        processes.server = Some(child);
-    }
+//     pub fn start_server(&self) {
+//         let mut processes = self.inner.lock().unwrap();
+//         kill_port(8765); // libera a porta antes de iniciar
+//         let child = Command::new("python3")
+//             .arg("/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py")
+//             .spawn()
+//             .expect("Erro ao iniciar o server");
+//         processes.server = Some(child);
+//     }
 
-    pub fn wait_for_server(&self, host: &str, port: u16) {
-    let addr = format!("{}:{}", host, port);
-    while TcpStream::connect(&addr).is_err() {
-        println!("Esperando server em {}...", addr);
-        thread::sleep(Duration::from_millis(200));
-    }
-    println!("Server pronto em {}", addr);
+//     pub fn wait_for_server(&self, host: &str, port: u16) {
+//     let addr = format!("{}:{}", host, port);
+//     while TcpStream::connect(&addr).is_err() {
+//         println!("Esperando server em {}...", addr);
+//         thread::sleep(Duration::from_millis(200));
+//     }
+//     println!("Server pronto em {}", addr);
+// }
+
+//     pub fn start_watcher(&self) {
+//         // Antes de iniciar, garante que o server está pronto
+//         self.wait_for_server("127.0.0.1", 8765);
+
+//         let mut processes = self.inner.lock().unwrap();
+//         let child = Command::new("python3")
+//             .arg("/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py")
+//             .spawn()
+//             .expect("Erro ao iniciar o watcher");
+//         processes.watcher = Some(child);
+//     }
+
+//     pub fn stop_server(&self) {
+//         let mut processes = self.inner.lock().unwrap();
+//         if let Some(server) = &mut processes.server {
+//             let _ = server.kill();
+//             let _ = server.wait();
+//         }
+//         processes.server = None;
+//     }
+
+//     pub fn stop_watcher(&self) {
+//         let mut processes = self.inner.lock().unwrap();
+//         if let Some(watcher) = &mut processes.watcher {
+//             let _ = watcher.kill();
+//             let _ = watcher.wait();
+//         }
+//         processes.watcher = None;
+//     }
+
+//     pub fn stop_all(&self) {
+//         let mut processes = self.inner.lock().unwrap();
+//         if let Some(server) = &mut processes.server {
+//             let _ = server.kill();
+//             let _ = server.wait();
+//         }
+//         processes.server = None;
+
+//         if let Some(watcher) = &mut processes.watcher {
+//             let _ = watcher.kill();
+//             let _ = watcher.wait();
+//         }
+//         processes.watcher = None;
+//     }
 }
 
-    pub fn start_watcher(&self) {
-        // Antes de iniciar, garante que o server está pronto
-        self.wait_for_server("127.0.0.1", 8765);
-
-        let mut processes = self.inner.lock().unwrap();
-        let child = Command::new("python3")
-            .arg("/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py")
-            .spawn()
-            .expect("Erro ao iniciar o watcher");
-        processes.watcher = Some(child);
-    }
-
-    pub fn stop_server(&self) {
-        let mut processes = self.inner.lock().unwrap();
-        if let Some(server) = &mut processes.server {
-            let _ = server.kill();
-            let _ = server.wait();
-        }
-        processes.server = None;
-    }
-
-    pub fn stop_watcher(&self) {
-        let mut processes = self.inner.lock().unwrap();
-        if let Some(watcher) = &mut processes.watcher {
-            let _ = watcher.kill();
-            let _ = watcher.wait();
-        }
-        processes.watcher = None;
-    }
-
-    pub fn stop_all(&self) {
-        let mut processes = self.inner.lock().unwrap();
-        if let Some(server) = &mut processes.server {
-            let _ = server.kill();
-            let _ = server.wait();
-        }
-        processes.server = None;
-
-        if let Some(watcher) = &mut processes.watcher {
-            let _ = watcher.kill();
-            let _ = watcher.wait();
-        }
-        processes.watcher = None;
-    }
-}
-
+#[allow(dead_code)]
 pub fn kill_port(port: u16) {
     let output = Command::new("sh")
         .arg("-c")

@@ -208,11 +208,11 @@ class GlobalExecutor:
                     if cls._internalStartMacroTime is not None:
                         try:
                             total_macro_time_really_taken = cls._internalStopMacroTime - cls._internalStartMacroTime
-                            print(f"[GlobalExecutor] Macro execution time was: {total_macro_time_really_taken} seconds.")
-                            print(f"[GlobalExecutor] Macro accumulated interaction time with the OS was: {macroAcumulatedInteractionWithSOTime} seconds.")
-                            print(f"[GlobalExecutor] Time it Should Take was: {time_it_should_take} seconds.")
+                            # print(f"[GlobalExecutor] Macro execution time was: {total_macro_time_really_taken} seconds.")
+                            # print(f"[GlobalExecutor] Macro accumulated interaction time with the OS was: {macroAcumulatedInteractionWithSOTime} seconds.")
+                            # print(f"[GlobalExecutor] Time it Should Take was: {time_it_should_take} seconds.")
                             # print(f"[GlobalExecutor] Time spent waiting in queue was: {sum(timeWaitingInQueue)} seconds.")
-                            print(f"[GlobalExecutor] Time spent executing internal processing was: {sum([t[1]-t[0] for t in internalTimeOfEachCommand])} seconds.")
+                            # print(f"[GlobalExecutor] Time spent executing internal processing was: {sum([t[1]-t[0] for t in internalTimeOfEachCommand])} seconds.")
                             # print("startedTime , dont remember, command, time waited in queue, internal processing time:")
                             # for index,timeRegistry in enumerate(startingTimeOfEachCommand):
                                 # print(f"{index+1}, {timeRegistry[0]- cls._internalStartMacroTime}  {timeRegistry[1]}     {timeWaitingInQueue[index]}   {internalTimeOfEachCommand[index][1] - internalTimeOfEachCommand[index][0]}")

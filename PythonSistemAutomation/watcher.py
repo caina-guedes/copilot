@@ -38,7 +38,8 @@ class EventObserver:
                         self.system.controlsToIgnore.remove(convenientEventToCompare)
                         return 
                     else:
-                        print("event not in ignore list, processing...")
+                        pass
+                        # print("event not in ignore list, processing...")
                         # if self.system.ExecutingMacro["value"]:
                             # print("""System is executing macro""")
                 await self._on_event_callback(event, self.system)

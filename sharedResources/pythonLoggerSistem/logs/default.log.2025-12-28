@@ -1,0 +1,6 @@
+WARNING  in watcher:46 [MainProcess/MainThread] → Erro ao processar evento: 'NoneType' object has no attribute 'replace'  [2025-12-28 19:30:30,657]
+WARNING  in watcher:46 [MainProcess/MainThread] → Erro ao processar evento: 'NoneType' object has no attribute 'replace'  [2025-12-28 19:30:30,875]
+WARNING  in watcher:46 [MainProcess/MainThread] → Erro ao processar evento: 'NoneType' object has no attribute 'replace'  [2025-12-28 19:30:42,490]
+WARNING  in watcher:46 [MainProcess/MainThread] → Erro ao processar evento: 'NoneType' object has no attribute 'replace'  [2025-12-28 19:30:42,765]
+WARNING  in watcher:46 [MainProcess/MainThread] → Erro ao processar evento: 'NoneType' object has no attribute 'replace'  [2025-12-28 19:46:12,964]
+WARNING  in watcher:46 [MainProcess/MainThread] → Erro ao processar evento: 'NoneType' object has no attribute 'replace'  [2025-12-28 19:46:13,163]
