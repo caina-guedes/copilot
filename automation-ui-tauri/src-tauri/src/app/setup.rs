@@ -1,6 +1,7 @@
 use tauri::{App, Manager };
 use crate::process::launcher::{AppProcesses};
 use crate::websocket::client::{connect_ws,WsSender,send_command_global};
+use crate::commands::command_utils::click_structures::{CommandPayload, ClickInfo};
 // use std::process::Child;
 // use tokio_tungstenite::tungstenite::Message;
 pub struct WsState(pub WsSender);
@@ -21,7 +22,7 @@ pub fn setup_app(app: &App) -> Result<(), Box<dyn std::error::Error>> {
         Ok(ws) => {
             println!("WS conectado com sucesso!");
             // envia mensagem inicial
-            if let Err(e) = send_command_global("Conexão do front-end estabelecida").await {
+            if let Err(e) = send_command_global("Conexão do front-end estabelecida", CommandPayload { ts: 0, click: ClickInfo { x: 0, y: 0, button: "left".into() }, source: "front_end".into() }).await {
                 eprintln!("Erro ao enviar mensagem inicial: {:?}", e);
             }
             // registra WSState no Tauri

@@ -7,10 +7,18 @@ class KeyRef:
     def __init__(self, value):
         self.value = value
 
+
+
 class serverConfig:
     """Central configuration for the software"""
     _threading_rlock = threading.RLock()
     serverPort = 8765
+    class mouseCommmand:
+        """ Mouse command references  to use for flushing purposes """
+        def __init__(self,values):
+            self.values = values
+            self.pressDetected = False
+            self.releaseDetected = False
     # Comandos especiais de teclado
     specialCommands = {
         "ExecCurrentMacro": KeyRef("f2"),
@@ -59,6 +67,9 @@ class serverConfig:
         batchSize: int = 100
         flushInterval: int = 2  # seconds
         minimumTimeForEventToBeFlushed: int = 1  # seconds
+        commandsToNotFlush = []
+        MAX_TIME_DIFF = 500  # milliseconds
+        MAX_PIXEL_DIFF = 5   # pixels
 
     # Outros parâmetros globais
     debug: bool = False

@@ -77,7 +77,7 @@ async def server(websocket):
                 "mensagem": "Conexão SOWatcher estabelecida!"
             }
             await websocket.send(json.dumps(response))
-            logger.info(f"📥-({get_current_time()})response send to SOWatcher:", response)
+            # logger.info(f"📥-({get_current_time()})response send to SOWatcher:", response)
             # Loop listening to messages from SOWatcher 
             if connections.OS.sender == websocket:
                 while True:
@@ -106,13 +106,12 @@ async def server(websocket):
                                 except Exception as e:
                                     print("o server deveria mandar o comando de parar a macro deu erro e foi:" , e)
                             serverConfig.MacroConfig.set_flag("stopRunningMacroFlag", False)
-                            # asyncio.sleep(0)
-                            # continue
-                        
+                            
                         mainDb.log_background_event(message,isSpecialCommand)
+
                         if mainDb.answer is not None: ## futuramente quero trocar isso para um while para que seja possível usar recorrentemente
                             mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
-                            # await mapping.init()
+
                     except websockets.exceptions.ConnectionClosed:
                         logger.warning(f"❌ {get_current_time()} Conexão encerrada com o SOWatcher Sender.")
                         connections.OS.sender = None
@@ -173,9 +172,37 @@ async def server(websocket):
                     message = await websocket.recv()
                     print(f"📨 {get_current_time()} Comando recebido do front_end: {message}")
                     message = json.loads(message)
-                    # Supondo que message seja um dict com {"command": "start_recording"}
-                    # print(type(message))
-                    # try:
+                    """
+                    {"command":"toggleRecording",
+                        "payload":{
+                            "ts":1768144711308,
+                            "click":{
+                                "x":255,
+                                "y":233,
+                                "button":"left"},
+                            "source":"frontend"
+                        }
+                    }
+
+                    """
+                    if "payload" in message and "ts" in message["payload"] and message["payload"]["ts"] != 0 :
+                        payload = message["payload"]
+                        click_to_ignore = payload.get("click", None) 
+                        prepared_command_toIgnore = {
+                            "ts": payload.get("ts",0) , 
+                            "type":"mouse" , 
+                            "button": click_to_ignore.get("button","left") , 
+                            "action":"click" , "x": click_to_ignore.get("x",0) , 
+                            "y": click_to_ignore.get("y",0) } if click_to_ignore else None
+    
+                        print("the prepared_command_toIgnore is: ", prepared_command_toIgnore)
+                        if click_to_ignore:
+                            print("click to ignore added to the commandsToNotFlush list")
+                            mouseCmd = serverConfig.mouseCommmand(prepared_command_toIgnore)
+                            serverConfig.FlushConfig.commandsToNotFlush.append(mouseCmd)
+                            print(f"the list is now: {serverConfig.FlushConfig.commandsToNotFlush}")
+                        else:
+                            print("no click to ignore found in the payload")
 
                     command_name = message.get("command", None)
                     # if command_name:

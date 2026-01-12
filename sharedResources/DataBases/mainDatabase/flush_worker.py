@@ -14,6 +14,8 @@ import sqlite3
 import time
 from .cache_manager import get_or_create_code
 import json
+from PythonServer.serverConfig import serverConfig
+FlushConfig = serverConfig.FlushConfig
 
 def build_insert_query(table, data: dict):
     keys = ", ".join(data.keys())
@@ -22,7 +24,75 @@ def build_insert_query(table, data: dict):
     sql = f"INSERT INTO {table} ({keys}) VALUES ({placeholders})"
     return sql, tuple(data.values())
 
+def is_duplicate_click(ev,debug = True):
+    if debug:
+        print("checking for duplicate click...")
+        print("the event to check is: ", ev)
+    if ev.get("type") != "mouse":
+        if debug:
+            print("not a mouse event, returning False")
+        return False
+    if len(FlushConfig.commandsToNotFlush) == 0:
+        if debug:
+            print("no commands to not flush, returning False")
+        return False
 
+    comparingRecords = []
+    try:
+        for front_end_ev_class in FlushConfig.commandsToNotFlush:
+            front_end_ev = front_end_ev_class.values
+            if debug:
+                print("comparing with front end event: ", front_end_ev)
+            # Comparar botões
+            if ev.get("key").replace("Button.","") != front_end_ev.get("button", None):
+                if debug:
+                    print("button mismatch")
+                comparingRecords.append(False)
+                continue
+
+            # Comparar timestamp
+            time_diff = abs(ev["ts"] - front_end_ev["ts"])
+
+            if ev["action"] == "press":
+                if time_diff > FlushConfig.MAX_TIME_DIFF:
+                    comparingRecords.append(False)
+                    if debug:
+                        print("timestamp mismatch")
+                    continue
+                # Comparar coordenadas
+                dx = abs(ev.get("x", 0) - front_end_ev.get("x", 0))
+                dy = abs(ev.get("y", 0) - front_end_ev.get("y", 0))
+                if dx > FlushConfig.MAX_PIXEL_DIFF or dy > FlushConfig.MAX_PIXEL_DIFF:
+                    comparingRecords.append(False)
+                    if debug:
+                        print("press coordinate mismatch ")
+                    continue
+            elif ev["action"] == "release":
+                if ev["ts"] - front_end_ev["ts"] <= 0:
+                    comparingRecords.append(False)
+                    if debug:
+                        print("release timestamp mismatch ")
+                    continue
+            
+            # Se todas as comparações passaram, é um clique duplicado
+            if debug:
+                print("duplicate click detected")
+            comparingRecords.append(True)
+        for index, front_end_ev_class in enumerate(FlushConfig.commandsToNotFlush):
+            if comparingRecords[index]:
+                # print("removendo o evento duplicado da lista de comandos a não flushar: ", front_end_ev_class.values)
+                if ev["action"] == "press":
+                    FlushConfig.commandsToNotFlush[index].pressDetected = True
+                if ev["action"] == "release":
+                    FlushConfig.commandsToNotFlush[index].releaseDetected = True
+                if FlushConfig.commandsToNotFlush[index].pressDetected and FlushConfig.commandsToNotFlush[index].releaseDetected:
+                    FlushConfig.commandsToNotFlush.pop(index)
+                break
+
+        return any(comparingRecords)
+    except Exception as e:
+        print("erro ao verificar clique duplicado: ", e)
+        return False    
 
 
 def _flush_windowChange(self,windowEvent,ts):
@@ -117,26 +187,41 @@ def _flush(self):
         def isTimeToFlush(ts,timeNow = timeNow):
             diference = timePassed(ts,timeNow)
             return diference > self.serverConfig.FlushConfig.minimumTimeForEventToBeFlushed        
-        
-        for ev in self._pending_events:
+        duplicate_events_indexes = []
+        for index , ev in enumerate(self._pending_events):
             print("processando o evento: ", ev)
             ts = ev.get('ts')
-            # print("o ts do evento é: ", ts)
-            # print("about to enter the time check...")
-            # timeNow = int(str(time.time()*1000).split(".")[0])
-            # print("current time is: ", timeNow)
-            # print(f"current time prepared is: {treatedTime}")
             diference = (timeNow - ts)/1000
             print(f"the time passed is: {diference} seconds and the minimum time for flush is: ", self.serverConfig.FlushConfig.minimumTimeForEventToBeFlushed)
-            # print("the minimum time for event to be flushed is: ", self.serverConfig.FlushConfig.minimumTimeForEventToBeFlushed)
+
             if isTimeToFlush(ts):
                 print("o evento passou no teste de tempo para flush.")
                 prepared_event_to_flush = _prepareEventToFlush(self,ev)
+                if is_duplicate_click(ev):
+                    duplicate_events_indexes.append(index)
+                    print("evento duplicado detectado, ignorando: ", ev)
+                    print("a lista de comandos a não flushar agora é: ", serverConfig.FlushConfig.commandsToNotFlush)
+                    continue
+                else:
+                    print("evento não é duplicado, processando: ", ev)
+                    print("a lista de comandos a não flushar agora é: ", serverConfig.FlushConfig.commandsToNotFlush)
+
                 events_to_insert.append(prepared_event_to_flush)
             else:
                 print("o evento não passou no teste de tempo para flush, voltando pro buffer.")
                 toRecentEvents.append(ev)
         # self._pending_events.clear()
+        duplicate_events_indexes.reverse()
+        for x in duplicate_events_indexes:
+            print("removendo o evento duplicado do buffer de eventos pendentes: ", self._pending_events[x])
+            print("o índice do evento duplicado é: ", x)
+            if is_duplicate_click(self._pending_events[x]):
+                print("confirmado que o evento é duplicado, removendo.")
+                self._pending_events.pop(x)
+            else:
+                print("evento não é mais duplicado, não removendo. e o indice é: ", x)
+                for indice, evento in enumerate(self._pending_events):
+                    print(f"para o indice {indice} a duplicação é: {is_duplicate_click(evento, False)}")
     max_retries = 5
     retry_delay = 0.1
     sucess = False

@@ -7,7 +7,7 @@ use serde_json::{json,Value};
 use tokio::sync::Mutex;
 use std::sync::Arc;
 use url::Url;
-
+use crate::commands::command_utils::click_structures::CommandPayload;
 // -------------------------
 // Global WS sender
 // -------------------------
@@ -39,8 +39,8 @@ impl WsSender {
 
     }
 
-    pub async fn send_command(&self, cmd: &str) -> Result<(), WsError> {
-        self.send_message(json!({"command": cmd})).await
+    pub async fn send_command(&self, cmd: &str, payload: CommandPayload) -> Result<(), WsError> {
+        self.send_message(json!({"command": cmd, "payload": payload})).await
     }
     // Envia comando no formato {"command": "..."}
     // pub async fn send_command(&self, cmd: &str) {
@@ -83,10 +83,10 @@ pub async fn connect_ws() -> Result<WsSender, WsError> {
 // -------------------------
 // Função de conveniência usando global
 // -------------------------
-pub async fn send_command_global(cmd: &str) -> Result<(), WsError> {
+pub async fn send_command_global(cmd: &str, payload: CommandPayload) -> Result<(), WsError> {
     println!("send_command_global: {}", cmd);
     if let Some(sender) = WS_SENDER.get() {
-        sender.send_command(cmd).await
+        sender.send_command(cmd, payload).await
     } else {
         eprintln!("WS não inicializado!");
         Err(WsError::AlreadyClosed)

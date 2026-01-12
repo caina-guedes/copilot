@@ -1,12 +1,14 @@
 use tauri::{State};
 use crate::app::setup::WsState;
+use crate::commands::command_utils::click_structures::{CommandPayload};
 // use futures_util::SinkExt;
 
 
+
  #[tauri::command]
-pub async fn start_recording(ws: State<'_, WsState>) -> Result<(), String> {
+pub async fn start_recording(payload: CommandPayload, ws: State<'_, WsState>) -> Result<(), String> {
     println!("Start recording activated!");
-    ws.0.send_command("toggleRecording")
+    ws.0.send_command("toggleRecording", payload)
         .await
         .map_err(|e| e.to_string())?;
     Ok(())
