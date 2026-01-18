@@ -162,12 +162,12 @@ def _prepareEventToFlush(self, ev):
             print("deu merda no flushworker mexendo com o windowChange e é: ",e)
             print("e o ev é: ",ev)
     prepared_event_to_flush = (ts, type_id, key_id,macro_id, action_id, device_id, source_id, None, details_table, x,y,value,details_json, windowChangeId)
-    print("o evento depois de ser preparado para o flush é: ",prepared_event_to_flush) 
-    print("time since event ts: ", (int(str(time.time()*1000).split(".")[0]) - ts)/1000)
+    # print("o evento depois de ser preparado para o flush é: ",prepared_event_to_flush) 
+    # print("time since event ts: ", (int(str(time.time()*1000).split(".")[0]) - ts)/1000)
     return prepared_event_to_flush
 
 
-def _flush(self):
+def _flush(self, final_flush=False):
     """Executa inserção em bloco de todos os eventos pendentes"""
     if len(self._pending_events) == 0: ## Nada para gravar porém esse atributo debug eu ainda tenho que olhar melhor futuramente
         print("No pending events to flush.")
@@ -178,7 +178,7 @@ def _flush(self):
         toRecentEvents = []
         print(f"começando o flush de eventos. o número de eventos pendentes é: {len(self._pending_events)}")
         self._pending_events.sort(key=lambda e: e.get("ts"))
-        print("eventos ordenados por timestamp.")
+        # print("eventos ordenados por timestamp.")
         timeNow = int(str(time.time()*1000).split(".")[0])
         
         def timePassed(ts,timeNow = timeNow):
@@ -187,41 +187,38 @@ def _flush(self):
         def isTimeToFlush(ts,timeNow = timeNow):
             diference = timePassed(ts,timeNow)
             return diference > self.serverConfig.FlushConfig.minimumTimeForEventToBeFlushed        
+        
         duplicate_events_indexes = []
+        force = FlushConfig.force_flush.is_set()
         for index , ev in enumerate(self._pending_events):
             print("processando o evento: ", ev)
             ts = ev.get('ts')
             diference = (timeNow - ts)/1000
-            print(f"the time passed is: {diference} seconds and the minimum time for flush is: ", self.serverConfig.FlushConfig.minimumTimeForEventToBeFlushed)
+            # print(f"the time passed is: {diference} seconds and the minimum time for flush is: ", self.serverConfig.FlushConfig.minimumTimeForEventToBeFlushed)
 
-            if isTimeToFlush(ts):
-                print("o evento passou no teste de tempo para flush.")
+            if isTimeToFlush(ts) or final_flush or force:
+                # print("o evento passou no teste de tempo para flush.")
                 prepared_event_to_flush = _prepareEventToFlush(self,ev)
                 if is_duplicate_click(ev):
                     duplicate_events_indexes.append(index)
-                    print("evento duplicado detectado, ignorando: ", ev)
-                    print("a lista de comandos a não flushar agora é: ", serverConfig.FlushConfig.commandsToNotFlush)
+                    # print("evento duplicado detectado, ignorando: ", ev)
+                    # print("a lista de comandos a não flushar agora é: ", serverConfig.FlushConfig.commandsToNotFlush)
                     continue
                 else:
-                    print("evento não é duplicado, processando: ", ev)
-                    print("a lista de comandos a não flushar agora é: ", serverConfig.FlushConfig.commandsToNotFlush)
+                    pass
+                    # print("evento não é duplicado, processando: ", ev)
+                    # print("a lista de comandos a não flushar agora é: ", serverConfig.FlushConfig.commandsToNotFlush)
 
                 events_to_insert.append(prepared_event_to_flush)
             else:
-                print("o evento não passou no teste de tempo para flush, voltando pro buffer.")
+                # print("o evento não passou no teste de tempo para flush, voltando pro buffer.")
                 toRecentEvents.append(ev)
         # self._pending_events.clear()
         duplicate_events_indexes.reverse()
         for x in duplicate_events_indexes:
-            print("removendo o evento duplicado do buffer de eventos pendentes: ", self._pending_events[x])
-            print("o índice do evento duplicado é: ", x)
-            if is_duplicate_click(self._pending_events[x]):
-                print("confirmado que o evento é duplicado, removendo.")
-                self._pending_events.pop(x)
-            else:
-                print("evento não é mais duplicado, não removendo. e o indice é: ", x)
-                for indice, evento in enumerate(self._pending_events):
-                    print(f"para o indice {indice} a duplicação é: {is_duplicate_click(evento, False)}")
+            # print("removendo o evento duplicado do buffer de eventos pendentes: ", self._pending_events[x])
+            self._pending_events.pop(x)
+
     max_retries = 5
     retry_delay = 0.1
     sucess = False
@@ -231,7 +228,7 @@ def _flush(self):
     print(f"tentando inserir {len(events_to_insert)} eventos no banco de dados.")
     for attempt in range(max_retries):
         try:
-            print(f"about to flush the events tha happend between {timePassed(events_to_insert[0][0])} and {timePassed(events_to_insert[-1][0])}!!!!!")
+            print(f"about to flush the events that happend between {timePassed(events_to_insert[0][0])} and {timePassed(events_to_insert[-1][0])}!!!!!")
             self.cursor.executemany('''
                 INSERT INTO events (ts, type_id, key_id,macro_id, action_id, device_id, source_id, details_id, details_table, x, y, value, details_json,window_event_id)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
@@ -274,11 +271,15 @@ def _flush_worker(self):
     """Thread de flush periódico"""
     while not self._stop_event.is_set():
 
-        # Espera 0.5s OU até o stop_event ser setado
-        if self._stop_event.wait(0.5):
-            break  # Evento de parada foi acionado
-        timeToFlush = time.time() - self._last_flush >= self.flush_interval # Verifica se é hora de fazer flush
-        
-        if timeToFlush:
+        if FlushConfig.force_flush.wait(timeout=FlushConfig.flushInterval/1000):
+            print("force flush event detected.")
+            time.sleep(0.05)  # Pequena espera para garantir que eventos recentes sejam capturados
             _flush(self)
+            FlushConfig.force_flush.clear()
+        else:
+            _flush(self)
+        # Espera 0.5s OU até o stop_event ser setado
+        if self._stop_event.is_set():
+            break  # Evento de parada foi acionado
+        
     

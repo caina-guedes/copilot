@@ -13,7 +13,7 @@ use app::setup::setup_app;
 use process::launcher::AppProcesses;
 // use std::process::Command;
 use crate::window::events::handle_window_event;
-use crate::commands::{hello, ping,play_macro,record};
+use crate::commands::{play_macro,record};
 use tauri::{Manager,RunEvent};
 
 fn main() {
@@ -21,8 +21,7 @@ fn main() {
     let tray = create_tray();
     
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![hello::say_hello,
-            ping::ping,
+        .invoke_handler(tauri::generate_handler![
             play_macro::play_macro,
             record::start_recording ])
         

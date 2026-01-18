@@ -96,6 +96,11 @@ class macroManager:
 
                     percentage = doneCommands/float(len(cls.pendingCommands["current"]))
                     print("quantidade de comandos feitos até agora é:", doneCommands, f"  ou seja {percentage}  of the task done")
+                    if doneCommands == len(cls.pendingCommands["current"]):
+                        ## aqui é o local certo para disparar o evento de macro completa
+                        print("macro completa!")
+                        cls.serverConf.MacroConfig.macroFinishedEvent.set()
+
 
                     # deletePendingCommand(convenientWatcherInfo,pendingCommands)
                     return True

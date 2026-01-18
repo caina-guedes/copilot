@@ -30,7 +30,7 @@ conditionsMap = watcherConfigs.actionConditions
 
 commands_per_connection = {}
 
-front_end_connection = set()
+front_end_connection = []
 
 
 logger = LoggerManager.get_logger(__name__)
@@ -48,12 +48,11 @@ async def server(websocket):
     try:
         msg = await websocket.recv()
         initial_data = json.loads(msg)
-        print(f"initial message: {initial_data}")
+        # print(f"initial message: {initial_data}")
         tipo = initial_data.get("tipo",None)
-        print(f'tipo : {tipo}')
+        # print(f'tipo : {tipo}')
         
-        # logger.info(f'initial_data {initial_data}')
-        # logger.info(f'tipo {tipo}')
+        
         if tipo == connection_types['ping']:
             logger.info(f"🔄 {get_current_time()} Received ping from browser.")
             response = {
@@ -89,7 +88,7 @@ async def server(websocket):
   
 
                         if macroManager.handlePendingMacroCommand(message):
-                            print("macro command being ignored ",resumedMesssage(message))
+                            # print("macro command being ignored ",resumedMesssage(message))
                             continue    #if is command from the current executing macro, stops processing here
                         
                         print(f"📩 {get_current_time()} Do SOWatcher: {message}")
@@ -164,27 +163,15 @@ async def server(websocket):
         elif tipo == connection_types['front_end']:
             print(f"conexão do front end estabelecida")
             logger.info(f"🛠️ {get_current_time()} Conexão de controle iniciada!")
-            front_end_connection.add(websocket)
+            front_end_connection.append(websocket)
 
             while True:
                 try:
                     error = True
                     message = await websocket.recv()
-                    print(f"📨 {get_current_time()} Comando recebido do front_end: {message}")
+                    print(f"Do Front_end: {message}")
                     message = json.loads(message)
-                    """
-                    {"command":"toggleRecording",
-                        "payload":{
-                            "ts":1768144711308,
-                            "click":{
-                                "x":255,
-                                "y":233,
-                                "button":"left"},
-                            "source":"frontend"
-                        }
-                    }
-
-                    """
+  
                     if "payload" in message and "ts" in message["payload"] and message["payload"]["ts"] != 0 :
                         payload = message["payload"]
                         click_to_ignore = payload.get("click", None) 
@@ -195,12 +182,12 @@ async def server(websocket):
                             "action":"click" , "x": click_to_ignore.get("x",0) , 
                             "y": click_to_ignore.get("y",0) } if click_to_ignore else None
     
-                        print("the prepared_command_toIgnore is: ", prepared_command_toIgnore)
+                        # print("the prepared_command_toIgnore is: ", prepared_command_toIgnore)
                         if click_to_ignore:
-                            print("click to ignore added to the commandsToNotFlush list")
+                            # print("click to ignore added to the commandsToNotFlush list")
                             mouseCmd = serverConfig.mouseCommmand(prepared_command_toIgnore)
                             serverConfig.FlushConfig.commandsToNotFlush.append(mouseCmd)
-                            print(f"the list is now: {serverConfig.FlushConfig.commandsToNotFlush}")
+                            # print(f"the list is now: {serverConfig.FlushConfig.commandsToNotFlush}")
                         else:
                             print("no click to ignore found in the payload")
 
@@ -208,22 +195,27 @@ async def server(websocket):
                     # if command_name:
                     #     print(f"o command_name é: {command_name}")
                     if not commands:
-                        print("⚠️ Nenhum comando disponível para execução.")
+                        print(f"⚠️ Nenhum comando disponível para execução.")
                     
                     if command_name in commands:
                         # Executa a função correspondente
                         print(f"executando o comando: {command_name}")
                         # continue 
                         # if False:  # Placeholder para validação futura    
-                        commands[command_name]()
+                        response = commands[command_name]()
                         logger.info(f"✅ {get_current_time()} Comando {command_name} executado com sucesso!")
+                        if callable(response):
+                            print("response is a callable, awaiting it...")
+                            resp = await response()
+                            print("the awaited response is: ", resp)
+                            await front_end_connection[0].send(json.dumps(resp))
                         
                         # ainda falta implementar ações mais complexas aqui, da mesma forma como ja acontece na interação direta com o watcher
 
                         # Opcional: enviar confirmação para o front-end
                         await websocket.send_json({"status": "ok", "command": command_name})
                     else:
-                        print(f"⚠️ Comando desconhecido: {command_name}")
+                        print(f"⚠️ Comando desconhecido recebido do front-end: {command_name}")
                         logger.warning(f"⚠️ Comando desconhecido: {command_name}")
                     error = False
 

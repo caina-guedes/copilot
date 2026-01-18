@@ -149,14 +149,17 @@ class MainDatabase:
 if __name__ == "__main__":
     db = MainDatabase(batch_size=10, flush_interval=3)
 
-    def limpaMacros():
+    def limpaMacros(todas = False):
         a= db.exec("select * from macros")
-        db.exec(f"delete from macros where id != {a[-1][0]}")
+        if todas:
+            db.exec(f"delete from macros")
+        else:
+            db.exec(f"delete from macros where id != {a[-1][0]}")
 
     def winChange():
         return db.exec(f"""select * from window_events""")
     
-    # limpaMacros()
+    limpaMacros()
     
     print("valores da tabela macros:")
     db.cursor.execute("select * from macros")

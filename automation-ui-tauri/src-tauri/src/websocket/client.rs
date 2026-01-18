@@ -8,6 +8,11 @@ use tokio::sync::Mutex;
 use std::sync::Arc;
 use url::Url;
 use crate::commands::command_utils::click_structures::CommandPayload;
+
+// -------------------------
+// extrutura dos eventos WS
+// -------------------------
+use crate::websocket::events::{WS_EVENTS, init_ws_events};
 // -------------------------
 // Global WS sender
 // -------------------------
@@ -42,16 +47,20 @@ impl WsSender {
     pub async fn send_command(&self, cmd: &str, payload: CommandPayload) -> Result<(), WsError> {
         self.send_message(json!({"command": cmd, "payload": payload})).await
     }
-    // Envia comando no formato {"command": "..."}
-    // pub async fn send_command(&self, cmd: &str) {
-    //     self.send_message(json!({"command": cmd})).await;
-    // }
+
+    pub async fn wait_for_event(&self, event: &str) {
+    if let Some(events) = WS_EVENTS.get() {
+        events.wait_for(event).await;
+    }
+}
+
 }
 
 // -------------------------
 // Inicializa conexão WS e armazena globalmente
 // -------------------------
 pub async fn connect_ws() -> Result<WsSender, WsError> {
+    init_ws_events();
     let url = Url::parse("ws://localhost:8765").unwrap();
     let (ws_stream, _) = connect_async(url).await?;
     let (write, mut read) = ws_stream.split();
@@ -62,7 +71,18 @@ pub async fn connect_ws() -> Result<WsSender, WsError> {
     tokio::spawn(async move {
         while let Some(msg) = read.next().await {
             match msg {
-                Ok(m) => println!("WS recv: {:?}", m),
+                Ok(Message::Text(txt)) => {
+                    println!("WS recv: {}", txt);
+
+                    if let Ok(json) = serde_json::from_str::<Value>(&txt) {
+                        if let Some(event) = json.get("event").and_then(|v| v.as_str()) {
+                            if let Some(events) = WS_EVENTS.get() {
+                                events.notify_event(event);
+                            }
+                        }
+                    }
+                },
+                Ok(_) => {},
                 Err(e) => {
                     eprintln!("WS read error: {:?}", e);
                     break;

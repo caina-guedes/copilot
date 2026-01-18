@@ -1,7 +1,8 @@
+import asyncio
 import threading
 from sharedResources.generalUtils.aprint import aprint
 import time 
-
+from sharedResources.generalUtils.asyncBridge import AsyncBridge
 
 class KeyRef:
     def __init__(self, value):
@@ -46,6 +47,7 @@ class serverConfig:
         stoppingKey                  = None
         
         checkWindow                  = True
+        macroFinishedEvent           = asyncio.Event() 
 
         @classmethod
         def set_flag(cls, name, value):
@@ -65,11 +67,12 @@ class serverConfig:
     # Configurações de flush/buffer
     class FlushConfig:
         batchSize: int = 100
-        flushInterval: int = 2  # seconds
+        flushInterval: int = 2000  # milliseconds
         minimumTimeForEventToBeFlushed: int = 1  # seconds
         commandsToNotFlush = []
         MAX_TIME_DIFF = 500  # milliseconds
         MAX_PIXEL_DIFF = 5   # pixels
+        force_flush = threading.Event()
 
     # Outros parâmetros globais
     debug: bool = False
@@ -231,6 +234,9 @@ class SOWatcherActions:
                 serverConfig.MacroConfig.set_flag("stopMacroTime" , macro_time)
                 print(f"o valor de stopMacroTime é {serverConfig.MacroConfig.stopMacroTime} e o tipo é {type(serverConfig.MacroConfig.stopMacroTime)}")
             print(f'consegui mexer no Isrecording do serverConfig e agora ele é {serverConfig.MacroConfig.isRecording}')
+            if not serverConfig.MacroConfig.isRecording:
+                serverConfig.FlushConfig.force_flush.set()
+
         except Exception as e:
             print(f"Error toggling recording: {e}")
     
@@ -238,9 +244,15 @@ class SOWatcherActions:
     
     def ExecCurrentMacroFunction(self , *args,**kargs):
         """Get the current macro."""
+        async def wait_for_macro_execution():
+            await AsyncBridge.wait_event(serverConfig.MacroConfig.macroFinishedEvent)
+            print("Macro execution finished, returning from wait_for_macro_execution")
+            return {"statusUpdate":"macroExecutionFinished"}
         try:
             serverConfig.MacroConfig.set_flag("requestToExecuteMacro", True)
-            
+             
+            return wait_for_macro_execution
+
         except Exception as e:
             print(f"Error getting current macro: {e}")
             return None
