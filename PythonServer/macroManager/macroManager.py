@@ -19,6 +19,7 @@ class macroManager:
     macroConf  = None
     lock = None
     pendingCommands = None
+    watcheratributestoCompare = ["equipment","action", "key", "button","x","y"]
 
 
     def __init__(self,serverConf):
@@ -37,7 +38,8 @@ class macroManager:
         interesting = {}
         interesting["equipment"] = message["type"]
         for x in message:
-            if x not in ["timestamp" , "type" , "targetTable", "windowChange", "newCurrentWindow"]:
+            # if x not in ["timestamp" , "type" , "targetTable", "windowChange", "newCurrentWindow"]:
+            if x in cls.watcheratributestoCompare:
                 interesting[x] = message[x]
         return interesting
 
@@ -57,7 +59,8 @@ class macroManager:
             # print('the realPendingCommand is: ',realPendingCommand)
 
             for key in realPendingCommand:
-                if key not in ["modifiers","deltaTime","window_event", "newCurrentWindow"]:
+                # if key not in ["modifiers","deltaTime","window_event", "newCurrentWindow" , "details"]:
+                if key in cls.watcheratributestoCompare:
                     convenientPendingCommand[key] = realPendingCommand[key]
                     # print("not ignored key to append in de convenientPendingCommands is : ",key)
                     # print("the key is: " , key)
@@ -95,7 +98,7 @@ class macroManager:
                             doneCommands += 1
 
                     percentage = doneCommands/float(len(cls.pendingCommands["current"]))
-                    print("quantidade de comandos feitos até agora é:", doneCommands, f"  ou seja {percentage}  of the task done")
+                    print(f" {percentage} done")
                     if doneCommands == len(cls.pendingCommands["current"]):
                         ## aqui é o local certo para disparar o evento de macro completa
                         print("macro completa!")
@@ -105,9 +108,9 @@ class macroManager:
                     # deletePendingCommand(convenientWatcherInfo,pendingCommands)
                     return True
                 else:
-                    # print("não deu match")
-                    # print("o comando que não deu match foi: ", convenientWatcherInfo)
-                    # print(" e a lista de comandos de macro pendentes ja filtrada de forma conveniente é:", convenientPendingListOfCommands)
+                    print("não deu match")
+                    print("o comando que não deu match foi: ", convenientWatcherInfo)
+                    print(" e a lista de comandos de macro pendentes ja filtrada de forma conveniente é:", convenientPendingListOfCommands)
                     return False
             else:
                 # print("não tem nenhum comando de macro pendente e a lista é:",cls.pendingCommands["current"])

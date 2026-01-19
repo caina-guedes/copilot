@@ -21,6 +21,12 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
 .container {
   margin: 0;
   padding-top: 10vh;

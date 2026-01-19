@@ -121,8 +121,7 @@ class WebSocketClient:
             logger.info(f"[{__name__}] ❌ Failed to connect    {str(e)}")
         
         if not cls.connected and cls.auto_reconnect and not cls.reconnecting:
-                asyncio.create_task(cls.reconnect())
-
+            task = asyncio.create_task(cls.reconnect(), name = "WebSocketClientReconnectTask")
     @classmethod
     async def reconnect(cls):
         logger.info(f"[{__name__}] 🔄 Attempting to reconnect...")

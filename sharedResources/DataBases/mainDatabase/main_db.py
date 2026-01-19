@@ -12,9 +12,16 @@ sys.path.append(RootDir)
 from sharedResources.generalUtils.aprint import aprint
 print(f'RootDir set to: {RootDir}')
 
+"""
+doiufdoiufdoiufdddffggdfgdfgdfg
+diugd
+"""
+
+
+
 from PythonServer.serverConfig import serverConfig
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
-# sys.path.append(str(Path(__file__).resolve().parent.parent.parent.parent))
+# sys.path.append(str(Path(__file__).resolve().parent.parent.action': 'press', 'key': 'c'}parent.parent))
 from sharedResources.DataBases.utils.BaseSqlDB import BaseDbCommands
 import atexit
 from sharedResources.DataBases.mainDatabase.macro_manager import startNewMacro, stopMacro, GetCurrentMacroFunction
@@ -66,7 +73,7 @@ class MainDatabase:
         self._stop_event = Event()
 
         # Thread de flush periódico
-        self._flush_thread = Thread(target=self._flush_worker, daemon=True)
+        self._flush_thread = Thread(target=self._flush_worker, daemon=True,name="MainDBFlushWorkerThread")
         self._flush_thread.start()
         self.answer = None
         atexit.register(self.close)

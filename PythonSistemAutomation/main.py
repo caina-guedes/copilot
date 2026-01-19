@@ -124,7 +124,7 @@ class AutomationSystem:
         self.observer.start()
 
     def start_observer_in_thread(self):
-        Thread(target=self.start_observer, daemon=True).start()
+        Thread(target=self.start_observer, daemon=True, name = "ObserverThread").start()
 
     def stop_observer(self):
         self.observer.stop()
@@ -148,10 +148,8 @@ async def main():
 
     try:
         logger.info("Starting event observer...")
-        # asyncio.create_task(task_monitor(5), name="TaskMonitor")
         autoSystem.start_observer_in_thread()
         await autoSystem.initializeWebsocket()
-        # AutomationSystem.sender_task = asyncio.create_task(autoSystem.initialize_sender())
         await stop_event.wait()  # Aguarda sinal de parada
 
     except Exception as e:

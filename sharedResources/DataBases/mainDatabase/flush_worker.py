@@ -17,7 +17,7 @@ import json
 from PythonServer.serverConfig import serverConfig
 FlushConfig = serverConfig.FlushConfig
 
-def build_insert_query(table, data: dict):
+def _build_insert_query(table, data: dict):
     keys = ", ".join(data.keys())
     placeholders = ", ".join(["?"] * len(data))
 
@@ -26,15 +26,18 @@ def build_insert_query(table, data: dict):
 
 def is_duplicate_click(ev,debug = True):
     if debug:
-        print("checking for duplicate click...")
-        print("the event to check is: ", ev)
+        pass
+        # print("checking for duplicate click...")
+        # print("the event to check is: ", ev)
     if ev.get("type") != "mouse":
         if debug:
-            print("not a mouse event, returning False")
+            pass
+            # print("not a mouse event, returning False")
         return False
     if len(FlushConfig.commandsToNotFlush) == 0:
         if debug:
-            print("no commands to not flush, returning False")
+            pass
+            # print("no commands to not flush, returning False")
         return False
 
     comparingRecords = []
@@ -42,11 +45,13 @@ def is_duplicate_click(ev,debug = True):
         for front_end_ev_class in FlushConfig.commandsToNotFlush:
             front_end_ev = front_end_ev_class.values
             if debug:
-                print("comparing with front end event: ", front_end_ev)
+                pass
+                # print("comparing with front end event: ", front_end_ev)
             # Comparar botões
             if ev.get("key").replace("Button.","") != front_end_ev.get("button", None):
                 if debug:
-                    print("button mismatch")
+                    pass
+                    # print("button mismatch")
                 comparingRecords.append(False)
                 continue
 
@@ -57,7 +62,8 @@ def is_duplicate_click(ev,debug = True):
                 if time_diff > FlushConfig.MAX_TIME_DIFF:
                     comparingRecords.append(False)
                     if debug:
-                        print("timestamp mismatch")
+                        pass
+                        # print("timestamp mismatch")
                     continue
                 # Comparar coordenadas
                 dx = abs(ev.get("x", 0) - front_end_ev.get("x", 0))
@@ -65,18 +71,21 @@ def is_duplicate_click(ev,debug = True):
                 if dx > FlushConfig.MAX_PIXEL_DIFF or dy > FlushConfig.MAX_PIXEL_DIFF:
                     comparingRecords.append(False)
                     if debug:
-                        print("press coordinate mismatch ")
+                        pass
+                        # print("press coordinate mismatch ")
                     continue
             elif ev["action"] == "release":
                 if ev["ts"] - front_end_ev["ts"] <= 0:
                     comparingRecords.append(False)
                     if debug:
-                        print("release timestamp mismatch ")
+                        pass
+                        # print("release timestamp mismatch ")
                     continue
             
             # Se todas as comparações passaram, é um clique duplicado
             if debug:
-                print("duplicate click detected")
+                pass
+                # print("duplicate click detected")
             comparingRecords.append(True)
         for index, front_end_ev_class in enumerate(FlushConfig.commandsToNotFlush):
             if comparingRecords[index]:
@@ -110,7 +119,7 @@ def _flush_windowChange(self,windowEvent,ts):
     else:
         internalWindowEvent['details'] = str(internalWindowEvent['details'])
 
-    preparedQuerry , values = build_insert_query("window_events",internalWindowEvent)
+    preparedQuerry , values = _build_insert_query("window_events",internalWindowEvent)
     try:
         self.cursor.execute(preparedQuerry, values)
         windowgeratedId = self.cursor.lastrowid
@@ -170,13 +179,13 @@ def _prepareEventToFlush(self, ev):
 def _flush(self, final_flush=False):
     """Executa inserção em bloco de todos os eventos pendentes"""
     if len(self._pending_events) == 0: ## Nada para gravar porém esse atributo debug eu ainda tenho que olhar melhor futuramente
-        print("No pending events to flush.")
+        # print("No pending events to flush.")
         return
     
     with self._buffer_lock:
         events_to_insert = []
         toRecentEvents = []
-        print(f"começando o flush de eventos. o número de eventos pendentes é: {len(self._pending_events)}")
+        # print(f"começando o flush de eventos. o número de eventos pendentes é: {len(self._pending_events)}")
         self._pending_events.sort(key=lambda e: e.get("ts"))
         # print("eventos ordenados por timestamp.")
         timeNow = int(str(time.time()*1000).split(".")[0])
@@ -191,7 +200,7 @@ def _flush(self, final_flush=False):
         duplicate_events_indexes = []
         force = FlushConfig.force_flush.is_set()
         for index , ev in enumerate(self._pending_events):
-            print("processando o evento: ", ev)
+            # print("processando o evento: ", ev)
             ts = ev.get('ts')
             diference = (timeNow - ts)/1000
             # print(f"the time passed is: {diference} seconds and the minimum time for flush is: ", self.serverConfig.FlushConfig.minimumTimeForEventToBeFlushed)
@@ -223,9 +232,9 @@ def _flush(self, final_flush=False):
     retry_delay = 0.1
     sucess = False
     if len(events_to_insert) == 0:
-        print("nenhum evento passou no teste de tempo para flush, saindo da função.")
+        # print("nenhum evento passou no teste de tempo para flush, saindo da função.")
         return
-    print(f"tentando inserir {len(events_to_insert)} eventos no banco de dados.")
+    # print(f"tentando inserir {len(events_to_insert)} eventos no banco de dados.")
     for attempt in range(max_retries):
         try:
             print(f"about to flush the events that happend between {timePassed(events_to_insert[0][0])} and {timePassed(events_to_insert[-1][0])}!!!!!")
@@ -234,7 +243,7 @@ def _flush(self, final_flush=False):
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
             ''', events_to_insert)
             self.conn.commit()
-            print("flush de eventos realizado com sucesso.")
+            # print("flush de eventos realizado com sucesso.")
             sucess = True
             self._last_flush = time.time()
             print(f"consegui fazer o flush!!!! haviam {len(events_to_insert)} eventos para inserir.")
@@ -254,9 +263,9 @@ def _flush(self, final_flush=False):
         except Exception as e:
             print(f"[ERROR] Falha ao gravar eventos: {e}")
             break
-    print("saindo do loop de tentativas de flush. e tentando entrar no lock do buffer pra verificar o sucesso")
+    # print("saindo do loop de tentativas de flush. e tentando entrar no lock do buffer pra verificar o sucesso")
     with self._buffer_lock:
-        print("verificando sucesso do flush")
+        # print("verificando sucesso do flush")
         if not sucess:
             print("não deu sucesso no flush de eventos, voltando as coisas pro lugar....")
             # pass
@@ -272,6 +281,7 @@ def _flush_worker(self):
     while not self._stop_event.is_set():
 
         if FlushConfig.force_flush.wait(timeout=FlushConfig.flushInterval/1000):
+            # if not serverConfig.MacroConfig.isRecording or serverConfig.MacroConfig.isRecording and serverConfig.MacroConfig.):
             print("force flush event detected.")
             time.sleep(0.05)  # Pequena espera para garantir que eventos recentes sejam capturados
             _flush(self)

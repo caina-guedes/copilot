@@ -9,3 +9,7 @@ comando para iniciar o server
 PYTHONPATH=. python3 PythonServer/server.py
 
 
+
+
+
+

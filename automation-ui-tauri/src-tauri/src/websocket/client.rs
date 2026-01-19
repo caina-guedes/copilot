@@ -75,7 +75,7 @@ pub async fn connect_ws() -> Result<WsSender, WsError> {
                     println!("WS recv: {}", txt);
 
                     if let Ok(json) = serde_json::from_str::<Value>(&txt) {
-                        if let Some(event) = json.get("event").and_then(|v| v.as_str()) {
+                        if let Some(event) = json.get("statusUpdate").and_then(|v| v.as_str()) {
                             if let Some(events) = WS_EVENTS.get() {
                                 events.notify_event(event);
                             }

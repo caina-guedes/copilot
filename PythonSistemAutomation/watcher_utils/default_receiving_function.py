@@ -34,7 +34,7 @@ def mouseExecCommand(message, action, controlsToIgnore):
         x = message["x"]
         y = message["y"]
         mouse.position = (x, y)
-        print(f"Mouse moved to ({x}, {y})")
+        # print(f"Mouse moved to ({x}, {y})")
     if action == "click":
         mouse.click(getattr(Button, button),1)
         print(f"Mouse clicked {button} button")
@@ -78,12 +78,15 @@ def kbPressOrRelease(key_name, action, controlsToIgnore):
         ))
     try:
         before = time.perf_counter()
+        # print("Executing keyboard action:", action, "for key:", key_name)
         if action == "press":
             keyboard.press(key)
         elif action == "release":
             keyboard.release(key)
+        else:
+            print(f"action {action} not recognized for keyboard")
         after = time.perf_counter()
-
+        print("Executed keyboard action:", action, "for key:", key_name)
         return (before, after)
 
     except Exception as e:
@@ -150,6 +153,7 @@ async def default_receiving_function(message, macroExecutor ):
                 return InternalResponse(before,after)
                 
             except Exception as e:
+                print(f"Error processing keyboard command: {e}")
                 LoggerManager.log_exception_with_context(f"Error processing keyboard command: {e}",e)
 
         elif equipment == "mouse":
@@ -163,6 +167,7 @@ async def default_receiving_function(message, macroExecutor ):
                 print(f"Error processing mouse command: {e}")
 
         else:
+            print(f"equipment {equipment} not recognized")
             LoggerManager.log_exception_with_context(f"equipment {equipment} not recognized")
 
     

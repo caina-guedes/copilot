@@ -12,7 +12,7 @@ pub async fn play_macro(payload: CommandPayload, ws: State<'_, WsState>) -> Resu
 
     println!("Waiting for macro execution to finish...");
     ws.0.wait_for_event("MacroExecutionFinished").await;
-    println!("Macro execution finished!");
+    println!("Macro execution finished in the frontend.");
     Ok(())
     // enviar evento pro server via WebSocket
 }

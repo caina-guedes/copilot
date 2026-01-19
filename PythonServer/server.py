@@ -352,17 +352,25 @@ async def enviar_comando(comandoInicial  =  ''  ):
 
 def main():
     # Inicializa o server na thread principal ou não-daemon
-    server_thread = threading.Thread(target=iniciar_server)
-    server_thread.start()
+    try:
+        server_thread = threading.Thread(target=iniciar_server, name="ServerThread")
+        server_thread.start()
+        print("created thread serverThread and the name is:")
+        print(server_thread.name)
+    except KeyboardInterrupt:
+        print("❌ Interrompido pelo usuário.")
+        # serverShutdownEvent.set()
+    except Exception as e:
+        print("❌ Erro ao iniciar o servidor WebSocket:", e)
 
     # Aguarda server estar pronto (opcional: pode colocar sleep ou flag)
     # asyncio.run(enviar_comando())
+    finally:
+        # Fecha listener do logger quando tudo terminar
+        LoggerManager.stop_listener()
 
-    # Fecha listener do logger quando tudo terminar
-    LoggerManager.stop_listener()
-
-    # Espera server terminar se necessário
-    server_thread.join()
+        # Espera server terminar se necessário
+        server_thread.join()
 
 if __name__ == "__main__":
     # threading.Thread(target=iniciar_server, daemon=True).start()

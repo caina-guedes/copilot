@@ -245,9 +245,11 @@ class SOWatcherActions:
     def ExecCurrentMacroFunction(self , *args,**kargs):
         """Get the current macro."""
         async def wait_for_macro_execution():
+            """
+            Wait for the macro execution to finish.
+            """
             await AsyncBridge.wait_event(serverConfig.MacroConfig.macroFinishedEvent)
-            print("Macro execution finished, returning from wait_for_macro_execution")
-            return {"statusUpdate":"macroExecutionFinished"}
+            return {"statusUpdate":"MacroExecutionFinished"}
         try:
             serverConfig.MacroConfig.set_flag("requestToExecuteMacro", True)
              

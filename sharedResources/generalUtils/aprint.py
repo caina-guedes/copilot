@@ -27,7 +27,8 @@ def _print_worker():
 # Thread dedicada que consome a fila
 _thread = threading.Thread(target=_print_worker, daemon=True, name="AprintThread")
 _thread.start()
-
+print("created thread AprintThread and the name is:")
+print(_thread.name)
 def aprint(*args, **kwargs):
     """
     Print não bloqueante, ordenado e thread-safe.

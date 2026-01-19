@@ -26,6 +26,7 @@ class EventObserver:
         self._callback_lock = asyncio.Semaphore(1) 
         
     async def _process_event(self, event):
+        # print(f"[_process_event] event: {event}")
         async with self._callback_lock:
             try:
                 if event["type"] == "keyboard":
@@ -34,14 +35,13 @@ class EventObserver:
                     convenientEventToCompare = (event["type"] ,event["button"].replace("Button.","") ,event["action"],event['x'],event['y'] )
                 if self.system.ExecutingMacro["value"] or convenientEventToCompare in self.system.controlsToIgnore:
                     # print("o controlstoIgnore logo antes de decidir sobre remover algo é: ",self.system.controlsToIgnore)
+                    print(f"the controlsToIgnore are: ",self.system.controlsToIgnore)
                     if convenientEventToCompare in self.system.controlsToIgnore:
+                        print(f"the event is a macro event and will not be sent it is:",convenientEventToCompare)
                         self.system.controlsToIgnore.remove(convenientEventToCompare)
-                        return 
+                        # return 
                     else:
                         pass
-                        # print("event not in ignore list, processing...")
-                        # if self.system.ExecutingMacro["value"]:
-                            # print("""System is executing macro""")
                 await self._on_event_callback(event, self.system)
             except Exception as e:
                 logger.warning(f"Erro ao processar evento: {e}")
@@ -50,16 +50,18 @@ class EventObserver:
 
     def on_click_wrapper(self,x, y, button, pressed):
 
-        asyncio.create_task(self._on_click(x, y, button, pressed))            
-    
+        task = asyncio.create_task(self._on_click(x, y, button, pressed),name = "_on_click_task")            
+        print("Created on_click task and the name is: ")
+        print(task.get_name())
     def use_on_event_callback(self, event):
-        logger.info(f"Using on_event_callback for event: {event}")
+        # print(f"[on_event_callback] for event: {event}")
         if self._on_event_callback is None:
             self._on_event_callback = default_callback
         
         def schedule():
-            asyncio.create_task(self._process_event(event))
-            
+            task = asyncio.create_task(self._process_event(event),name = "_process_event_task")
+            print("Created _process_event_task and the name is:")
+            print(task.get_name())
         self.loop.call_soon_threadsafe(schedule)
     
     def add_event(self, event):

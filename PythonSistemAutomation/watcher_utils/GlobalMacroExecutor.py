@@ -1,15 +1,15 @@
-import asyncio
+from PythonSistemAutomation.watcher_utils.default_receiving_function import default_receiving_function
+from sharedResources.generalUtils.aprint import aprint
 from asyncio import QueueEmpty 
+from pathlib import Path
+import asyncio
+import time
 import json
 import sys
-from pathlib import Path
-import time
+
 
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
-
-from sharedResources.generalUtils.aprint import aprint
-from PythonSistemAutomation.watcher_utils.default_receiving_function import default_receiving_function
 
 class Flag:
     def __init__(self,value):
@@ -88,7 +88,9 @@ class GlobalExecutor:
         if cls._running:
             return
         cls._running = True
-        cls._task = asyncio.create_task(cls._executor_loop())
+        cls._task = asyncio.create_task(cls._executor_loop(),name = "GlobalExecutorLoopTask")
+        print("created GlobalExecutorLoopTask and the name is: ")
+        print(cls._task.get_name())
         print("[GlobalExecutor] Started (auto-start).")
 
     @classmethod
@@ -208,18 +210,10 @@ class GlobalExecutor:
                     if cls._internalStartMacroTime is not None:
                         try:
                             total_macro_time_really_taken = cls._internalStopMacroTime - cls._internalStartMacroTime
-                            # print(f"[GlobalExecutor] Macro execution time was: {total_macro_time_really_taken} seconds.")
-                            # print(f"[GlobalExecutor] Macro accumulated interaction time with the OS was: {macroAcumulatedInteractionWithSOTime} seconds.")
-                            # print(f"[GlobalExecutor] Time it Should Take was: {time_it_should_take} seconds.")
-                            # print(f"[GlobalExecutor] Time spent waiting in queue was: {sum(timeWaitingInQueue)} seconds.")
-                            # print(f"[GlobalExecutor] Time spent executing internal processing was: {sum([t[1]-t[0] for t in internalTimeOfEachCommand])} seconds.")
-                            # print("startedTime , dont remember, command, time waited in queue, internal processing time:")
-                            # for index,timeRegistry in enumerate(startingTimeOfEachCommand):
-                                # print(f"{index+1}, {timeRegistry[0]- cls._internalStartMacroTime}  {timeRegistry[1]}     {timeWaitingInQueue[index]}   {internalTimeOfEachCommand[index][1] - internalTimeOfEachCommand[index][0]}")
-                                # print(f"{index+1} Command started at {timeRegistry[0]- cls._internalStartMacroTime} seconds. and ", timeRegistry[1], " and waited in queue for ", timeWaitingInQueue[index], " seconds.",f" took {internalTimeOfEachCommand[index][1] - internalTimeOfEachCommand[index][0]} seconds of internal processing time.")
+                        
                         except Exception as e:
                             LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error calculating macro times: {e}",e)
-                            # print(f"[GlobalExecutor] Error calculating macro times: {e}")
+                        
                         time_it_should_take = 0.0
                         macroAcumulatedInteractionWithSOTime = 0.0
                         cls._reset_macro_state()

@@ -61,7 +61,7 @@ class TwoWayConnection:
                 try:
                     # with self.receiver_lock: 
                     # print("antes de criar a task do receiver loop")
-                    self._receiver_task = asyncio.create_task(self.receiver_loop())
+                    self._receiver_task = asyncio.create_task(self.receiver_loop(), name = "TwoWayConnectionReceiverLoopTask")
                     # print('acho que a função de começar a receber começou')
                 except Exception as e:
                     print("[TwoWayConnection] Failed to start receiver loop task")
@@ -159,7 +159,7 @@ class TwoWayConnection:
                             # print("deu exceção recebendo mensagem no receiver e é: ",e)
                         # print("ultima linha do receiver lock")
                     # message = await self.receiver.recv()
-                    print(f"[RECEIVE LOOP] Received message: {message}")
+                    # print(f"[RECEIVE LOOP] Received message: {message}")
                     self.logger.info(f"[RECEIVE LOOP] Received message: {message}")
                     if noError:
                         await self._handle_message_from_server(message)
@@ -238,7 +238,7 @@ class TwoWayConnection:
             # self.sender = None
         
 
-    async def send(self,message):
+    async def send(self,message, show_message=False):
         # logger.warning("[TwoWayConnection] send function")
 
             
@@ -249,6 +249,8 @@ class TwoWayConnection:
                 # print("right before the sender lock")
                 async with self._sender_lock:
                     # print("right after the sender lock")
+                    if show_message:
+                        print("the message to be sent is: ", message)
                     await self.sender.send(json.dumps(message))
                 # print("CALL STACK:", traceback.format_stack())
 

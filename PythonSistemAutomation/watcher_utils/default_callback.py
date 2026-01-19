@@ -13,6 +13,7 @@ logger = LoggerManager.get_logger(__name__)
 
 async def default_callback(event,father):
     """this function check for changes in the current window and sends the event"""
+    # print("[default_callback] Event captured:", event)
     try:
         currentWindow, changed = window.get_active_window()
         if changed:
@@ -23,7 +24,7 @@ async def default_callback(event,father):
             event["windowChange"] = False
         
         try:
-            await father.ws_client.connection.send(event)
+            await father.ws_client.connection.send(event, True)
         
         except Exception as ex:
             await father.ws_client.reconnect()  # Reset the connection if it fails

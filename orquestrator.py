@@ -18,44 +18,24 @@ PROCESS_COLORS = {
     "FRONTEND_ERR": Fore.RED
 }
 
-def stream_output(prefix, stream):
-    color = PROCESS_COLORS.get(prefix, "")
-    for line in iter(stream.readline, ''):
-        if line:
-            print(f"{color}[{prefix}] {line}", end='')
+"""
+Configurações do que mostrar no output
+"""
+onlyErrors = False
+whatToShow = {
 
-# # cores normais
-# SERVER_COLOR = "\033[92m"   # verde
-# WATCHER_COLOR = "\033[94m"  # azul
-# FRONTEND_COLOR = "\033[93m" # amarelo
-
-# # cores de erro
-# SERVER_ERR_COLOR = "\033[91m"     # vermelho intenso
-# WATCHER_ERR_COLOR = "\033[95m"    # magenta (mistura de azul+vermelho)
-# FRONTEND_ERR_COLOR = "\033[31m"   # vermelho clássico
-
-
-# PROCESS_COLORS = {
-#     "SERVER": SERVER_COLOR,
-#     "SERVER_ERR": SERVER_ERR_COLOR,
-#     "WATCHER": WATCHER_COLOR,
-#     "WATCHER_ERR": WATCHER_ERR_COLOR,
-#     "FRONTEND": FRONTEND_COLOR,
-#     "FRONTEND_ERR": FRONTEND_ERR_COLOR
-# }
-
-
-def stream_output(prefix, stream):
+    "frontEnd": False and (not onlyErrors),
+    "frontEndError" : True,
+    "server"   : True and (not onlyErrors),
+    "serverError"  : True,
+    "watcher"  : True and (not onlyErrors),
+    "watcherError" : True
+}
+def stream_output(prefix, stream,show = True):
     color = PROCESS_COLORS.get(prefix, "")  # padrão se algo desconhecido aparecer
     for line in iter(stream.readline, ''):
-        if line:
+        if line and show:
             print(f"{color}[{prefix}] {line}\033[0m", end='')
-
-# def stream_output(prefix, stream,color):
-#     for line in iter(stream.readline, ''):
-#         if line:
-#             print(f"{color}[{prefix}]{line}\033[0m", end='')
-            # print(f"[{prefix}] {line}", end='')
 
 
 # -------------------------
@@ -70,7 +50,7 @@ def wait_for_port(port, host="127.0.0.1", timeout=10):
                 return True
         except OSError:
             time.sleep(0.2)
-    return False
+    return True
 
 
 # -------------------------
@@ -84,18 +64,23 @@ def start_server():
         stderr=subprocess.PIPE,
         text=True
     )
-
-    threading.Thread(
+    print(f'pro server o whatToShow["server"] é: {whatToShow["server"]}')
+    serverThread= threading.Thread(
         target=stream_output,
-        args=("SERVER", p.stdout),
+        args=("SERVER", p.stdout, whatToShow["server"]),
         daemon=True
-    ).start()
+    )
+    serverThread.start()
+    serverThread.setName("ServerOutputStreamThread")
 
-    threading.Thread(
+    print(f'pro serverErros o whatToShow["serverError"] é: {whatToShow["serverError"]}')
+    serverErrorThread = threading.Thread(
         target=stream_output,
-        args=("SERVER_ERR", p.stderr),
+        args=("SERVER_ERR", p.stderr, whatToShow["serverError"]),
         daemon=True
-    ).start()
+    )
+    serverErrorThread.start()
+    serverErrorThread.setName("ServerErrorStreamThread")
 
     return p
 
@@ -117,28 +102,23 @@ def start_watcher():
         text=True
     )
 
-    threading.Thread(
+    watcherThread = threading.Thread(
         target=stream_output,
-        args=("WATCHER", p.stdout),
+        args=("WATCHER", p.stdout, whatToShow["watcher"]),
         daemon=True
-    ).start()
+    )
+    watcherThread.start()
+    watcherThread.setName("WatcherOutputStreamThread")
 
-    threading.Thread(
+    watcherErrorThread = threading.Thread(
         target=stream_output,
-        args=("WATCHER_ERR", p.stderr),
+        args=("WATCHER_ERR", p.stderr, whatToShow["watcherError"]),
         daemon=True
-    ).start()
-
+    )
+    watcherErrorThread.start()  
+    watcherErrorThread.setName("WatcherErrorStreamThread")
     return p
 
-
-# def start_watcher():
-#     print("[orchestrator] Iniciando watcher...")
-#     return subprocess.Popen(
-#         ["python3", "-u", "PythonSistemAutomation/main.py"],
-#         stdout=sys.stdout,
-#         stderr=sys.stderr
-#     )
 
 def start_frontend():
     print("[orchestrator] Iniciando frontend...")
@@ -150,27 +130,24 @@ def start_frontend():
         text=True
     )
 
-    threading.Thread(
+    frontendThread = threading.Thread(
         target=stream_output,
-        args=("FRONTEND", p.stdout),
+        args=("FRONTEND", p.stdout, whatToShow["frontEnd"]),
         daemon=True
-    ).start()
+    )
+    frontendThread.start()
+    frontendThread.setName("FrontEndOutputStreamThread")
 
-    threading.Thread(
+    frontendErrorThread = threading.Thread(
         target=stream_output,
-        args=("FRONTEND_ERR", p.stderr),
+        args=("FRONTEND_ERR", p.stderr, whatToShow["frontEndError"]),
         daemon=True
-    ).start()
-
+    )
+    frontendErrorThread.start()
+    frontendErrorThread.setName("FrontEndErrorStreamThread")
     return p
 
 
-# def start_frontend():
-#     print("[orchestrator] Iniciando frontend (Tauri)...")
-#     return subprocess.Popen(
-#         ["npm", "run", "tauri", "dev"],
-#         cwd="automation-ui-tauri/src-tauri"
-#     )
 
 
 # -------------------------
@@ -218,3 +195,25 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+#     o comando que não deu match foi:  
+#     {
+#         'equipment': 'mouse', 
+#         'action': 'release', 
+#         'x': 318, 
+#         'y': 352, 
+#         'button': 'Button.left'}
+# [SERVER]  e a lista de comandos de macro pendentes ja filtrada de forma conveniente é: [
+# {'equipment': 'mouse', 
+# 'button': 'Button.left', 
+# 'action': 'press', 
+# 'x': 318, 
+# 'y': 352, 
+# 'details': None}, 
+# {'equipment': 'mouse', 'button': 'Button.left', 'action': 'release', 'x': 318, 'y': 352, 'details': None}, 
+# {'equipment': 'keyboard', 'key': 'd', 'action': 'press'}, 
+# {'equipment': 'keyboard', 'key': 'd', 'action': 'release'}, 
+# {'equipment': 'keyboard', 'key': 'f', 'action': 'press'}, 
+# {'equipment': 'keyboard', 'key': 'f', 'action': 'release'}, 
+# {'equipment': 'keyboard', 'key': 'g', 'action': 'press'}, 
+# {'equipment': 'keyboard', 'key': 'g', 'action': 'release'}]
