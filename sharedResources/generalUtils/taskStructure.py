@@ -1,3 +1,6 @@
+from typing import Literal, Optional, Callable, Any 
+import time
+from dataclasses import dataclass, field
 import threading
 import asyncio
 import logging
@@ -16,6 +19,12 @@ class TrackedItem:
     obj: object
     cleanup_event: object
     cleanup_enabled: bool
+    name: str | None 
+    kind: Literal["thread", "task"]
+    created_from: str | None
+    cleanup_function: Optional[Callable[..., Any]] = None
+    created_at: float = field(default_factory=time.time)
+    thread_name: str = field(default_factory=lambda: threading.current_thread().name)
 
 # Setup básico de logging
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
@@ -29,11 +38,13 @@ class shutdownMaster():
     mapa para rastrear as threads e tasks com nomes iguais ou não"""
     shutdown_event = threading.Event() #tem que setar esse evento em runtime pelo processo principal
     shutDownComplete = threading.Event()
+    byebye           = threading.Event()
     shutdown_lock = threading.Lock()
-    shutDownExternalLock = threading.Lock()
+    shutDownExternalLock = threading.Lock() # para o uso externo acontecer apenas uma vez
     running_loop = None
     threadsMap = {}
     tasksMap = {"unnamedTasks":[]}
+    logsMap = {"threads":[],"tasks":[]}
 
     @classmethod
     def set_loop(cls, loop=None):
@@ -90,39 +101,81 @@ class shutdownMaster():
     @classmethod
     def waitMyShutdown(cls):
         """Função para esperar o shutdown ser completado"""
-        print("Waiting for shutdown to begin...")
-        cls.shutdown_event.wait()
-        print("Shutdown event detected, proceeding with shutdown...")
-        cls.autoShutdown()
-        cls.shutDownComplete.wait()
-        print("Shutdown complete.")
+        try:
+            print("Waiting for shutdown to begin...")
+            cls.shutdown_event.wait()
+            print("Shutdown event detected, proceeding with shutdown...")
+            cls.autoShutdown()
+        finally:
+            if not cls.shutDownComplete.is_set():
+                try:
+                    cls.shutDownComplete.wait()
+                except Exception as e:
+                    print("deu ruim no evento shutdownComplete e foi:",e)
+            
+            logs = []
+            for key in cls.logsMap:
+                for event in cls.logsMap[key]:
+                    logs.append(event)
+            logs = sorted(logs, key = lambda x: x[0])
+            last_time =0
+            for ev in logs:
+                if last_time ==0:
+                    print(round(ev[0],6)," - ",ev[1])
+                    last_time = ev[0]
+                else:
+                    delta = round(ev[0]- last_time,6)
+                    last_time =ev[0]
+                    print(delta," - ",ev[1])
+            print("Shutdown complete.")
+            cls.byebye.set()
     
+def print_and_register(string,key):
+    # print(string)
+    shutdownMaster.logsMap[key].append([time.time(),string])
 
 threading.Thread(target=shutdownMaster.waitMyShutdown).start()
 # -------------------- Thread wrapper --------------------
 class TrackedThread(threading.Thread):
     threadsMap = shutdownMaster.threadsMap
 
-    def __init__(self, target, name, *args, **kwargs):
-        super().__init__(target=target, name=name, args=args, kwargs=kwargs)
-        selfCleanUpEvent = shutdownMaster.shutdown_event #pensado para fazer operações internas de limpeza
+    def __init__(self, target, name, created_from,daemon = False,cleanup_event = None ,cleanup_function = None, *args, **kwargs):
+        """created_from é um campo pra que eu consiga humanamente entender onde ela foi criada por exemplo:
+            "EventBuffer.start" 
+            ou algo parecido.
+            vai ser uma string capaz de me fazer entender o contexto e onde localizar no codigo
+        """
+        super().__init__(target = target, 
+                         name   = name, 
+                         daemon = daemon,  
+                         args   = args, 
+                         kwargs = kwargs)
+        selfCleanUpEvent = cleanup_event if cleanup_event is not None else shutdownMaster.shutdown_event #pensado para fazer operações internas de limpeza
         selfCleanUpEventUse = False #se a thread vai usar o evento de self cleanup
-        if name:
-            if name not in TrackedThread.threadsMap:
-                TrackedThread.threadsMap[name] = [TrackedItem(self,selfCleanUpEvent, selfCleanUpEventUse)]
-            else:
-                TrackedThread.threadsMap[name].append(TrackedItem(self,selfCleanUpEvent, selfCleanUpEventUse))
-        print(f"[Thread Created] {self.name}")
+        trackedThread = TrackedItem(
+            self,
+            selfCleanUpEvent, 
+            selfCleanUpEventUse,
+            name = name, 
+            kind = "thread",
+            created_from = created_from, 
+            cleanup_function = cleanup_function) 
+        if not name:
+            print("thread veio com nome que deu false e foi: ",name," registrando como 'unnamedThread'")
+            TrackedThread.threadsMap.setdefault("unnamedThread", []).append(trackedThread)
+        else:
+            TrackedThread.threadsMap.setdefault(name, []).append(trackedThread)
+        print_and_register(f"[Thread Created] {self.name}","threads")
         # # logger.info(f"[Thread Created] {self.name}")
 
     def run(self):
-        print(f"[Thread Started] {self.name}")
+        print_and_register(f"[Thread Started] {self.name}","threads")
         
         # logger.info(f"[Thread Started] {self.name}")
         try:
             super().run()
         finally:
-            print(f"[Thread Exited] {self.name}")
+            print_and_register(f"[Thread Exited] {self.name}","threads")
             # logger.info(f"[Thread Exited] {self.name}")
             if self.name in TrackedThread.threadsMap:
                 TrackedThread.threadsMap[self.name] = [
@@ -137,20 +190,43 @@ class TrackedThread(threading.Thread):
         # logger.info("[Shutdown] Signaling all threads to stop...")
         
         # Sinaliza o evento de shutdown
-        shutdownMaster.shutdown_event.set()
+        # shutdownMaster.shutdown_event.set()
         
         # Espera cada thread encerrar
         for name, threads in list(cls.threadsMap.items()):
             for tracked in threads:
-                thread_obj, clean_event, use_flag = tracked.obj, tracked.cleanup_event, tracked.cleanup_enabled
+                thread_obj, clean_event, use_flag , clean_function = tracked.obj, tracked.cleanup_event, tracked.cleanup_enabled, tracked.cleanup_function
+                if clean_event != cls.shutdown_event:
+                    print("[Shutdown] this thread has personalized shutdown!")
+                    if not clean_event.is_set():
+                        print("[Shutdown] setting it now!")
+                        clean_event.set()
+                    else:
+                        print("[Shutdown] but is already set!")
+
+                if callable(clean_function):
+                    print_and_register("[Shutdown] trying to execute cleanup_function!","threads")
+                    execute_cleanup_function(clean_function)
+
                 if thread_obj.is_alive():
-                    print(f"[Shutdown] Waiting thread {thread_obj.name} to exit...")
+                    print_and_register(f"[Shutdown] Waiting thread {thread_obj.name} to exit...","threads")
                     # logger.info(f"[Shutdown] Waiting thread {thread_obj.name} to exit...")
-                    thread_obj.join(timeout)
+                    try:
+                        thread_obj.join(timeout)
+                    except Exception as e:
+                        print_and_register("deu erro e foi: "+str(e),"threads")
+
+                    print_and_register(f"[Shutdown] thread {thread_obj.name} just finished","threads")
+
             # Limpa a lista
-            cls.threadsMap[name] = [t for t in threads if t.obj.is_alive()]
-            if not cls.threadsMap[name]:
-                del cls.threadsMap[name]
+            try:
+                print("[Shutdown] trying to clean the threads Registry")
+                cls.threadsMap[name] = [t for t in threads if t.obj.is_alive()]
+                if not cls.threadsMap[name]:
+                    del cls.threadsMap[name]
+                print("[Shutdown] got it !")
+            except Exception as e:
+                print("[Shutdown] deu erro e foi:  ",e)
         print("[Shutdown] All threads signaled.")
         # logger.info("[Shutdown] All threads signaled.")
     shutdownMaster.set_thread_shutdown_function(shutdown_threads)
@@ -158,42 +234,56 @@ class TrackedThread(threading.Thread):
 
 
 # -------------------- Async Task wrapper --------------------
-def tracked_task(coro, name=None):
-    """Cria uma async task com logging"""
+def tracked_task(coro, name, created_from, cleanup_event = None,cleanup_function = None):
+    """
+    Cria uma async task com logging
+    
+    created_from é um campo pra que eu consiga humanamente entender onde ela foi criada por exemplo:
+    "EventBuffer.start" 
+    ou algo parecido.
+     vai ser uma string capaz de me fazer entender o contexto e onde localizar no codigo
+    """
     task_name = name or str(asyncio.current_task())
     
     async def wrapper():
-        print(f"[Async Task Started] {task_name}")
+        print_and_register(f"[Async Task Started] {task_name}","tasks")
         # logger.info(f"[Async Task Started] {task_name}")
         try:
             return await coro
         except asyncio.CancelledError:
-            print(f"[Async Task Cancelled] {task_name}")
+            print_and_register(f"[Async Task Cancelled] {task_name}","tasks")
             # logger.info(f"[Async Task Cancelled] {task_name}")
             raise
         finally:
-            print(f"[Async Task Exited] {task_name}")
+            print_and_register(f"[Async Task Exited] {task_name}","tasks")
             # logger.info(f"[Async Task Exited] {task_name}")
     ######### criando elementos do trackedItem #########
     task = asyncio.create_task(wrapper(),name = task_name) # cria a task async
     selfCleanUpEvent    = shutdownMaster.shutdown_event   # pensado para fazer operações internas de limpeza
     selfCleanUpEventUse = False                      # flag para  a task usar o evento de self cleanup
     ######### creating the tracked item #########
-    currentTaskItem     = TrackedItem(task,selfCleanUpEvent, selfCleanUpEventUse)
+    currentTaskItem     = TrackedItem(
+        task,
+        selfCleanUpEvent, 
+        selfCleanUpEventUse,
+        name = name, 
+        kind = "task",
+        created_from = created_from,
+        cleanup_function = None)
     ######################## setando a task no mapa de tasks ########################
     if name:
         shutdownMaster.tasksMap.setdefault(task_name, []).append(currentTaskItem) # cria a lista se não existir e seta a task
     else:
         shutdownMaster.tasksMap["unnamedTasks"].append(currentTaskItem)
     
-    print(f"[Async Task Created] {task_name}")
+    print_and_register(f"[Async Task Created] {task_name}","tasks")
     # logger.info(f"[Async Task Created] {task_name}")
     
     
     return task
 
 async def shutdown_tasks():
-    print("[Shutdown] Cancelling all async tasks...")
+    print_and_register("[Shutdown] Cancelling all async tasks...","tasks")
     # logger.info("[Shutdown] Cancelling all async tasks...")
     
     all_tasks = []
@@ -201,12 +291,12 @@ async def shutdown_tasks():
         for tracked in task_list:
             task_obj, clean_event, use_flag = tracked.obj, tracked.cleanup_event, tracked.cleanup_enabled
             if not task_obj.done():
-                print(f"[Shutdown] Cancelling task {task_obj.get_name() if name else task_obj}")
+                print_and_register(f"[Shutdown] Cancelling task {task_obj.get_name() if name else task_obj}","tasks")
                 # logger.info(f"[Shutdown] Cancelling task {task_obj.get_name() if name else task_obj}")
                 if shutdownMaster.running_loop is not None:
                     shutdownMaster.running_loop.call_soon_threadsafe(task_obj.cancel)
                 else:
-                    print("No running loop set in shutdownMaster, cannot cancel task properly. the task was: ", task_obj)
+                    print_and_register("No running loop set in shutdownMaster, cannot cancel task properly. the task was: "+ str(task_obj),"tasks")
                 all_tasks.append(task_obj)
     
     if all_tasks:
@@ -217,9 +307,9 @@ async def shutdown_tasks():
         shutdownMaster.tasksMap[name] = [t for t in shutdownMaster.tasksMap[name] if not t.obj.done()]
         if not shutdownMaster.tasksMap[name] and name != "unnamedTasks":
             del shutdownMaster.tasksMap[name]
-    print("[Shutdown] All async tasks cancelled.")
+    print_and_register("[Shutdown] All async tasks cancelled.","tasks")
     if len(shutdownMaster.tasksMap) > 1:
-        print("[Shutdown] Some async tasks could not be cancelled")
+        print_and_register("[Shutdown] Some async tasks could not be cancelled","tasks")
         for task_name in shutdownMaster.tasksMap.keys():
             if task_name != "unnamedTasks":
                 print("the task is: ",task_name)
@@ -227,7 +317,7 @@ async def shutdown_tasks():
         # logger.info("[Shutdown] Some async tasks could not be cancelled")
         return False
     else:
-        print("[Shutdown] All async tasks handled.")
+        print_and_register("[Shutdown] All async tasks handled.","tasks")
         # logger.info("[Shutdown] All async tasks handled.")
         return True
 

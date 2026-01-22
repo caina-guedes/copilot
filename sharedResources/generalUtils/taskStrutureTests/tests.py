@@ -27,10 +27,17 @@ async def cancellable_task():
         return "done"
     finally:
         print("[cleanup] Task finalizando")
+# def generate_task(name):
+#     return {task" = cancellable_task,
+#         selfCleanUpEvent, 
+#         selfCleanUpEventUse,
+#         name = name, 
+#         kind = "task",
+#         created_from = created_from}
 
 async def test_task_shutdown():
-    t1 = tracked_task(cancellable_task(), name="task1")
-    t2 = tracked_task(cancellable_task(), name="task2")
+    t1 = tracked_task(cancellable_task(), name="task1", created_from = "test_task_shutdown")
+    t2 = tracked_task(cancellable_task(), name="task2", created_from = "test_task_shutdown")
 
     await asyncio.sleep(0.3)  # deixa as tasks rodarem um pouco
     shutdownMaster.shutdown_event.set()  # sinaliza shutdown
@@ -43,7 +50,7 @@ def dummy_thread():
     print("[cleanup] Thread finalizando")
 
 def test_thread_shutdown():
-    t = TrackedThread(target=dummy_thread, name="thread1")
+    t = TrackedThread(target=dummy_thread, name="thread1", created_from = "test_thread_shutdown")
     t.start()
 
     time.sleep(0.3)
@@ -62,8 +69,8 @@ async def test_integrated():
             time.sleep(0.2)
         print(f"[Thread Cleanup] {name}")
     
-    t1 = TrackedThread(target=lambda: thread_job("T1"), name="T1")
-    t2 = TrackedThread(target=lambda: thread_job("T2"), name="T2")
+    t1 = TrackedThread(target=lambda: thread_job("T1"), name="T1", created_from = "test_integrated")
+    t2 = TrackedThread(target=lambda: thread_job("T2"), name="T2", created_from = "test_integrated")
     t1.start()
     t2.start()
 
@@ -74,8 +81,8 @@ async def test_integrated():
             await asyncio.sleep(0.2)
         print(f"[Task Cleanup] {name}")
     
-    a1 = tracked_task(async_job("A1"), name="A1")
-    a2 = tracked_task(async_job("A2"), name="A2")
+    a1 = tracked_task(async_job("A1"), name="A1", created_from = "test_integrated")
+    a2 = tracked_task(async_job("A2"), name="A2", created_from = "test_integrated")
 
     # -------- Deixa rodar um pouco --------
     await asyncio.sleep(1)

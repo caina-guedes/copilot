@@ -359,7 +359,7 @@ def main():
     try:
         server_thread = threading.Thread(target=iniciar_server, name="ServerThread")
         server_thread.start()
-        print("created thread serverThread and the name is:", server_thread.name)
+        print("created thread  and the name is:", server_thread.name)
     except KeyboardInterrupt:
         print("❌ Interrompido pelo usuário.")
         # serverShutdownEvent.set()

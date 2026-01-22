@@ -207,20 +207,26 @@ async def main():
         print_async_tasks_status()
 
 if __name__ == "__main__":
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    # try:
+    #     asyncio.run(main())
     try:
-        asyncio.run(main())
-
+        loop.run_until_complete(main())
     except KeyboardInterrupt:
-         print("stopped observer.")
+            print("stopped observer.")
     finally:
-        print("beginning shutdown Process")
-        while shutDownNotComplete:
-            if AutomationSystem.shutdown_event.is_set() is False:
-                print("shutdownEvent set!")
-                AutomationSystem.shutdown_event.set()
-            print("sleeping while shuttingdown")
-            print_thread_status()
-            time.sleep(1)
+        loop.run_until_complete(shutdownMaster.byebye.wait())
+        loop.close()
+        print("bye bye")
+        # print("beginning shutdown Process")
+        # while shutDownNotComplete:
+        #     if AutomationSystem.shutdown_event.is_set() is False:
+        #         print("shutdownEvent set!")
+        #         AutomationSystem.shutdown_event.set()
+        #     print("sleeping while shuttingdown")
+        #     print_thread_status()
+        #     time.sleep(1)
             
 
     print("Aplicação encerrando...")

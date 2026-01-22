@@ -1,7 +1,15 @@
+
 import builtins
 import threading
 import queue
 import time
+import sys
+from pathlib import Path
+basePath = Path(__file__).resolve().parent.parent.parent
+# print("Path added to sys.path:", str(basePath))
+sys.path.append(str(basePath))
+from sharedResources.generalUtils.taskStructure import TrackedThread
+
 
 DEBUG = True
 # Guarda referência ao print original
@@ -9,10 +17,17 @@ _original_print = builtins.print
 
 # Fila de mensagens para prints
 _print_queue = queue.Queue()
-
+_print_cleanUp_event = threading.Event()
 def _print_worker():
     while True:
-        StopSign, args, kwargs = _print_queue.get()
+        try:
+            StopSign, args, kwargs = _print_queue.get(timeout=0.5)
+        except queue.Empty:
+            if _print_cleanUp_event.is_set():
+                print("stopping aprint because cleanup_event is set!")
+                break
+            else:
+                continue
         if StopSign:
             break
         try:
@@ -25,7 +40,8 @@ def _print_worker():
             _print_queue.task_done()
 
 # Thread dedicada que consome a fila
-_thread = threading.Thread(target=_print_worker, daemon=True, name="AprintThread")
+_thread = TrackedThread(target = _print_worker, cleanup_event =  _print_cleanUp_event , daemon = True ,name  = "AprintThread", created_from = "aprint.py module")
+# _thread = threading.Thread(target=_print_worker, daemon=True, name="AprintThread")
 _thread.start()
 print("created thread and the name is:", _thread.name)
 def aprint(*args, **kwargs):
