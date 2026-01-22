@@ -89,8 +89,7 @@ class GlobalExecutor:
             return
         cls._running = True
         cls._task = asyncio.create_task(cls._executor_loop(),name = "GlobalExecutorLoopTask")
-        print("created GlobalExecutorLoopTask and the name is: ")
-        print(cls._task.get_name())
+        print("created task and the name is: ",cls._task.get_name())
         print("[GlobalExecutor] Started (auto-start).")
 
     @classmethod

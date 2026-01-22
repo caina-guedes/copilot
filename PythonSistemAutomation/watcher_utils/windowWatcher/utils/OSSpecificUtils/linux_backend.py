@@ -111,8 +111,11 @@ class LinuxWindowBackend(BaseWindowBackend):
             raise RuntimeError("wmctrl não instalado — necessário no Linux")
 
         windows = []
-        output = subprocess.check_output(["wmctrl", "-l", "-p"]).decode().splitlines()
-
+        try:
+            output = subprocess.check_output(["wmctrl", "-l", "-p"]).decode().splitlines()
+        except Exception as e:
+            # print(f'deu erro no comando  ["wmctrl", "-l", "-p"] e foi: {e}, vou retornar uma lista vazia pras janelas ativas')
+            return []
         for line in output:
             parts = line.split(None, 4)
             if len(parts) < 5:
@@ -169,8 +172,10 @@ class LinuxWindowBackend(BaseWindowBackend):
         if not active_id:
             # print("couldn't find an active id")
             return None
-        
-        for window in self.list_windows():
+        currentWindows = self.list_windows()
+        if len(currentWindows)==0:
+            return None
+        for window in currentWindows:
             if window.win_id.lower() == active_id.lower():
                 return window
         print("couldn't find an id that matches the active ID")

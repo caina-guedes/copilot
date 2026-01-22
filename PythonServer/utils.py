@@ -50,12 +50,8 @@ def handleSpecialCommand(message,specialCommands, commandsMap, conditionsMap):
 
                         # dispara a função sem bloquear
                         if "details" in message:
-                            # asyncio.create_task(run_command(func, message.get("details")))
-                            # asyncio.create_task(commandsMap[command](message.get("details")))
                             commandsMap[command](message['details'])# se tem detalhe envia se não vai sem mesmo
                         else:
-                            # asyncio.create_task(run_command(func))
-                            # asyncio.create_task(commandsMap[command]())
                             commandsMap[command]()
                     else:
                         print("esse troço está listado como um comando mas não está mapeado na variável correta")

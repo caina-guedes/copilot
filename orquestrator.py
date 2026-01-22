@@ -26,11 +26,12 @@ whatToShow = {
 
     "frontEnd": False and (not onlyErrors),
     "frontEndError" : True,
-    "server"   : True and (not onlyErrors),
-    "serverError"  : True,
+    "server"   : False and (not onlyErrors),
+    "serverError"  : False,
     "watcher"  : True and (not onlyErrors),
     "watcherError" : True
 }
+
 def stream_output(prefix, stream,show = True):
     color = PROCESS_COLORS.get(prefix, "")  # padrão se algo desconhecido aparecer
     for line in iter(stream.readline, ''):
@@ -83,14 +84,6 @@ def start_server():
     serverErrorThread.setName("ServerErrorStreamThread")
 
     return p
-
-# def start_server():
-#     print("[orchestrator] Iniciando server...")
-#     return subprocess.Popen(
-#         ["python3", "-u", "PythonServer/server.py"],
-#         stdout=sys.stdout,
-#         stderr=sys.stderr
-#     )
 
 
 def start_watcher():

@@ -20,11 +20,12 @@ from PythonSistemAutomation.watcher_utils.WatcherWebSocket import WebSocketClien
 import PythonServer.serverConfig as serverConfig
 from sharedResources.DataBases.watcherDatabase import WatcherNotsentEventsDatabase
 import asyncio 
+from sharedResources.generalUtils.taskStructure import shutdownMaster,tracked_task, TrackedThread, print_thread_status, print_async_tasks_status, shutdown_all_async, shutdown_all_threads
 # from sharedResources.debuggingResources.task_monitor import task_monitor
 
 logger = LoggerManager.get_logger(__name__)
 
-
+shutDownNotComplete = True
 
 class AutomationSystem:
     """AutomationSystem class that manages the event observer and WebSocket client.
@@ -36,10 +37,50 @@ class AutomationSystem:
     config = EventObserverConfig()
     current_macro = None  # To store the current macro being recorded
     # sender_task   = None
-
+    stop_event = asyncio.Event() #used in the main function 
     
+    watcher_shutdown_event = shutdownMaster.shutdown_event
+    shutDownComplete = shutdownMaster.shutDownComplete
+    shutDownIniciated = False
+    main_instance = None
+
+    @classmethod
+    def shutdown(cls):
+        """Sets the shutdown event to signal all components to stop."""
+        print("AutomationSystem shutdown called.")
+        if not cls.watcher_shutdown_event.is_set() and not cls.shutDownIniciated:
+            try:
+                with shutdownMaster.shutDownExternalLock:
+                    print("Setting watcher shutdown event.")
+                    # shutdownMaster.set_loop(loop) # ensure the loop is set
+                    cls.shutDownIniciated = True
+                    # cls.shutDownComplete.clear() # reset the event before shutdown
+                    AutomationSystem.main_instance.stop_observer()
+                    LoggerManager.stop_listener()
+                    # Chamadas assíncronas
+                    if shutdownMaster.running_loop and not shutdownMaster.running_loop.is_closed():
+                        asyncio.run_coroutine_threadsafe(
+                            AutomationSystem.main_instance.not_sent_db.close(),
+                            shutdownMaster.running_loop
+                        )
+                    else:
+                        print("não entrou no if que eu queria")
+                        print("tem loop = ", shutdownMaster.running_loop != None)
+                        print("o loop está fechado é: ", shutdownMaster.running_loop.is_closed())
+                    # await AutomationSystem.main_instance.not_sent_db.close()
+                    
+                    cls.watcher_shutdown_event.set() # Signal shutdown to all components
+                    # Wait for all threads and async tasks to finish
+                    print("Waiting for all threads and tasks to finish...")
+                    cls.shutDownComplete.wait()
+                    print("AutomationSystem shutdown complete.")
+            except Exception as e:
+                print("deu erro no shutDown do automation system e foi: ",e)
+        else:
+            print("Watcher shutdown event is still happening, please wait.")
     
     def __init__(self,loop, not_sent_db):
+        AutomationSystem.main_instance = self
         self.loop = loop
         self.actions = serverConfig.SOWatcherActions().actionDispatch  # Assuming actionDispatch is a dictionary of actions
         self.ws_client = WebSocketClient
@@ -133,16 +174,14 @@ class AutomationSystem:
 
 async def main():
     loop = asyncio.get_running_loop()
+    shutdownMaster.set_loop(loop)
     not_sent_db = await WatcherNotsentEventsDatabase.create()  # Initialize the not sent events database
-    stop_event = asyncio.Event()
+    
 
-    def shutdown():
-        logger.info("Shutdown signal received.")
-        stop_event.set()
 
     # Captura Ctrl+C ou sinal de término
     for sig in (signal.SIGINT, signal.SIGTERM):
-        loop.add_signal_handler(sig, shutdown)
+        loop.add_signal_handler(sig, AutomationSystem.shutdown)
 
     autoSystem = AutomationSystem(loop,not_sent_db)
 
@@ -150,21 +189,39 @@ async def main():
         logger.info("Starting event observer...")
         autoSystem.start_observer_in_thread()
         await autoSystem.initializeWebsocket()
-        await stop_event.wait()  # Aguarda sinal de parada
+        await AutomationSystem.stop_event.wait()  # Aguarda sinal de parada
 
+    # except KeyboardInterrupt:
+    #     print("KeyboardInterrupt received, shutting down...")
+    #     AutomationSystem.shutdown(loop)
     except Exception as e:
-        LoggerManager.log_exception_with_context(f"Error in main: {e}",level=logging.critical)
+        print(f"Error in main: {e}",level=logging.critical)
     finally:
-        logger.info("Finalizing system...")
-        autoSystem.stop_observer()
-        await not_sent_db.close()
-        LoggerManager.stop_listener()
+        print("Finalizing system...")
+        print_thread_status()
+        print_async_tasks_status()
+        # autoSystem.stop_observer()
+        # await not_sent_db.close()
+        # LoggerManager.stop_listener()
+        print_thread_status()
+        print_async_tasks_status()
+
 if __name__ == "__main__":
     try:
         asyncio.run(main())
 
     except KeyboardInterrupt:
-        logger.info("stopped observer.")
-    
-    logger.info("Aplicação encerrando...")
-    LoggerManager.stop_listener() 
+         print("stopped observer.")
+    finally:
+        print("beginning shutdown Process")
+        while shutDownNotComplete:
+            if AutomationSystem.shutdown_event.is_set() is False:
+                print("shutdownEvent set!")
+                AutomationSystem.shutdown_event.set()
+            print("sleeping while shuttingdown")
+            print_thread_status()
+            time.sleep(1)
+            
+
+    print("Aplicação encerrando...")
+    # LoggerManager.stop_listener() 

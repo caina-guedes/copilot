@@ -22,6 +22,10 @@ from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from PythonServer.utils import connections, handleSpecialCommand, resumedMesssage
 from PythonServer.macroManager.macroManager import macroManager
 
+# Flag global de shutdown
+serverShutdown_event = threading.Event()
+
+
 a = macroManager(serverConfig)
 
 watcherConfigs = SOWatcherActions()
@@ -355,8 +359,7 @@ def main():
     try:
         server_thread = threading.Thread(target=iniciar_server, name="ServerThread")
         server_thread.start()
-        print("created thread serverThread and the name is:")
-        print(server_thread.name)
+        print("created thread serverThread and the name is:", server_thread.name)
     except KeyboardInterrupt:
         print("❌ Interrompido pelo usuário.")
         # serverShutdownEvent.set()

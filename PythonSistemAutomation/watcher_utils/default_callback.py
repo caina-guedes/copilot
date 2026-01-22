@@ -38,6 +38,7 @@ async def default_callback(event,father):
     except Exception as e:
         LoggerManager.log_exception_with_context(f"Error in default callback: {e}")
         logger.info(f"Error in default callback: {e}")
+        print(f"Error in defaultcallback: {e}")
 
         
 def treat_key_as_string(key):

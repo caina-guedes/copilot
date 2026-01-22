@@ -38,43 +38,46 @@ class WindowManager:
     
     def get_active_window(self):
         #### has to threat if the window changed in a better way!! but for now it's ok
-        changed = False
-        oldWindow = self.get_window_by_id()
-        # oldWindow = copy.deepcopy(self.__class__.lastKnowWindow)
-        # print(f"the old window is:{oldWindow}")
-        self.__class__.current_window = self.backend.get_active_window(self.__class__.lastKnowWindowId)
+        try:
+            changed = False
+            oldWindow = self.get_window_by_id()
+            # oldWindow = copy.deepcopy(self.__class__.lastKnowWindow)
+            # print(f"the old window is:{oldWindow}")
+            self.__class__.current_window = self.backend.get_active_window(self.__class__.lastKnowWindowId)
+            
+            if self.__class__.current_window is None:
+                # print("o current_window deu None mesmo depois da função de pegar a janela ativa")
+                return self.__class__.lastKnowWindow , changed 
+            else:
+                self.__class__.lastKnowWindow = copy.deepcopy(self.__class__.current_window)
+                self.__class__.lastKnowWindowId = copy.deepcopy(self.__class__.lastKnowWindow.win_id)
+            if oldWindow is not None :
+                try:
+                    oldWindow = oldWindow.to_dict()
+                    current = self.__class__.current_window.to_dict()
+                    for x in oldWindow:
+                        if x not in ["first_seen","last_seen","confidence_score", "priority_fields","details"]:
+                            if oldWindow[x] != current[x]:
+                                # print(f"o campo que deu diferente foi: {x}")
+                                # print(f'e os valores desse campo são: {oldWindow[x]}   e   {current[x]}')
+                                changed = True
+                    
+                    
+                except Exception as e:
+                    print("deu uma exceção na get_active_window  do windowManager e foi: " , e)
+                    print("o oldWindow é:",oldWindow)
+                    print("o tipo do oldWindow é:", type(oldWindow))
+                    print("o self.__class__.current_window que fica la na classe :",self.__class__.current_window)
+                    print("o current é: ",current)
+                    print("o tipo do current é: ",type(current))
+                    # return self.__class__.current_window, False
+                    return False
+            else:
+                changed =  True
+            return self.__class__.current_window , changed
+        except Exception as e:
+            print(f"deu ruim na get_active_window do windowManager e foi: {e}")
         
-        if self.__class__.current_window is None:
-            # print("o current_window deu None mesmo depois da função de pegar a janela ativa")
-            return self.__class__.lastKnowWindow , changed 
-        else:
-            self.__class__.lastKnowWindow = copy.deepcopy(self.__class__.current_window)
-            self.__class__.lastKnowWindowId = copy.deepcopy(self.__class__.lastKnowWindow.win_id)
-        if oldWindow is not None :
-            try:
-                oldWindow = oldWindow.to_dict()
-                current = self.__class__.current_window.to_dict()
-                for x in oldWindow:
-                    if x not in ["first_seen","last_seen","confidence_score", "priority_fields","details"]:
-                        if oldWindow[x] != current[x]:
-                            # print(f"o campo que deu diferente foi: {x}")
-                            # print(f'e os valores desse campo são: {oldWindow[x]}   e   {current[x]}')
-                            changed = True
-                
-                
-            except Exception as e:
-                print("deu uma exceção na la get_active_window e foi: " , e)
-                print("o oldWindow é:",oldWindow)
-                print("o tipo do oldWindow é:", type(oldWindow))
-                print("o self.__class__.current_window que fica la na classe :",self.__class__.current_window)
-                print("o current é: ",current)
-                print("o tipo do current é: ",type(current))
-                # return self.__class__.current_window, False
-                return False
-        else:
-            changed =  True
-        return self.__class__.current_window , changed
-
     def focus_window(self, window_id):
         return self.backend.focus_window(window_id)
 

@@ -20,8 +20,7 @@ class AsyncBridge:
         """
         thread = threading.Thread(target=func, args=args, kwargs=kwargs, daemon=True,name=f"{func.__name__} asyncBridge Thread")
         thread.start()
-        print("created thread and the name is:")
-        print(thread.name)
+        print("created thread and the name is:", thread.name)
         return thread
 
 

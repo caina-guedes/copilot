@@ -1,3 +1,0 @@
-WARNING  in connectionObject:175 [MainProcess/MainThread] → [TwoWayConnection] Receiver loop was cancelled.  [2026-01-10 20:38:32,639]
-WARNING  in connectionObject:175 [MainProcess/MainThread] → [TwoWayConnection] Receiver loop was cancelled.  [2026-01-10 20:53:12,726]
-WARNING  in connectionObject:175 [MainProcess/MainThread] → [TwoWayConnection] Receiver loop was cancelled.  [2026-01-10 21:02:41,753]

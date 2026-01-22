@@ -51,8 +51,7 @@ class EventObserver:
     def on_click_wrapper(self,x, y, button, pressed):
 
         task = asyncio.create_task(self._on_click(x, y, button, pressed),name = "_on_click_task")            
-        print("Created on_click task and the name is: ")
-        print(task.get_name())
+        print("Created task and the name is: ",task.get_name())
     def use_on_event_callback(self, event):
         # print(f"[on_event_callback] for event: {event}")
         if self._on_event_callback is None:
@@ -60,8 +59,7 @@ class EventObserver:
         
         def schedule():
             task = asyncio.create_task(self._process_event(event),name = "_process_event_task")
-            print("Created _process_event_task and the name is:")
-            print(task.get_name())
+            print("Created _process_event_task and the name is:",task.get_name())
         self.loop.call_soon_threadsafe(schedule)
     
     def add_event(self, event):
