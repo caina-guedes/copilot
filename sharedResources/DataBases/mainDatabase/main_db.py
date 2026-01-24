@@ -13,8 +13,9 @@ from sharedResources.generalUtils.aprint import aprint
 print(f'RootDir set to: {RootDir}')
 
 """
-doiufdoiufdoiufdddffggdfgdfgdfg
+doiufdoiufdoiufdddffggdfgdfgdfgdrfdrf
 diugd
+
 """
 
 
@@ -73,7 +74,7 @@ class MainDatabase:
         self._stop_event = Event()
 
         # Thread de flush periódico
-        self._flush_thread = Thread(target=self._flush_worker, daemon=True,name="MainDBFlushWorkerThread")
+        self._flush_thread = Thread(target=self._flush_worker, daemon=True)
         self._flush_thread.start()
         self.answer = None
         atexit.register(self.close)

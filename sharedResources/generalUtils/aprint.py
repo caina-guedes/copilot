@@ -8,7 +8,9 @@ from pathlib import Path
 basePath = Path(__file__).resolve().parent.parent.parent
 # print("Path added to sys.path:", str(basePath))
 sys.path.append(str(basePath))
-from sharedResources.generalUtils.taskStructure import TrackedThread
+from sharedResources.lifecycle.shutdownMaster import ShutdownMaster
+from sharedResources.lifecycle.shutdownThreadUtils import TrackedThread
+
 
 
 DEBUG = True
@@ -56,5 +58,5 @@ def stop_aprint():
     Encerra a thread de prints (opcional, ao finalizar o programa).
     """
     _print_queue.put((True, None, None))
-    _print_queue.join()
-    _thread.join()
+    _print_queue.join(timeout = 5)
+    _thread.join(timeout = 5)

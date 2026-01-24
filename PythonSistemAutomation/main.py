@@ -20,7 +20,11 @@ from PythonSistemAutomation.watcher_utils.WatcherWebSocket import WebSocketClien
 import PythonServer.serverConfig as serverConfig
 from sharedResources.DataBases.watcherDatabase import WatcherNotsentEventsDatabase
 import asyncio 
-from sharedResources.generalUtils.taskStructure import shutdownMaster,tracked_task, TrackedThread, print_thread_status, print_async_tasks_status, shutdown_all_async, shutdown_all_threads
+
+from sharedResources.lifecycle.shutdownMaster import ShutdownMaster
+from sharedResources.lifecycle.shutdownThreadUtils  import TrackedThread 
+
+from sharedResources.lifecycle.printUtils import print_thread_status, print_async_tasks_status
 # from sharedResources.debuggingResources.task_monitor import task_monitor
 
 logger = LoggerManager.get_logger(__name__)
@@ -39,8 +43,8 @@ class AutomationSystem:
     # sender_task   = None
     stop_event = asyncio.Event() #used in the main function 
     
-    watcher_shutdown_event = shutdownMaster.shutdown_event
-    shutDownComplete = shutdownMaster.shutDownComplete
+    watcher_shutdown_event = ShutdownMaster.shutdown_event
+    shutDownComplete = ShutdownMaster.shutDownComplete
     shutDownIniciated = False
     main_instance = None
 
@@ -50,23 +54,23 @@ class AutomationSystem:
         print("AutomationSystem shutdown called.")
         if not cls.watcher_shutdown_event.is_set() and not cls.shutDownIniciated:
             try:
-                with shutdownMaster.shutDownExternalLock:
+                with ShutdownMaster.shutDownExternalLock:
                     print("Setting watcher shutdown event.")
-                    # shutdownMaster.set_loop(loop) # ensure the loop is set
+                    # ShutdownMaster.set_loop(loop) # ensure the loop is set
                     cls.shutDownIniciated = True
                     # cls.shutDownComplete.clear() # reset the event before shutdown
                     AutomationSystem.main_instance.stop_observer()
                     LoggerManager.stop_listener()
                     # Chamadas assíncronas
-                    if shutdownMaster.running_loop and not shutdownMaster.running_loop.is_closed():
+                    if ShutdownMaster.running_loop and not ShutdownMaster.running_loop[0].is_closed():
                         asyncio.run_coroutine_threadsafe(
                             AutomationSystem.main_instance.not_sent_db.close(),
-                            shutdownMaster.running_loop
+                            ShutdownMaster.running_loop[0]
                         )
                     else:
                         print("não entrou no if que eu queria")
-                        print("tem loop = ", shutdownMaster.running_loop != None)
-                        print("o loop está fechado é: ", shutdownMaster.running_loop.is_closed())
+                        print("tem loop = ", ShutdownMaster.running_loop != None)
+                        print("o loop está fechado é: ", ShutdownMaster.running_loop.is_closed())
                     # await AutomationSystem.main_instance.not_sent_db.close()
                     
                     cls.watcher_shutdown_event.set() # Signal shutdown to all components
@@ -174,7 +178,7 @@ class AutomationSystem:
 
 async def main():
     loop = asyncio.get_running_loop()
-    shutdownMaster.set_loop(loop)
+    ShutdownMaster.set_loop(loop)
     not_sent_db = await WatcherNotsentEventsDatabase.create()  # Initialize the not sent events database
     
 
@@ -216,7 +220,7 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
             print("stopped observer.")
     finally:
-        loop.run_until_complete(shutdownMaster.byebye.wait())
+        loop.run_until_complete(ShutdownMaster.byebye.wait())
         loop.close()
         print("bye bye")
         # print("beginning shutdown Process")

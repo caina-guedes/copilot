@@ -98,7 +98,7 @@ class GlobalExecutor:
         if not cls._running:
             return
         cls._running = False
-        await cls._queue.join()  # Espera a fila esvaziar
+        await cls._queue.join(timeout = 3)  # Espera a fila esvaziar
         if cls._task:
             cls._task.cancel()
             try:

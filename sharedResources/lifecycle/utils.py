@@ -1,0 +1,5 @@
+DEBUG_SHUTDOWN = True
+
+def wait_event(evt, name, timeout = 20):
+    if not evt.wait(timeout):
+        print(f"[DEADLOCK] waiting for {name}")
