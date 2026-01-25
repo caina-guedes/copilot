@@ -125,7 +125,7 @@ class TrackedThread(threading.Thread):
 
         if callable(clean_function): # has personalized shutdown function
             cls.register_log("[Shutdown] trying to execute cleanup_function!","threads")
-            execute_cleanup_function(clean_function,cls.running_loop[0])
+            execute_cleanup_function(clean_function,cls.running_loop)
             worked = True
         return worked
 
@@ -165,4 +165,4 @@ class TrackedThread(threading.Thread):
         else:
             print("todas as threads cooperaram direitinho!")                
         # logger.info("[Shutdown] All threads signaled.")
-    # ShutdownMaster.set_thread_shutdown_function(shutdown_threads)
+    # LifecycleMaster.set_thread_shutdown_function(shutdown_threads)

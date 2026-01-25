@@ -6,7 +6,7 @@ from pathlib import Path
 basePath = Path(__file__).resolve().parent.parent.parent.parent
 # print("Path added to sys.path:", str(basePath))
 sys.path.append(str(basePath))
-from sharedResources.lifecycle.shutdownMaster import Tracked_task, ShutdownMaster, TrackedThread
+from sharedResources.lifecycle.shutdownMaster import Tracked_task, LifecycleMaster, TrackedThread
 from sharedResources.lifecycle.utils import wait_event
 
 async def dummy_task(x):
@@ -15,7 +15,7 @@ async def dummy_task(x):
 
 async def test_tracked_task():
     t = tracked_task(dummy_task(5), name="test")
-    assert t in [item.obj for item in ShutdownMaster.tasksMap["test"]]
+    assert t in [item.obj for item in LifecycleMaster.tasksMap["test"]]
     result = await t
     assert result == 10
     print("✅ tracked_task basic test passed")
@@ -23,7 +23,7 @@ async def test_tracked_task():
 
 async def cancellable_task():
     try:
-        while not ShutdownMaster.shutdown_event.is_set():
+        while not LifecycleMaster.shutdown_event.is_set():
             await asyncio.sleep(0.1)
         print("done")
     finally:
@@ -41,12 +41,12 @@ async def test_task_shutdown():
     t2 = tracked_task(cancellable_task(), name="task2", created_from = "test_task_shutdown")
 
     await asyncio.sleep(0.3)  # deixa as tasks rodarem um pouco
-    ShutdownMaster.shutdown_event.set()  # sinaliza shutdown
+    LifecycleMaster.shutdown_event.set()  # sinaliza shutdown
     await asyncio.gather(t1, t2, return_exceptions=True)
     print("✅ shutdown test passed")
 
 def dummy_thread():
-    while not ShutdownMaster.shutdown_event.is_set():
+    while not LifecycleMaster.shutdown_event.is_set():
         time.sleep(0.1)
     print("[cleanup] Thread finalizando")
 
@@ -55,14 +55,15 @@ def test_thread_shutdown():
     t.start()
 
     time.sleep(0.3)
-    ShutdownMaster.shutdown_event.set()
+    LifecycleMaster.shutdown_event.set()
     # t.join()
 
 # ---------------- Test integrado ----------------
 async def test_integrated():
+    ### tem que refaer essa parte toda pq o loop ficou interno!!!!###
     # Define loop principal
-    loop = asyncio.get_running_loop()
-    ShutdownMaster.set_loop(loop )
+    #loop = asyncio.get_running_loop()
+    #LifecycleMaster.set_loop(loop )
     ev =threading.Event()
     # -------- Threads --------
     def thread_job(name):
@@ -78,7 +79,7 @@ async def test_integrated():
 
     # -------- Async Tasks --------
     async def async_job(name):
-        while not ShutdownMaster.shutdown_event.is_set():
+        while not LifecycleMaster.shutdown_event.is_set():
             print(f"[Task Running] {name}")
             await asyncio.sleep(0.7)
         print(f"[Task Cleanup] {name}")
@@ -91,13 +92,13 @@ async def test_integrated():
 
     # -------- Sinaliza shutdown --------
     print("[Test] Triggering shutdown")
-    ShutdownMaster.shutdown_event.set()
+    LifecycleMaster.shutdown_event.set()
 
     # -------- Espera async tasks --------
     # await shutdown_tasks()
 
     # # -------- Espera threads --------
-    # for name, threads in ShutdownMaster.threadsMap.items():
+    # for name, threads in LifecycleMaster.threadsMap.items():
     #     for t in threads:
     #         t.join()
     #         print(f"[Thread Joined] {t.name}")
@@ -108,32 +109,30 @@ async def test_integrated():
 
 
 if __name__ == "__main__":
-    def start_loop(loop):
-        asyncio.set_event_loop(loop)
-        loop.run_forever()
+    ### tem que refazer essa parte toda pq o loop ficou interno!
+    LifecycleMaster.testing = True
+    LifecycleMaster.start_runtime(test_integrated)
+    # def start_loop(loop):
+    #     asyncio.set_event_loop(loop)
+    #     loop.run_forever()
 
-    loop = asyncio.new_event_loop()
-    loop_thread = threading.Thread(target=start_loop, args=(loop,), daemon=True, name ="AsyncLoopThread")
-    loop_thread.start()
+    # loop = asyncio.new_event_loop()
+    # loop_thread = threading.Thread(target=start_loop, args=(loop,), daemon=True, name ="AsyncLoopThread")
+    # loop_thread.start()
 
-    ShutdownMaster.set_loop( loop)
+    # #LifecycleMaster.set_loop( loop)
 
-    #teste 1
-    # asyncio.run(test_tracked_task())
-    # teste 2
-    # test_thread_shutdown()
-
-    future = asyncio.run_coroutine_threadsafe(
-        test_integrated(),
-        loop
-    )
-    future.result()
+    # future = asyncio.run_coroutine_threadsafe(
+    #     test_integrated(),
+    #     loop
+    # )
+    # future.result()
 
     # ESPERA shutdown terminar
-    wait_event(ShutdownMaster.shutDownComplete,"ShutdownMaster.shutDownComplete in tests")
+    wait_event(LifecycleMaster.shutDownComplete,"LifecycleMaster.shutDownComplete in tests")
     print("[Test] Integrated test completed successfully!")
-    loop.call_soon_threadsafe(loop.stop)
-    loop_thread.join()
-    loop.close()
-    print("fechei o loop corretamente!")
+    # loop.call_soon_threadsafe(loop.stop)
+    # loop_thread.join()
+    # loop.close()
+    # print("fechei o loop corretamente!")
 

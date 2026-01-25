@@ -106,16 +106,13 @@ class Tracked_task:
                 if not task_obj.done():
                     cls.register_log(f"[Shutdown] Cancelling task {task_obj.get_name() if name else task_obj}","tasks")
                     # logger.info(f"[Shutdown] Cancelling task {task_obj.get_name() if name else task_obj}")
-                    if len(cls.running_loop) == 1:
-                        if not cls.running_loop[0].is_closed():
-                            # try:
-                            cls.running_loop[0].call_soon_threadsafe(task_obj.cancel)
-                            # except Exception as e:
-                                # print("deu erro no shutdowntasks e o running_loop é: ",cls.running_loop[0])
+                    if cls.running_loop.get() is not None:
+                        if cls.running_loop._loop_is_ok():
+                            cls.running_loop.get().call_soon_threadsafe(task_obj.cancel)
                         else:
-                            print("loop is closed already!")
+                            print("loop is not okay already!")
                     else:
-                        cls.register_log("No running loop set in ShutdownMaster, cannot cancel task properly. the task was: "+ str(task_obj),"tasks")
+                        cls.register_log("No running loop set in LifecycleMaster, cannot cancel task properly. the task was: "+ str(task_obj),"tasks")
                     all_tasks.append(task_obj)
         
         if all_tasks:

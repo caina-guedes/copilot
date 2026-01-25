@@ -8,7 +8,7 @@ from pathlib import Path
 basePath = Path(__file__).resolve().parent.parent.parent
 # print("Path added to sys.path:", str(basePath))
 sys.path.append(str(basePath))
-from sharedResources.lifecycle.shutdownMaster import ShutdownMaster
+from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 from sharedResources.lifecycle.shutdownThreadUtils import TrackedThread
 
 

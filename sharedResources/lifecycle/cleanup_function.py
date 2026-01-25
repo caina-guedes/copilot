@@ -3,7 +3,7 @@ from typing import Optional, Callable, Any
 
 def execute_cleanup_function(
     cleanup_function: Optional[Callable[..., Any]],
-    loop: Optional[asyncio.AbstractEventLoop] = None
+    loop = None
 ):
     """
     Executa uma função de cleanup, tratando casos síncrono ou assíncrono.
@@ -19,12 +19,12 @@ def execute_cleanup_function(
         result = cleanup_function()
         # se for coroutine, agenda no loop
         if asyncio.iscoroutine(result):
-            if loop:
-                if not loop.is_closed():
-                    asyncio.run_coroutine_threadsafe(result, loop)
-                    print(f"[Cleanup] Async cleanup scheduled ")
-                else:
-                    print(f"[cleanup] loop closed ")
+            if loop.get() is not None:
+                    if loop._loop_is_ok():
+                        asyncio.run_coroutine_threadsafe(result, loop)
+                        print(f"[Cleanup] Async cleanup scheduled ")
+                    else:
+                        print(f"[cleanup] loop is not ok ")
             else:
                 print(f"[Cleanup] Cannot run async cleanup function, loop is missing")
         else:

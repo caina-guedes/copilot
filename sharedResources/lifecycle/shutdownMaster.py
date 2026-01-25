@@ -1,3 +1,4 @@
+import os
 import time
 import threading
 import asyncio
@@ -11,10 +12,9 @@ sys.path.append(str(basePath))
 
 from sharedResources.lifecycle.shutdownThreadUtils import TrackedThread
 from sharedResources.lifecycle.shutdownTaskUtils import Tracked_task
-from sharedResources.lifecycle.cleanup_function import execute_cleanup_function
 from sharedResources.lifecycle.printUtils import print_thread_status, print_async_tasks_status
 from sharedResources.lifecycle.utils import wait_event
-
+from sharedResources.lifecycle.loop_class import MyLoop
 
 # Setup básico de logging
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
@@ -23,9 +23,19 @@ logger = logging.getLogger("LifecycleTracker")
 
 
 
-class ShutdownMaster():
+class LifecycleMaster():
     """
-    mapa para rastrear as threads e tasks com nomes iguais ou não"""
+        dono do ciclo de vida de tudo que precisa ser controlado 
+        para organizar inicialização e shutdown
+    """
+    
+    running_loop = MyLoop() # loop principal único!
+    loop_thread = None # thread do loop principal que deve ser protegida!
+    state = "INIT" #  
+
+    #flag para modo de testes
+    testing = False
+
     # ------- events -------
     shutdown_event = threading.Event() #tem que setar esse evento em runtime pelo processo principal
     shutDownComplete = threading.Event()
@@ -34,8 +44,8 @@ class ShutdownMaster():
     # ------- locks --------
     shutdown_lock = threading.Lock()
     shutDownExternalLock = threading.Lock() # para o uso externo acontecer apenas uma vez
+    logsLock             = threading.Lock() # para não haver concorrência no registro de logs
     # ---------------------
-    running_loop = []
     # -------- maps -------
     threadsMap = {}
     tasksMap = {"unnamedTasks":[]}
@@ -44,68 +54,132 @@ class ShutdownMaster():
 
     task_shutdown_function   = Tracked_task.shutdown_tasks
     thread_shutdown_function = TrackedThread.shutdown_threads
+
+
     @classmethod
-    def register_log(cls,string,key):
+    def register_log(cls,string,key, emergency = False):
         print(string)
-        ShutdownMaster.logsMap[key].append([time.time(),string])
+        if not emergency:
+            with cls.logsLock:
+                LifecycleMaster.logsMap[key].append([time.time(),string])
+        else:
+            LifecycleMaster.logsMap[key].append([time.time(),string])
+    
+    @classmethod
+    def _loop_is_ok(cls):
+        if cls.running_loop.get() is None :
+            cls.register_log("[loop_is_ok] cls.running_loop is empty!","general")
+            return False
+        
+        if cls.running_loop.instance_check():
+            if not cls.running_loop.is_running():
+                cls.register_log("[loop_is_ok] loop is not running","general")
+
+            if cls.running_loop.is_closed():
+                cls.register_log("[loop_is_ok] loop is closed","general")
+                return False
+            else:
+                return True
+        else:
+            cls.register_log(f"[loop_is_ok] loop is not what it is supposed to be and it is: {type(cls.running_loop.get())}","general")
+            return False
 
     @classmethod
-    def set_loop(cls, loop=None):
-        print("the received loop in the ShutdownMaster is: ",loop)
-
-        if len(cls.running_loop) > 0 and loop == cls.running_loop[0]:
-            print("it is already this loop exactly!")
+    def emergency_shutdown(cls,erro):
+        #previne reentrada!
+        if cls.state == "EMERGENCY":
             return
+        cls.state = "EMERGENCY"
+        
+        mensagem = "[Emergency] deu merda no loop principal e foi: " + str(erro)
         try:
-            currentLoop = asyncio.get_running_loop() # get the current running loop, if exists
+            cls.register_log(mensagem, "general", emergency = True)
         except:
-            currentLoop = None          # function called with no running loop active
-            print("No running loop found.")
-        if loop is not None:            # se um loop foi fornecido
-            if currentLoop is not None and loop != currentLoop:     # se o loop fornecido é diferente do atual avise
-                print("loop provided is diferent from current loop")
-            if isinstance(loop, asyncio.AbstractEventLoop): # se o loop fornecido é válido seta ele
-                cls.running_loop.clear()
-                cls.running_loop.append(loop)
-                print("Using provided loop")
-            else:
-                raise TypeError("Provided loop is not an instance of AbstractEventLoop")
-        else:                          # se nenhum loop foi fornecido
-            if cls.running_loop is not None:
-                cls.running_loop.clear()
-                cls.running_loop.append(currentLoop)
-                print("Using current running loop because no loop was provided")
-            else:
-                print("No loop provided and no running loop stored.")
+            pass
+            
 
+        shutdown_event.set()
+        # task_shutdown_event.set()
+        # thread_shutdown_event.set()
+
+        # fechar o loop se existir
+        try:
+            if cls._loop_is_ok():
+                print("setando o stop do loop... boa sorte")
+                cls.running_loop.get().call_soon_threadsafe(cls.running_loop.get().stop)
+            else:
+                print("não tem mais loop funcionando!")
+        except:
+            pass
+
+        # DO NOT WAIT
+        try:
+            os._exit(1)
+        except:
+            pass
+
+
+
+
+    @classmethod
+    def start_runtime(cls, main_coro):
+        if cls.running_loop.get() is None:
+            cls.running_loop.set(asyncio.new_event_loop())
+        else:
+            cls.register_log("loop ja tinha sido setado quando executaram start_runtime","general")
+        def loop_runner():
+            asyncio.set_event_loop(cls.running_loop.get())
+            try:
+                cls.running_loop.get().run_forever()
+            except Exception as e:
+                cls.emergency_shutdown(e)
+
+        cls.loop_thread = threading.Thread(
+            target=loop_runner,
+            name="MainAsyncLoopThread",
+            daemon=False
+        )
+        cls.loop_thread.start()
+
+        # start main program
+        asyncio.run_coroutine_threadsafe(main_coro(), cls.running_loop.get())
+    
     
 
     @classmethod
     def autoShutdown(cls):
         """Função para iniciar o shutdown automático de threads e tasks"""
         # if cls.shutdown_event.is_set():
-        try:
-            cls.register_log("Initiating automatic shutdown...","general")
-            if len(cls.running_loop)>0:
-                cls.register_log("iniciating tasks shutdown","general")
-                res = asyncio.run_coroutine_threadsafe(cls.task_shutdown_function(), cls.running_loop[0])
-                res.result(timeout = 5)
-            else:
-                print("o loop é algo vazio e é: ",cls.running_loop)
-            with cls.shutdown_lock:
-                cls.shutDownComplete.clear() # reset the event before shutdown
-                # Shutdown async tasks
-                # Shutdown threads
-                cls.register_log("iniciating thread shutdown","general")
-                cls.thread_shutdown_function()
-                # cls.set_loop() # ensure the loop is set
-            print("Automatic shutdown complete.")
-        except Exception as e:
-            print("[autoShutdown] the exception is:", e)
-        finally:
-            print("vou setar o shutdownComplete")
-            cls.shutDownComplete.set()
-            print("setei o shutdownComplete")
+        if cls.state == "SHUTTING_DOWN":
+            cls.register_log("algo fez autoshutdown ser chamada mais de uma vez!")
+        else:
+            state = "SHUTTING_DOWN"
+
+            try:
+                cls.register_log("Initiating automatic shutdown...","general")
+                if cls.running_loop.get() is not None:
+                    if not cls._loop_is_ok():
+                        cls.register_log("[autoShutDown] loop is not ok just before task_shutdown_function be called!","general")
+                    else:
+                        cls.register_log("iniciating tasks shutdown","general")
+                        res = asyncio.run_coroutine_threadsafe(cls.task_shutdown_function(), cls.running_loop.get())
+                        res.result(timeout = 5)
+                else:
+                    print("o loop é algo vazio e é: ",cls.running_loop.get())
+                with cls.shutdown_lock:
+                    cls.shutDownComplete.clear() # reset the event before shutdown
+                    # Shutdown async tasks
+                    # Shutdown threads
+                    cls.register_log("iniciating thread shutdown","general")
+                    cls.thread_shutdown_function()
+                    # cls.set_loop() # ensure the loop is set
+                print("Automatic shutdown complete.")
+            except Exception as e:
+                print("[autoShutdown] the exception is:", e)
+            finally:
+                print("vou setar o shutdownComplete")
+                cls.shutDownComplete.set()
+                print("setei o shutdownComplete")
         # else:
         #     print("Shutdown already initiated.")
 
@@ -114,13 +188,16 @@ class ShutdownMaster():
         """Função para esperar o shutdown ser completado"""
         try:
             print("Waiting for shutdown to begin...")
-            wait_event(cls.shutdown_event,"ShutdownMaster.shutdown_event")
+            if cls.testing:
+                wait_event(cls.shutdown_event,"LifecycleMaster.shutdown_event")
+            else:
+                cls.shutdown_event.wait()
             cls.register_log("Shutdown event detected, proceeding with shutdown...","general")
             cls.autoShutdown()
         finally:
             if not cls.shutDownComplete.is_set():
                 try:
-                    wait_event(cls.shutDownComplete," ShutdownMaster.shutDownComplete event")
+                    wait_event(cls.shutDownComplete," LifecycleMaster.shutDownComplete event")
                 except Exception as e:
                     print("deu ruim no evento shutdownComplete e foi:",e)
             
@@ -155,46 +232,17 @@ class ShutdownMaster():
         Tracked_task.set_running_loop( cls.running_loop)
     
 
-ShutdownMaster.prepare_dependencies()
+LifecycleMaster.prepare_dependencies()
 
 
-threading.Thread(target=ShutdownMaster.waitMyShutdown).start()
+threading.Thread(target=LifecycleMaster.waitMyShutdown).start()
 
 
 
 
-# ShutdownMaster.set_task_shutdown_function(shutdown_tasks)
+# LifecycleMaster.set_task_shutdown_function(shutdown_tasks)
 
 if __name__ == "__main__":
     # texts are made here
     pass
-
-# async def shutdown_all_async():
-#     print("Cancelling all async tasks...")
-#     # logger.info("Cancelling all async tasks...")
-#     tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
-#     for t in tasks:
-#         try:
-#             t.cancel()
-#             print(f"Cancelled {t.get_name() if hasattr(t, 'get_name') else t}")
-#             # logger.info(f"Cancelled {t.get_name() if hasattr(t, 'get_name') else t}")
-#         except Exception as e:
-#             print(f"Error cancelling task {t}: {e}")
-#             # logger.warning(f"Error cancelling task {t}: {e}")
-#     await asyncio.gather(*tasks, return_exceptions=True)
-#     print("All async tasks cleaned up.")
-#     # logger.info("All async tasks cleaned up.")
-
-
-# def shutdown_all_threads(threads):
-#     print("Stopping all threads...")
-#     # logger.info("Stopping all threads...")
-#     for t in threads:
-#         if hasattr(t, "stop"):
-#             t.stop()
-#     for t in threads:
-#         t.join()
-#     print("All threads cleaned up.")
-#     # logger.info("All threads cleaned up.")
-
 
