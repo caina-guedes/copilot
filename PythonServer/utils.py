@@ -6,12 +6,6 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from sharedResources.generalUtils.aprint import aprint
 
-async def run_command(fn, *args):
-    if asyncio.iscoroutinefunction(fn):
-        return await fn(*args)
-    else:
-        loop = asyncio.get_running_loop()
-        return await loop.run_in_executor(None, lambda: fn(*args))
 
 def resumedMesssage(message):
     
@@ -87,3 +81,11 @@ class connections:
         sender = None
         receiver = None
     
+    
+# async def run_command(fn, *args):
+#     if asyncio.iscoroutinefunction(fn):
+#         return await fn(*args)
+#     else:
+#         loop = asyncio.get_running_loop()
+#         return await loop.run_in_executor(None, lambda: fn(*args))
+

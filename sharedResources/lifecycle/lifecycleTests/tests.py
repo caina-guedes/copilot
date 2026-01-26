@@ -1,6 +1,7 @@
 import threading
 import time
 import asyncio
+
 import sys
 from pathlib import Path
 basePath = Path(__file__).resolve().parent.parent.parent.parent
@@ -64,6 +65,7 @@ async def test_integrated():
     # Define loop principal
     #loop = asyncio.get_running_loop()
     #LifecycleMaster.set_loop(loop )
+    print("[Test] Starting integrated test")
     ev =threading.Event()
     # -------- Threads --------
     def thread_job(name):

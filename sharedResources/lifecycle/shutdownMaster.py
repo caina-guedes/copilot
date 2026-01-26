@@ -14,7 +14,7 @@ from sharedResources.lifecycle.shutdownThreadUtils import TrackedThread
 from sharedResources.lifecycle.shutdownTaskUtils import Tracked_task
 from sharedResources.lifecycle.printUtils import print_thread_status, print_async_tasks_status
 from sharedResources.lifecycle.utils import wait_event
-from sharedResources.lifecycle.loop_class import MyLoop
+from sharedResources.lifecycle.loop.loop_class import MyLoop
 
 # Setup básico de logging
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
@@ -30,7 +30,6 @@ class LifecycleMaster():
     """
     
     running_loop = MyLoop() # loop principal único!
-    loop_thread = None # thread do loop principal que deve ser protegida!
     state = "INIT" #  
 
     #flag para modo de testes
@@ -61,29 +60,14 @@ class LifecycleMaster():
         print(string)
         if not emergency:
             with cls.logsLock:
-                LifecycleMaster.logsMap[key].append([time.time(),string])
+                LifecycleMaster.logsMap.setdefault(key,[]).append([time.time(),string])
         else:
-            LifecycleMaster.logsMap[key].append([time.time(),string])
+            LifecycleMaster.logsMap.setdefault(key,[]).append([time.time(),string])
     
     @classmethod
     def _loop_is_ok(cls):
-        if cls.running_loop.get() is None :
-            cls.register_log("[loop_is_ok] cls.running_loop is empty!","general")
-            return False
+        return cls.running_loop._loop_is_ok()
         
-        if cls.running_loop.instance_check():
-            if not cls.running_loop.is_running():
-                cls.register_log("[loop_is_ok] loop is not running","general")
-
-            if cls.running_loop.is_closed():
-                cls.register_log("[loop_is_ok] loop is closed","general")
-                return False
-            else:
-                return True
-        else:
-            cls.register_log(f"[loop_is_ok] loop is not what it is supposed to be and it is: {type(cls.running_loop.get())}","general")
-            return False
-
     @classmethod
     def emergency_shutdown(cls,erro):
         #previne reentrada!
@@ -106,7 +90,9 @@ class LifecycleMaster():
         try:
             if cls._loop_is_ok():
                 print("setando o stop do loop... boa sorte")
-                cls.running_loop.get().call_soon_threadsafe(cls.running_loop.get().stop)
+                cls.LifecycleMaster.schedule(MyLoop.stop_loop)
+
+                # cls.running_loop.get().call_soon_threadsafe(cls.running_loop.get().stop)
             else:
                 print("não tem mais loop funcionando!")
         except:
@@ -127,22 +113,34 @@ class LifecycleMaster():
             cls.running_loop.set(asyncio.new_event_loop())
         else:
             cls.register_log("loop ja tinha sido setado quando executaram start_runtime","general")
-        def loop_runner():
-            asyncio.set_event_loop(cls.running_loop.get())
-            try:
-                cls.running_loop.get().run_forever()
-            except Exception as e:
-                cls.emergency_shutdown(e)
 
-        cls.loop_thread = threading.Thread(
-            target=loop_runner,
-            name="MainAsyncLoopThread",
-            daemon=False
-        )
-        cls.loop_thread.start()
+        print("Starting main runtime loop:", cls.running_loop.get())
+        cls.running_loop.start_loop()
+        print("Main loop started:", cls.running_loop.get())
+        print("Submitting main to the loop...")
+        if asyncio.iscoroutine(main_coro) or asyncio.iscoroutinefunction(main_coro):
+            # print("Main coroutine is a coroutine or coroutine function.")
+            res = cls.running_loop.submit(main_coro)
+        else:
+            print("Main coroutine is a regular function, scheduling it.")
+            res  = cls.running_loop.call_soon(main_coro)
+        print("Main coroutine submitted:", res)
+        # def loop_runner():
+        #     asyncio.set_event_loop(cls.running_loop.get())
+        #     try:
+        #         cls.running_loop.get().run_forever()
+        #     except Exception as e:
+        #         cls.emergency_shutdown(e)
+
+        # cls.loop_thread = threading.Thread(
+        #     target=loop_runner,
+        #     name="MainAsyncLoopThread",
+        #     daemon=False
+        # )
+        # cls.loop_thread.start()
 
         # start main program
-        asyncio.run_coroutine_threadsafe(main_coro(), cls.running_loop.get())
+        # asyncio.run_coroutine_threadsafe(main_coro(), cls.running_loop.get())
     
     
 
@@ -217,18 +215,60 @@ class LifecycleMaster():
                     print(delta," - ",ev[1])
             print("Shutdown complete.")
             cls.byebye.set()
-    
+    # -------------------------------
+    # Wrappers de execução de coroutines
+    # -------------------------------
+
+    @staticmethod
+    def run_async(coro):
+        """Submete uma coroutine para execução segura no loop"""
+        return MyLoop.submit(coro)
+
+    @staticmethod
+    def gather(*coros, return_exceptions=False):
+        """Garante thread-safe para asyncio.gather"""
+        async def _inner():
+            return await asyncio.gather(*coros, return_exceptions=return_exceptions)
+        return MyLoop.submit(_inner())
+
+    # -------------------------------
+    # Wrappers de callbacks síncronos
+    # -------------------------------
+
+    @staticmethod
+    def schedule(fn, *args):
+        """Agenda uma função sync no loop (thread-safe)"""
+        return MyLoop.call_soon(fn, *args)
+
+    # -------------------------------
+    # Wrappers de controle do loop
+    # -------------------------------
+
+    @staticmethod
+    def shutdown_loop(graceful=True):
+        """Encerra o loop de forma segura"""
+        return MyLoop.stop(graceful=graceful)
+
+
     @classmethod
     def prepare_dependencies(cls):
-        TrackedThread.set_threadsMap( cls.threadsMap)
-        TrackedThread.set_default_cleanup_event( cls.shutdown_event)
-        TrackedThread.set_register_log( cls.register_log)
-        TrackedThread.set_running_loop(cls.running_loop)
-        # TrackedThread.set_shutdown_event(cls.shutdown_event)
+        # preparando as dependências para o lifecycle master
 
-        Tracked_task.set_tasksMap(cls.tasksMap)
-        Tracked_task.set_default_cleanup_event( cls.shutdown_event)
+        # setting up the register log functions
+        MyLoop.set_register_log(cls.register_log)
+        TrackedThread.set_register_log( cls.register_log)
         Tracked_task.set_register_log( cls.register_log)
+
+        #setting up the maps
+        TrackedThread.set_threadsMap( cls.threadsMap)
+        Tracked_task.set_tasksMap(cls.tasksMap)
+
+        #setting up the cleanup events
+        TrackedThread.set_default_cleanup_event( cls.shutdown_event)
+        Tracked_task.set_default_cleanup_event( cls.shutdown_event)
+
+        #setting up the loop
+        TrackedThread.set_running_loop(cls.running_loop)
         Tracked_task.set_running_loop( cls.running_loop)
     
 
@@ -246,3 +286,23 @@ if __name__ == "__main__":
     # texts are made here
     pass
 
+
+
+
+
+
+
+    # -------------------------------
+    # Opcional: wrapper para run_in_executor
+    # # -------------------------------
+
+    # @staticmethod
+    # def run_in_executor(fn, *args, executor=None):
+    #     """Executa uma função em um executor thread-safe no loop"""
+    #     async def _inner():
+    #         loop = MyLoop.get()
+    #         if loop is None:
+    #             MyLoop._log("Cannot run in executor: loop is None")
+    #             return None
+    #         return await loop.run_in_executor(executor, fn, *args)
+    #     return MyLoop.submit(_inner())
