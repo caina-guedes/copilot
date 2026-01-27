@@ -21,22 +21,17 @@ def call_soon(cls, fn, *args):
         return False
 
 
-def submit(cls, coro):
+def submit(cls, fn_or_coro):
     if not cls._can_interact():
         return None
-    if asyncio.iscoroutinefunction(coro):
-        print("submit received a coroutine function, calling it to get coroutine")
-        coro=coro()
-        print("Coroutine obtained:", coro)
+    if asyncio.iscoroutinefunction(fn_or_coro):
+        coro = fn_or_coro()
     if not asyncio.iscoroutine(coro):
         cls._log("submit received non-coroutine","loop")
         return None
 
     try:
-        if threading.current_thread() is cls._thread:
-            return asyncio.create_task(coro)
-        else:
-            return asyncio.run_coroutine_threadsafe(coro, cls._current)
+        return asyncio.run_coroutine_threadsafe(coro, cls._current)
     except Exception as e:
         cls._log(f"submit failed: {e}","loop")
         cls._log(f"the coro was: {coro}","loop")

@@ -109,12 +109,6 @@ class LifecycleMaster():
 
     @classmethod
     def start_runtime(cls, main_coro):
-        if cls.running_loop.get() is None:
-            cls.running_loop.set(asyncio.new_event_loop())
-        else:
-            cls.register_log("loop ja tinha sido setado quando executaram start_runtime","general")
-
-        print("Starting main runtime loop:", cls.running_loop.get())
         cls.running_loop.start_loop()
         print("Main loop started:", cls.running_loop.get())
         print("Submitting main to the loop...")
@@ -125,23 +119,6 @@ class LifecycleMaster():
             print("Main coroutine is a regular function, scheduling it.")
             res  = cls.running_loop.call_soon(main_coro)
         print("Main coroutine submitted:", res)
-        # def loop_runner():
-        #     asyncio.set_event_loop(cls.running_loop.get())
-        #     try:
-        #         cls.running_loop.get().run_forever()
-        #     except Exception as e:
-        #         cls.emergency_shutdown(e)
-
-        # cls.loop_thread = threading.Thread(
-        #     target=loop_runner,
-        #     name="MainAsyncLoopThread",
-        #     daemon=False
-        # )
-        # cls.loop_thread.start()
-
-        # start main program
-        # asyncio.run_coroutine_threadsafe(main_coro(), cls.running_loop.get())
-    
     
 
     @classmethod

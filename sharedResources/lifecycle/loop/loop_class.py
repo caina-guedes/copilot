@@ -19,10 +19,12 @@ class MyLoop():
         atributo currrent, por enquanto é uma lista com o primeiro elemento 
         sendo o loop de fato
     """
-    _current = None
-    _register_log = None
-    _state = LoopState.EMPTY
+    _current = None # variável que vai conter o verdadeiro loop!
+    _register_log = None  # esta função tem que ser setada pelo lifecicleMaster por isso começa assim
+    _state = LoopState.EMPTY # estado inicial do loop é Empty
     _thread = None
+    # _loop_started = False # flag para sinalizar que o loop começou
+    _stop_loop_event = threading.Event() # usado para sinalizar que o run_forever dentro da thread do loop ja acabou
     # _first_set = True
 
     #from logging_utils.py
@@ -47,48 +49,48 @@ class MyLoop():
     submit           = classmethod(submit)
     gather           = classmethod(gather)
 
-
-    
-    @classmethod
-    def set(cls,loop):
-        try:
-            current_loop = asyncio.get_running_loop() # tenta pegar o loop da thread atual
-        except RuntimeError:
-            current_loop = None
-        
-        if loop is None:
-            loop = current_loop
-        
-
-        if loop is None: # NÃO PODE SETAR NONE
-            cls._log("cannot set None as the main loop","loop")
-            return False
-
-        if not cls.loop_is_none(): # SE JA SETOU NÃO SETA DE NOVO   
-            cls._log("current loop already set!")
-            return False
-
-
-        if loop != current_loop and cls._thread is not None:
-            cls._log("tentativa de set loop fora da thread correta","loop")
-            cls._log(f"current loop is: {current_loop} and trying to set loop: {loop}","loop")
-            cls._log(f"the current thread is: {threading.current_thread()} and the loop._thread is: {cls._thread}","loop")
-            return False
-
-        if not cls.instance_check(loop): # SE NÃO FOR UM LOOP VÁLIDO
-            cls._log("the argument is not a proper loop to set in the main loop","loop")
-            return False
-
-        cls._current = loop
-        #cls._first_set = False
-        cls.change_state(LoopState.SET)
-        return True
-
-
-    
     @classmethod
     def get(cls):
         return cls._current
+
+    
+    # @classmethod
+    # def set(cls,loop):
+    #     try:
+    #         current_loop = asyncio.get_running_loop() # tenta pegar o loop da thread atual
+    #     except RuntimeError:
+    #         current_loop = None
+        
+    #     if loop is None:
+    #         loop = current_loop
+        
+
+    #     if loop is None: # NÃO PODE SETAR NONE
+    #         cls._log("cannot set None as the main loop","loop")
+    #         return False
+
+    #     if not cls.loop_is_none(): # SE JA SETOU NÃO SETA DE NOVO   
+    #         cls._log("current loop already set!")
+    #         return False
+
+
+    #     if loop != current_loop and cls._thread is not None:
+    #         cls._log("tentativa de set loop fora da thread correta","loop")
+    #         cls._log(f"current loop is: {current_loop} and trying to set loop: {loop}","loop")
+    #         cls._log(f"the current thread is: {threading.current_thread()} and the loop._thread is: {cls._thread}","loop")
+    #         return False
+
+    #     if not cls.instance_check(loop): # SE NÃO FOR UM LOOP VÁLIDO
+    #         cls._log("the argument is not a proper loop to set in the main loop","loop")
+    #         return False
+
+    #     cls._current = loop
+    #     #cls._first_set = False
+    #     cls.change_state(LoopState.SET)
+    #     return True
+
+
+    
 
     
   

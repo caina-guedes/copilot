@@ -14,8 +14,8 @@ class EventObserver:
     Observes mouse and keyboard events and triggers a callback for each one.
     Supports macro recording and background mode.
     """
-    def __init__(self,loop, system):
-        self.loop = loop
+    def __init__(self,myLoop, system):
+        self.myLoop = myLoop
         self.system = system
         self._on_event_callback = default_callback
         self.listener_mouse = mouse.Listener(on_click=self._on_click, on_scroll=self._on_scroll,on_move=self._on_move)
@@ -60,7 +60,7 @@ class EventObserver:
         def schedule():
             task = asyncio.create_task(self._process_event(event),name = "_process_event_task")
             print("Created _process_event_task and the name is:",task.get_name())
-        self.loop.call_soon_threadsafe(schedule)
+        self.myLoop.call_soon(schedule)
     
     def add_event(self, event):
         if self._current_macro is None:

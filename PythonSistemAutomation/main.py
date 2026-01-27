@@ -61,14 +61,11 @@ class AutomationSystem:
                     AutomationSystem.main_instance.stop_observer()
                     LoggerManager.stop_listener()
                     # Chamadas assíncronas
-                    if LifecycleMaster.running_loop and not LifecycleMaster.running_loop[0].is_closed():
-                        asyncio.run_coroutine_threadsafe(
-                            AutomationSystem.main_instance.not_sent_db.close(),
-                            LifecycleMaster.running_loop[0]
-                        )
+                    if lifecicleMaster.run_async( AutomationSystem.main_instance.not_sent_db.close()):
+                        pass
                     else:
                         print("não entrou no if que eu queria")
-                        print("tem loop = ", LifecycleMaster.running_loop != None)
+                        print("myLoop = ", LifecycleMaster.running_loop.get())
                         print("o loop está fechado é: ", LifecycleMaster.running_loop.is_closed())
                     # await AutomationSystem.main_instance.not_sent_db.close()
                     
@@ -82,15 +79,18 @@ class AutomationSystem:
         else:
             print("Watcher shutdown event is still happening, please wait.")
     
-    def __init__(self,loop, not_sent_db):
+    def __init__(self,myLoop, not_sent_db):
+        print(f"inicializando o automationSytem os argumentos são: myLoop: {myLoop} e not_sent_db : {not_sent_db}")
         AutomationSystem.main_instance = self
-        self.loop = loop
+        self.myLoop = myLoop
         self.actions = serverConfig.SOWatcherActions().actionDispatch  # Assuming actionDispatch is a dictionary of actions
         self.ws_client = WebSocketClient
         self.ExecutingMacro = {"value":False}
         self.controlsToIgnore = set()  # Set of controls to ignore during macro execution
+        print("logo antes de mexer com o websocket!")
         self.ws_client.prepareClass(self)
-        self.observer = EventObserver(loop,self)
+        print("logo antes do observer!")
+        self.observer = EventObserver(myLoop,self)
         self.not_sent_db = not_sent_db  # Initialize the database for not sent events
         self._not_sent_db_is_empty_last_check = True  # Flag to check if the database is empty
         
@@ -180,18 +180,16 @@ async def main():
     # LifecycleMaster.set_loop(loop)
     
     print("comecei a executar a main function do watcher!")
-
-    # Captura Ctrl+C ou sinal de término
-    for sig in (signal.SIGINT, signal.SIGTERM):
-        LifecycleMaster.running_loop.add_signal_handler(sig, AutomationSystem.shutdown)
-
-
     try:
-        autoSystem = AutomationSystem(LifecycleMaster.running_loop , not_sent_db)
         not_sent_db = await WatcherNotsentEventsDatabase.create()  # Initialize the not sent events database
+        print("inicializei o not_sent_db")
+        autoSystem = AutomationSystem(LifecycleMaster.running_loop , not_sent_db)
+        print("inicializei o automationSystem")
         logger.info("Starting event observer...")
         autoSystem.start_observer_in_thread()
+        print("comecei o start_observer_in_thread")
         await autoSystem.initializeWebsocket()
+        print("comecei o websocket")
         await AutomationSystem.stop_event.wait()  # Aguarda sinal de parada
 
     # except KeyboardInterrupt:
@@ -210,6 +208,16 @@ async def main():
         print_async_tasks_status()
 
 if __name__ == "__main__":
+    try:
+    # Captura Ctrl+C ou sinal de término
+        for sig in (signal.SIGINT, signal.SIGTERM):
+            print(f"pondo o sinal {AutomationSystem.shutdown} no {sig}")
+            signal.signal(sig, AutomationSystem.shutdown)
+        print("consegui por os sinais")
+    except Exception as e:
+        print(f"deu erro e foi: {e}")
+
+
     LifecycleMaster.start_runtime(main)
     
     # loop = asyncio.new_event_loop()
