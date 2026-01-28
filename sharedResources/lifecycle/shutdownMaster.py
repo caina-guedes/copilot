@@ -56,7 +56,7 @@ class LifecycleMaster():
 
 
     @classmethod
-    def register_log(cls,string,key, emergency = False):
+    def register_log(cls,string,key = "general", emergency = False):
         print(string)
         if not emergency:
             with cls.logsLock:
@@ -89,8 +89,8 @@ class LifecycleMaster():
         # fechar o loop se existir
         try:
             if cls._loop_is_ok():
-                print("setando o stop do loop... boa sorte")
-                cls.LifecycleMaster.schedule(MyLoop.stop_loop)
+                print("setando o stop do loop durante emergencia... boa sorte")
+                cls.schedule(MyLoop.stop_loop)
 
                 # cls.running_loop.get().call_soon_threadsafe(cls.running_loop.get().stop)
             else:
@@ -110,13 +110,13 @@ class LifecycleMaster():
     @classmethod
     def start_runtime(cls, main_coro):
         cls.running_loop.start_loop()
-        print("Main loop started:", cls.running_loop.get())
-        print("Submitting main to the loop...")
+        # print("Main loop started:", cls.running_loop.get())
+        # print("Submitting main to the loop...")
         if asyncio.iscoroutine(main_coro) or asyncio.iscoroutinefunction(main_coro):
             # print("Main coroutine is a coroutine or coroutine function.")
-            res = cls.running_loop.submit(main_coro)
+            res = cls.running_loop.submit(main_coro, protected = True)
         else:
-            print("Main coroutine is a regular function, scheduling it.")
+            # print("Main coroutine is a regular function, scheduling it.")
             res  = cls.running_loop.call_soon(main_coro)
         print("Main coroutine submitted:", res)
     
@@ -126,35 +126,39 @@ class LifecycleMaster():
         """Função para iniciar o shutdown automático de threads e tasks"""
         # if cls.shutdown_event.is_set():
         if cls.state == "SHUTTING_DOWN":
-            cls.register_log("algo fez autoshutdown ser chamada mais de uma vez!")
+            cls.register_log("algo fez autoshutdown ser chamada mais de uma vez!","general")
         else:
             state = "SHUTTING_DOWN"
-
-            try:
-                cls.register_log("Initiating automatic shutdown...","general")
-                if cls.running_loop.get() is not None:
-                    if not cls._loop_is_ok():
-                        cls.register_log("[autoShutDown] loop is not ok just before task_shutdown_function be called!","general")
-                    else:
-                        cls.register_log("iniciating tasks shutdown","general")
-                        res = asyncio.run_coroutine_threadsafe(cls.task_shutdown_function(), cls.running_loop.get())
-                        res.result(timeout = 5)
+            cls.register_log("iniciando o autoshutdown","general")
+        try:
+            cls.register_log("Initiating automatic shutdown...","general")
+            if cls.running_loop.get() is not None:
+                if not cls._loop_is_ok():
+                    cls.register_log("[autoShutDown] loop is not ok just before task_shutdown_function be called!","general")
                 else:
-                    print("o loop é algo vazio e é: ",cls.running_loop.get())
-                with cls.shutdown_lock:
-                    cls.shutDownComplete.clear() # reset the event before shutdown
-                    # Shutdown async tasks
-                    # Shutdown threads
-                    cls.register_log("iniciating thread shutdown","general")
-                    cls.thread_shutdown_function()
-                    # cls.set_loop() # ensure the loop is set
-                print("Automatic shutdown complete.")
-            except Exception as e:
-                print("[autoShutdown] the exception is:", e)
-            finally:
-                print("vou setar o shutdownComplete")
-                cls.shutDownComplete.set()
-                print("setei o shutdownComplete")
+                    cls.register_log("iniciating tasks shutdown","general")
+                    res = asyncio.run_coroutine_threadsafe(cls.task_shutdown_function(), cls.running_loop.get())
+                    res.result(timeout = 5)
+            else:
+                print("o loop é algo vazio e é: ",cls.running_loop.get())
+            with cls.shutdown_lock:
+                cls.shutDownComplete.clear() # reset the event before shutdown
+                # Shutdown async tasks
+                # Shutdown threads
+                cls.register_log("iniciating thread shutdown","general")
+                cls.thread_shutdown_function()
+                # cls.set_loop() # ensure the loop is set
+            if cls._loop_is_ok():
+                print("setando o stop do loop... boa sorte")
+                MyLoop.stop_loop()
+            print("Automatic shutdown complete.")
+        except Exception as e:
+            print("[autoShutdown] the exception is:", e)
+        finally:
+            print("vou setar o shutdownComplete")
+
+            cls.shutDownComplete.set()
+            print("setei o shutdownComplete")
         # else:
         #     print("Shutdown already initiated.")
 
@@ -175,6 +179,8 @@ class LifecycleMaster():
                     wait_event(cls.shutDownComplete," LifecycleMaster.shutDownComplete event")
                 except Exception as e:
                     print("deu ruim no evento shutdownComplete e foi:",e)
+            else:
+                print("shutdownComplete Event is set properly")
             
             logs = []
             for key in cls.logsMap:

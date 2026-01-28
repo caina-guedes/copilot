@@ -26,7 +26,7 @@ class MyLoop():
     # _loop_started = False # flag para sinalizar que o loop começou
     _stop_loop_event = threading.Event() # usado para sinalizar que o run_forever dentro da thread do loop ja acabou
     # _first_set = True
-
+    tasksMap = {"unnamedTasks":[]}
     #from logging_utils.py
     set_register_log = classmethod(set_register_log)
     _log             = classmethod(_log)

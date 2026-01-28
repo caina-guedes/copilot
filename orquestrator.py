@@ -72,7 +72,7 @@ def start_server():
         daemon=True
     )
     serverThread.start()
-    serverThread.setName("ServerOutputStreamThread")
+    serverThread.name = "ServerOutputStreamThread"
 
     print(f'pro serverErros o whatToShow["serverError"] é: {whatToShow["serverError"]}')
     serverErrorThread = threading.Thread(
@@ -81,7 +81,7 @@ def start_server():
         daemon=True
     )
     serverErrorThread.start()
-    serverErrorThread.setName("ServerErrorStreamThread")
+    serverErrorThread.name = "ServerErrorStreamThread"
 
     return p
 
@@ -101,7 +101,7 @@ def start_watcher():
         daemon=True
     )
     watcherThread.start()
-    watcherThread.setName("WatcherOutputStreamThread")
+    watcherThread.name = "WatcherOutputStreamThread"
 
     watcherErrorThread = threading.Thread(
         target=stream_output,
@@ -109,7 +109,7 @@ def start_watcher():
         daemon=True
     )
     watcherErrorThread.start()  
-    watcherErrorThread.setName("WatcherErrorStreamThread")
+    watcherErrorThread.name = "WatcherErrorStreamThread"
     return p
 
 
@@ -129,7 +129,7 @@ def start_frontend():
         daemon=True
     )
     frontendThread.start()
-    frontendThread.setName("FrontEndOutputStreamThread")
+    frontendThread.name = "FrontEndOutputStreamThread"
 
     frontendErrorThread = threading.Thread(
         target=stream_output,
@@ -137,7 +137,7 @@ def start_frontend():
         daemon=True
     )
     frontendErrorThread.start()
-    frontendErrorThread.setName("FrontEndErrorStreamThread")
+    frontendErrorThread.name = "FrontEndErrorStreamThread"
     return p
 
 

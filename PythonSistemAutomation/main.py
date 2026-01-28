@@ -48,8 +48,13 @@ class AutomationSystem:
     shutDownIniciated = False
     main_instance = None
 
+
+    @staticmethod
+    def shutdown(a,b):
+        AutomationSystem.myShutdown()
+
     @classmethod
-    def shutdown(cls):
+    def myShutdown(cls):
         """Sets the shutdown event to signal all components to stop."""
         print("AutomationSystem shutdown called.")
         if not cls.watcher_shutdown_event.is_set() and not cls.shutDownIniciated:
@@ -61,7 +66,7 @@ class AutomationSystem:
                     AutomationSystem.main_instance.stop_observer()
                     LoggerManager.stop_listener()
                     # Chamadas assíncronas
-                    if lifecicleMaster.run_async( AutomationSystem.main_instance.not_sent_db.close()):
+                    if LifecycleMaster.run_async( AutomationSystem.main_instance.not_sent_db.close()):
                         pass
                     else:
                         print("não entrou no if que eu queria")
@@ -153,7 +158,7 @@ class AutomationSystem:
         Initializes the WebSocket client connection.
         """
         try:
-            # print("estou no inicializeWebsocket")
+            print("estou no inicializeWebsocket")
             await self.ws_client.connect()
             logger.info("WebSocket client initialized.")
         except Exception as e:
@@ -168,6 +173,7 @@ class AutomationSystem:
         self.observer.start()
 
     def start_observer_in_thread(self):
+        # tenho que mudar isso aqui pra TrackedThread
         Thread(target=self.start_observer, daemon=True, name = "ObserverThread").start()
 
     def stop_observer(self):
@@ -199,6 +205,18 @@ async def main():
         print(f"Error in main: {e}",level=logging.critical)
     finally:
         print("entrou no finally da main...")
+        try:
+            if not LifecycleMaster.byebye.is_set():
+                print("esperando o byebye")
+                if LifecycleMaster.byebye.wait(timeout = 5):
+                    print("veio estou saindo")
+                else:
+                    print(" deu timeout mas estou saindo de qualquer forma")
+            else:
+                print("byebye ja foi setado então tchau")
+        except Exception as e:
+            print(f" deu exceção no finally da main e foi: {e}")
+            
         print_thread_status()
         print_async_tasks_status()
         # autoSystem.stop_observer()
@@ -215,12 +233,15 @@ if __name__ == "__main__":
             signal.signal(sig, AutomationSystem.shutdown)
         print("consegui por os sinais")
     except Exception as e:
-        print(f"deu erro e foi: {e}")
+        print(f"deu erro fora da main e foi: {e}")
 
 
     LifecycleMaster.start_runtime(main)
-    
-    # loop = asyncio.new_event_loop()
+    print("esperando byebye na thread principal!")
+    LifecycleMaster.byebye.wait()
+
+    print("byebye setado na thread principal")
+        # loop = asyncio.new_event_loop()
     # asyncio.set_event_loop(loop)
     # # try:
     # #     asyncio.run(main())

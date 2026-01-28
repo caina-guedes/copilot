@@ -7,6 +7,7 @@ basePath = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(basePath))
 
 from sharedResources.lifecycle.trackedItem import TrackedItem
+from sharedResources.lifecycle.loop.loop_class import MyLoop
 
 class Tracked_task:
     register_log = None
@@ -45,7 +46,7 @@ class Tracked_task:
     
     # -------------------- Async Task wrapper --------------------
     @classmethod
-    def create(cls,coro, name, created_from, cleanup_event = None,cleanup_function = None):
+    def create(cls,coro, name, created_from, cleanup_event = None,cleanup_function = None , protected = False):
         """
         Cria uma async task com logging
         
@@ -69,6 +70,7 @@ class Tracked_task:
                 cls.register_log(f"[Async Task Exited] {task_name}","tasks")
                 # logger.info(f"[Async Task Exited] {task_name}")
         ######### criando elementos do trackedItem #########
+        fut = MyLoop.submit(wrapper(),protected)
         task = asyncio.create_task(wrapper(),name = task_name) # cria a task async
         selfCleanUpEvent    = cleanup_event or Tracked_task.default_cleanup_event   # pensado para fazer operações internas de limpeza
         selfCleanUpEventUse = False                      # flag para  a task usar o evento de self cleanup

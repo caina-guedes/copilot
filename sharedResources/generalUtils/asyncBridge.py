@@ -7,12 +7,6 @@ class AsyncBridge:
     """
     Infraestrutura para integrar threads e async sem travar o servidor.
     """
-    # def __init__(self):
-    #     try:
-    #         self.loop = asyncio.get_event_loop()  # loop principal do servidor
-    #     except:
-    #         print("Creating new event loop for AsyncBridge")
-    #         self.loop = asyncio.new_event_loop()
     @classmethod
     def run_in_thread(cls, func: Callable, *args, **kwargs):
         """
@@ -20,7 +14,6 @@ class AsyncBridge:
         """
         thread = threading.Thread(target=func, args=args, kwargs=kwargs, daemon=True,name=f"{func.__name__} asyncBridge Thread")
         thread.start()
-        print("created thread and the name is:", thread.name)
         return thread
 
 

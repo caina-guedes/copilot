@@ -13,6 +13,7 @@ import threading
 
 class TwoWayConnection:
     def __init__(self, sender=None, receiver=None):
+        print("dentro do init da TwoWayConnection")
         self.sender = sender
         self._sender_lock = asyncio.Lock()
         
@@ -28,6 +29,7 @@ class TwoWayConnection:
 
         self._handle_message_function = self.send
         self.logger = logger
+        print("fim do init da TwoWayConnection")
 
     def set_handle_message(self, handle_message_function):
         # print("[TwoWayConnection] Setting handle_message_function...")
@@ -61,6 +63,7 @@ class TwoWayConnection:
                 try:
                     # with self.receiver_lock: 
                     # print("antes de criar a task do receiver loop")
+                    
                     self._receiver_task = asyncio.create_task(self.receiver_loop(), name = "TwoWayConnectionReceiverLoopTask")
                     # print('acho que a função de começar a receber começou')
                 except Exception as e:

@@ -94,7 +94,7 @@ def _loop_is_ok(cls):
 
 
 def _can_interact(cls):
-    print("Checking if loop can interact...")
+    # print("Checking if loop can interact...")
     if not cls._loop_is_ok():
         cls._log("loop not available for interaction","loop")
         return False

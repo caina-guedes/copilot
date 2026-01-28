@@ -35,50 +35,93 @@ def start_loop(cls):
             cls.change_state(LoopState.CLOSED)
 
 
-    t = threading.Thread(target=_run, name="AsyncioLoopThread", daemon=True)
+    t = threading.Thread(target=_run, name="AsyncioLoopThread", daemon=False)
     t.start()
     if not loop_ready.wait(timeout=5):  # wait until the loop is ready
         cls._log("loop failed to start within timeout","loop")
         return False
     return True
 
-async def _cancel_all_tasks():
-    tasks = [t for t in asyncio.all_tasks(loop=cls._current) if t is not asyncio.current_task()]
+async def _cancel_all_tasks(cls, timeout = 5):
+    current_task = asyncio.current_task()
+    # tasks = [t for t in asyncio.all_tasks(loop=cls._current) if t is not current_task and t]
+    tasks = []
+    for t in asyncio.all_tasks(loop=cls._current):
+        if t is current_task:
+            print("not using this task because is it the  current task")
+            continue
+        if getattr(t, "_protected", False):# não pega tasks protegidas!
+            cls._log(f" this task is protected so I wont cancell it : {t}","loop")
+            continue
+        tasks.append(t)
     if not tasks:
         return
     cls._log(f"Cancelling {len(tasks)} tasks","loop")
-    for t in tasks:
-        t.cancel()
-    await asyncio.gather(*tasks, return_exceptions=True)
+    cls._log(f"the current_task is: {current_task}","loop")
+    try:
+        for t in tasks:
+            cls._log(f"canceling task {t}","loop")
+        for t in tasks:
+            t.cancel()
+        # Espera com timeout
+        done, pending = await asyncio.wait(tasks, timeout=timeout)
+
+        # Tasks que finalizaram
+        for t in done:
+            if t.cancelled():
+                cls._log(f"task cancelled successfully: {t}", "loop")
+            elif t.exception():
+                cls._log(f"task finished with exception: {t.exception()}", "loop")
+            else:
+                cls._log(f"task finished normally: {t}", "loop")
+
+        # Tasks que NÃO finalizaram
+        if pending:
+            cls._log(f"{len(pending)} task(s) did not cancel within {timeout}s", "loop" )
+            for t in pending:
+                cls._log(f"PENDING task -> {t}, state={t._state}, coro={t.get_coro()}","loop")
+
+        cls._log("[_cancel_all_tasks] function end")
+
+    except Exception as e:
+        cls._log(f"[_cancel_all_tasks] error is:  {e}")
 
 
 
 def stop_loop(cls, graceful=True):
-    if cls.loop_is_none() or not cls.is_running():
-        cls._log("stop loop called but loop not running","loop")
-        return
-    loop_stopped = threading.Event()
-    async def _stop():
-        cls.change_state(LoopState.STOPPING)
-        cls._log("stopping event loop","loop")
+    cls._log("stop_loop function called!!!!!","loop")
+    try:
+        if cls.loop_is_none() or not cls.is_running():
+            cls._log("stop loop called but loop not running","loop")
+            return
+        loop_stopped = threading.Event()
+        async def _stop():
+            cls.change_state(LoopState.STOPPING)
+            cls._log("stopping event loop","loop")
+            
+            if graceful:
+                await _cancel_all_tasks(cls)
+            
+            cls._current.stop()
+            cls._log("loop really stopped!!!")
+            cls.change_state(LoopState.CLOSED)
+            loop_stopped.set()
         
-        if graceful:
-            await _cancel_all_tasks()
+        future = cls.submit(_stop())
+        try:
+            future.result(timeout=5)
+            return True
+        except TimeoutError:
+            cls._log("[stop_loop] loop failed to stop within timeout","loop")
+            return False
         
-        cls._current.stop()
 
-        cls.change_state(LoopState.CLOSED)
-        loop_stopped.set()
-
-    # cls.call_soon(_stop)  # sempre thread-safe
-    cls.call_soon_threadsafe(lambda: asyncio.create_task(_stop())) #sempre thread-safe
-
-    if not loop_stopped.wait(timeout=5):
-        cls._log("loop failed to stop within timeout","loop")
-        return False
-    return True
+        # if not loop_stopped.wait(timeout=5):
+    except Exception as e:
+        cls._log(f"[stop_loop] deu exceção  e foi: {e}","loop")
 
 def kill_loop(cls):
+
     if cls.loop_is_none():
         cls._log("kill loop called but loop is None","loop")
         return
@@ -98,3 +141,4 @@ def kill_loop(cls):
         cls.change_state(LoopState.EMPTY)
     else:
         cls._log("loop thread did not exit within timeout","loop")
+

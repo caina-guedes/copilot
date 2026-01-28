@@ -42,10 +42,15 @@ def _print_worker():
             _print_queue.task_done()
 
 # Thread dedicada que consome a fila
-_thread = TrackedThread(target = _print_worker, cleanup_event =  _print_cleanUp_event , daemon = True ,name  = "AprintThread", created_from = "aprint.py module")
+_thread = TrackedThread(
+    target = _print_worker, 
+    cleanup_event =  _print_cleanUp_event , 
+    daemon = True ,
+    name  = "AprintThread", 
+    created_from = "aprint.py module"
+    )
 # _thread = threading.Thread(target=_print_worker, daemon=True, name="AprintThread")
 _thread.start()
-print("created thread and the name is:", _thread.name)
 def aprint(*args, **kwargs):
     """
     Print não bloqueante, ordenado e thread-safe.
