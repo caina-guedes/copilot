@@ -7,19 +7,19 @@ from pathlib import Path
 basePath = Path(__file__).resolve().parent.parent.parent.parent
 # print("Path added to sys.path:", str(basePath))
 sys.path.append(str(basePath))
-from sharedResources.lifecycle.shutdownMaster import Tracked_task, LifecycleMaster, TrackedThread
+from sharedResources.lifecycle.shutdownMaster import TrackedTask, LifecycleMaster, TrackedThread
 from sharedResources.lifecycle.utils import wait_event
 
 async def dummy_task(x):
     await asyncio.sleep(0.1)
     return x * 2
 
-async def test_tracked_task():
-    t = tracked_task(dummy_task(5), name="test")
+async def test_TrackedTask():
+    t = TrackedTask(dummy_task(5), name="test")
     assert t in [item.obj for item in LifecycleMaster.tasksMap["test"]]
     result = await t
     assert result == 10
-    print("✅ tracked_task basic test passed")
+    print("✅ TrackedTask basic test passed")
 
 
 async def cancellable_task():
@@ -38,8 +38,8 @@ async def cancellable_task():
 #         created_from = created_from}
 
 async def test_task_shutdown():
-    t1 = tracked_task(cancellable_task(), name="task1", created_from = "test_task_shutdown")
-    t2 = tracked_task(cancellable_task(), name="task2", created_from = "test_task_shutdown")
+    t1 = TrackedTask(cancellable_task(), name="task1", created_from = "test_task_shutdown")
+    t2 = TrackedTask(cancellable_task(), name="task2", created_from = "test_task_shutdown")
 
     await asyncio.sleep(0.3)  # deixa as tasks rodarem um pouco
     LifecycleMaster.shutdown_event.set()  # sinaliza shutdown
@@ -86,8 +86,8 @@ async def test_integrated():
             await asyncio.sleep(0.7)
         print(f"[Task Cleanup] {name}")
     
-    a1 = Tracked_task.create(coro = async_job("A1"), name="A1", created_from = "test_integrated")
-    a2 = Tracked_task.create(coro = async_job("A2"), name="A2", created_from = "test_integrated")
+    a1 = LifecycleMaster.run_async(coro = async_job("A1"), name="A1", created_from = "test_integrated")
+    a2 = LifecycleMaster.run_async(coro = async_job("A2"), name="A2", created_from = "test_integrated")
 
     # -------- Deixa rodar um pouco --------
     await asyncio.sleep(1)

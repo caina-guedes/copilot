@@ -84,10 +84,9 @@ class AutomationSystem:
         else:
             print("Watcher shutdown event is still happening, please wait.")
     
-    def __init__(self,myLoop, not_sent_db):
-        print(f"inicializando o automationSytem os argumentos são: myLoop: {myLoop} e not_sent_db : {not_sent_db}")
+    def __init__(self, not_sent_db):
+        print(f"inicializando o automationSytem o argumento é: not_sent_db : {not_sent_db}")
         AutomationSystem.main_instance = self
-        self.myLoop = myLoop
         self.actions = serverConfig.SOWatcherActions().actionDispatch  # Assuming actionDispatch is a dictionary of actions
         self.ws_client = WebSocketClient
         self.ExecutingMacro = {"value":False}
@@ -95,7 +94,7 @@ class AutomationSystem:
         print("logo antes de mexer com o websocket!")
         self.ws_client.prepareClass(self)
         print("logo antes do observer!")
-        self.observer = EventObserver(myLoop,self)
+        self.observer = EventObserver(self)
         self.not_sent_db = not_sent_db  # Initialize the database for not sent events
         self._not_sent_db_is_empty_last_check = True  # Flag to check if the database is empty
         
@@ -189,7 +188,7 @@ async def main():
     try:
         not_sent_db = await WatcherNotsentEventsDatabase.create()  # Initialize the not sent events database
         print("inicializei o not_sent_db")
-        autoSystem = AutomationSystem(LifecycleMaster.running_loop , not_sent_db)
+        autoSystem = AutomationSystem(not_sent_db)
         print("inicializei o automationSystem")
         logger.info("Starting event observer...")
         autoSystem.start_observer_in_thread()
@@ -216,7 +215,7 @@ async def main():
                 print("byebye ja foi setado então tchau")
         except Exception as e:
             print(f" deu exceção no finally da main e foi: {e}")
-            
+
         print_thread_status()
         print_async_tasks_status()
         # autoSystem.stop_observer()

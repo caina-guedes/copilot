@@ -7,6 +7,7 @@ from PythonSistemAutomation.watcher_utils.default_callback import default_callba
 from pynput import mouse, keyboard
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
+from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 logger = LoggerManager.get_logger(__name__)
 
 class EventObserver:
@@ -14,8 +15,7 @@ class EventObserver:
     Observes mouse and keyboard events and triggers a callback for each one.
     Supports macro recording and background mode.
     """
-    def __init__(self,myLoop, system):
-        self.myLoop = myLoop
+    def __init__(self, system):
         self.system = system
         self._on_event_callback = default_callback
         self.listener_mouse = mouse.Listener(on_click=self._on_click, on_scroll=self._on_scroll,on_move=self._on_move)
@@ -57,11 +57,11 @@ class EventObserver:
         if self._on_event_callback is None:
             self._on_event_callback = default_callback
         
-        def schedule():
-            task = asyncio.create_task(self._process_event(event),name = "_process_event_task")
-            print("Created _process_event_task and the name is:",task.get_name())
-        self.myLoop.call_soon(schedule)
-    
+        # def schedule():
+        #     task = asyncio.create_task(self._process_event(event),name = "_process_event_task")
+        #     print("Created _process_event_task and the name is:",task.get_name())
+        # self.myLoop.call_soon(schedule)
+        LifecycleMaster.run_async(self._process_event(event))
     def add_event(self, event):
         if self._current_macro is None:
             self._current_macro = copy([])

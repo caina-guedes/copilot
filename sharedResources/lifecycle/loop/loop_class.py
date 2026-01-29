@@ -27,6 +27,8 @@ class MyLoop():
     _stop_loop_event = threading.Event() # usado para sinalizar que o run_forever dentro da thread do loop ja acabou
     # _first_set = True
     tasksMap = {"unnamedTasks":[]}
+    default_shutdown_event = None
+
     #from logging_utils.py
     set_register_log = classmethod(set_register_log)
     _log             = classmethod(_log)
@@ -53,7 +55,12 @@ class MyLoop():
     def get(cls):
         return cls._current
 
-    
+    @classmethod
+    def set_default_shutdown_event(cls,ev):
+        if cls.default_shutdown_event is None:
+            cls.default_shutdown_event = ev
+            
+
     # @classmethod
     # def set(cls,loop):
     #     try:

@@ -13,5 +13,6 @@ class TrackedItem:
     kind: Literal["thread", "task"]
     created_from: str | None
     cleanup_function: Optional[Callable[..., Any]] = None
+    protected : bool = False
     created_at: float = field(default_factory=time.time)
     thread_name: str = field(default_factory=lambda: threading.current_thread().name)

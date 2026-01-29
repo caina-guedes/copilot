@@ -11,7 +11,7 @@ basePath = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(basePath))
 
 from sharedResources.lifecycle.shutdownThreadUtils import TrackedThread
-from sharedResources.lifecycle.shutdownTaskUtils import Tracked_task
+from sharedResources.lifecycle.shutdownTaskUtils import TrackedTask
 from sharedResources.lifecycle.printUtils import print_thread_status, print_async_tasks_status
 from sharedResources.lifecycle.utils import wait_event
 from sharedResources.lifecycle.loop.loop_class import MyLoop
@@ -51,7 +51,7 @@ class LifecycleMaster():
     logsMap = {"threads":[],"tasks":[], 'general': []}
     # ---------------------
 
-    task_shutdown_function   = Tracked_task.shutdown_tasks
+    task_shutdown_function   = TrackedTask.shutdown_tasks
     thread_shutdown_function = TrackedThread.shutdown_threads
 
 
@@ -203,9 +203,9 @@ class LifecycleMaster():
     # -------------------------------
 
     @staticmethod
-    def run_async(coro):
+    def run_async(coro, *args, **kargs):
         """Submete uma coroutine para execução segura no loop"""
-        return MyLoop.submit(coro)
+        return MyLoop.submit(coro, *args, **kargs)
 
     @staticmethod
     def gather(*coros, return_exceptions=False):
@@ -240,19 +240,20 @@ class LifecycleMaster():
         # setting up the register log functions
         MyLoop.set_register_log(cls.register_log)
         TrackedThread.set_register_log( cls.register_log)
-        Tracked_task.set_register_log( cls.register_log)
+        TrackedTask.set_register_log( cls.register_log)
 
         #setting up the maps
         TrackedThread.set_threadsMap( cls.threadsMap)
-        Tracked_task.set_tasksMap(cls.tasksMap)
+        TrackedTask.set_tasksMap(cls.tasksMap)
 
         #setting up the cleanup events
         TrackedThread.set_default_cleanup_event( cls.shutdown_event)
-        Tracked_task.set_default_cleanup_event( cls.shutdown_event)
+        TrackedTask.set_default_cleanup_event( cls.shutdown_event)
+        MyLoop.set_default_shutdown_event(cls.shutdown_event)
 
         #setting up the loop
         TrackedThread.set_running_loop(cls.running_loop)
-        Tracked_task.set_running_loop( cls.running_loop)
+        TrackedTask.set_running_loop( cls.running_loop)
     
 
 LifecycleMaster.prepare_dependencies()
