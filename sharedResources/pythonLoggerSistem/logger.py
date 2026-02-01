@@ -116,7 +116,7 @@ class LoggerManager:
                 handler.close()
             print("e foi executado inteiramente!")
         except Exception as e:
-            print(f"deu erro e foi: {e}")
+            print(f"[LoggerManager.stop_listener] deu erro e foi: {e}")
         
 
     @classmethod

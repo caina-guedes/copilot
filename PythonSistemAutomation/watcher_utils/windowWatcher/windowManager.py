@@ -78,9 +78,9 @@ class WindowManager:
                 changed =  True
             return self.__class__.current_window , changed
         except Exception as e:
-
             print(f"deu ruim na get_active_window do windowManager e foi: {e}")
-            warnings.warn(e)
+            warnings.warn(str(e))
+
     def focus_window(self, window_id):
         return self.backend.focus_window(window_id)
 

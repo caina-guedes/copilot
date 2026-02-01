@@ -57,7 +57,7 @@ class TrackedThread(threading.Thread):
             thread_obj.join(timeout)
         except Exception as e:
             cls.register_log(f"[Shutdown] join erro: {e}", "threads")
-            warnings.warn(e)
+            warnings.warn(str(e))
         finally:
             if thread_obj.is_alive():
                 cls.register_log(f"[Shutdown] Thread {thread_obj.name} ainda viva após timeout", "threads")
@@ -159,7 +159,7 @@ class TrackedThread(threading.Thread):
                 print("[Shutdown] got it !")
             except Exception as e:
                 print("[Shutdown] deu erro e foi:  ",e)
-                warnings.warn(e)
+                warnings.warn(str(e))
         print("[Shutdown] All threads signaled.")
         if len(cls.problematicThreads)>0:
             print("tem thread dando problema e é:")

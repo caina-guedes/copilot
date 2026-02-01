@@ -160,7 +160,7 @@ class TrackedTask:
                 return True
         except Exception as e:
             cls.register_log(f"[shutdown_tasks] deu erro e foi: {e}")
-            warnings.warn(e)
+            warnings.warn(str(e))
 
 
     # -------------------- Async Task wrapper --------------------

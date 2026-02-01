@@ -32,5 +32,5 @@ def execute_cleanup_function(
             # função sync executada normalmente
             print(f"[Cleanup] Sync cleanup function executed ")
     except Exception as e:
-        warnings.warn(e)
+        warnings.warn(str(e))
         print(f"[Cleanup Error] {name}: {e}")

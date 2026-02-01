@@ -18,7 +18,12 @@ class EventObserver:
     Observes mouse and keyboard events and triggers a callback for each one.
     Supports macro recording and background mode.
     """
+    already_init = False
     def __init__(self, system):
+        if self.__class__.already_init:
+            warnings.warn("iniciando o eventObserver quando ja foi iniciado!")
+            return
+        already_init = True
         self.system = system
         self._on_event_callback = default_callback
         self.listener_mouse = mouse.Listener(on_click=self._on_click, on_scroll=self._on_scroll,on_move=self._on_move)
@@ -29,6 +34,7 @@ class EventObserver:
         GlobalExecutor.set_pressed(self._pressed_keys,self._pressed_buttons)
         self.last_movement = datetime.now()
         self._callback_lock = asyncio.Semaphore(1) 
+        self.listeners_running = False
         
     async def _process_event(self, event):
         # print(f"[_process_event] event: {event}")
@@ -60,6 +66,7 @@ class EventObserver:
             self._on_event_callback = default_callback
         
         LifecycleMaster.run_async(self._process_event(event),name = "_process_event")
+
     def add_event(self, event):
         if self._current_macro is None:
             self._current_macro = copy([])
@@ -85,12 +92,13 @@ class EventObserver:
             'action': 'move',
             'position': (x, y)
         }
-        self.use_on_event_callback(event)
+        
+        # self.use_on_event_callback(event)
 
     def _on_click(self, x, y, button, pressed):
         if pressed:
             event_type = 'press'
-            self._pressed_buttons.add(button)
+            self._pressed_buttons.add(str(button))
         else:
             event_type = 'release'
         event = {
@@ -168,8 +176,13 @@ class EventObserver:
         self._on_event_callback = callback
 
     def start(self):
-        self.listener_mouse.start()
-        self.listener_keyboard.start()
+        if self.listeners_running:# pra previnir reentrada!
+            warnings.warn("tentando iniciar os listeners no observer quando eles ja foram iniciados!")
+            return
+        else:
+            self.listeners_running = True
+            self.listener_mouse.start()
+            self.listener_keyboard.start()
 
     def stop(self):
         self.listener_mouse.stop()

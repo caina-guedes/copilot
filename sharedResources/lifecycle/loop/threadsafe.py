@@ -29,7 +29,7 @@ def call_soon(cls, fn, *args):
         return True
     except Exception as e:
         cls._log(f"call_soon failed: {e}","loop")
-        warnings.warn(e)
+        warnings.warn(str(e))
         return False
 
 
@@ -68,6 +68,7 @@ def submit(
             # print("estamos na mesma thread, tentando retornar o o asyncio.create_task")
             task = asyncio.create_task(coro, name=name)
             setattr(task, "protected", protected)
+            task.add_done_callback(cls.tasksMap._on_task_finish)
             cls._log(f"creating task in loop thread: {task}", "loop")
             cls.tasksMap.register_task(
                 task=task,
@@ -77,8 +78,7 @@ def submit(
                 cleanup_function = cleanup_function,
                 cleanup_event = cleanup_event,
             )
-            cls._log(f"task registered: {name}", "loop")
-            task.add_done_callback(cls.tasksMap._on_task_finish)
+            # cls._log(f"task registered: {name}", "loop")
 
             return task
 
@@ -101,13 +101,13 @@ def submit(
                     cleanup_function = cleanup_function,
                     cleanup_event = cleanup_event,
                 )
-                cls._log(f"task registered: {task}", "loop")
+                # cls._log(f"task registered: {task}", "loop")
                 fut.set_result(task)
 
             except Exception as e:
                 cls._log("o erro dentro da _create_Task_in_loop foi: ",e)
                 fut.set_exception(e)
-                warnings.warn(e)
+                warnings.warn(str(e))
                 # raise e
 
         cls._current.call_soon_threadsafe(_create_task_in_loop)
@@ -120,7 +120,7 @@ def submit(
             f"current thread: {threading.current_thread()} | loop thread: {cls._thread}",
             "loop",
         )
-        warnings.warn(e)
+        warnings.warn(str(e))
         return None
 
 def gather(cls, *coros, return_exceptions=False):

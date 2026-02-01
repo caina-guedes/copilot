@@ -28,7 +28,8 @@ def mouseExecCommand(message, action, controlsToIgnore):
     message.get("x",None), 
     message.get("y",None)
     )
-    controlsToIgnore.add(event)
+    if controlsToIgnore is not None:
+        controlsToIgnore.add(event)
 
     before = time.perf_counter()
     if "x" in message and "y" in message:
@@ -63,16 +64,18 @@ def kbPressOrRelease(key_name, action, controlsToIgnore):
         key = getattr(Key, key_name)
     elif key_name.isupper():
             print("the key is uppercase, pressing shift too")
-            controlsToIgnore.update([
+            if controlsToIgnore is not None:
+                controlsToIgnore.update([
                 ("keyboard", Key.shift, "press" ),
                 ("keyboard", Key.shift, "release")
-            ])
+                ])
             with keyboard.press(Key.shift):
                 before,after = kbPressOrRelease(key_name.lower(),action,controlsToIgnore)
                 return before,after
     else:
         key = key_name
-    controlsToIgnore.add((
+    if controlsToIgnore is not None:
+        controlsToIgnore.add((
         "keyboard",
         str(key).replace("Key.",""),
         action
@@ -93,7 +96,7 @@ def kbPressOrRelease(key_name, action, controlsToIgnore):
     except Exception as e:
         
         print(f"Error processing keyboard action {action} for key {key_name}: {e}")
-        warnings.warn(e)
+        warnings.warn(str(e))
 
 class  InternalResponse:
     def __init__(self,start_time,endTime,waitForServer = None):
@@ -101,11 +104,14 @@ class  InternalResponse:
         self.endTime = endTime
         self.waitForServer = waitForServer
 
-async def default_receiving_function(message, macroExecutor ):
+async def default_receiving_function(message, macroExecutor,frozen_controls_to_ignore = None ):
     """
     this functions needs the message to be [deltaTime,[equipment,action,key],modifiers]
     """
-    controlsToIgnore = macroExecutor._controlsToIgnore
+    controlsToIgnore = frozen_controls_to_ignore or macroExecutor._controlsToIgnore
+    if controlsToIgnore is None :
+        print("[default_receiving_function] controlsToIgnore to ignore is none inside ")
+        print(f"[default_receiving_function] the message received here is: {message}")
     ExecutingMacro   = macroExecutor._ExecutingMacro
     if message is None:
         print("Received None message, ignoring but maybe the connection has ended")
@@ -156,7 +162,7 @@ async def default_receiving_function(message, macroExecutor ):
                 
             except Exception as e:
                 print(f"Error processing keyboard command: {e}")
-                warnings.warn(e)
+                warnings.warn(str(e))
                 LoggerManager.log_exception_with_context(f"Error processing keyboard command: {e}",e)
 
         elif equipment == "mouse":
@@ -167,7 +173,7 @@ async def default_receiving_function(message, macroExecutor ):
         
             except Exception as e:
                 print(f"Error processing mouse command: {e}")
-                warnings.warn(e)
+                warnings.warn(str(e))
                 LoggerManager.log_exception_with_context(f"Error processing mouse command: {e}",e)
 
         else:
@@ -178,7 +184,7 @@ async def default_receiving_function(message, macroExecutor ):
         return InternalResponse(0,0)
     
     except Exception as e:
-        warnings.warn(e)
+        warnings.warn(str(e))
         LoggerManager.log_exception_with_context(f"[WATCHER] ❌ Error in default receiving function: {str(e)}")
     
         return InternalResponse(0,0)

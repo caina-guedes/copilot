@@ -26,9 +26,10 @@ class TasksMapClass:
     
     alive: dict[str, list[TrackedItem]] = defaultdict(list)
     lock = threading.RLock()  # para threadsafe
+    # lock = asyncio.Lock()
     register_log = None
     default_cleanup_event = None
-    STRICT_MODE = True  # dev
+    STRICT_MODE = False  # dev
 
     # ========================
     # sizes 
@@ -43,21 +44,23 @@ class TasksMapClass:
     # ========================
     
     history: deque[TaskStats] = deque(maxlen=history_max)
-    # by_name: dict[str, deque[TaskFinishRecord]] = defaultdict(lambda: deque(maxlen=history_per_name))
-    # by_status: dict[str, deque[TaskFinishRecord]] = {
-    #     "success": deque(maxlen=history_per_status),
-    #     "error": deque(maxlen=history_per_status),
-    #     "cancelled": deque(maxlen=history_per_status),
-    # }
-
     # ========================
     # Adicionar task
     # ========================
     @classmethod
     def add_tracked(cls, tracked_item: TrackedItem):
+        name = tracked_item.name or f"unnamedTask-{id(tracked_item)}"
         with cls.lock:
-            name = tracked_item.name or f"unnamedTask-{id(tracked_item)}"
             cls.alive.setdefault(name,[]).append(tracked_item)
+            print("[add_tracked]the task's name type added is: ",type(name))
+            print("[add_tracked]the task's name added is: ",name)
+            print("[add_tracked]the tasks that exists now are:")
+            for x in cls.alive:
+                print(x)
+            if x == name:
+                print("the tasks under this name are: ")
+                for task_atual in cls.alive[x]:
+                    print(task_atual)
 
     @classmethod
     def register_task(
@@ -118,6 +121,9 @@ class TasksMapClass:
         if tracked_or_nothing:
             return tracked_or_nothing[0]
         else:
+            print("the alive property is: ",cls.alive)
+            print("the task not found is: ",task)
+            # warnings.warn("task finished but was not registered properly in the alive property!")
             return None 
     # ========================
     # Remover task
@@ -136,54 +142,78 @@ class TasksMapClass:
                             cls.alive[name].remove(tracked_item)
                             if not cls.alive[name]:
                                 del cls.alive[name]
+                                print("[remove_tracked_from_alive_map] removi o nome: " , name," do cls.alive")
                     else:
                         print(f"name: {name} is not in cla.alive[name] that is: {cls.alive[name]}")
                 else:
                     print(f"name: {name} is not in cls.alive that is: {cls.alive}")
             return True
         except Exception as e:
-            print(f"deu erro e foi: {e}")
+            print(f"[remove_tracked_from_alive_map] deu erro e foi: {e}")
             # pass  # já tinha sido removido
-            warnings.warn(e)
+            warnings.warn(str(e))
             return False
 
     @staticmethod
     def build_record(tracked: TrackedItem):
         task = tracked.obj
-        name         = tracked.name 
-        kind         = tracked.kind
-        created_from = tracked.created_from
-        protected    = task.protected
-        created_at   = tracked.created_at
-        thread_name  = tracked.thread_name
-
-        exception = None
-        traceback = None 
-        if task.cancelled():
+        
+        try:
+            if task.cancelled():
+                status = "cancelled"
+                exception = None
+            else:
+                task_exception = task.exception()
+                if task_exception:
+                    status = "error"
+                    exception = task_exception
+                else:
+                    status = "success"
+                    exception = None
+        except asyncio.CancelledError:
             status = "cancelled"
-        else:
-            task_exception = task.exception()
-            
-            if task_exception:
-                status = "error"
-                exception = task_exception
-                traceback = None # tenho que implementar isso ainda!!!!!!!!!
-            else:                
-                status = "success"
+            exception = None
 
-        record = TaskFinishRecord(
-            name = name,
-            kind = kind,
-            status = status,
-            created_from = created_from,
-            protected = protected,
-            created_at =created_at,
-            exception = exception,
-            traceback = traceback,
-            thread_name = thread_name,
+        # if task.cancelled():
+        #     status = "cancelled"
+        # else:
+        #     task_exception = task.exception()
             
-            )       
-        return record
+        #     if task_exception:
+        #         status = "error"
+        #         exception = task_exception
+        #         traceback = None # tenho que implementar isso ainda!!!!!!!!!
+        #     else:                
+        #         status = "success"
+        # Implementação do Traceback que faltava
+        tb_str = None
+        if exception:
+            tb_str = "".join(traceback.format_exception(type(exception), exception, exception.__traceback__))
+
+        return TaskFinishRecord(
+            name = tracked.name,
+            kind = tracked.kind,
+            status = status,
+            created_from = tracked.created_from,
+            protected = tracked.obj.protected, # Task já tem o atributo via setattr no MyLoop
+            created_at = tracked.created_at,
+            exception = exception,
+            traceback = tb_str,
+            thread_name = tracked.thread_name,
+        )
+        # record = TaskFinishRecord(
+        #     name = name,
+        #     kind = kind,
+        #     status = status,
+        #     created_from = created_from,
+        #     protected = protected,
+        #     created_at =created_at,
+        #     exception = exception,
+        #     traceback = tb_str,
+        #     thread_name = thread_name,
+            
+        #     )       
+        # return record
 
     @classmethod
     def upgrade_task_stats(cls, record: TaskFinishRecord) -> TaskStats:
@@ -231,7 +261,7 @@ class TasksMapClass:
             return stats
         except Exception as e:
             print(f"[upgrade_task_stats] deu erro e foi {e}")
-            warnings.warn(e)
+            warnings.warn(str(e))
 
 
     # ========================
@@ -262,13 +292,28 @@ class TasksMapClass:
     @staticmethod
     def _on_task_finish(task: asyncio.Task):
         try:
+
             tracked = TasksMapClass.get_alive_tracked_from_task(task)
-            TasksMapClass.remove_tracked_from_alive_map(tracked)
+            if not tracked:
+                warnings.warn("task que acabou de acabar não consta na lista das tasks vivas! task é: ",task)
+                return 
+
             record = TasksMapClass.build_record(tracked)
-            TasksMapClass.upgrade_task_stats(record)
+
+            with TasksMapClass.lock:            
+                TasksMapClass.remove_tracked_from_alive_map(tracked)
+                
+                TasksMapClass.upgrade_task_stats(record)
+
+            if tracked.cleanup_function:
+                try:
+                    tracked.cleanup_function(tracked)
+                except Exception as e:
+                    print(f"Erro no cleanup da task {tracked.name}: {e}")
+        
         except Exception as e:
             print(f"[_on_task_finish] deu erro e foi: {e}")
-            warnings.warn(e)
+            warnings.warn(str(e))
        
         if record.status == "error":
             if record.exception is None:
@@ -318,4 +363,4 @@ class TasksMapClass:
             print_task_stats_report(cls.history)
         except Exception as e:
             print(f"[relatorio] deu merda e foi: {e}")
-            warnings.warn(e)
+            warnings.warn(str(e))

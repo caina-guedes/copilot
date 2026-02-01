@@ -84,7 +84,7 @@ class WatcherNotsentEventsDatabase:
                 cursor = await self.conn.execute(query)
                 saved_event = True
             except Exception as e:
-                warnings.warn(e)
+                warnings.warn(str(e))
                 logger.error(f"Error saving event on the database: {e}")
 
             if retrieve_id and saved_event:

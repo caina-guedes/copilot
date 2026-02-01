@@ -124,7 +124,11 @@ class LifecycleMaster():
 
     @classmethod
     def autoShutdown(cls):
-        from PythonSistemAutomation.watcher_utils.GlobalMacroExecutor import GlobalMacroExecutor
+        try:
+            from PythonSistemAutomation.watcher_utils.GlobalMacroExecutor import GlobalExecutor
+        except Exception as e:
+            print("falhei no import e deu: " , e )
+
         """Função para iniciar o shutdown automático de threads e tasks"""
         # if cls.shutdown_event.is_set():
         if cls.state == "SHUTTING_DOWN":
@@ -134,7 +138,7 @@ class LifecycleMaster():
             cls.register_log("iniciando o autoshutdown","general")
         try:
             cls.register_log("Initiating automatic shutdown...","general")
-            GlobalMacroExecutor.umpress_keys()
+            LifecycleMaster.run_async(GlobalExecutor.umpress_keys())
             if cls.running_loop.get() is not None:
                 if not cls._loop_is_ok():
                     cls.register_log("[autoShutDown] loop is not ok just before task_shutdown_function be called!","general")
@@ -161,7 +165,7 @@ class LifecycleMaster():
             print("Automatic shutdown complete.")
         except Exception as e:
             print("[autoShutdown] the exception is:", e)
-            warnings.warn(e)
+            warnings.warn(str(e))
         finally:
             print("vou setar o shutdownComplete")
             cls.tasksMap.relatorio()
@@ -187,7 +191,7 @@ class LifecycleMaster():
                     wait_event(cls.shutDownComplete," LifecycleMaster.shutDownComplete event")
                 except Exception as e:
                     print("deu ruim no evento shutdownComplete e foi:",e)
-                    warnings.warn(e)
+                    warnings.warn(str(e))
             else:
                 print("shutdownComplete Event is set properly")
             
@@ -197,15 +201,22 @@ class LifecycleMaster():
                     logs.append(event)
             logs = sorted(logs, key = lambda x: x[0])
             last_time =0
-            for ev in logs:
-                if last_time ==0:
-                    print(round(ev[0],6)," - ",ev[1])
-                    last_time = ev[0]
-                else:
-                    delta = round(ev[0]- last_time,6)
-                    last_time =ev[0]
-                    print(delta," - ",ev[1])
-            print("Shutdown complete.")
+            print_detailed = 'n'
+            # print("logo antes do input o print_detailed é: ",print_detailed)
+            # try:
+            #     print_detailed = input("quer o log detalhado?(s/n)")
+            # except Exception as e:
+            #     print("deu erro no input e foi: ",e)
+            if print_detailed == 's': #### desse jeito não printa o log inteiro do lifecycle
+                for ev in logs:
+                    if last_time ==0:
+                        print(round(ev[0],6)," - ",ev[1])
+                        last_time = ev[0]
+                    else:
+                        delta = round(ev[0]- last_time,6)
+                        last_time =ev[0]
+                        print(delta," - ",ev[1])
+                print("Shutdown complete.")
             cls.byebye.set()
     # -------------------------------
     # Wrappers de execução de coroutines

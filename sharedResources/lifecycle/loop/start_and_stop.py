@@ -30,7 +30,7 @@ def start_loop(cls):
             cls._log("loop stopped","loop")
         except Exception as e:
             cls._log(f"Exception in loop thread: {e}","loop")
-            warnings.warn(e)
+            warnings.warn(str(e))
         finally:
             cls._stop_loop_event.set()
             cls.change_state(LoopState.CLOSED)
@@ -86,7 +86,7 @@ async def _cancel_all_tasks(cls, timeout = 5):
 
     except Exception as e:
         cls._log(f"[_cancel_all_tasks] error is:  {e}")
-        warnings.warn(e)
+        warnings.warn(str(e))
 
 
 
@@ -121,7 +121,7 @@ def stop_loop(cls, graceful=True):
         # if not loop_stopped.wait(timeout=5):
     except Exception as e:
         cls._log(f"[stop_loop] deu exceção  e foi: {e}","loop")
-        warnings.warn(e)
+        warnings.warn(str(e))
 
 def kill_loop(cls):
 

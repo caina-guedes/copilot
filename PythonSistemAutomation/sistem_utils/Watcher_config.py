@@ -43,7 +43,7 @@ class EventObserverConfig:
         except Exception as e:
             logger.error(f"Error setting stop key: {e}")
             # logger.info(f"Error setting stop key: {e}")
-            warnings.warn(e)
+            warnings.warn(str(e))
             return False
         
     def is_macro_recording_enabled(self):

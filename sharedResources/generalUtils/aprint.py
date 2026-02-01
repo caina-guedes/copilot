@@ -37,7 +37,7 @@ def _print_worker():
             _original_print(*args, **{**kwargs, "flush": True})
         except Exception as e:
             _original_print(f"[aprint error] {e}")
-            warnings.warn(e)
+            warnings.warn(str(e))
             if DEBUG:
                 raise e
         finally:

@@ -77,7 +77,7 @@ class LinuxWindowBackend(BaseWindowBackend):
         except Exception as e:
             erro = e
             print("deu exception na get_active_window_id e é:",e)
-            warnings.warn(e)
+            warnings.warn(str(e))
             # pass
         if not sucess:
             #decido o que fazer com esse erro depois
@@ -196,7 +196,7 @@ class LinuxWindowBackend(BaseWindowBackend):
                     return window
         except Exception as e:
             print(" deu ruim na get_window_by_id e foi:  ",e)
-            warnings.warn(e)
+            warnings.warn(str(e))
         print("couldn't find a window that matches the ID: ",Id)
         return None
 

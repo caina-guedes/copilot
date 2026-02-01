@@ -179,8 +179,8 @@ class AutomationSystem:
             logger.error(f"Error initializing WebSocket client: {e}")
             raise e
 
-    def set_event_callback(self, callback):
-        self.observer.set_event_callback(self,callback)
+    # def set_event_callback(self, callback):
+    #     self.observer.set_event_callback(self,callback)
 
     def start_observer(self):
         self.observer.start()
@@ -251,6 +251,6 @@ if __name__ == "__main__":
     
     except Exception as e:
         print(f"deu erro fora da main e foi: {e}")
-        warnings.warn(e)
+        warnings.warn(str(e))
 
 
