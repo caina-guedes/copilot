@@ -3,7 +3,7 @@
 from PythonSistemAutomation.watcher_utils.default_callback import treat_key_as_string
 from pynput import mouse, keyboard
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
-
+import warnings 
 # logger = LoggerManager.get_logger(__name__,filename = __name__+'.log')
 logger = LoggerManager.get_logger(__name__)
 """
@@ -43,6 +43,7 @@ class EventObserverConfig:
         except Exception as e:
             logger.error(f"Error setting stop key: {e}")
             # logger.info(f"Error setting stop key: {e}")
+            warnings.warn(e)
             return False
         
     def is_macro_recording_enabled(self):

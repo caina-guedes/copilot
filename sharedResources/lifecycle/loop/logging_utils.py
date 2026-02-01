@@ -11,6 +11,12 @@ def set_register_log(cls,register):
     else:
         print("[MyLoop] register_log already set!")
 
+def set_tasksMap(cls,tasksMap):
+    if cls.tasksMap == None:
+        cls.tasksMap = tasksMap
+    else:
+        print("ja tinha setado o tasksMap no loop!")
+
 def _log(cls, msg, tag="loop"):
     if cls._state != LoopState.RUNNING:
         msg = f"[MyLoop - State: {cls._state.name}] {msg}"

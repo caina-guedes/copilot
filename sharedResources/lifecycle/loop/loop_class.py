@@ -8,7 +8,7 @@ basePath = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.append(str(basePath))
 
 from sharedResources.lifecycle.loop.state import LoopState , change_state
-from sharedResources.lifecycle.loop.logging_utils import set_register_log, _log
+from sharedResources.lifecycle.loop.logging_utils import set_register_log, _log, set_tasksMap
 from sharedResources.lifecycle.loop.checks import instance_check, loop_is_none, is_running, is_closed, _loop_is_ok, _can_interact
 from sharedResources.lifecycle.loop.start_and_stop import start_loop, stop_loop
 from sharedResources.lifecycle.loop.threadsafe import call_soon, submit, gather
@@ -26,13 +26,14 @@ class MyLoop():
     # _loop_started = False # flag para sinalizar que o loop começou
     _stop_loop_event = threading.Event() # usado para sinalizar que o run_forever dentro da thread do loop ja acabou
     # _first_set = True
-    tasksMap = {"unnamedTasks":[]}
+    tasksMap = None
     default_shutdown_event = None
 
     #from logging_utils.py
     set_register_log = classmethod(set_register_log)
     _log             = classmethod(_log)
     change_state     = classmethod(change_state)
+    set_tasksMap      = classmethod(set_tasksMap)
 
     #from checks.py
     loop_is_none     = classmethod(loop_is_none)
@@ -59,7 +60,7 @@ class MyLoop():
     def set_default_shutdown_event(cls,ev):
         if cls.default_shutdown_event is None:
             cls.default_shutdown_event = ev
-            
+
 
     # @classmethod
     # def set(cls,loop):

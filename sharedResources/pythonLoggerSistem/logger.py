@@ -19,14 +19,17 @@ class LoggerManager:
     _logs_path = BASE_DIR / "logs"
     _general_level = logging.WARN
     _general_filename = "default.log"
-    _DevMode = True
+    __dev_mode = True
+    _file_handlers =[]
+    _file_path_already_with_handlers = {}
+
 
     @classmethod
-    def set_logs_path(cls, path =_logs_path):
+    def set_logs_path(cls, path = None):
         """
         Defines the path where logs will be stored.
         """
-        cls._logs_path = path
+        cls._logs_path = path or cls._logs_path
         if not os.path.exists(cls._logs_path):
             wanted_path = Path(cls._logs_path)
             wanted_path.mkdir(parents=True, exist_ok=True)
@@ -71,23 +74,28 @@ class LoggerManager:
             filename = cls._general_filename
 
         file_path = os.path.join(cls._logs_path, filename)
-
-        file_handler = TimedRotatingFileHandler(file_path, when="midnight", backupCount=7)
-        file_handler.setLevel(level)
-
-        console_handler = logging.StreamHandler()
-        console_handler.setLevel(level)
+        if file_path not in cls._file_path_already_with_handlers:
+            file_handler = TimedRotatingFileHandler(file_path, when="midnight", backupCount=7)
+            file_handler.setLevel(level)
+            cls._file_path_already_with_handlers[file_path] = file_handler
+        else:
+            file_handler = cls._file_path_already_with_handlers[file_path]
 
         formatter = logging.Formatter(
             "%(levelname)s  in %(module)s:%(lineno)d [%(processName)s/%(threadName)s] → %(message)s  [%(asctime)s]"
         )
         file_handler.setFormatter(formatter)
+
+
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(level)
         console_handler.setFormatter(formatter)
 
         # Adiciona handlers se ainda não foram adicionados
         if not any(isinstance(h, QueueHandler) for h in logger.handlers):
         # if not logger.hasHandlers():
             cls._start_listener([file_handler, console_handler])
+            cls._file_handlers.append(file_handler)
             logger.addHandler(QueueHandler(cls._log_queue))
 
         # print(f"in the end the logger:{logger} and the type is : {type(logger)}")
@@ -98,16 +106,24 @@ class LoggerManager:
         """
         Encerra o listener se ele estiver rodando.
         """
-        if cls._listener and cls._listener_started:
-            cls._listener.stop()
-            cls._listener_started = False
-            cls._listener = None
+        print("o stop_listener do logger está sendo executado!!!")
+        try:
+            if cls._listener and cls._listener_started:
+                cls._listener.stop()
+                cls._listener_started = False
+                cls._listener = None
+            for handler in cls._file_handlers:
+                handler.close()
+            print("e foi executado inteiramente!")
+        except Exception as e:
+            print(f"deu erro e foi: {e}")
+        
 
     @classmethod
     def log_exception_with_context(cls, msg="", exception=None, show_tasks=True):
         """
         Loga a exceção atual, mostrando a linha do erro e as variáveis locais.
-        Se _DevMode=True e exception fornecida, levanta a exceção.
+        Se __dev_mode=True e exception fornecida, levanta a exceção.
         """
         console = Console()
         internalLogger = cls.get_logger()  # Garante que logger padrão exista
@@ -186,8 +202,8 @@ class LoggerManager:
                 except Exception:
                     pass
 
-            if cls._DevMode:
-                # Se _DevMode e exception passada, levanta
+            if cls.__dev_mode:
+                # Se __dev_mode e exception passada, levanta
                 if exception:
                     raise Exception(exception)
                 elif exc_value:

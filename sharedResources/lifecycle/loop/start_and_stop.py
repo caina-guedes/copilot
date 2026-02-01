@@ -1,6 +1,6 @@
 import threading
 import asyncio
-
+import warnings
 from pathlib import Path
 import sys
 basePath = Path(__file__).resolve().parent.parent.parent.parent
@@ -30,6 +30,7 @@ def start_loop(cls):
             cls._log("loop stopped","loop")
         except Exception as e:
             cls._log(f"Exception in loop thread: {e}","loop")
+            warnings.warn(e)
         finally:
             cls._stop_loop_event.set()
             cls.change_state(LoopState.CLOSED)
@@ -50,7 +51,7 @@ async def _cancel_all_tasks(cls, timeout = 5):
         if t is current_task:
             print("not using this task because is it the  current task")
             continue
-        if getattr(t, "_protected", False):# não pega tasks protegidas!
+        if getattr(t, "protected", False):# não pega tasks protegidas!
             cls._log(f" this task is protected so I wont cancell it : {t}","loop")
             continue
         tasks.append(t)
@@ -85,6 +86,7 @@ async def _cancel_all_tasks(cls, timeout = 5):
 
     except Exception as e:
         cls._log(f"[_cancel_all_tasks] error is:  {e}")
+        warnings.warn(e)
 
 
 
@@ -107,7 +109,7 @@ def stop_loop(cls, graceful=True):
             cls.change_state(LoopState.CLOSED)
             loop_stopped.set()
         
-        future = cls.submit(_stop())
+        future = cls.submit(_stop(),name="stop",protected = True)
         try:
             future.result(timeout=5)
             return True
@@ -119,6 +121,7 @@ def stop_loop(cls, graceful=True):
         # if not loop_stopped.wait(timeout=5):
     except Exception as e:
         cls._log(f"[stop_loop] deu exceção  e foi: {e}","loop")
+        warnings.warn(e)
 
 def kill_loop(cls):
 

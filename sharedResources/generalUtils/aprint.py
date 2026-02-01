@@ -10,6 +10,7 @@ basePath = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(basePath))
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 from sharedResources.lifecycle.shutdownThreadUtils import TrackedThread
+import warnings
 
 
 
@@ -36,6 +37,7 @@ def _print_worker():
             _original_print(*args, **{**kwargs, "flush": True})
         except Exception as e:
             _original_print(f"[aprint error] {e}")
+            warnings.warn(e)
             if DEBUG:
                 raise e
         finally:

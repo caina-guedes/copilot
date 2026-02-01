@@ -20,6 +20,7 @@ class WatcherNotsentEventsDatabase:
         return self
     
     async def close(self):
+        
         async with self.lock:
             if self.conn:
                 await self.conn.close()
@@ -83,6 +84,7 @@ class WatcherNotsentEventsDatabase:
                 cursor = await self.conn.execute(query)
                 saved_event = True
             except Exception as e:
+                warnings.warn(e)
                 logger.error(f"Error saving event on the database: {e}")
 
             if retrieve_id and saved_event:

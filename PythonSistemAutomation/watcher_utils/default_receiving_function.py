@@ -3,6 +3,7 @@ import json
 import time
 from pynput.keyboard import Key, Controller as KeyboardController
 from pynput.mouse import Button, Controller as MouseController
+import warnings
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
@@ -86,12 +87,13 @@ def kbPressOrRelease(key_name, action, controlsToIgnore):
         else:
             print(f"action {action} not recognized for keyboard")
         after = time.perf_counter()
-        print("Executed keyboard action:", action, "for key:", key_name)
+        print("Executed keyboard action: ", action, "for key:", key_name)
         return (before, after)
 
     except Exception as e:
+        
         print(f"Error processing keyboard action {action} for key {key_name}: {e}")
-
+        warnings.warn(e)
 
 class  InternalResponse:
     def __init__(self,start_time,endTime,waitForServer = None):
@@ -154,6 +156,7 @@ async def default_receiving_function(message, macroExecutor ):
                 
             except Exception as e:
                 print(f"Error processing keyboard command: {e}")
+                warnings.warn(e)
                 LoggerManager.log_exception_with_context(f"Error processing keyboard command: {e}",e)
 
         elif equipment == "mouse":
@@ -163,8 +166,9 @@ async def default_receiving_function(message, macroExecutor ):
                 return InternalResponse(before,after)
         
             except Exception as e:
-                LoggerManager.log_exception_with_context(f"Error processing mouse command: {e}",e)
                 print(f"Error processing mouse command: {e}")
+                warnings.warn(e)
+                LoggerManager.log_exception_with_context(f"Error processing mouse command: {e}",e)
 
         else:
             print(f"equipment {equipment} not recognized")
@@ -174,6 +178,7 @@ async def default_receiving_function(message, macroExecutor ):
         return InternalResponse(0,0)
     
     except Exception as e:
+        warnings.warn(e)
         LoggerManager.log_exception_with_context(f"[WATCHER] ❌ Error in default receiving function: {str(e)}")
     
         return InternalResponse(0,0)

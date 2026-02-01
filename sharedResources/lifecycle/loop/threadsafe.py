@@ -1,4 +1,5 @@
 import asyncio
+import warnings
 import threading
 import concurrent.futures
 import sys
@@ -7,20 +8,8 @@ basePath = Path(__file__).resolve().parent.parent.parent.parent
 # print("Path added to sys.path:", str(basePath))
 sys.path.append(str(basePath))
 
-from sharedResources.lifecycle.trackedItem import TrackedItem
+from sharedResources.lifecycle.trackedUtils.trackedItem import TrackedItem, TaskFinishRecord
 from sharedResources.lifecycle.shutdownTaskUtils import TrackedTask
-
-def _remove_from_map( task: asyncio.Task):
-    task_name = task.get_name()
-    items = TrackedTask.tasksMap.get(task_name, [])
-    items = [item for item in items if item.obj is not task]
-    if items:
-        TrackedTask.tasksMap[task_name] = items
-    else:
-        TrackedTask.tasksMap.pop(task_name, None)
-    TrackedTask.register_log(f"Task {task_name} removed from tasksMap", "tasks")
-
-# task.add_done_callback(_remove_from_map)
 
 
 def call_soon(cls, fn, *args):
@@ -30,7 +19,7 @@ def call_soon(cls, fn, *args):
 
     try:
         print("Current thread:", threading.current_thread())
-        print("Loop thread:", cls._thread)
+        # print("Loop thread:", cls._thread)
         if threading.current_thread() is cls._thread:
             print("Calling call_soon directly")
             cls._current.call_soon(fn, *args)
@@ -40,6 +29,7 @@ def call_soon(cls, fn, *args):
         return True
     except Exception as e:
         cls._log(f"call_soon failed: {e}","loop")
+        warnings.warn(e)
         return False
 
 
@@ -75,11 +65,11 @@ def submit(
         # CASO 1: já estamos no loop
         # ===========================
         if threading.current_thread() is cls._thread:
-            print("estamos na mesma thread, tentando retornar o o asyncio.create_task")
+            # print("estamos na mesma thread, tentando retornar o o asyncio.create_task")
             task = asyncio.create_task(coro, name=name)
-            setattr(task, "_protected", protected)
+            setattr(task, "protected", protected)
             cls._log(f"creating task in loop thread: {task}", "loop")
-            TrackedTask.register_task(
+            cls.tasksMap.register_task(
                 task=task,
                 name=name,
                 created_from=created_from,
@@ -87,8 +77,8 @@ def submit(
                 cleanup_function = cleanup_function,
                 cleanup_event = cleanup_event,
             )
-            cls._log(f"task registered: {task_name}", "loop")
-            task.add_done_callback(_remove_from_map)
+            cls._log(f"task registered: {name}", "loop")
+            task.add_done_callback(cls.tasksMap._on_task_finish)
 
             return task
 
@@ -100,10 +90,10 @@ def submit(
         def _create_task_in_loop():
             try:
                 task = asyncio.create_task(coro, name=name)
-                task.add_done_callback(_remove_from_map)
-                setattr(task, "_protected", protected)
+                task.add_done_callback(cls.tasksMap._on_task_finish)
+                setattr(task, "protected", protected)
                 cls._log(f"creating task in loop thread: {task}", "loop")
-                TrackedTask.register_task(
+                cls.tasksMap.register_task(
                     task          =  task,
                     name          =  name,
                     created_from  =  created_from,
@@ -117,7 +107,8 @@ def submit(
             except Exception as e:
                 cls._log("o erro dentro da _create_Task_in_loop foi: ",e)
                 fut.set_exception(e)
-                raise e
+                warnings.warn(e)
+                # raise e
 
         cls._current.call_soon_threadsafe(_create_task_in_loop)
         return fut
@@ -129,6 +120,7 @@ def submit(
             f"current thread: {threading.current_thread()} | loop thread: {cls._thread}",
             "loop",
         )
+        warnings.warn(e)
         return None
 
 def gather(cls, *coros, return_exceptions=False):
@@ -158,7 +150,7 @@ def gather(cls, *coros, return_exceptions=False):
 #         if threading.current_thread() is cls._thread:
 #             # estamos na thread do loop → cria a Task real
 #             task = asyncio.create_task(coro)
-#             setattr(task, "_protected", protected)
+#             setattr(task, "protected", protected)
 #             return task
 #         else:
 #             # estamos fora do loop → agendar a criação thread-safe
@@ -167,7 +159,7 @@ def gather(cls, *coros, return_exceptions=False):
 #             def wrapper():
 #                 try:
 #                     task = asyncio.create_task(coro)
-#                     setattr(task, "_protected", protected)
+#                     setattr(task, "protected", protected)
 #                     fut.set_result(task)
 #                 except Exception as e:
 #                     fut.set_exception(e)
@@ -225,7 +217,7 @@ def gather(cls, *coros, return_exceptions=False):
 
 #             # Cria a task real dentro do loop
 #             task = asyncio.create_task(wrapper(), name=task_name)
-#             setattr(task, "_protected", protected)  # marca se é protegida
+#             setattr(task, "protected", protected)  # marca se é protegida
 #             # Cria o item de tracking
 #             tracked_item = TrackedItem(
 #                 task,
@@ -277,3 +269,20 @@ def gather(cls, *coros, return_exceptions=False):
 #         cls._log(f"the coro was: {coro}","loop")
 #         cls._log(f"the current thread is: {threading.current_thread()} and loop thread id is: {cls._thread}","loop")
 #         return None
+
+# def _on_task_finish(task:asyncio.Task):
+#     # get trackedItem on live map
+#     tracked = tasksMap.get_alive_tracked_from_task(task)
+
+# def _remove_from_alive_map( task: asyncio.Task):
+#     task_name = task.get_name()
+#     items = TrackedTask.tasksMap.get(task_name, [])
+#     items = [item for item in items if item.obj is not task]
+#     if items:
+#         TrackedTask.tasksMap[task_name] = items
+#     else:
+#         TrackedTask.tasksMap.pop(task_name, None)
+#     TrackedTask.register_log(f"Task {task_name} removed from tasksMap", "tasks")
+
+# task.add_done_callback(_remove_from_map)
+

@@ -4,6 +4,7 @@ import threading
 import asyncio
 import logging
 # sharedResources/generalUtils
+import warnings
 import sys
 from pathlib import Path
 basePath = Path(__file__).resolve().parent.parent.parent
@@ -15,7 +16,7 @@ from sharedResources.lifecycle.shutdownTaskUtils import TrackedTask
 from sharedResources.lifecycle.printUtils import print_thread_status, print_async_tasks_status
 from sharedResources.lifecycle.utils import wait_event
 from sharedResources.lifecycle.loop.loop_class import MyLoop
-
+from sharedResources.lifecycle.trackedUtils.tasksMapClass import TasksMapClass
 # Setup básico de logging
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
 logger = logging.getLogger("LifecycleTracker")
@@ -47,7 +48,7 @@ class LifecycleMaster():
     # ---------------------
     # -------- maps -------
     threadsMap = {}
-    tasksMap = {"unnamedTasks":[]}
+    tasksMap = TasksMapClass
     logsMap = {"threads":[],"tasks":[], 'general': []}
     # ---------------------
 
@@ -114,7 +115,7 @@ class LifecycleMaster():
         # print("Submitting main to the loop...")
         if asyncio.iscoroutine(main_coro) or asyncio.iscoroutinefunction(main_coro):
             # print("Main coroutine is a coroutine or coroutine function.")
-            res = cls.running_loop.submit(main_coro, protected = True)
+            res = cls.running_loop.submit(main_coro, protected = True, name = "main")
         else:
             # print("Main coroutine is a regular function, scheduling it.")
             res  = cls.running_loop.call_soon(main_coro)
@@ -123,6 +124,7 @@ class LifecycleMaster():
 
     @classmethod
     def autoShutdown(cls):
+        from PythonSistemAutomation.watcher_utils.GlobalMacroExecutor import GlobalMacroExecutor
         """Função para iniciar o shutdown automático de threads e tasks"""
         # if cls.shutdown_event.is_set():
         if cls.state == "SHUTTING_DOWN":
@@ -132,16 +134,21 @@ class LifecycleMaster():
             cls.register_log("iniciando o autoshutdown","general")
         try:
             cls.register_log("Initiating automatic shutdown...","general")
+            GlobalMacroExecutor.umpress_keys()
             if cls.running_loop.get() is not None:
                 if not cls._loop_is_ok():
                     cls.register_log("[autoShutDown] loop is not ok just before task_shutdown_function be called!","general")
                 else:
                     cls.register_log("iniciating tasks shutdown","general")
                     res = asyncio.run_coroutine_threadsafe(cls.task_shutdown_function(), cls.running_loop.get())
-                    res.result(timeout = 5)
-            else:
+                    res.result(timeout = 10)
+                    cls.register_log(f"[autoShutdown]esperei o task_shutdown_function e o resultado foi:{res} ")
+                    cls.tasksMap.relatorio()
+            else:     
                 print("o loop é algo vazio e é: ",cls.running_loop.get())
+            cls.register_log(f"logo antes do shutdown_lock no autoShutdown")
             with cls.shutdown_lock:
+                cls.register_log(f"logo depois do shutdown_lock no autoShutdown")
                 cls.shutDownComplete.clear() # reset the event before shutdown
                 # Shutdown async tasks
                 # Shutdown threads
@@ -154,9 +161,10 @@ class LifecycleMaster():
             print("Automatic shutdown complete.")
         except Exception as e:
             print("[autoShutdown] the exception is:", e)
+            warnings.warn(e)
         finally:
             print("vou setar o shutdownComplete")
-
+            cls.tasksMap.relatorio()
             cls.shutDownComplete.set()
             print("setei o shutdownComplete")
         # else:
@@ -179,6 +187,7 @@ class LifecycleMaster():
                     wait_event(cls.shutDownComplete," LifecycleMaster.shutDownComplete event")
                 except Exception as e:
                     print("deu ruim no evento shutdownComplete e foi:",e)
+                    warnings.warn(e)
             else:
                 print("shutdownComplete Event is set properly")
             
@@ -238,18 +247,21 @@ class LifecycleMaster():
         # preparando as dependências para o lifecycle master
 
         # setting up the register log functions
-        MyLoop.set_register_log(cls.register_log)
+        MyLoop.set_register_log(        cls.register_log)
         TrackedThread.set_register_log( cls.register_log)
-        TrackedTask.set_register_log( cls.register_log)
-
+        TrackedTask.set_register_log(   cls.register_log)
+        cls.tasksMap.set_register_log( cls.register_log)
+        
         #setting up the maps
         TrackedThread.set_threadsMap( cls.threadsMap)
         TrackedTask.set_tasksMap(cls.tasksMap)
+        MyLoop.set_tasksMap(cls.tasksMap)
 
         #setting up the cleanup events
         TrackedThread.set_default_cleanup_event( cls.shutdown_event)
-        TrackedTask.set_default_cleanup_event( cls.shutdown_event)
-        MyLoop.set_default_shutdown_event(cls.shutdown_event)
+        TrackedTask.set_default_cleanup_event(   cls.shutdown_event)
+        MyLoop.set_default_shutdown_event(       cls.shutdown_event)
+        cls.tasksMap.set_default_cleanup_event(  cls.shutdown_event)
 
         #setting up the loop
         TrackedThread.set_running_loop(cls.running_loop)

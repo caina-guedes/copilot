@@ -2,6 +2,7 @@ import platform
 import time 
 import sys
 import copy
+import warnings
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent))
 from utils.OSSpecificUtils.linux_backend import LinuxWindowBackend
@@ -64,6 +65,7 @@ class WindowManager:
                     
                     
                 except Exception as e:
+                    "isso aqui pode falhar por conta do SO"
                     print("deu uma exceção na get_active_window  do windowManager e foi: " , e)
                     print("o oldWindow é:",oldWindow)
                     print("o tipo do oldWindow é:", type(oldWindow))
@@ -76,8 +78,9 @@ class WindowManager:
                 changed =  True
             return self.__class__.current_window , changed
         except Exception as e:
+
             print(f"deu ruim na get_active_window do windowManager e foi: {e}")
-        
+            warnings.warn(e)
     def focus_window(self, window_id):
         return self.backend.focus_window(window_id)
 

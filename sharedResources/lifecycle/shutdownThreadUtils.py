@@ -1,3 +1,4 @@
+import warnings
 import threading
 import sys
 from pathlib import Path
@@ -5,7 +6,7 @@ basePath = Path(__file__).resolve().parent.parent.parent
 # print("Path added to sys.path:", str(basePath))
 sys.path.append(str(basePath))
 
-from sharedResources.lifecycle.trackedItem import TrackedItem
+from sharedResources.lifecycle.trackedUtils.trackedItem import TrackedItem
 from sharedResources.lifecycle.cleanup_function import  execute_cleanup_function
 
 # -------------------- Thread wrapper --------------------
@@ -56,6 +57,7 @@ class TrackedThread(threading.Thread):
             thread_obj.join(timeout)
         except Exception as e:
             cls.register_log(f"[Shutdown] join erro: {e}", "threads")
+            warnings.warn(e)
         finally:
             if thread_obj.is_alive():
                 cls.register_log(f"[Shutdown] Thread {thread_obj.name} ainda viva após timeout", "threads")
@@ -157,6 +159,7 @@ class TrackedThread(threading.Thread):
                 print("[Shutdown] got it !")
             except Exception as e:
                 print("[Shutdown] deu erro e foi:  ",e)
+                warnings.warn(e)
         print("[Shutdown] All threads signaled.")
         if len(cls.problematicThreads)>0:
             print("tem thread dando problema e é:")

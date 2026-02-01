@@ -1,10 +1,13 @@
 import asyncio
+import warnings
 from copy import copy
 from datetime import datetime, timezone
 from time import time
 from PythonServer import serverConfig
 from PythonSistemAutomation.watcher_utils.default_callback import default_callback, treat_key_as_string
 from pynput import mouse, keyboard
+
+from PythonSistemAutomation.watcher_utils.GlobalMacroExecutor import  GlobalExecutor
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
@@ -22,6 +25,8 @@ class EventObserver:
         self.listener_keyboard = keyboard.Listener(on_press = self._on_press, on_release = self._on_release)
         self._current_macro = None
         self._pressed_keys = set()  # To keep track of pressed keys
+        self._pressed_buttons = set()
+        GlobalExecutor.set_pressed(self._pressed_keys,self._pressed_buttons)
         self.last_movement = datetime.now()
         self._callback_lock = asyncio.Semaphore(1) 
         
@@ -46,22 +51,15 @@ class EventObserver:
             except Exception as e:
                 logger.warning(f"Erro ao processar evento: {e}")
                 logger.debug("Finished processing one event")
+                warning.warn(e)
 
 
-    def on_click_wrapper(self,x, y, button, pressed):
-
-        task = asyncio.create_task(self._on_click(x, y, button, pressed),name = "_on_click_task")            
-        print("Created task and the name is: ",task.get_name())
     def use_on_event_callback(self, event):
         # print(f"[on_event_callback] for event: {event}")
         if self._on_event_callback is None:
             self._on_event_callback = default_callback
         
-        # def schedule():
-        #     task = asyncio.create_task(self._process_event(event),name = "_process_event_task")
-        #     print("Created _process_event_task and the name is:",task.get_name())
-        # self.myLoop.call_soon(schedule)
-        LifecycleMaster.run_async(self._process_event(event))
+        LifecycleMaster.run_async(self._process_event(event),name = "_process_event")
     def add_event(self, event):
         if self._current_macro is None:
             self._current_macro = copy([])
@@ -92,6 +90,7 @@ class EventObserver:
     def _on_click(self, x, y, button, pressed):
         if pressed:
             event_type = 'press'
+            self._pressed_buttons.add(button)
         else:
             event_type = 'release'
         event = {

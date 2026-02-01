@@ -1,3 +1,14 @@
+import warnings
+
+STRICT_MODE = True
+if STRICT_MODE:
+    warnings.simplefilter("error")
+    warnings.filterwarnings(
+        "ignore",
+        message="unclosed file .*Xauthority.*",
+        category=ResourceWarning,
+    )
+
 
 import signal 
 import json
@@ -66,7 +77,7 @@ class AutomationSystem:
                     AutomationSystem.main_instance.stop_observer()
                     LoggerManager.stop_listener()
                     # Chamadas assíncronas
-                    if LifecycleMaster.run_async( AutomationSystem.main_instance.not_sent_db.close()):
+                    if LifecycleMaster.run_async( AutomationSystem.main_instance.not_sent_db.close(),name = "not_sent_db.close", protected = True):
                         pass
                     else:
                         print("não entrou no if que eu queria")
@@ -81,11 +92,13 @@ class AutomationSystem:
                     print("AutomationSystem shutdown complete.")
             except Exception as e:
                 print("deu erro no shutDown do automation system e foi: ",e)
+                raise
+
         else:
             print("Watcher shutdown event is still happening, please wait.")
     
     def __init__(self, not_sent_db):
-        print(f"inicializando o automationSytem o argumento é: not_sent_db : {not_sent_db}")
+        print(f"inicializando o automationSystem o argumento é: not_sent_db : {not_sent_db}")
         AutomationSystem.main_instance = self
         self.actions = serverConfig.SOWatcherActions().actionDispatch  # Assuming actionDispatch is a dictionary of actions
         self.ws_client = WebSocketClient
@@ -107,7 +120,7 @@ class AutomationSystem:
         except Exception as e:
             LoggerManager.log_exception_with_context(f"Error checking not sent events database: {e}")
             logger.error(f"Error checking not sent events database: {e}")
-            raise e
+            # raise e
             # return self._not_sent_db_is_empty_last_check
         if quant == 0:
             self._not_sent_db_is_empty_last_check = True
@@ -161,6 +174,7 @@ class AutomationSystem:
             await self.ws_client.connect()
             logger.info("WebSocket client initialized.")
         except Exception as e:
+
             LoggerManager.log_exception_with_context(f"Error initializing WebSocket client: {e}")
             logger.error(f"Error initializing WebSocket client: {e}")
             raise e
@@ -202,12 +216,13 @@ async def main():
     #     AutomationSystem.shutdown(loop)
     except Exception as e:
         print(f"Error in main: {e}",level=logging.critical)
+        warning.warn(e)
     finally:
         print("entrou no finally da main...")
         try:
             if not LifecycleMaster.byebye.is_set():
                 print("esperando o byebye")
-                if LifecycleMaster.byebye.wait(timeout = 5):
+                if LifecycleMaster.byebye.wait(timeout = 15):
                     print("veio estou saindo")
                 else:
                     print(" deu timeout mas estou saindo de qualquer forma")
@@ -215,12 +230,8 @@ async def main():
                 print("byebye ja foi setado então tchau")
         except Exception as e:
             print(f" deu exceção no finally da main e foi: {e}")
+            warning.warn(e)
 
-        print_thread_status()
-        print_async_tasks_status()
-        # autoSystem.stop_observer()
-        # await not_sent_db.close()
-        # LoggerManager.stop_listener()
         print_thread_status()
         print_async_tasks_status()
 
@@ -231,36 +242,15 @@ if __name__ == "__main__":
             print(f"pondo o sinal {AutomationSystem.shutdown} no {sig}")
             signal.signal(sig, AutomationSystem.shutdown)
         print("consegui por os sinais")
+    
+        LifecycleMaster.start_runtime(main)
+        print("esperando byebye na thread principal!")
+        LifecycleMaster.byebye.wait()
+        print("byebye setado na thread principal")
+        LifecycleMaster.tasksMap.relatorio()
+    
     except Exception as e:
         print(f"deu erro fora da main e foi: {e}")
+        warnings.warn(e)
 
 
-    LifecycleMaster.start_runtime(main)
-    print("esperando byebye na thread principal!")
-    LifecycleMaster.byebye.wait()
-
-    print("byebye setado na thread principal")
-        # loop = asyncio.new_event_loop()
-    # asyncio.set_event_loop(loop)
-    # # try:
-    # #     asyncio.run(main())
-    # try:
-    #     loop.run_until_complete(main())
-    # except KeyboardInterrupt:
-    #         print("stopped observer.")
-    # finally:
-    #     loop.run_until_complete(LifecycleMaster.byebye.wait())
-    #     loop.close()
-    #     print("bye bye")
-    #     # print("beginning shutdown Process")
-    #     # while shutDownNotComplete:
-    #     #     if AutomationSystem.shutdown_event.is_set() is False:
-    #     #         print("shutdownEvent set!")
-    #     #         AutomationSystem.shutdown_event.set()
-    #     #     print("sleeping while shuttingdown")
-    #     #     print_thread_status()
-    #     #     time.sleep(1)
-            
-
-    # print("Aplicação encerrando...")
-    # LoggerManager.stop_listener() 
