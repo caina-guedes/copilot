@@ -119,7 +119,7 @@ class LifecycleMaster():
         else:
             # print("Main coroutine is a regular function, scheduling it.")
             res  = cls.running_loop.call_soon(main_coro)
-        print("Main coroutine submitted:", res)
+        # print("Main coroutine submitted:", res)
     
 
     @classmethod

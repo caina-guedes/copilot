@@ -33,31 +33,38 @@ class EventObserver:
         self._pressed_buttons = set()
         GlobalExecutor.set_pressed(self._pressed_keys,self._pressed_buttons)
         self.last_movement = datetime.now()
-        self._callback_lock = asyncio.Semaphore(1) 
+        self._callback_lock = asyncio.Semaphore(20) 
         self.listeners_running = False
-        
-    async def _process_event(self, event):
+        self.ignored_events_counter = 0
+        self.ignored_macro_events_counter = 0 
+
+    def _process_event(self, event):
         # print(f"[_process_event] event: {event}")
-        async with self._callback_lock:
-            try:
-                if event["type"] == "keyboard":
-                    convenientEventToCompare = (event["type"] ,event["key"].replace("Key.","") ,event["action"] )
-                elif event["type"] == "mouse":
-                    convenientEventToCompare = (event["type"] ,event["button"].replace("Button.","") ,event["action"],event['x'],event['y'] )
-                if self.system.ExecutingMacro["value"] or convenientEventToCompare in self.system.controlsToIgnore:
-                    # print("o controlstoIgnore logo antes de decidir sobre remover algo é: ",self.system.controlsToIgnore)
-                    print(f"the controlsToIgnore are: ",self.system.controlsToIgnore)
-                    if convenientEventToCompare in self.system.controlsToIgnore:
-                        print(f"the event is a macro event and will not be sent it is:",convenientEventToCompare)
-                        self.system.controlsToIgnore.remove(convenientEventToCompare)
-                        # return 
-                    else:
-                        pass
-                await self._on_event_callback(event, self.system)
-            except Exception as e:
-                logger.warning(f"Erro ao processar evento: {e}")
-                logger.debug("Finished processing one event")
-                warning.warn(e)
+        # async with self._callback_lock:
+        try:
+            if event["type"] == "keyboard":
+                convenientEventToCompare = (event["type"] ,event["key"].replace("Key.","") ,event["action"] )
+            elif event["type"] == "mouse":
+                convenientEventToCompare = (event["type"] ,event["button"].replace("Button.","") ,event["action"],event['x'],event['y'] )
+            if self.system.ExecutingMacro["value"] or convenientEventToCompare in self.system.controlsToIgnore:
+                # print("o controlstoIgnore logo antes de decidir sobre remover algo é: ",self.system.controlsToIgnore)
+                # print(f"the controlsToIgnore are: ",self.system.controlsToIgnore)
+                self.ignored_events_counter +=1
+                if convenientEventToCompare in self.system.controlsToIgnore:
+                    print(f"the event is a macro event and will not be sent it is:",convenientEventToCompare)
+                    self.system.controlsToIgnore.discard(convenientEventToCompare)
+                    self.ignored_macro_events_counter += 1
+                    print(" o contador de eventos ignorados do watcher está em: ",self.ignored_macro_events_counter )
+                return 
+                # else:
+                #     pass
+            LifecycleMaster.run_async(self._on_event_callback(event, self.system),name = "_process_real_event")
+
+            # await self._on_event_callback(event, self.system)
+        except Exception as e:
+            logger.warning(f"Erro ao processar evento: {e}")
+            logger.debug("Finished processing one event")
+            warnings.warn(e)
 
 
     def use_on_event_callback(self, event):
@@ -65,7 +72,8 @@ class EventObserver:
         if self._on_event_callback is None:
             self._on_event_callback = default_callback
         
-        LifecycleMaster.run_async(self._process_event(event),name = "_process_event")
+        self._process_event(event)
+        # LifecycleMaster.run_async(self._process_event(event),name = "_process_event")
 
     def add_event(self, event):
         if self._current_macro is None:

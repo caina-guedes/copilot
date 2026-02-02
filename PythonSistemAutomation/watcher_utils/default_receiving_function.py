@@ -59,7 +59,9 @@ def mouseExecCommand(message, action, controlsToIgnore):
 
     return (before,after)
 
-def kbPressOrRelease(key_name, action, controlsToIgnore):
+def kbPressOrRelease(message, action, controlsToIgnore):
+    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
+
     if hasattr(Key, key_name):
         key = getattr(Key, key_name)
     elif key_name.isupper():
@@ -104,90 +106,190 @@ class  InternalResponse:
         self.endTime = endTime
         self.waitForServer = waitForServer
 
+
+
+
+def exec_mouse_or_kb(message, macroExecutor,frozen_controls_to_ignore = None ):
+    if isinstance(message, str): 
+        message = json.loads(message)
+
+    controlsToIgnore = frozen_controls_to_ignore or macroExecutor._controlsToIgnore
+        # controlsToIgnore = frozen_controls_to_ignore or macroExecutor._controlsToIgnore
+    if controlsToIgnore is None :
+        print("[default_receiving_function] controlsToIgnore to ignore is none inside ")
+        print(f"[default_receiving_function] the message received here is: {message}")
+    if message is None:
+        print("Received None message, ignoring but maybe the connection has ended")
+        return InternalResponse(0,0)
+
+    action   = message['action']
+    ExecutingMacro   = macroExecutor._ExecutingMacro
+
+    if action == "endMacro":
+        ExecutingMacro["value"] = False
+        print("Macro execution ended.")
+        return InternalResponse(0,0)
+
+    elif action == "startMacro":
+        ExecutingMacro["value"] = True
+        print("Macro execution started.") 
+        return InternalResponse(0,0)
+
+    elif action == "WaitForServer":
+        return InternalResponse(0,0,True)
+    
+    elif action == "continueMacro":
+        return InternalResponse(0,0,False)
+
+    elif action not in ["press","release","click","double_click","scroll","move"]:
+        print(f"action {action} not recognized, will be ignored")
+        return InternalResponse(0,0)
+        
+    equipment = message["equipment"].lower()
+    if equipment == "keyboard":
+        try:
+            before,after = kbPressOrRelease(message, action, controlsToIgnore)
+    
+            return InternalResponse(before,after)
+            
+        except Exception as e:
+            print(f"Error processing keyboard command: {e}")
+            warnings.warn(str(e))
+            LoggerManager.log_exception_with_context(f"Error processing keyboard command: {e}",e)
+
+    elif equipment == "mouse":
+        try:
+            before,after = mouseExecCommand(message, action, controlsToIgnore)
+    
+            return InternalResponse(before,after)
+    
+        except Exception as e:
+            print(f"Error processing mouse command: {e}")
+            warnings.warn(str(e))
+            LoggerManager.log_exception_with_context(f"Error processing mouse command: {e}",e)
+
+    else:
+        print(f"equipment {equipment} not recognized")
+        LoggerManager.log_exception_with_context(f"equipment {equipment} not recognized")
+
+
+    return InternalResponse(0,0)
+
+    
 async def default_receiving_function(message, macroExecutor,frozen_controls_to_ignore = None ):
     """
     this functions needs the message to be [deltaTime,[equipment,action,key],modifiers]
     """
-    controlsToIgnore = frozen_controls_to_ignore or macroExecutor._controlsToIgnore
-    if controlsToIgnore is None :
-        print("[default_receiving_function] controlsToIgnore to ignore is none inside ")
-        print(f"[default_receiving_function] the message received here is: {message}")
-    ExecutingMacro   = macroExecutor._ExecutingMacro
-    if message is None:
-        print("Received None message, ignoring but maybe the connection has ended")
-        return InternalResponse(0,0)
     try:
-        message = json.loads(message)
-        action   = message['action']
-
-        if action == "endMacro":
-            ExecutingMacro["value"] = False
-            print("Macro execution ended.")
-            return InternalResponse(0,0)
-
-        elif action == "startMacro":
-            ExecutingMacro["value"] = True
-            print("Macro execution started.") 
-            return InternalResponse(0,0)
-
-        elif action == "WaitForServer":
-            return InternalResponse(0,0,True)
-        
-        elif action == "continueMacro":
-            return InternalResponse(0,0,False)
-
-        elif action not in ["press","release","click","double_click","scroll","move"]:
-            print(f"action {action} not recognized, will be ignored")
-            return InternalResponse(0,0)
+        if isinstance(message, str): 
+            message = json.loads(message)
             # pass
+        if "deltaTime" in message:
+            timeToWait = message['deltaTime']
+            loop_time = asyncio.get_running_loop().time()
+            # print(f"[{loop_time:.3f}] Aguardando {timeToWait}s")
+            await asyncio.sleep(timeToWait)
+            # print("o valor da flag na iminência da execução do comando é: ",macroExecutor._stop_running_macro_flag.get_value())
         
-        timeToWait = message['deltaTime']
-        loop_time = asyncio.get_running_loop().time()
-        # print(f"[{loop_time:.3f}] Aguardando {timeToWait}s")
-        await asyncio.sleep(timeToWait)
-        # print("o valor da flag na iminência da execução do comando é: ",macroExecutor._stop_running_macro_flag.get_value())
         if macroExecutor._stop_running_macro_flag.get_value():
             print("quase executei o comando só que a flag ja estava True e o comando dentro da receivingFunction é: ",message)
             macroExecutor._reset_macro_state()
             return InternalResponse( 0 , 0 , "killmacro" )
 
-        equipment = message["equipment"].lower()
-        if equipment == "keyboard":
-            try:
-                key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
-                
-                before,after = kbPressOrRelease(key_name, action, controlsToIgnore)
+        return exec_mouse_or_kb(message, macroExecutor,frozen_controls_to_ignore)
         
-                return InternalResponse(before,after)
-                
-            except Exception as e:
-                print(f"Error processing keyboard command: {e}")
-                warnings.warn(str(e))
-                LoggerManager.log_exception_with_context(f"Error processing keyboard command: {e}",e)
-
-        elif equipment == "mouse":
-            try:
-                before,after = mouseExecCommand(message, action, controlsToIgnore)
-        
-                return InternalResponse(before,after)
-        
-            except Exception as e:
-                print(f"Error processing mouse command: {e}")
-                warnings.warn(str(e))
-                LoggerManager.log_exception_with_context(f"Error processing mouse command: {e}",e)
-
-        else:
-            print(f"equipment {equipment} not recognized")
-            LoggerManager.log_exception_with_context(f"equipment {equipment} not recognized")
-
-    
-        return InternalResponse(0,0)
-    
     except Exception as e:
+        print("[default_receiving_function] a exceção é: ",e)
+        print("[default_receiving_function] a mensagem recebida na função é: ",message)
         warnings.warn(str(e))
         LoggerManager.log_exception_with_context(f"[WATCHER] ❌ Error in default receiving function: {str(e)}")
     
         return InternalResponse(0,0)
+
+# async def old_default_receiving_function(message, macroExecutor,frozen_controls_to_ignore = None ):
+#     """
+#     this functions needs the message to be [deltaTime,[equipment,action,key],modifiers]
+#     """
+#     controlsToIgnore = frozen_controls_to_ignore or macroExecutor._controlsToIgnore
+#     if controlsToIgnore is None :
+#         print("[default_receiving_function] controlsToIgnore to ignore is none inside ")
+#         print(f"[default_receiving_function] the message received here is: {message}")
+#     ExecutingMacro   = macroExecutor._ExecutingMacro
+#     if message is None:
+#         print("Received None message, ignoring but maybe the connection has ended")
+#         return InternalResponse(0,0)
+#     try:
+#         message = json.loads(message)
+#         action   = message['action']
+
+#         if action == "endMacro":
+#             ExecutingMacro["value"] = False
+#             print("Macro execution ended.")
+#             return InternalResponse(0,0)
+
+#         elif action == "startMacro":
+#             ExecutingMacro["value"] = True
+#             print("Macro execution started.") 
+#             return InternalResponse(0,0)
+
+#         elif action == "WaitForServer":
+#             return InternalResponse(0,0,True)
+        
+#         elif action == "continueMacro":
+#             return InternalResponse(0,0,False)
+
+#         elif action not in ["press","release","click","double_click","scroll","move"]:
+#             print(f"action {action} not recognized, will be ignored")
+#             return InternalResponse(0,0)
+#             # pass
+        
+#         timeToWait = message['deltaTime']
+#         loop_time = asyncio.get_running_loop().time()
+#         # print(f"[{loop_time:.3f}] Aguardando {timeToWait}s")
+#         await asyncio.sleep(timeToWait)
+#         # print("o valor da flag na iminência da execução do comando é: ",macroExecutor._stop_running_macro_flag.get_value())
+#         if macroExecutor._stop_running_macro_flag.get_value():
+#             print("quase executei o comando só que a flag ja estava True e o comando dentro da receivingFunction é: ",message)
+#             macroExecutor._reset_macro_state()
+#             return InternalResponse( 0 , 0 , "killmacro" )
+
+#         equipment = message["equipment"].lower()
+#         if equipment == "keyboard":
+#             try:
+#                 key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
+                
+#                 before,after = kbPressOrRelease(key_name, action, controlsToIgnore)
+        
+#                 return InternalResponse(before,after)
+                
+#             except Exception as e:
+#                 print(f"Error processing keyboard command: {e}")
+#                 warnings.warn(str(e))
+#                 LoggerManager.log_exception_with_context(f"Error processing keyboard command: {e}",e)
+
+#         elif equipment == "mouse":
+#             try:
+#                 before,after = mouseExecCommand(message, action, controlsToIgnore)
+        
+#                 return InternalResponse(before,after)
+        
+#             except Exception as e:
+#                 print(f"Error processing mouse command: {e}")
+#                 warnings.warn(str(e))
+#                 LoggerManager.log_exception_with_context(f"Error processing mouse command: {e}",e)
+
+#         else:
+#             print(f"equipment {equipment} not recognized")
+#             LoggerManager.log_exception_with_context(f"equipment {equipment} not recognized")
+
+    
+#         return InternalResponse(0,0)
+    
+#     except Exception as e:
+#         warnings.warn(str(e))
+#         LoggerManager.log_exception_with_context(f"[WATCHER] ❌ Error in default receiving function: {str(e)}")
+    
+#         return InternalResponse(0,0)
 
 if __name__ == "__main__":
     kbPressOrRelease("a","press",set())

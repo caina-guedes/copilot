@@ -23,7 +23,7 @@ class TrackedThread(threading.Thread):
     def set_running_loop(cls,loop):
         if cls.running_loop is None:
             cls.running_loop = loop
-            print("setei o loop na classe da thread e é: ",loop)
+            # print("setei o loop na classe da thread e é: ",loop)
         else:
             print("ja tem loop setado aqui! não vou setar outro!")
    

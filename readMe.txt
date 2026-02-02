@@ -9,7 +9,6 @@ comando para iniciar o server
 PYTHONPATH=. python3 PythonServer/server.py
 
 
-
 acho que a função de despressionar teclas é a raiz do problema, por ter partes async misturadas,
 
 alem disso a função logo depois da task acabar tbm não deve ter nada async ou demorado, 

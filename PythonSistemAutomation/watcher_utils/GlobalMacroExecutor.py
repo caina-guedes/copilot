@@ -11,7 +11,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 
 from sharedResources.generalUtils.aprint import aprint
-from PythonSistemAutomation.watcher_utils.default_receiving_function import default_receiving_function
+from PythonSistemAutomation.watcher_utils.default_receiving_function import default_receiving_function, exec_mouse_or_kb
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
@@ -40,61 +40,50 @@ class GlobalExecutor:
     @classmethod
     def set_pressed(cls,pressed_keys, pressed_buttons):
         if cls._pressed_keys is None:
-            print("seeting _pressed_keys to: ",pressed_keys)
+            # print("seeting _pressed_keys to: ",pressed_keys)
             cls._pressed_keys = pressed_keys
         if cls._pressed_buttons is None:
             cls._pressed_buttons = pressed_buttons
 
     
     @classmethod
-    async def umpress_keys(cls, controls_to_ignore = None):
+    def umpress_keys(cls, controls_to_ignore = None):
         frozen_controls_to_ignore = copy.deepcopy(controls_to_ignore) 
         
         # if len(cls._pressed_keys)> 0:
         #     print("printing umpressed_keys")
         if cls._pressed_keys is not None and len(cls._pressed_keys)>0:
             for original_key in list(cls._pressed_keys):# formata e tenta desapertar o botão
-                key = original_key.replace("Key.","")
-                print("the key is: ",key)
-                # try:
-                command = json.dumps({
-                    "key" : key, 
+                print("the original_key is: ",original_key)
+                command = {
+                    "key" : original_key, 
                     "action" : "release", 
                     "equipment" : "keyboard",
-                    "deltaTime": 0})
-                res = LifecycleMaster.run_async(cls._execute_command(command,frozen_controls_to_ignore ),protected = True, name = "protected_kb_umpress")
-                if inspect.isawaitable(res):
-                    await res # Garante que a tecla SOLTOU antes de remover do set
+                    "deltaTime": 0}
+                exec_mouse_or_kb(command,cls,frozen_controls_to_ignore)                
                 cls._pressed_keys.discard(original_key)
-
+                
         # if len(cls._pressed_buttons)>0:
         #     print("umpressing buttons")
         if cls._pressed_buttons is not None and len(cls._pressed_buttons)>0:
-            for original_button in list(cls._pressed_buttons): #formata e tenta apertar
+            for original_button in list(cls._pressed_buttons): # tenta apertar
                 print("the button is originaly: ",original_button)
-                button = str(original_button).replace("Button.","")
-                print("the button to umpress is: ",button)
-                command = json.dumps({
-                    "button" : button, 
+                command = {
+                    "button" : original_button, 
                     "action" : "release", 
                     "equipment" : "mouse",
-                    "deltaTime": 0})
-                res = LifecycleMaster.run_async(
-                    cls._execute_command(command, frozen_controls_to_ignore ),
-                    name = "protected_mouse_umpress",
-                    protected = True)
-                if inspect.isawaitable(res):
-                    await res # Garante que a tecla SOLTOU antes de remover do set
-                    cls._pressed_buttons.discard(original_button)
-            
+                    "deltaTime": 0}
+                exec_mouse_or_kb(command,cls,frozen_controls_to_ignore)
+                cls._pressed_buttons.discard(original_button)
+                
     @classmethod
-    async  def _reset_macro_state(cls):
+    def _reset_macro_state(cls):
         cls._stop_running_macro_flag.set_value(False)
         cls._internalStartMacroTime = None
         cls._internalStopMacroTime = None
         cls._wait_for_server = False
         cls._ExecutingMacro['value'] = False
-        await cls.umpress_keys(cls._controlsToIgnore)
+        cls.umpress_keys(cls._controlsToIgnore)
         cls._controlsToIgnore.clear()
         print("[GlobalExecutor] Macro state reset.")
 
@@ -127,7 +116,7 @@ class GlobalExecutor:
             cls._stop_running_macro_flag.set_value(True)
             print("o valor da flag de parada foi setado e agora é: ",cls._stop_running_macro_flag.get_value() )
             await cls._clear_queue()
-            # await cls._reset_macro_state()
+            # cls._reset_macro_state()
             print("kill macro executed successfully")
             return
 
@@ -169,7 +158,7 @@ class GlobalExecutor:
                 print(f"[GlobalExecutor] Error stopping executor: {e}")
                 warnings.warn(str(e))
                 LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error stopping executor: {e}",e)
-        await cls._reset_macro_state()
+        cls._reset_macro_state()
         print("[GlobalExecutor] Stopped.")
 
     @classmethod
@@ -192,22 +181,29 @@ class GlobalExecutor:
                     continue
                 except asyncio.CancelledError:
                     print("tarefa do loop da macro cancelada, encerrando")
-                    await cls._reset_macro_state()
+                    cls._reset_macro_state()
                     break
                 if cls._stop_running_macro_flag.get_value():
                     print(f"quase executei o comando só que a flag ja estava True e o comando é:    {command} ")
-                    await cls._reset_macro_state()
+                    cls._reset_macro_state()
                     cls._queue.task_done()
                     continue
                 # timeWaitingInQueue.append(time.perf_counter() - scheduledTime)
+                
                 if command:
-                    command_data = json.loads(command)
+                    command_data = json.loads(command) if isinstance(command, str) else command
+                    # command_data = json.loads(command)
                 else:
                     print("empty command received: ",command)
                     cls._queue.task_done()
                     continue
 
-                time_it_should_take += command_data.get("deltaTime", 0)
+                try:
+                    time_it_should_take += command_data.get("deltaTime", 0)
+                except Exception as e:
+                    print("o command_data no momento da exceção é:",command_data)
+                    print("a exceção é: ",e)
+                    raise
                 startingTimeOfEachCommand.append([time.perf_counter()])
                 internalBefore = time.perf_counter()
                 response  = await cls._execute_command(command)
@@ -270,10 +266,10 @@ class GlobalExecutor:
                     startingTimeOfEachCommand.pop()  # Remove se não houve interação
 
                 if command_data.get("action") == "startMacro":
-                    await cls.umpress_keys()
+                    cls.umpress_keys()
                     cls._internalStartMacroTime = time.perf_counter()
                 elif command_data.get("action") == "endMacro":
-                    await cls.umpress_keys()
+                    cls.umpress_keys()
                     cls._internalStopMacroTime = time.perf_counter()
                     if cls._internalStartMacroTime is not None:
                         try:
@@ -285,17 +281,17 @@ class GlobalExecutor:
                         
                         time_it_should_take = 0.0
                         macroAcumulatedInteractionWithSOTime = 0.0
-                        await cls._reset_macro_state()
+                        cls._reset_macro_state()
                     else:
                         LoggerManager.log_exception_with_context(f"[GlobalExecutor] endMacro received without a matching startMacro.")
                 cls._queue.task_done()
             except asyncio.CancelledError:
                 warnings.warn(" GlobalExecutorLoopTask task cancelled!")
-                await cls._reset_macro_state()
+                cls._reset_macro_state()
                 break
             except Exception as e:
                 print(f"[GlobalExecutor] Error executing command: {e}")
-                await cls.umpress_keys()
+                cls.umpress_keys()
                 warnings.warn(str(e))
                 LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error executing command: {e}",e)
 

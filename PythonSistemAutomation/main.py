@@ -98,15 +98,15 @@ class AutomationSystem:
             print("Watcher shutdown event is still happening, please wait.")
     
     def __init__(self, not_sent_db):
-        print(f"inicializando o automationSystem o argumento é: not_sent_db : {not_sent_db}")
+        # print(f"inicializando o automationSystem o argumento é: not_sent_db : {not_sent_db}")
         AutomationSystem.main_instance = self
         self.actions = serverConfig.SOWatcherActions().actionDispatch  # Assuming actionDispatch is a dictionary of actions
         self.ws_client = WebSocketClient
         self.ExecutingMacro = {"value":False}
         self.controlsToIgnore = set()  # Set of controls to ignore during macro execution
-        print("logo antes de mexer com o websocket!")
+        # print("logo antes de mexer com o websocket!")
         self.ws_client.prepareClass(self)
-        print("logo antes do observer!")
+        # print("logo antes do observer!")
         self.observer = EventObserver(self)
         self.not_sent_db = not_sent_db  # Initialize the database for not sent events
         self._not_sent_db_is_empty_last_check = True  # Flag to check if the database is empty
@@ -170,7 +170,7 @@ class AutomationSystem:
         Initializes the WebSocket client connection.
         """
         try:
-            print("estou no inicializeWebsocket")
+            # print("estou no inicializeWebsocket")
             await self.ws_client.connect()
             logger.info("WebSocket client initialized.")
         except Exception as e:
@@ -198,7 +198,7 @@ async def main():
     # loop = asyncio.get_running_loop()
     # LifecycleMaster.set_loop(loop)
     
-    print("comecei a executar a main function do watcher!")
+    # print("comecei a executar a main function do watcher!")
     try:
         not_sent_db = await WatcherNotsentEventsDatabase.create()  # Initialize the not sent events database
         print("inicializei o not_sent_db")
@@ -239,9 +239,9 @@ if __name__ == "__main__":
     try:
     # Captura Ctrl+C ou sinal de término
         for sig in (signal.SIGINT, signal.SIGTERM):
-            print(f"pondo o sinal {AutomationSystem.shutdown} no {sig}")
+            # print(f"pondo o sinal {AutomationSystem.shutdown} no {sig}")
             signal.signal(sig, AutomationSystem.shutdown)
-        print("consegui por os sinais")
+        # print("consegui por os sinais")
     
         LifecycleMaster.start_runtime(main)
         print("esperando byebye na thread principal!")

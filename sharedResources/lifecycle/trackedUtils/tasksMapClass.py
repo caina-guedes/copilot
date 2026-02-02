@@ -6,7 +6,7 @@ from collections import defaultdict, deque
 from dataclasses import dataclass
 from typing import Any, Callable, Optional, Literal
 import warnings
-
+import traceback
 
 import logging
 # sharedResources/generalUtils
@@ -52,15 +52,15 @@ class TasksMapClass:
         name = tracked_item.name or f"unnamedTask-{id(tracked_item)}"
         with cls.lock:
             cls.alive.setdefault(name,[]).append(tracked_item)
-            print("[add_tracked]the task's name type added is: ",type(name))
-            print("[add_tracked]the task's name added is: ",name)
-            print("[add_tracked]the tasks that exists now are:")
-            for x in cls.alive:
-                print(x)
-            if x == name:
-                print("the tasks under this name are: ")
-                for task_atual in cls.alive[x]:
-                    print(task_atual)
+            # print("[add_tracked]the task's name type added is: ",type(name))
+            # print("[add_tracked]the task's name added is: ",name)
+            # print("[add_tracked]the tasks that exists now are:")
+            # for x in cls.alive:
+            #     print(x)
+            # if x == name:
+            #     print("the tasks under this name are: ")
+            #     for task_atual in cls.alive[x]:
+            #         print(task_atual)
 
     @classmethod
     def register_task(
@@ -106,10 +106,10 @@ class TasksMapClass:
 
         # cls.tasksMap.get_alive().setdefault(task_name, []).append(current_task_item)
 
-        cls.register_log(
-            f"[TrackedTask] registered {task_name} (protected={protected}) from {created_from}",
-            "tasks",
-            )
+        # cls.register_log(
+        #     f"[TrackedTask] registered {task_name} (protected={protected}) from {created_from}",
+        #     "tasks",
+        #     )
         
 
     @classmethod

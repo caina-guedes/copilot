@@ -29,7 +29,7 @@ class WebSocketClient:
 
     @classmethod
     def prepareClass(cls, system):
-        print("websocket client prepareClass method running")
+        # print("websocket client prepareClass method running")
         cls.system = system
         cls.comandos = []
         cls.actions = system.actions  # Assuming actionDispatch is a dictionary of actions
@@ -80,15 +80,15 @@ class WebSocketClient:
                 logger.info("Initializing a new TwoWayConnection instance.")
                 cls.connection = TwoWayConnection()
             #starting sender connection
-            print("starting sender connection ")
+            # print("starting sender connection ")
             try:
                 sender = await websockets.connect(cls.uri)
             except Exception as e:
                 warnings.warn(str(e))
                 print("the exception on the sender connect is: ",e)
-            print("setting sender connection")
+            # print("setting sender connection")
             cls.connection.set_sender(sender)
-            print("iniciando handshake")
+            # print("iniciando handshake")
             await threatHandShake(cls,sender,False)
             # starting receiver connection
             receiver = await websockets.connect(cls.uri)
@@ -114,7 +114,7 @@ class WebSocketClient:
         If the connection is already established, it will close the existing connection
         and create a new one.
         """
-        print("inicio do connect do websocket")
+        print("[CLIENT] 🔄 Attempting to connect to the server...")
         logger.info(f"[CLIENT] 🔄 Attempting to connect to the server...")
         try:
             if cls.connection is None:
