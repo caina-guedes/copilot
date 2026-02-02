@@ -37,12 +37,15 @@ class EventObserver:
         self.listeners_running = False
         ###### tenho que implementar esse dicionário e printar no lugar certo!
         self.counter        = {
-            "ignored_events":0,
-            "ignored_macro_events":0 ,
-            "executing_macro_events":0,
-            "not_executing_macro_events":0,
-            "send_to_process_events":0,
+            "total_events" :  0,
+            "ignored_events":[],
+            "send_macro_events":[] ,
+            "ignored_not_macro_events":[],
+            "executing_macro_events":[],
+            "not_executing_macro_events":[],
+            "send_to_process_events":[],
             }
+        self.events_from_macro = []
         # self.ignored_events_counter = 0
         # self.ignored_macro_events_counter = 0 
 
@@ -50,10 +53,13 @@ class EventObserver:
         # print(f"[_process_event] event: {event}")
         # async with self._callback_lock:
         try:
+            self.counter["total_events"] += 1
+
             if self.system.ExecutingMacro["value"]:
-                self.counter["executing_macro_events"] += 1 
+                self.counter["executing_macro_events"].append(event) 
             else:
-                self.counter["not_executing_macro_events"] += 1
+                self.counter["not_executing_macro_events"].append(event)
+            
             if event["type"] == "keyboard":
                 convenientEventToCompare = (event["type"] ,event["key"].replace("Key.","") ,event["action"] )
             elif event["type"] == "mouse":
@@ -62,19 +68,27 @@ class EventObserver:
                 # print("o controlstoIgnore logo antes de decidir sobre remover algo é: ",self.system.controlsToIgnore)
                 # print(f"the controlsToIgnore are: ",self.system.controlsToIgnore)
 
-                self.counter["ignored_events"] += 1
                 if convenientEventToCompare in self.system.controlsToIgnore:
                     print(f"the event is a macro event and will not be sent it is:",convenientEventToCompare)
-                    
-                    self.system.controlsToIgnore.discard(convenientEventToCompare)
-                    
-                    self.counter["ignored_macro_events"] += 1
+                    # if convenientEventToCompare in self.system.controlsToIgnore:
+                    try:
+                        self.system.controlsToIgnore.remove(convenientEventToCompare)
+                        self.events_from_macro.append(convenientEventToCompare)
+                        self.counter["send_macro_events"].append(event)
+                        LifecycleMaster.run_async(self._on_event_callback(event, self.system),name = "_process_real_event")
+
+                    except:
+                        self.counter["ignored_not_macro_events"].append(event)
+
+                # else:
+
                 #     print(" o contador de eventos ignorados do watcher está em: " , self.counter["ignored_macro_events"] )
                 #     print("e o contador de chamadas do process_event é: " , self.counter["ignored_events"])
+                self.counter["ignored_events"].append(event)
                 return 
                 # else:
                 #     pass
-            self.counter["send_to_process_events"] +=1 
+            self.counter["send_to_process_events"].append(event)
             LifecycleMaster.run_async(self._on_event_callback(event, self.system),name = "_process_real_event")
 
             # await self._on_event_callback(event, self.system)
@@ -177,7 +191,6 @@ class EventObserver:
         if key == AutomationSystem.config.stopKey:
             print("Stop key pressed. but stopping command is comment for now")
             logger.info("Stop key pressed. Stopping observer.")
-            # self.stop()
         
             
     def _on_release(self, key):
@@ -213,5 +226,14 @@ class EventObserver:
         print("[EventObserver]stop called ")
         self.listener_mouse.stop()
         self.listener_keyboard.stop()
-        for counter in self.counter:
-            print(counter,"  ",self.counter[counter])
+        for metric in self.counter:
+            print(metric)
+            if isinstance(self.counter[metric],int ):
+                print(self.counter[metric])
+            else:
+                print(len(self.counter[metric]))
+                for ev in self.counter[metric]:
+                    print(ev)
+        print("macro events not send:")
+        for ev in self.events_from_macro:
+            print(ev)

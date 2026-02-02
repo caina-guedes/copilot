@@ -1,1 +1,4 @@
 WARNING  in watcher:60 [MainProcess/Thread-5] → Erro ao processar evento: ('keyboard', 'tab', 'release')  [2026-02-02 13:37:56,661]
+WARNING  in watcher:91 [MainProcess/AsyncioLoopThread] → Erro ao processar evento: ('keyboard', 'tab', 'press')  [2026-02-02 16:20:48,124]
+WARNING  in watcher:91 [MainProcess/Thread-5] → Erro ao processar evento: ('keyboard', 'alt', 'release')  [2026-02-02 16:21:36,289]
+WARNING  in watcher:91 [MainProcess/Thread-5] → Erro ao processar evento: ('keyboard', 'tab', 'release')  [2026-02-02 16:22:05,615]
