@@ -35,13 +35,25 @@ class EventObserver:
         self.last_movement = datetime.now()
         self._callback_lock = asyncio.Semaphore(20) 
         self.listeners_running = False
-        self.ignored_events_counter = 0
-        self.ignored_macro_events_counter = 0 
+        ###### tenho que implementar esse dicionário e printar no lugar certo!
+        self.counter        = {
+            "ignored_events":0,
+            "ignored_macro_events":0 ,
+            "executing_macro_events":0,
+            "not_executing_macro_events":0,
+            "send_to_process_events":0,
+            }
+        # self.ignored_events_counter = 0
+        # self.ignored_macro_events_counter = 0 
 
     def _process_event(self, event):
         # print(f"[_process_event] event: {event}")
         # async with self._callback_lock:
         try:
+            if self.system.ExecutingMacro["value"]:
+                self.counter["executing_macro_events"] += 1 
+            else:
+                self.counter["not_executing_macro_events"] += 1
             if event["type"] == "keyboard":
                 convenientEventToCompare = (event["type"] ,event["key"].replace("Key.","") ,event["action"] )
             elif event["type"] == "mouse":
@@ -49,15 +61,20 @@ class EventObserver:
             if self.system.ExecutingMacro["value"] or convenientEventToCompare in self.system.controlsToIgnore:
                 # print("o controlstoIgnore logo antes de decidir sobre remover algo é: ",self.system.controlsToIgnore)
                 # print(f"the controlsToIgnore are: ",self.system.controlsToIgnore)
-                self.ignored_events_counter +=1
+
+                self.counter["ignored_events"] += 1
                 if convenientEventToCompare in self.system.controlsToIgnore:
                     print(f"the event is a macro event and will not be sent it is:",convenientEventToCompare)
+                    
                     self.system.controlsToIgnore.discard(convenientEventToCompare)
-                    self.ignored_macro_events_counter += 1
-                    print(" o contador de eventos ignorados do watcher está em: ",self.ignored_macro_events_counter )
+                    
+                    self.counter["ignored_macro_events"] += 1
+                #     print(" o contador de eventos ignorados do watcher está em: " , self.counter["ignored_macro_events"] )
+                #     print("e o contador de chamadas do process_event é: " , self.counter["ignored_events"])
                 return 
                 # else:
                 #     pass
+            self.counter["send_to_process_events"] +=1 
             LifecycleMaster.run_async(self._on_event_callback(event, self.system),name = "_process_real_event")
 
             # await self._on_event_callback(event, self.system)
@@ -193,5 +210,8 @@ class EventObserver:
             self.listener_keyboard.start()
 
     def stop(self):
+        print("[EventObserver]stop called ")
         self.listener_mouse.stop()
         self.listener_keyboard.stop()
+        for counter in self.counter:
+            print(counter,"  ",self.counter[counter])
