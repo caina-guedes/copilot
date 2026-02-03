@@ -18,13 +18,13 @@ def call_soon(cls, fn, *args):
         return False
 
     try:
-        print("Current thread:", threading.current_thread())
+        # print("Current thread:", threading.current_thread())
         # print("Loop thread:", cls._thread)
         if threading.current_thread() is cls._thread:
-            print("Calling call_soon directly")
+            # print("Calling call_soon directly")
             cls._current.call_soon(fn, *args)
         else:
-            print("Calling call_soon_threadsafe")
+            # print("Calling call_soon_threadsafe")
             cls._current.call_soon_threadsafe(fn, *args)
         return True
     except Exception as e:

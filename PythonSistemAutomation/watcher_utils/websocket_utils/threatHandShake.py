@@ -30,8 +30,10 @@ async def threatHandShake(cls,connection,isReceiver=True):
         status = json.loads(response).get('status', 'unknown')
 
         if json.loads(response)['status'] == "sucesso":
+            print(f"[{__name__}] 🖥️ {tipo} Connection Started!")
             logger.info(f"[{__name__}] 🖥️ {tipo} Connection Started!")
         elif status == "falha":
+            print(f"[{__name__}] ❌ Message processing failed.")
             logger.info(f"[{__name__}] ❌ Message processing failed.")
             raise ConnectionError("Handshake failed")
         else:

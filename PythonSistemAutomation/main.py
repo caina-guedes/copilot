@@ -185,9 +185,9 @@ class AutomationSystem:
     def start_observer(self):
         self.observer.start()
 
-    def start_observer_in_thread(self):
-        # tenho que mudar isso aqui pra TrackedThread
-        Thread(target=self.start_observer, daemon=True, name = "ObserverThread").start()
+    # def start_observer_in_thread(self):
+    #     # tenho que mudar isso aqui pra TrackedThread
+    #     Thread(target=self.start_observer, daemon=True, name = "ObserverThread").start()
 
     def stop_observer(self):
         self.observer.stop()
@@ -205,7 +205,7 @@ async def main():
         autoSystem = AutomationSystem(not_sent_db)
         print("inicializei o automationSystem")
         logger.info("Starting event observer...")
-        autoSystem.start_observer_in_thread()
+        autoSystem.start_observer()
         print("comecei o start_observer_in_thread")
         await autoSystem.initializeWebsocket()
         print("comecei o websocket")

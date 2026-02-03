@@ -324,8 +324,11 @@ class TasksMapClass:
             if TasksMapClass.STRICT_MODE:
                 raise record.exception
             else:
+                string  = f"Task '{record.name}' failed" +"\n"
+                string += f" exception ={record.exception} "+ "\n"
+                string += f"traceback: {record.traceback}"
                 warnings.warn(
-                    f"Task '{record.name}' failed: {record.exception}",
+                    string,
                     RuntimeWarning,
                     stacklevel=2,
                 )

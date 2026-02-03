@@ -68,7 +68,11 @@ class LifecycleMaster():
     @classmethod
     def _loop_is_ok(cls):
         return cls.running_loop._loop_is_ok()
-        
+
+    @classmethod
+    def call_soon(cls, fn, *args):
+        cls.running_loop.call_soon(fn, *args)
+    
     @classmethod
     def emergency_shutdown(cls,erro):
         #previne reentrada!
