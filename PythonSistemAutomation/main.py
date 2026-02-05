@@ -106,8 +106,9 @@ class AutomationSystem:
         self.controlsToIgnore = set()  # Set of controls to ignore during macro execution
         # print("logo antes de mexer com o websocket!")
         self.ws_client.prepareClass(self)
-        # print("logo antes do observer!")
+        print("logo antes do observer!")
         self.observer = EventObserver(self)
+        print("logo depois do observer")
         self.not_sent_db = not_sent_db  # Initialize the database for not sent events
         self._not_sent_db_is_empty_last_check = True  # Flag to check if the database is empty
         
@@ -206,7 +207,7 @@ async def main():
         print("inicializei o automationSystem")
         logger.info("Starting event observer...")
         autoSystem.start_observer()
-        print("comecei o start_observer_in_thread")
+        print("comecei o start_observer")
         await autoSystem.initializeWebsocket()
         print("comecei o websocket")
         await AutomationSystem.stop_event.wait()  # Aguarda sinal de parada

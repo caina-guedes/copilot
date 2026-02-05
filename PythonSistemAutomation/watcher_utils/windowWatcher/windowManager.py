@@ -15,6 +15,9 @@ class WindowManager:
     current_window = None
     lastKnowWindow = None
     lastKnowWindowId = None
+    last_check_time = 0
+    check_interval = 0.4  # Delay de 400ms entre chamadas ao SO
+    last_window_data = None
 
     def __init__(self):
         system = platform.system().lower()
@@ -27,7 +30,45 @@ class WindowManager:
         else:
             raise Exception(f"Sistema operacional não suportado: {system}")
 
+    
+    def should_check(self, event):
+        """
+        Decide síncronamente se este evento justifica uma chamada ao SO.
+        """
+        action = event.get("action")
+        etype  = event.get("type")
+        key    = str(event.get("key", "")) # Garante que é string
+
+        # 1. MOUSE: Foco no contato inicial
+        if etype == "mouse":
+            return action in ["press", "click"]
         
+        if etype == "keyboard":
+        # Regra 1: Teclas especiais (Tab, Alt, Enter, etc)
+            if len(key) > 1:
+                return True
+            
+            # Regra 2: Atalhos (Se Ctrl ou Alt estão pressionados, mesmo 'n' pode mudar janela)
+            if self.system._pressed_keys: # Você já tem esse set!
+                if any(m in str(self.system._pressed_keys) for m in ["ctrl", "alt", "cmd"]):
+                    return True
+                    
+        return False    
+        # 1. Movimentos de mouse são ignorados para economizar SO
+        # if event.get("action") == "move":
+        #     return False
+        
+        # 2. Verifica se passou o tempo mínimo (Throttle)
+        # agora = time.time()
+        # if agora - self.__class__.last_check_time < self.__class__.check_interval:
+        #     # Se for uma tecla de sistema (Alt/Tab), ignoramos o timer para ser instantâneo
+        #     if event.get("type") == "keyboard" and event.get("key") in ["Key.alt", "Key.tab", "Key.cmd"]:
+        #         pass 
+        #     else:
+        #         return False
+        
+        # return True
+
     def list_windows(self,printar = False):
         return self.backend.list_windows(printar)
 
@@ -37,9 +78,11 @@ class WindowManager:
 
         return self.backend.get_window_by_id(id)
     
-    def get_active_window(self):
+    def get_active_window(self,event):
         #### has to threat if the window changed in a better way!! but for now it's ok
         try:
+            if not self.should_check(event):
+                return None, False
             changed = False
             oldWindow = self.get_window_by_id()
             # oldWindow = copy.deepcopy(self.__class__.lastKnowWindow)

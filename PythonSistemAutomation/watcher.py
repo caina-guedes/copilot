@@ -12,6 +12,9 @@ from PythonSistemAutomation.watcher_utils.GlobalMacroExecutor import  GlobalExec
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
+from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
+from PythonSistemAutomation.watcher_utils.pressed_key_tracker import SafePressedTracker
+
 logger = LoggerManager.get_logger(__name__)
 
 class EventObserver:
@@ -32,13 +35,16 @@ class EventObserver:
         self.listener_mouse = mouse.Listener(on_click=self._on_click, on_scroll=self._on_scroll,on_move=self._on_move)
         self.listener_keyboard = keyboard.Listener(on_press = self._on_press, on_release = self._on_release)
         self._current_macro = None
-        self._pressed_keys = set()  # To keep track of pressed keys
-        self._pressed_buttons = set()
+        # self._pressed_keys = set()  # To keep track of pressed keys
+        self._pressed_keys = SafePressedTracker()
+        self._pressed_buttons = SafePressedTracker()
         GlobalExecutor.set_pressed(self._pressed_keys,self._pressed_buttons)
         self.last_movement = datetime.now()
         self._callback_lock = asyncio.Semaphore(20) 
         self.listeners_running = False
-        self.event_queue = asyncio.Queue() # para liberar o listener e organizar o processamento
+        self.event_queue = asyncio.Queue() # para liberar o listener e organizar o processamento inicial
+        self.send_queue = asyncio.Queue() # para acumular os eventos ja preparados e enviar em bloco
+
         ###### tenho que implementar esse dicionário e printar no lugar certo!
         self.counter        = {
             "total_events" :  0,
@@ -53,6 +59,26 @@ class EventObserver:
         self.thread_do_start = None
         self.thread_do_evento = None
     
+    def _should_check_window(self, event):
+        """
+        Decide se vale a pena gastar CPU consultando o SO.
+        """
+        # 1. Movimentos de mouse (move) NUNCA disparam checagem
+        if event["action"] == "move":
+            return False
+
+        # 2. Se for uma tecla ou clique, verificamos o tempo
+        agora = time.time()
+        if agora - self.last_window_check_time > self.window_check_interval:
+            return True
+        
+        # 3. Teclas específicas que mudam janela (Ex: Alt, Tab, Cmd)
+        if event["type"] == "keyboard" and event["key"] in ["Key.alt", "Key.tab", "Key.cmd"]:
+            return True
+
+        return False
+    
+    @monitor_error
     def should_process_event(self, event):
         # print(f"[_process_event] event: {event}")
         # async with self._callback_lock:
@@ -78,11 +104,13 @@ class EventObserver:
                     try:
                         self.system.controlsToIgnore.remove(convenientEventToCompare)
                         self.events_from_macro.append(convenientEventToCompare)
+                        
                         self.counter["send_macro_events"] += 1
                         return True
                         # await self._on_event_callback(event, self.system)
 
                     except:
+                        ### é nesse ponto aqui que vem os acos da macro certinnho!!!!
                         self.counter["ignored_not_macro_events"] += 1
 
                 self.counter["ignored_events"] +=1
@@ -98,7 +126,7 @@ class EventObserver:
             logger.debug("Finished processing one event")
             warnings.warn(e)
 
-
+    @monitor_error
     async def _event_consumer(self):
         """
         O único trabalhador: processa a fila um por um.
@@ -119,13 +147,28 @@ class EventObserver:
 
                 if self.should_process_event(event):
                     logo_antes_de_enviar = time()
-                    await self._on_event_callback(event, self.system)
+
+                    try:
+                        currentWindow, changed = window.get_active_window()
+                        if changed:
+                            # print("houve atualização de janela!!!")
+                            event["windowChange"] = True
+                            event["newCurrentWindow"] = currentWindow.to_dict()
+                        else:
+                            event["windowChange"] = False
+                    except:
+                        event["windowChange"] = False
+                    LifecycleMaster.call_soon(
+                        self.send_queue.put_nowait, 
+                        (event,inicio)
+                        )
+                    # await self._on_event_callback(event, self.system)
                     depois_de_enviar = time()
-                    print(f"event {event} ")
-                    print(f"took {chegou_da_queue - inicio} in the queue")
-                    print(f"took  {logo_antes_de_enviar - chegou_da_queue} to decide to send it")
+                    # print(f"event {event} ")
+                    # print(f"took {chegou_da_queue - inicio} in the queue")
+                    # print(f"took  {logo_antes_de_enviar - chegou_da_queue} to decide to send it")
                     time_to_send = depois_de_enviar - logo_antes_de_enviar
-                    print(f"took {time_to_send}  to send event !!!")
+                    # print(f"took {time_to_send}  to send event !!!")
                     total_time = depois_de_enviar -inicio
                     print(f" took total time : {total_time }")
                     print(f"of that {(time_to_send/total_time)*100} % is just to send ")
@@ -182,6 +225,7 @@ class EventObserver:
             event_type = 'press'
             self._pressed_buttons.add(str(button))
         else:
+            self._pressed_buttons.remove(str(button))
             event_type = 'release'
         event = {
             'timestamp' : datetime.now(timezone.utc).isoformat(),
@@ -214,11 +258,11 @@ class EventObserver:
             'key': key
         }
 
-        if AutomationSystem.config.dont_want_repetition() and key in self._pressed_keys:
+        if AutomationSystem.config.dont_want_repetition() and self._pressed_keys.is_pressed(key):
             return # ignoring duplicate key presses
         
-        self._pressed_keys.add(key)
-        
+        if self._pressed_keys.add(key):
+            pass # aqui ele ainda não estava pressionado
         if key == AutomationSystem.config.toggleRecordKey:
             print("toggleRecording")
             # event["action"] = "toggleRecording"
@@ -229,6 +273,8 @@ class EventObserver:
             event['details'] = {"RequestToExecuteMacro": True}
 
         self.put_in_queue(event)
+        # else:# this case is an eco!!!
+        #     pass
 
         
         if key == AutomationSystem.config.stopKey:
@@ -244,18 +290,68 @@ class EventObserver:
             'action': 'release',
             'key': key
         }
-        if key in self._pressed_keys:
-            self._pressed_keys.remove(key)
-        else:
-            logger.info(f"Attempting to release a key that was not pressed: {key}")
-        
+        if self._pressed_keys.remove(key):
+            pass
         self.put_in_queue(event)
+        # else:## this case is an eco!!!!
+        #     print("this eent is a eco: ",event)
+        
 
     def set_event_callback(self,callback):
         """Defines the function that will be called for each captured event."""
         logger.info(f"Setting event callback: {callback}")
         self._on_event_callback = callback
 
+    @monitor_error
+    async def buffer_loop(self):
+        """
+        Segundo estágio: Agrupa eventos da 'send_queue' e despacha em lotes.
+        """
+        print("[buffer_loop] tarefa iniciada!")
+        buffer = []
+        MAX_BATCH_SIZE = 50
+        MAX_WAIT_TIME = 0.2  # 100ms de janela de agrupamento
+
+        while self.listeners_running:
+            try:
+                # 1. Espera o PRIMEIRO evento do lote (fica dormindo aqui até chegar algo)
+                event,inicio = await self.send_queue.get()
+                buffer.append(event)
+                
+                # 2. Assim que o primeiro chega, iniciamos a contagem do timer
+                start_time = asyncio.get_running_loop().time()
+                
+                # 3. Tenta coletar o máximo possível nos próximos 100ms
+                while len(buffer) < MAX_BATCH_SIZE:
+                    #calcula o tempo que ja passou
+                    time_already_passed = asyncio.get_running_loop().time() - start_time
+                    if time_already_passed >= MAX_WAIT_TIME:
+                        break
+                    remaining_time = MAX_WAIT_TIME - time_already_passed
+                    
+                    # if remaining_time <= 0:
+                    #     break
+                    
+                    try:
+                        # Tenta pegar mais sem bloquear o loop por muito tempo
+                        event = await asyncio.wait_for(self.send_queue.get(), timeout=remaining_time)
+                        buffer.append(event)
+                    except asyncio.TimeoutError:
+                        break  # Timer estourou, hora de enviar o que temos
+
+                # 4. Envia o Lote (Aqui você pode dar await sem medo)
+                if buffer:
+                    # print(f"Enviando lote de {len(buffer)} eventos...")
+                    await self._on_event_callback(buffer, self.system)
+                    
+                    for _ in range(len(buffer)):
+                        self.send_queue.task_done()
+                    buffer.clear()
+
+            except Exception as e:
+                print(f"Erro no loop de rede: {e}")
+                log_error_forensics_plus(e)
+                warnings.warn(e)
 
     def start(self):
         if self._on_event_callback is None:
@@ -268,7 +364,11 @@ class EventObserver:
             self.listeners_running = True
             self.listener_mouse.start()
             self.listener_keyboard.start()
-            self.on_event_consumer_task = LifecycleMaster.run_async(self._event_consumer,name = "on_event_consumer")
+            print("[EventObserver.start] called start!")
+            self.buffer_task = LifecycleMaster.run_async(self.buffer_loop,name = "loop do buffer do observer- segundo loop")
+
+            self.on_event_consumer_task = LifecycleMaster.run_async(self._event_consumer,name = "on_event_consumer - primeiro loop")
+            
             print(f"o tipo do self.on_event_consumer_task é: {type(self.on_event_consumer_task)}")
             print(f" e o self.on_event_consumer_task em si é: {self.on_event_consumer_task}")
             self.thread_do_start = threading.current_thread().name

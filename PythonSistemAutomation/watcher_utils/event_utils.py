@@ -112,11 +112,3 @@ def date_serializer(date):
 #             pass  # ou lançar erro se preferir
 #     return event
 
-def print_event(event, pressed_keys=None):
-    if pressed_keys is None:
-        pressed_keys = set()
-        
-    if pressed_keys:
-        logger.info(f"Pressed keys: {' + '.join(pressed_keys)}")
-    else:
-        logger.info(f"captured event : {event}")
