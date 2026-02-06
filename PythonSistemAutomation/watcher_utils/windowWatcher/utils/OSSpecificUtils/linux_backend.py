@@ -5,7 +5,9 @@ import time
 import re
 import sys
 from pathlib import Path
+
 sys.path.append(str(Path(__file__).resolve().parent.parent))
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 from abstractClassBase import BaseWindowBackend
 from windowFingerPrint import WindowFingerPrint
 from typing import Optional
@@ -77,7 +79,7 @@ class LinuxWindowBackend(BaseWindowBackend):
         except Exception as e:
             erro = e
             print("deu exception na get_active_window_id e é:",e)
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
             # pass
         if not sucess:
             #decido o que fazer com esse erro depois
@@ -196,7 +198,7 @@ class LinuxWindowBackend(BaseWindowBackend):
                     return window
         except Exception as e:
             print(" deu ruim na get_window_by_id e foi:  ",e)
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
         print("couldn't find a window that matches the ID: ",Id)
         return None
 

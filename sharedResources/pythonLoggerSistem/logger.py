@@ -8,7 +8,7 @@ from pathlib import Path
 import sys
 import traceback
 from rich.console import Console
-from sharedResources.generalUtils.aprint import aprint
+# from sharedResources.generalUtils.aprint import aprint
 
 BASE_DIR = Path(__file__).resolve().parent
 

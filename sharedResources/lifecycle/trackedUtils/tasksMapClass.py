@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import Any, Callable, Optional, Literal
 import warnings
 import traceback
-
+import asyncio
 import logging
 # sharedResources/generalUtils
 import sys
@@ -17,6 +17,7 @@ basePath = Path(__file__).resolve().parent.parent.parent.parent
 sys.path.append(str(basePath))
 from sharedResources.lifecycle.trackedUtils.trackedItem import TaskFinishRecord , TrackedItem
 from sharedResources.lifecycle.trackedUtils.taskStats import TaskStats, print_task_stats_report
+from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
 
 class TasksMapClass:
     """ Gerencia tasks rastreadas: vivas e histórico """
@@ -151,7 +152,7 @@ class TasksMapClass:
         except Exception as e:
             print(f"[remove_tracked_from_alive_map] deu erro e foi: {e}")
             # pass  # já tinha sido removido
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
             return False
 
     @staticmethod
@@ -261,7 +262,7 @@ class TasksMapClass:
             return stats
         except Exception as e:
             print(f"[upgrade_task_stats] deu erro e foi {e}")
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
 
 
     # ========================
@@ -313,7 +314,7 @@ class TasksMapClass:
         
         except Exception as e:
             print(f"[_on_task_finish] deu erro e foi: {e}")
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
        
         if record.status == "error":
             if record.exception is None:
@@ -366,4 +367,4 @@ class TasksMapClass:
             print_task_stats_report(cls.history)
         except Exception as e:
             print(f"[relatorio] deu merda e foi: {e}")
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)

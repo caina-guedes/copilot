@@ -7,12 +7,17 @@ import sys
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 from abstractClassBase import BaseWindowBackend
 
-from pywinauto import Desktop, Application
 
 class WindowsWindowBackend(BaseWindowBackend):
+    try:
+        from pywinauto import Desktop, Application
+        Desktop = Desktop
+        Application = Application
+    except:
+        pass
     def __init__(self):
         super().__init__()
-        self.desktop = Desktop(backend="uia")
+        self.desktop = self.__class__.Desktop(backend="uia")
 
     def enrich_with_process(self, windows):
         for w in windows:

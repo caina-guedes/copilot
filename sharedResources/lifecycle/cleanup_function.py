@@ -2,6 +2,8 @@ import asyncio
 import warnings
 from typing import Optional, Callable, Any
 
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
+
 def execute_cleanup_function(
     cleanup_function: Optional[Callable[..., Any]],
     loop = None
@@ -32,5 +34,4 @@ def execute_cleanup_function(
             # função sync executada normalmente
             print(f"[Cleanup] Sync cleanup function executed ")
     except Exception as e:
-        warnings.warn(str(e))
-        print(f"[Cleanup Error] {name}: {e}")
+        log_error_forensics_plus(e)

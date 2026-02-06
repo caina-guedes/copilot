@@ -5,6 +5,7 @@ import json
 from PythonServer.serverConfig import serverConfig, connection_types
 from PythonSistemAutomation.watcher_utils.GlobalMacroExecutor import GlobalExecutor
 # from PythonSistemAutomation.watcher_utils.default_receiving_function import default_receiving_function
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.connection.connectionObject import TwoWayConnection
@@ -48,13 +49,13 @@ class WebSocketClient:
                         await cls.system.not_sent_db.delete_event(id)  # Delete the event from not sent database if sent
                         logger.info(f"[{__name__}] ✅ Event sent successfully, deleted from not sent")
                     except Exception as e:
-                        warnings.warn(str(e))
+                        log_error_forensics_plus(e)
                         logger.error(f"[{__name__}] ❌ Error deleting event from not sent database: {str(e)}")
             except Exception as e:
                 cls._ensure_connection()  # Ensure connection is established before sending
                 if not cls.connected:
                     await cls.reconnect()  # Attempt to reconnect if sending fails
-                warnings.warn(str(e))
+                log_error_forensics_plus(e)
                 LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error sending event from not sent database: {str(e)}")
                 logger.info(f"[{__name__}] ❌ Error sending event from not sent database: {str(e)}")
 
@@ -84,7 +85,7 @@ class WebSocketClient:
             try:
                 sender = await websockets.connect(cls.uri)
             except Exception as e:
-                warnings.warn(str(e))
+                log_error_forensics_plus(e)
                 print("the exception on the sender connect is: ",e)
             # print("setting sender connection")
             cls.connection.set_sender(sender)
@@ -105,7 +106,7 @@ class WebSocketClient:
             logger.info(f"[{__name__}] ❌ Connection refused while trying to connect.")
             cls.connected = False
         except Exception as e:
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
             LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error connecting to the server: {str(e)}")
 
     @classmethod
@@ -134,7 +135,7 @@ class WebSocketClient:
             cls.connected = False
         except Exception as e:
             cls.connected = False
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
             LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error connecting to the server: {str(e)}")
             logger.info(f"[{__name__}] ❌ Failed to connect    {str(e)}")
         
@@ -160,9 +161,10 @@ class WebSocketClient:
                     logger.info(f"[{__name__}] ✅ Reconnected to the server.")
                     cls.reconnecting = False
                     cls.connection.start_receiving()  # Start receiving messages
-                    return  # Exit the loop if reconnected successfully
+                    return True # Exit the loop if reconnected successfully
             except Exception as e:
-                warnings.warn(str(e))
+                log_error_forensics_plus(e)
+                return False
                 LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error reconnecting: {str(e)}")
                 logger.info(f"[{__name__}] ❌ Error reconnecting:  {str(e)}")
         
@@ -188,7 +190,7 @@ class WebSocketClient:
             LoggerManager.log_exception_with_context("[CLIENT] ⚠️ Received message is not JSON valid.")
             logger.info(f"[{__name__}] ⚠️ Received message is not JSON valid.")
         except Exception as e:
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
             LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error handling server message: {str(e)}")
             logger.info(f"[CLIENT] ❌ Error handling server message: {str(e)}")
 
@@ -216,7 +218,7 @@ class WebSocketClient:
         try:
             await cls.connection.stop_receiving()
         except Exception as e:
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
             logger.error(f"error stopping receiver loop: {str(e)}")
 
    

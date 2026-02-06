@@ -6,7 +6,8 @@ basePath = Path(__file__).resolve().parent.parent.parent
 # print("Path added to sys.path:", str(basePath))
 sys.path.append(str(basePath))
 
-from sharedResources.lifecycle.trackedUtils.trackedItem import TrackedItem
+# from sharedResources.lifecycle.trackedUtils.trackedItem import TrackedItem
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 
 class TrackedTask:
     register_log = None
@@ -160,7 +161,7 @@ class TrackedTask:
                 return True
         except Exception as e:
             cls.register_log(f"[shutdown_tasks] deu erro e foi: {e}")
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
 
 
     # -------------------- Async Task wrapper --------------------

@@ -8,7 +8,7 @@ sys.path.append(str(basePath))
 
 from sharedResources.lifecycle.trackedUtils.trackedItem import TrackedItem
 from sharedResources.lifecycle.cleanup_function import  execute_cleanup_function
-
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 # -------------------- Thread wrapper --------------------
 class TrackedThread(threading.Thread):
     threadsMap = None
@@ -57,7 +57,7 @@ class TrackedThread(threading.Thread):
             thread_obj.join(timeout)
         except Exception as e:
             cls.register_log(f"[Shutdown] join erro: {e}", "threads")
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
         finally:
             if thread_obj.is_alive():
                 cls.register_log(f"[Shutdown] Thread {thread_obj.name} ainda viva após timeout", "threads")

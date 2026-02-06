@@ -26,10 +26,26 @@ def monitor_error(func):
         async def wrapper(*args, **kwargs):
             try:
                 return await func(*args, **kwargs)
+            except asyncio.CancelledError:
+                # NÃO LOGA ERRO AQUI!
+                # Apenas repassa o cancelamento para o loop saber que terminou ok.
+                raise 
             except Exception as e:
                 log_error_forensics_plus(e)
                 raise e # Ou trate como preferir
-        return wrapper
+        
+        # --- O SEGREDO ESTÁ AQUI ---
+        # Quando o wrapper é chamado, ele retorna uma corrotina. 
+        # Vamos criar um "falso chamador" para que a corrotina se identifique como a original.
+        @functools.wraps(func)
+        def wrapper_dispatcher(*args, **kwargs):
+            coro = wrapper(*args, **kwargs)
+            # Forçamos a corrotina a ter o nome da função original no rastro
+            coro.__qualname__ = func.__qualname__
+            coro.__name__ = func.__name__
+            return coro
+            
+        return wrapper_dispatcher
     else:
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -86,7 +102,7 @@ def log_error_forensics_plus(e: Exception, extra_message: str = ""):
         caller_frame = caller_frame.f_back
 
     def format_vars(frame_obj):
-        if not frame_obj: return "    Ninhun frame disponível"
+        if not frame_obj: return "    Nenhum frame disponível"
         return "\n".join([f"    {k} = {r.repr(v)}" for k, v in frame_obj.f_locals.items() if not k.startswith('__')])
 
     # Extração de dados para o cabeçalho

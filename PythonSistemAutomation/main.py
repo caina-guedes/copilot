@@ -34,6 +34,7 @@ import asyncio
 
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 from sharedResources.lifecycle.shutdownThreadUtils  import TrackedThread 
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 
 from sharedResources.lifecycle.printUtils import print_thread_status, print_async_tasks_status
 # from sharedResources.debuggingResources.task_monitor import task_monitor
@@ -217,7 +218,8 @@ async def main():
     #     AutomationSystem.shutdown(loop)
     except Exception as e:
         print(f"Error in main: {e}",level=logging.critical)
-        warning.warn(e)
+        log_error_forensics_plus(e)
+
     finally:
         print("entrou no finally da main...")
         try:
@@ -231,7 +233,7 @@ async def main():
                 print("byebye ja foi setado então tchau")
         except Exception as e:
             print(f" deu exceção no finally da main e foi: {e}")
-            warning.warn(e)
+            log_error_forensics_plus(e)
 
         print_thread_status()
         print_async_tasks_status()

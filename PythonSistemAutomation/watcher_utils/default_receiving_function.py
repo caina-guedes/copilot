@@ -9,6 +9,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 from sharedResources.generalUtils.aprint import aprint
+from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
 
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 
@@ -98,7 +99,7 @@ def kbPressOrRelease(message, action, controlsToIgnore):
     except Exception as e:
         
         print(f"Error processing keyboard action {action} for key {key_name}: {e}")
-        warnings.warn(str(e))
+        log_error_forensics_plus(e)
 
 class  InternalResponse:
     def __init__(self,start_time,endTime,waitForServer = None):
@@ -154,7 +155,7 @@ def exec_mouse_or_kb(message, macroExecutor,frozen_controls_to_ignore = None ):
             
         except Exception as e:
             print(f"Error processing keyboard command: {e}")
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
             LoggerManager.log_exception_with_context(f"Error processing keyboard command: {e}",e)
 
     elif equipment == "mouse":
@@ -165,7 +166,7 @@ def exec_mouse_or_kb(message, macroExecutor,frozen_controls_to_ignore = None ):
     
         except Exception as e:
             print(f"Error processing mouse command: {e}")
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
             LoggerManager.log_exception_with_context(f"Error processing mouse command: {e}",e)
 
     else:
@@ -201,7 +202,7 @@ async def default_receiving_function(message, macroExecutor,frozen_controls_to_i
     except Exception as e:
         print("[default_receiving_function] a exceção é: ",e)
         print("[default_receiving_function] a mensagem recebida na função é: ",message)
-        warnings.warn(str(e))
+        log_error_forensics_plus(e)
         LoggerManager.log_exception_with_context(f"[WATCHER] ❌ Error in default receiving function: {str(e)}")
     
         return InternalResponse(0,0)
@@ -264,7 +265,7 @@ async def default_receiving_function(message, macroExecutor,frozen_controls_to_i
                 
 #             except Exception as e:
 #                 print(f"Error processing keyboard command: {e}")
-#                 warnings.warn(str(e))
+#                 log_error_forensics_plus(e)
 #                 LoggerManager.log_exception_with_context(f"Error processing keyboard command: {e}",e)
 
 #         elif equipment == "mouse":
@@ -275,7 +276,7 @@ async def default_receiving_function(message, macroExecutor,frozen_controls_to_i
         
 #             except Exception as e:
 #                 print(f"Error processing mouse command: {e}")
-#                 warnings.warn(str(e))
+#                 log_error_forensics_plus(e)
 #                 LoggerManager.log_exception_with_context(f"Error processing mouse command: {e}",e)
 
 #         else:
@@ -286,7 +287,7 @@ async def default_receiving_function(message, macroExecutor,frozen_controls_to_i
 #         return InternalResponse(0,0)
     
 #     except Exception as e:
-#         warnings.warn(str(e))
+#         log_error_forensics_plus(e)
 #         LoggerManager.log_exception_with_context(f"[WATCHER] ❌ Error in default receiving function: {str(e)}")
     
 #         return InternalResponse(0,0)

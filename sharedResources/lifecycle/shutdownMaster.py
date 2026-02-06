@@ -17,6 +17,7 @@ from sharedResources.lifecycle.printUtils import print_thread_status, print_asyn
 from sharedResources.lifecycle.utils import wait_event
 from sharedResources.lifecycle.loop.loop_class import MyLoop
 from sharedResources.lifecycle.trackedUtils.tasksMapClass import TasksMapClass
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 # Setup básico de logging
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
 logger = logging.getLogger("LifecycleTracker")
@@ -87,7 +88,7 @@ class LifecycleMaster():
             pass
             
 
-        shutdown_event.set()
+        cls.shutdown_event.set()
         # task_shutdown_event.set()
         # thread_shutdown_event.set()
 
@@ -169,7 +170,7 @@ class LifecycleMaster():
             print("Automatic shutdown complete.")
         except Exception as e:
             print("[autoShutdown] the exception is:", e)
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
         finally:
             print("vou setar o shutdownComplete")
             cls.tasksMap.relatorio()
@@ -195,7 +196,7 @@ class LifecycleMaster():
                     wait_event(cls.shutDownComplete," LifecycleMaster.shutDownComplete event")
                 except Exception as e:
                     print("deu ruim no evento shutdownComplete e foi:",e)
-                    warnings.warn(str(e))
+                    log_error_forensics_plus(e)
             else:
                 print("shutdownComplete Event is set properly")
             

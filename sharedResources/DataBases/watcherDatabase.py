@@ -2,6 +2,7 @@
 import asyncio
 import aiosqlite
 import json
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
 logger = LoggerManager.get_logger(__name__, filename=__name__ + '.log')
@@ -84,7 +85,7 @@ class WatcherNotsentEventsDatabase:
                 cursor = await self.conn.execute(query)
                 saved_event = True
             except Exception as e:
-                warnings.warn(str(e))
+                log_error_forensics_plus(e)
                 logger.error(f"Error saving event on the database: {e}")
 
             if retrieve_id and saved_event:

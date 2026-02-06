@@ -10,6 +10,7 @@ sys.path.append(str(basePath))
 
 from sharedResources.lifecycle.trackedUtils.trackedItem import TrackedItem, TaskFinishRecord
 from sharedResources.lifecycle.shutdownTaskUtils import TrackedTask
+from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
 
 
 def call_soon(cls, fn, *args):
@@ -29,7 +30,7 @@ def call_soon(cls, fn, *args):
         return True
     except Exception as e:
         cls._log(f"call_soon failed: {e}","loop")
-        warnings.warn(str(e))
+        log_error_forensics_plus(e)
         return False
 
 
@@ -107,7 +108,7 @@ def submit(
             except Exception as e:
                 cls._log("o erro dentro da _create_Task_in_loop foi: ",e)
                 fut.set_exception(e)
-                warnings.warn(str(e))
+                log_error_forensics_plus(e)
                 # raise e
 
         cls._current.call_soon_threadsafe(_create_task_in_loop)
@@ -120,7 +121,7 @@ def submit(
             f"current thread: {threading.current_thread()} | loop thread: {cls._thread}",
             "loop",
         )
-        warnings.warn(str(e))
+        log_error_forensics_plus(e)
         return None
 
 def gather(cls, *coros, return_exceptions=False):

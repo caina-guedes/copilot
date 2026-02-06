@@ -5,10 +5,12 @@ import copy
 import warnings
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent))
+from PythonSistemAutomation.watcher_utils.windowWatcher.utils.OSSpecificUtils.windows_backend import WindowsWindowBackend
 from utils.OSSpecificUtils.linux_backend import LinuxWindowBackend
 from sharedResources.generalUtils.aprint import aprint  # my assyncronous aprint function
 # from .windows_backend import WindowsWindowBackend
 # from .mac_backend import MacWindowBackend
+from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
 
 
 class WindowManager:
@@ -26,12 +28,14 @@ class WindowManager:
         elif system == "windows":
             self.backend = WindowsWindowBackend()
         elif system == "darwin":
-            self.backend = MacWindowBackend()
+            print("backend do mac não implementado")
+            self.backend = None
+            # self.backend = MacWindowBackend()
         else:
             raise Exception(f"Sistema operacional não suportado: {system}")
 
-    
-    def should_check(self, event):
+    @monitor_error
+    def should_check(self, event,pressed_keys):
         """
         Decide síncronamente se este evento justifica uma chamada ao SO.
         """
@@ -49,8 +53,8 @@ class WindowManager:
                 return True
             
             # Regra 2: Atalhos (Se Ctrl ou Alt estão pressionados, mesmo 'n' pode mudar janela)
-            if self.system._pressed_keys: # Você já tem esse set!
-                if any(m in str(self.system._pressed_keys) for m in ["ctrl", "alt", "cmd"]):
+            if pressed_keys: # Você já tem esse set!
+                if any(m in str(pressed_keys) for m in ["ctrl", "alt", "cmd"]):
                     return True
                     
         return False    
@@ -78,10 +82,11 @@ class WindowManager:
 
         return self.backend.get_window_by_id(id)
     
-    def get_active_window(self,event):
+    @monitor_error
+    def get_active_window(self,event,pressed_keys):
         #### has to threat if the window changed in a better way!! but for now it's ok
         try:
-            if not self.should_check(event):
+            if not self.should_check(event,pressed_keys):
                 return None, False
             changed = False
             oldWindow = self.get_window_by_id()
@@ -122,7 +127,8 @@ class WindowManager:
             return self.__class__.current_window , changed
         except Exception as e:
             print(f"deu ruim na get_active_window do windowManager e foi: {e}")
-            warnings.warn(str(e))
+            # warnings.warn(str(e))
+            log_error_forensics_plus(e)
 
     def focus_window(self, window_id):
         return self.backend.focus_window(window_id)

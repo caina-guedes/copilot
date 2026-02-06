@@ -13,6 +13,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 from sharedResources.generalUtils.aprint import aprint
 from PythonSistemAutomation.watcher_utils.default_receiving_function import default_receiving_function, exec_mouse_or_kb
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
+from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
 
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 
@@ -156,7 +157,7 @@ class GlobalExecutor:
                 pass
             except Exception as e:
                 print(f"[GlobalExecutor] Error stopping executor: {e}")
-                warnings.warn(str(e))
+                log_error_forensics_plus(e)
                 LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error stopping executor: {e}",e)
         cls._reset_macro_state()
         print("[GlobalExecutor] Stopped.")
@@ -229,7 +230,7 @@ class GlobalExecutor:
                                     break
                             except Exception as e:
                                 # comando quebrado? ignora e continua
-                                warnings.warn(str(e))
+                                log_error_forensics_plus(e)
                                 continue
                         
                         print("[Executor] Macro cancelada com sucesso.")
@@ -276,7 +277,7 @@ class GlobalExecutor:
                             total_macro_time_really_taken = cls._internalStopMacroTime - cls._internalStartMacroTime
                         
                         except Exception as e:
-                            warnings.warn(str(e))
+                            log_error_forensics_plus(e)
                             LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error calculating macro times: {e}",e)
                         
                         time_it_should_take = 0.0
@@ -292,7 +293,7 @@ class GlobalExecutor:
             except Exception as e:
                 print(f"[GlobalExecutor] Error executing command: {e}")
                 cls.umpress_keys()
-                warnings.warn(str(e))
+                log_error_forensics_plus(e)
                 LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error executing command: {e}",e)
 
     @classmethod

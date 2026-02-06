@@ -1,16 +1,21 @@
 import json
-from websockets.exceptions import ConnectionClosedError
 import time, traceback
 import warnings
-
-# from websockets import ConnectionClosedError
-from sharedResources.pythonLoggerSistem.logger import LoggerManager
-from sharedResources.generalUtils.aprint import aprint
 import asyncio
 import inspect
-logger = LoggerManager.get_logger(__name__)
 import threading
+# from websockets import ConnectionClosedError
+from websockets.exceptions import ConnectionClosedError
 
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
+
+from sharedResources.pythonLoggerSistem.logger import LoggerManager
+from sharedResources.generalUtils.aprint import aprint
+from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
+
+logger = LoggerManager.get_logger(__name__)
 
 class TwoWayConnection:
     def __init__(self, sender=None, receiver=None):
@@ -71,7 +76,7 @@ class TwoWayConnection:
                     print("[TwoWayConnection] Failed to start receiver loop task")
 
                     self.logger.error(f"Failed to start receiver loop task: {e}")
-                    warnings.warn(str(e))
+                    log_error_forensics_plus(e)
                     # self._receiver_task = None <<<<<<<<<<<< veirificar se é necessário
             else:
                 logger.warning("[TwoWayConnection] Receiver task is already running.")
@@ -161,7 +166,7 @@ class TwoWayConnection:
                             # message = "the connection was closed"
                             pass
                         except Exception as e:
-                            warnings.warn(str(e))
+                            log_error_forensics_plus(e)
                             LoggerManager.log_exception_with_context(f"deu exceção recebendo mensagem no receiver e é: {e}",e)
                             # print("deu exceção recebendo mensagem no receiver e é: ",e)
                         # print("ultima linha do receiver lock")
@@ -192,7 +197,7 @@ class TwoWayConnection:
                 except Exception as e:
                     Error = True
                     print(f"deu exceção no receiver_loop e é : {e}")
-                    warnings.warn(str(e))
+                    log_error_forensics_plus(e)
                     LoggerManager.log_exception_with_context(f"deu exceção no receiver_loop e é : {e}")
                 
                 if Error:
@@ -200,7 +205,7 @@ class TwoWayConnection:
                     Error = False
                 await asyncio.sleep(0)                    
         except Exception as e:
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
             LoggerManager.log_exception_with_context(f"deu ruim no receiver_loop {e}")
         finally:
             async with self._receiver_lock:
@@ -220,7 +225,7 @@ class TwoWayConnection:
             else:
                 LoggerManager.log("No handler defined for received message")
         except Exception as e:
-            warnings.warn(str(e))
+            log_error_forensics_plus(e)
             LoggerManager.log_exception_with_context(f"deu ruim na _handle_message e foi : {e}")
 
     async def close(self):
@@ -239,7 +244,7 @@ class TwoWayConnection:
                         self.receiver = None
                         print("[TwoWayConnection] Receiver connection actually closed")
             except Exception as e:
-                warnings.warn(str(e))
+                log_error_forensics_plus(e)
                 LoggerManager.log_exception_with_context(e)
             finally:
                 self.receiver_loop_running = False
@@ -286,7 +291,7 @@ class TwoWayConnection:
             except Exception as e:
 
                 print(f"Error sending message: {e}")
-                warnings.warn(str(e))
+                log_error_forensics_plus(e)
                 # raise
             # return False
 
