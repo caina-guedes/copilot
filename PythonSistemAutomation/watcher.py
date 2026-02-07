@@ -16,10 +16,13 @@ from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
+from sharedResources.debuggingResources.exec_monitor import count_methods
 
 logger = LoggerManager.get_logger(__name__)
 window = WindowManager()
 
+##### tive que comentar esse monitor pq não está funcionando.
+@count_methods 
 class EventObserver:
     """
     Observes mouse and keyboard events and triggers a callback for each one.
@@ -28,7 +31,7 @@ class EventObserver:
     already_init = False
     definition_thread = threading.current_thread().name
     
-    @monitor_error
+    # @monitor_error
     def __init__(self, system):
         if self.__class__.already_init:
             warnings.warn("iniciando o eventObserver quando ja foi iniciado!")
@@ -45,7 +48,7 @@ class EventObserver:
         # self._pressed_keys = SafePressedTracker()
         # self._pressed_buttons = SafePressedTracker()
         GlobalExecutor.set_pressed(self._pressed,self._pressed)
-        self.last_movement = datetime.now()
+        self.last_movement = time()
         self._callback_lock = asyncio.Semaphore(20) 
         self.listeners_running = False
         self.event_queue = asyncio.Queue() # para liberar o listener e organizar o processamento inicial
@@ -66,7 +69,7 @@ class EventObserver:
         self.thread_do_evento = None
     
     
-    @monitor_error
+    # @monitor_error
     def should_process_event(self, event):
         # print(f"[_process_event] event: {event}")
         # async with self._callback_lock:
@@ -114,8 +117,8 @@ class EventObserver:
             logger.debug("Finished processing one event")
             warnings.warn(e)
 
-    @monitor_error
-    async def _event_consumer(self):
+    # @monitor_error
+    async def _event_consumer(self): # primeiro loop
         """
         O único trabalhador: processa a fila um por um.
         Primeiro loop
@@ -127,6 +130,7 @@ class EventObserver:
                 # Espera o próximo evento sem bloquear o loop
                 event , inicio = await self.event_queue.get()
                 chegou_da_queue = time()
+                event['timestamp'] = event['timestamp']
                 # print(f"thread da definição da classe é: {self.__class__.definition_thread}")
                 # print(f"thread do init da classe é: {self.init_thread}")
                 # print(f"thread do start: {self.thread_do_start}")
@@ -138,7 +142,7 @@ class EventObserver:
                     logo_antes_de_verificar_janela = time()
 
                     try:
-                        currentWindow, changed = window.get_active_window(event,self._pressed)
+                        currentWindow, changed , os_call= window.get_active_window(event,self._pressed)
                         logo_depois_de_verificar_janela = time()
                         if changed:
                             # print("houve atualização de janela!!!")
@@ -159,14 +163,14 @@ class EventObserver:
                         )
                     # await self._on_event_callback(event, self.system)
                     depois_de_enviar = time()
+                    total_time = depois_de_enviar -inicio
+                    time_to_verify_window = logo_depois_de_verificar_janela - logo_antes_de_verificar_janela 
+                    time_to_send = depois_de_enviar - logo_antes_de_enviar
                     # print(f"event {event} ")
                     print(f"took {chegou_da_queue - inicio} in the queue")
                     print(f"took  {logo_antes_de_verificar_janela - chegou_da_queue} to decide to send it")
-                    time_to_verify_window = logo_depois_de_verificar_janela - logo_antes_de_verificar_janela 
-                    print(f"took {time_to_verify_window} to verify window")
-                    time_to_send = depois_de_enviar - logo_antes_de_enviar
+                    print(f"took {time_to_verify_window} to {'not' if not os_call else 'really'} verify window, ")
                     print(f"took {time_to_send}  to send event !!!")
-                    total_time = depois_de_enviar -inicio
                     print(f" took total time : {total_time }")
                     print(f"of that {(time_to_send/total_time)*100} % is just to send ")
                     print(f"of that {(time_to_verify_window/total_time)*100} % is just to verify window")
@@ -203,14 +207,17 @@ class EventObserver:
     
     def clear_current_macro(self):
         self._current_macro = None
-        
+
+    @monitor_error
     def _on_move(self, x, y):
         from PythonSistemAutomation.main import AutomationSystem
-        if (datetime.now() - self.last_movement ).total_seconds() < serverConfig.mouseMovementMinimumDelay or not AutomationSystem.config.send_position:
+        now = time()
+        if (now - self.last_movement ) < serverConfig.mouseMovementMinimumDelay or not AutomationSystem.config.send_position:
             return
-        self.last_movement = datetime.now()
+        self.last_movement = now
         event = {
-            'timestamp': datetime.now(timezone.utc).isoformat(),
+            # 'timestamp': datetime.now(timezone.utc).isoformat(),
+            'timestamp': now,
             'type': 'mouse',
             'action': 'move',
             'position': (x, y)
@@ -226,7 +233,7 @@ class EventObserver:
             self._pressed.remove(str(button))
             event_type = 'release'
         event = {
-            'timestamp' : datetime.now(timezone.utc).isoformat(),
+            'timestamp' : time(),
             'type'  : "mouse",
             'action': event_type,   
              'x'    : x, 
@@ -237,19 +244,21 @@ class EventObserver:
 
     def _on_scroll(self, x, y, dx, dy):
         event = {
-            'timestamp':datetime.now(timezone.utc).isoformat(),
+            # 'timestamp':datetime.now(timezone.utc).isoformat(),
+            'timestamp':time(),
             'type': 'mouse',
             'action': 'scroll',
             'position': {'x': x, 'y': y},
             'delta': {'dx': dx, 'dy': dy}
         }
         self.put_in_queue(event)
-    
+    # @monitor_error
     def _on_press(self, key):
         from PythonSistemAutomation.main import AutomationSystem
         key = treat_key_as_string(key)
         event = {
-            'timestamp':datetime.now(timezone.utc).isoformat(),
+            # 'timestamp':datetime.now(timezone.utc).isoformat(),
+            'timestamp':time(),
             'type': 'keyboard',
             'action': 'press',
             'key': key
@@ -282,7 +291,8 @@ class EventObserver:
     def _on_release(self, key):
         key = treat_key_as_string(key)
         event = {
-            'timestamp':datetime.now(timezone.utc).isoformat(),
+            # 'timestamp':datetime.now(timezone.utc).isoformat(),
+            'timestamp':time(),
             'type': 'keyboard',
             'action': 'release',
             'key': key
@@ -299,8 +309,8 @@ class EventObserver:
         logger.info(f"Setting event callback: {callback}")
         self._on_event_callback = callback
 
-    @monitor_error
-    async def buffer_loop(self):
+    # @monitor_error
+    async def buffer_loop(self): #segundo loop
         """
         Segundo estágio: Agrupa eventos da 'send_queue' e despacha em lotes.
         """
@@ -350,7 +360,7 @@ class EventObserver:
                 log_error_forensics_plus(e)
                 warnings.warn(e)
 
-    def start(self):
+    def start(self): # inicia os listeners
         if self._on_event_callback is None:
             self.set_event_callback(default_callback)
 
@@ -370,7 +380,7 @@ class EventObserver:
             print(f" e o self.on_event_consumer_task em si é: {self.on_event_consumer_task}")
             self.thread_do_start = threading.current_thread().name
     
-    def stop(self):
+    def stop(self): # para os listeners e atualmente imprime um relatório
         print("[EventObserver]stop called ")
         self.listener_mouse.stop()
         self.listener_keyboard.stop()

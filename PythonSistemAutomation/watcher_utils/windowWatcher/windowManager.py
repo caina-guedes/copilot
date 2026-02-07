@@ -4,12 +4,12 @@ import sys
 import copy
 import warnings
 from pathlib import Path
-sys.path.append(str(Path(__file__).resolve().parent))
+basePath = str(Path(__file__).resolve().parent.parent.parent.parent)
+print("the basePath is: ",basePath)
+sys.path.append(basePath)
 from PythonSistemAutomation.watcher_utils.windowWatcher.utils.OSSpecificUtils.windows_backend import WindowsWindowBackend
-from utils.OSSpecificUtils.linux_backend import LinuxWindowBackend
+from PythonSistemAutomation.watcher_utils.windowWatcher.utils.OSSpecificUtils.linux_backend import LinuxWindowBackend
 from sharedResources.generalUtils.aprint import aprint  # my assyncronous aprint function
-# from .windows_backend import WindowsWindowBackend
-# from .mac_backend import MacWindowBackend
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
 
 
@@ -77,6 +77,7 @@ class WindowManager:
         return self.backend.list_windows(printar)
 
     def get_window_by_id(self,id= None):
+
         if id is None:
             id = self.__class__.lastKnowWindowId
 
@@ -86,17 +87,18 @@ class WindowManager:
     def get_active_window(self,event,pressed_keys):
         #### has to threat if the window changed in a better way!! but for now it's ok
         try:
+            made_os_call = False
             if not self.should_check(event,pressed_keys):
-                return None, False
+                return None, False, made_os_call
             changed = False
             oldWindow = self.get_window_by_id()
             # oldWindow = copy.deepcopy(self.__class__.lastKnowWindow)
             # print(f"the old window is:{oldWindow}")
-            self.__class__.current_window = self.backend.get_active_window(self.__class__.lastKnowWindowId)
-            
+            self.__class__.current_window = self.backend.get_active_window()
+            made_os_call = True
             if self.__class__.current_window is None:
                 # print("o current_window deu None mesmo depois da função de pegar a janela ativa")
-                return self.__class__.lastKnowWindow , changed 
+                return self.__class__.lastKnowWindow , changed ,made_os_call
             else:
                 self.__class__.lastKnowWindow = copy.deepcopy(self.__class__.current_window)
                 self.__class__.lastKnowWindowId = copy.deepcopy(self.__class__.lastKnowWindow.win_id)
@@ -121,10 +123,10 @@ class WindowManager:
                     print("o current é: ",current)
                     print("o tipo do current é: ",type(current))
                     # return self.__class__.current_window, False
-                    return False
+                    return None,False,False # para não quebrar a função por fora
             else:
                 changed =  True
-            return self.__class__.current_window , changed
+            return self.__class__.current_window , changed, made_os_call
         except Exception as e:
             print(f"deu ruim na get_active_window do windowManager e foi: {e}")
             # warnings.warn(str(e))

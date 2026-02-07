@@ -1,5 +1,6 @@
 import warnings
 
+
 STRICT_MODE = True
 if STRICT_MODE:
     warnings.simplefilter("error")
@@ -35,6 +36,8 @@ import asyncio
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 from sharedResources.lifecycle.shutdownThreadUtils  import TrackedThread 
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
+# from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
+from sharedResources.debuggingResources.exec_monitor import CallRegistry
 
 from sharedResources.lifecycle.printUtils import print_thread_status, print_async_tasks_status
 # from sharedResources.debuggingResources.task_monitor import task_monitor
@@ -90,6 +93,7 @@ class AutomationSystem:
                     # Wait for all threads and async tasks to finish
                     print("Waiting for all threads and tasks to finish...")
                     cls.shutDownComplete.wait()
+                    CallRegistry.report()
                     print("AutomationSystem shutdown complete.")
             except Exception as e:
                 print("deu erro no shutDown do automation system e foi: ",e)

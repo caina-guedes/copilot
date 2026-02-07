@@ -52,7 +52,7 @@ class WindowFingerPrint:
         identity_core = f"{self.app}|{self.class_name}|{self.os_name}"
         return hashlib.sha256(identity_core.encode()).hexdigest()
 
-    def similarity(self, other: "WindowFingerprint") -> float:
+    def similarity(self, other) -> float:
         """Calcula quanto esta janela se parece com outra."""
         score = 0.0
         total = 3.0  # pesos somados (mínimo)
@@ -95,7 +95,7 @@ class WindowFingerPrint:
         return significant_data       
 
     @classmethod
-    def from_dict(cls, data: dict) -> "WindowFingerprint":
+    def from_dict(cls, data: dict):
         return cls(**data)
 
 
