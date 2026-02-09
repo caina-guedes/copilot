@@ -1,3 +1,4 @@
+# from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
 import traceback
 import functools
 import warnings
@@ -13,7 +14,6 @@ import sys
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
-
 r = reprlib.Repr()
 r.maxstring = 100 # Limita strings
 r.maxother = 60   # Limita outros objetos
@@ -98,7 +98,7 @@ def log_error_forensics_plus(e: Exception, extra_message: str = ""):
     # 2. Localiza o frame da CHAMADA (quem chamou a função que deu erro)
     # O f_back nos leva para um nível acima na pilha
     caller_frame = error_frame.f_back
-    while caller_frame and caller_frame.f_code.co_name == "wrapper":
+    while caller_frame and caller_frame.f_code.co_name in ("wrapper","run_async"):
         caller_frame = caller_frame.f_back
 
     def format_vars(frame_obj):

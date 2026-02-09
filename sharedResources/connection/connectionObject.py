@@ -14,9 +14,11 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
+from sharedResources.debuggingResources.exec_monitor import  count_methods
 
 logger = LoggerManager.get_logger(__name__)
 
+@count_methods
 class TwoWayConnection:
     def __init__(self, sender=None, receiver=None):
         print("dentro do init da TwoWayConnection")

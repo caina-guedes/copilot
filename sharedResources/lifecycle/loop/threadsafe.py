@@ -43,7 +43,8 @@ def submit(
     created_from: str = "unknown",
     protected: bool   = False,
     cleanup_event     = None,
-    cleanup_function        = None
+    cleanup_function        = None,
+    state = None
 ):
     if not cls._can_interact():
         return None
@@ -59,7 +60,12 @@ def submit(
             f"submit received non-coroutine: {type(coro)} -> {coro}",
             "loop"
         )
-        return None
+        if state in ("INIT", "SHUTTING_DOWN"):
+            return None # coloquei isso aqui pq durante  o shutdown estou tentando usar funções que ja foram fechadas, é mais pra se eu fizer alguma merda e isso mudar ai avisar
+        
+        else:
+            print("state : ",state)
+            1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
 
     try:
         # ===========================

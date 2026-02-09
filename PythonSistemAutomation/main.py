@@ -37,7 +37,7 @@ from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 from sharedResources.lifecycle.shutdownThreadUtils  import TrackedThread 
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 # from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
-from sharedResources.debuggingResources.exec_monitor import CallRegistry
+from sharedResources.debuggingResources.exec_monitor import CallRegistry, count_methods
 
 from sharedResources.lifecycle.printUtils import print_thread_status, print_async_tasks_status
 # from sharedResources.debuggingResources.task_monitor import task_monitor
@@ -46,6 +46,7 @@ logger = LoggerManager.get_logger(__name__)
 
 shutDownNotComplete = True
 
+@count_methods
 class AutomationSystem:
     """AutomationSystem class that manages the event observer and WebSocket client.
     It handles saving events to a database and sending them through a WebSocket connection.

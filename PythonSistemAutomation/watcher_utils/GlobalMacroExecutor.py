@@ -14,7 +14,7 @@ from sharedResources.generalUtils.aprint import aprint
 from PythonSistemAutomation.watcher_utils.default_receiving_function import default_receiving_function, exec_mouse_or_kb
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
-
+from sharedResources.debuggingResources.exec_monitor import count_methods
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 
 class Flag:
@@ -25,6 +25,7 @@ class Flag:
     def set_value(self, value ):
         self.value = value 
 
+@count_methods
 class GlobalExecutor:
     _queue = asyncio.Queue()
     _running = False

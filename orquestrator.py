@@ -26,8 +26,8 @@ whatToShow = {
 
     "frontEnd": False and (not onlyErrors),
     "frontEndError" : True,
-    "server"   : False and (not onlyErrors),
-    "serverError"  : False,
+    "server"   : True and (not onlyErrors),
+    "serverError"  : True,
     "watcher"  : True and (not onlyErrors),
     "watcherError" : True
 }

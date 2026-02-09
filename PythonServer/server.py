@@ -11,6 +11,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 import builtins
+from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
 from sharedResources.generalUtils.aprint import aprint  # my assyncronous aprint function
 # builtins.print = aprint # Override the built-in aprint with asynchronous aprint
 
@@ -53,6 +54,9 @@ async def server(websocket):
         msg = await websocket.recv()
         initial_data = json.loads(msg)
         # print(f"initial message: {initial_data}")
+        if isinstance(initial_data,list):
+            print("o comando veio como uma lista!")
+
         tipo = initial_data.get("tipo",None)
         # print(f'tipo : {tipo}')
         
@@ -89,31 +93,44 @@ async def server(websocket):
                         message = json.loads(message)
                         if isinstance(message, str):
                             message = json.loads(message)
-  
+                        if isinstance(message,list):
+                            print("o comando veio como uma lista!")
+                            # print(" e é: ",message)
+                            for msg in message:
+                                print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
 
-                        if macroManager.handlePendingMacroCommand(message):
-                            # print("macro command being ignored ",resumedMesssage(message))
-                            continue    #if is command from the current executing macro, stops processing here
+                                # print("the message here is: ",msg)
+                                # print("the type is: ",type(msg))
+                                # print("the len is: ",len(msg))
+                                # real_message, initial_time = msg
+                                await process_watcher_msg(msg)
+                        else:
+                            print("o comando não veio como uma lista!  e ele é: ",message)
+                            a = 1.0/0.0
+
+                        # if macroManager.handlePendingMacroCommand(message):
+                        #     # print("macro command being ignored ",resumedMesssage(message))
+                        #     continue    #if is command from the current executing macro, stops processing here
                         
-                        print(f"📩 {get_current_time()} Do SOWatcher: {message}")
+                        # print(f"📩 {get_current_time()} Do SOWatcher: {message}")
                         
-                        isSpecialCommand , isPress = handleSpecialCommand(message,serverConfig.specialCommands, commands, conditionsMap)
-                        if isSpecialCommand:
-                            if not isPress:
-                                continue
-                            print("deu que é comando especial")
-                            if serverConfig.MacroConfig.get_flag("stopRunningMacroFlag"):
-                                try:
-                                    print("vou enviar o killmacro")
-                                    await connections.OS.receiver.send(json.dumps({"action":"killmacro"}))
-                                except Exception as e:
-                                    print("o server deveria mandar o comando de parar a macro deu erro e foi:" , e)
-                            serverConfig.MacroConfig.set_flag("stopRunningMacroFlag", False)
+                        # isSpecialCommand , isPress = handleSpecialCommand(message,serverConfig.specialCommands, commands, conditionsMap)
+                        # if isSpecialCommand:
+                        #     if not isPress:
+                        #         continue
+                        #     print("deu que é comando especial")
+                        #     if serverConfig.MacroConfig.get_flag("stopRunningMacroFlag"):
+                        #         try:
+                        #             print("vou enviar o killmacro")
+                        #             await connections.OS.receiver.send(json.dumps({"action":"killmacro"}))
+                        #         except Exception as e:
+                        #             print("o server deveria mandar o comando de parar a macro deu erro e foi:" , e)
+                        #     serverConfig.MacroConfig.set_flag("stopRunningMacroFlag", False)
                             
-                        mainDb.log_background_event(message,isSpecialCommand)
+                        # mainDb.log_background_event(message,isSpecialCommand)
 
-                        if mainDb.answer is not None: ## futuramente quero trocar isso para um while para que seja possível usar recorrentemente
-                            mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
+                        # if mainDb.answer is not None: ## futuramente quero trocar isso para um while para que seja possível usar recorrentemente
+                        #     mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
 
                     except websockets.exceptions.ConnectionClosed:
                         logger.warning(f"❌ {get_current_time()} Conexão encerrada com o SOWatcher Sender.")
@@ -125,6 +142,7 @@ async def server(websocket):
                         connections.OS.sender = None
                         break
                     except Exception as e:
+                        log_error_forensics_plus(e)
                         logger.exception(f"❌ {get_current_time()} Erro ao receber mensagem do SOWatcher: {e}")
                         await asyncio.sleep(0.3)
             elif connections.OS.receiver == websocket:
@@ -217,7 +235,7 @@ async def server(websocket):
                         # ainda falta implementar ações mais complexas aqui, da mesma forma como ja acontece na interação direta com o watcher
 
                         # Opcional: enviar confirmação para o front-end
-                        await websocket.send_json({"status": "ok", "command": command_name})
+                        await websocket.send({"status": "ok", "command": command_name})
                     else:
                         print(f"⚠️ Comando desconhecido recebido do front-end: {command_name}")
                         logger.warning(f"⚠️ Comando desconhecido: {command_name}")
@@ -374,6 +392,35 @@ def main():
 
         # Espera server terminar se necessário
         server_thread.join()
+
+async def process_watcher_msg(message):
+    # print(f"[process_watcher_msg] message received here is:{message}")
+    # print(f"the type is: {type(message)}")
+    # print(f"the len is: {len(message)}")
+    if macroManager.handlePendingMacroCommand(message):
+        # print("macro command being ignored ",resumedMesssage(message))
+        return    #if is command from the current executing macro, stops processing here
+    
+    # print(f"the type is: {type(message)}")
+    # print(f"the len is: {len(message)}")
+    
+    isSpecialCommand , isPress = handleSpecialCommand(message,serverConfig.specialCommands, commands, conditionsMap)
+    if isSpecialCommand:
+        if not isPress:
+            return
+        print("deu que é comando especial")
+        if serverConfig.MacroConfig.get_flag("stopRunningMacroFlag"):
+            try:
+                print("vou enviar o killmacro")
+                await connections.OS.receiver.send(json.dumps({"action":"killmacro"}))
+            except Exception as e:
+                print("o server deveria mandar o comando de parar a macro deu erro e foi:" , e)
+        serverConfig.MacroConfig.set_flag("stopRunningMacroFlag", False)
+        
+    mainDb.log_background_event(message,isSpecialCommand)
+
+    if mainDb.answer is not None: ## futuramente quero trocar isso para um while para que seja possível usar recorrentemente
+        mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
 
 if __name__ == "__main__":
     # threading.Thread(target=iniciar_server, daemon=True).start()

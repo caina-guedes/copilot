@@ -100,8 +100,12 @@ class WindowManager:
                 # print("o current_window deu None mesmo depois da função de pegar a janela ativa")
                 return self.__class__.lastKnowWindow , changed ,made_os_call
             else:
-                self.__class__.lastKnowWindow = copy.deepcopy(self.__class__.current_window)
-                self.__class__.lastKnowWindowId = copy.deepcopy(self.__class__.lastKnowWindow.win_id)
+                inicio_da_copia = time.perf_counter()
+                self.__class__.lastKnowWindow = copy.copy(self.__class__.current_window)
+                # print("a copia do currentWindow demorou: ",time.perf_counter() - inicio_da_copia)
+                self.__class__.lastKnowWindowId = self.__class__.lastKnowWindow.win_id
+                # print("o id da janela é:", self.__class__.lastKnowWindowId)
+                # print("o tipo dele é: ",type(self.__class__.lastKnowWindowId))
             if oldWindow is not None :
                 try:
                     oldWindow = oldWindow.to_dict()

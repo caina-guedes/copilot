@@ -18,13 +18,15 @@ from sharedResources.lifecycle.utils import wait_event
 from sharedResources.lifecycle.loop.loop_class import MyLoop
 from sharedResources.lifecycle.trackedUtils.tasksMapClass import TasksMapClass
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
+from sharedResources.debuggingResources.exec_monitor import  count_methods
+
 # Setup básico de logging
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
 logger = logging.getLogger("LifecycleTracker")
 
 
 
-
+@count_methods
 class LifecycleMaster():
     """
         dono do ciclo de vida de tudo que precisa ser controlado 
@@ -143,7 +145,7 @@ class LifecycleMaster():
             cls.register_log("iniciando o autoshutdown","general")
         try:
             cls.register_log("Initiating automatic shutdown...","general")
-            LifecycleMaster.run_async(GlobalExecutor.umpress_keys())
+            LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), state = cls.state)
             if cls.running_loop.get() is not None:
                 if not cls._loop_is_ok():
                     cls.register_log("[autoShutDown] loop is not ok just before task_shutdown_function be called!","general")

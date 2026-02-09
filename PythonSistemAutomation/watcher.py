@@ -69,7 +69,7 @@ class EventObserver:
         self.thread_do_evento = None
     
     
-    # @monitor_error
+    @monitor_error
     def should_process_event(self, event):
         # print(f"[_process_event] event: {event}")
         # async with self._callback_lock:
@@ -117,7 +117,7 @@ class EventObserver:
             logger.debug("Finished processing one event")
             warnings.warn(e)
 
-    # @monitor_error
+    @monitor_error
     async def _event_consumer(self): # primeiro loop
         """
         O único trabalhador: processa a fila um por um.
@@ -128,7 +128,8 @@ class EventObserver:
         while self.listeners_running:
             try:
                 # Espera o próximo evento sem bloquear o loop
-                event , inicio = await self.event_queue.get()
+                event  = await self.event_queue.get()
+                
                 chegou_da_queue = time()
                 event['timestamp'] = event['timestamp']
                 # print(f"thread da definição da classe é: {self.__class__.definition_thread}")
@@ -159,21 +160,21 @@ class EventObserver:
 
                     LifecycleMaster.call_soon(
                         self.send_queue.put_nowait, 
-                        (event,inicio)
+                        event
                         )
                     # await self._on_event_callback(event, self.system)
                     depois_de_enviar = time()
-                    total_time = depois_de_enviar -inicio
+                    total_time = depois_de_enviar -event["timestamp"]
                     time_to_verify_window = logo_depois_de_verificar_janela - logo_antes_de_verificar_janela 
                     time_to_send = depois_de_enviar - logo_antes_de_enviar
                     # print(f"event {event} ")
-                    print(f"took {chegou_da_queue - inicio} in the queue")
-                    print(f"took  {logo_antes_de_verificar_janela - chegou_da_queue} to decide to send it")
-                    print(f"took {time_to_verify_window} to {'not' if not os_call else 'really'} verify window, ")
-                    print(f"took {time_to_send}  to send event !!!")
-                    print(f" took total time : {total_time }")
-                    print(f"of that {(time_to_send/total_time)*100} % is just to send ")
-                    print(f"of that {(time_to_verify_window/total_time)*100} % is just to verify window")
+                    # print(f"took {chegou_da_queue - inicio} in the queue")
+                    # print(f"took  {logo_antes_de_verificar_janela - chegou_da_queue} to decide to send it")
+                    # print(f"took {time_to_verify_window} to {'not' if not os_call else 'really'} verify window, ")
+                    # print(f"took {time_to_send}  to send event !!!")
+                    # print(f" took total time : {total_time }")
+                    # print(f"of that {(time_to_send/total_time)*100} % is just to send ")
+                    # print(f"of that {(time_to_verify_window/total_time)*100} % is just to verify window")
                 self.event_queue.task_done()
             except Exception as e:
                 log_error_forensics_plus(e)
@@ -188,10 +189,10 @@ class EventObserver:
         if self.thread_do_evento is None:
             self.thread_do_evento = threading.current_thread().name
     
-        resp = (event,time())
+        # resp = (event,time())
         LifecycleMaster.call_soon(
             self.event_queue.put_nowait, 
-            resp
+            event
             )
 
     def add_event(self, event):
@@ -209,7 +210,11 @@ class EventObserver:
         self._current_macro = None
 
     @monitor_error
-    def _on_move(self, x, y):
+    def _on_move(self, x, y, injected):
+        if injected:
+            print(f"move enviado por software!({x}, {y})   ignorando")
+            return
+        
         from PythonSistemAutomation.main import AutomationSystem
         now = time()
         if (now - self.last_movement ) < serverConfig.mouseMovementMinimumDelay or not AutomationSystem.config.send_position:
@@ -224,8 +229,11 @@ class EventObserver:
         }
         
         # self.put_in_queue(event)
-
-    def _on_click(self, x, y, button, pressed):
+    @monitor_error
+    def _on_click(self, x, y, button, pressed, injected):
+        if injected:
+            print(f"click enviado por software!({x}, {y}) ignorando!")
+            return
         if pressed:
             event_type = 'press'
             self._pressed.add(str(button))
@@ -242,7 +250,11 @@ class EventObserver:
         }
         self.put_in_queue(event)
 
-    def _on_scroll(self, x, y, dx, dy):
+    @monitor_error
+    def _on_scroll(self, x, y, dx, dy,injected):
+        if injected:
+            print(f"scroll enviado por software!({x} ,{y}, {dx}, {dy}) ignorando...")
+            return
         event = {
             # 'timestamp':datetime.now(timezone.utc).isoformat(),
             'timestamp':time(),
@@ -252,8 +264,12 @@ class EventObserver:
             'delta': {'dx': dx, 'dy': dy}
         }
         self.put_in_queue(event)
-    # @monitor_error
-    def _on_press(self, key):
+    
+    @monitor_error
+    def _on_press(self, key,injected):
+        if injected:
+            print(f"press enviado por software( {key}), ignorando")
+            return 
         from PythonSistemAutomation.main import AutomationSystem
         key = treat_key_as_string(key)
         event = {
@@ -278,17 +294,18 @@ class EventObserver:
             # event["action"] = "ExecCurrentMacro"
             event['details'] = {"RequestToExecuteMacro": True}
 
-        self.put_in_queue(event)
-        # else:# this case is an eco!!!
-        #     pass
-
-        
         if key == AutomationSystem.config.stopKey:
             print("Stop key pressed. but stopping command is comment for now")
             logger.info("Stop key pressed. Stopping observer.")
         
-            
-    def _on_release(self, key):
+        
+        self.put_in_queue(event)
+                
+    @monitor_error
+    def _on_release(self, key,injected):
+        if injected:
+            print(f"release enviado por software!({key}) ignorando")
+            return
         key = treat_key_as_string(key)
         event = {
             # 'timestamp':datetime.now(timezone.utc).isoformat(),
@@ -323,7 +340,7 @@ class EventObserver:
         while self.listeners_running:
             try:
                 # 1. Espera o PRIMEIRO evento do lote (fica dormindo aqui até chegar algo)
-                event,inicio = await self.send_queue.get()
+                event = await self.send_queue.get()
                 buffer.append(event)
                 
                 # 2. Assim que o primeiro chega, iniciamos a contagem do timer
