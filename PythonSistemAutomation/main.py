@@ -1,6 +1,7 @@
 import warnings
 
 
+
 STRICT_MODE = True
 if STRICT_MODE:
     warnings.simplefilter("error")
@@ -22,6 +23,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 # import builtins
 from sharedResources.generalUtils.aprint import aprint  # my assyncronous print function
 # builtins.print = aprint # Override the built-in print with asynchronous print
+from PythonSistemAutomation.watcher_utils.GlobalMacroExecutor import GlobalExecutor
 
 from PythonSistemAutomation.sistem_utils.Watcher_config import EventObserverConfig
 from PythonSistemAutomation.watcher import EventObserver
@@ -82,6 +84,7 @@ class AutomationSystem:
                     AutomationSystem.main_instance.stop_observer()
                     LoggerManager.stop_listener()
                     # Chamadas assíncronas
+                    LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), name= "umpress_task" , protected = True , state = LifecycleMaster.state)
                     if LifecycleMaster.run_async( AutomationSystem.main_instance.not_sent_db.close(),name = "not_sent_db.close", protected = True):
                         pass
                     else:
@@ -228,6 +231,8 @@ async def main():
     finally:
         print("entrou no finally da main...")
         try:
+            LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), state = LifecycleMaster.state)
+
             if not LifecycleMaster.byebye.is_set():
                 print("esperando o byebye")
                 if LifecycleMaster.byebye.wait(timeout = 15):

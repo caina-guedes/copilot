@@ -1,28 +1,16 @@
-# =============================
-# NODE / JAVASCRIPT / ELECTRON
-# =============================
-
-# Ignora qualquer node_modules em qualquer nível
+# ==========================================
+# DEPENDÊNCIAS & AMBIENTES VIRTUAIS
+# ==========================================
 node_modules/
-**/node_modules/
+venv/
+.venv/
+.env/
+.env
+.env.*
 
-# Ignora builds de Electron
-build/
-dist/
-**/dist/
-release/
-out/
-
-# Ignora caches do npm/yarn
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# =============================
-# PYTHON
-# =============================
-
+# ==========================================
+# PYTHON (Compilados, Cache e Distribuição)
+# ==========================================
 __pycache__/
 *.pyc
 *.pyo
@@ -31,24 +19,36 @@ __pycache__/
 *.egg-info/
 *.egg
 
-# venv
-venv/
-.env/
-.env.*
-.venv/
+# ==========================================
+# NODE / ELECTRON (Builds e Debug)
+# ==========================================
+build/
+dist/
+release/
+out/
+target/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# =============================
-# LOGS E OUTROS
-# =============================
-
+# ==========================================
+# LOGS GERAIS E ESPECÍFICOS
+# ==========================================
 *.log
+logs/
 
-# VSCode
-.vscode/
+# ==========================================
+# BANCO DE DADOS (SQLite e outros)
+# ==========================================
+*.db
+*.db-wal
+*.db-shm
+not_sent_events.db
 
-# Sistema operacional
+# ==========================================
+# SISTEMA OPERACIONAL & EDITOR (IDE)
+# ==========================================
 .DS_Store
 Thumbs.db
-
-target/
-*.db
+.vscode/

@@ -90,7 +90,7 @@ class EventObserver:
                 # print(f"the controlsToIgnore are: ",self.system.controlsToIgnore)
 
                 if convenientEventToCompare in self.system.controlsToIgnore:
-                    print(f"the event is a macro event and will not be sent it is:",convenientEventToCompare)
+                    # print(f"the event is a macro event and will not be sent it is:",convenientEventToCompare)
                     # if convenientEventToCompare in self.system.controlsToIgnore:
                     try:
                         self.system.controlsToIgnore.remove(convenientEventToCompare)
@@ -358,7 +358,7 @@ class EventObserver:
                     for _ in range(len(buffer)):
                         self.send_queue.task_done()
                     if confirmation:
-                        print("envio confirmado, o tempo de envio foi: ",time_taken)
+                        # print("envio confirmado, o tempo de envio foi: ",time_taken)
                         for _ in range(len(buffer)):
                             if buffer: buffer.popleft()
             except asyncio.CancelledError:

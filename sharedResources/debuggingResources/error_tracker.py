@@ -16,7 +16,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 r = reprlib.Repr()
 r.maxstring = 100 # Limita strings
-r.maxother = 60   # Limita outros objetos
+r.maxother = 100   # Limita outros objetos
 
 
 def monitor_error(func):
