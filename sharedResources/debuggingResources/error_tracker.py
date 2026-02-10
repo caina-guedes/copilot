@@ -94,11 +94,11 @@ def log_error_forensics_plus(e: Exception, extra_message: str = ""):
     while error_traceback.tb_next:
         error_traceback = error_traceback.tb_next
     error_frame = error_traceback.tb_frame
-    
+     
     # 2. Localiza o frame da CHAMADA (quem chamou a função que deu erro)
     # O f_back nos leva para um nível acima na pilha
     caller_frame = error_frame.f_back
-    while caller_frame and caller_frame.f_code.co_name in ("wrapper","run_async"):
+    while caller_frame and (caller_frame.f_code.co_name == "run_async" or "wrapper" in caller_frame.f_code.co_name.lower()):
         caller_frame = caller_frame.f_back
 
     def format_vars(frame_obj):

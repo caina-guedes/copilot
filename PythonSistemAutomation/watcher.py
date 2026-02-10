@@ -22,7 +22,7 @@ logger = LoggerManager.get_logger(__name__)
 window = WindowManager()
 
 ##### tive que comentar esse monitor pq não está funcionando.
-@count_methods 
+# @count_methods 
 class EventObserver:
     """
     Observes mouse and keyboard events and triggers a callback for each one.
@@ -42,7 +42,7 @@ class EventObserver:
         self._on_event_callback = default_callback
         self.listener_mouse = mouse.Listener(on_click=self._on_click, on_scroll=self._on_scroll,on_move=self._on_move)
         self.listener_keyboard = keyboard.Listener(on_press = self._on_press, on_release = self._on_release)
-        self._current_macro = None
+        # self._current_macro = None
         # self._pressed_keys = set()  # To keep track of pressed keys
         self._pressed = SafePressedTracker()
         # self._pressed_keys = SafePressedTracker()
@@ -176,6 +176,9 @@ class EventObserver:
                     # print(f"of that {(time_to_send/total_time)*100} % is just to send ")
                     # print(f"of that {(time_to_verify_window/total_time)*100} % is just to verify window")
                 self.event_queue.task_done()
+            except asyncio.CancelledError:
+                print("[EventObserver._event_consumer] primeiro loop cancelado")
+                break
             except Exception as e:
                 log_error_forensics_plus(e)
 
@@ -195,24 +198,11 @@ class EventObserver:
             event
             )
 
-    def add_event(self, event):
-        if self._current_macro is None:
-            self._current_macro = copy([])
-        if isinstance(event, dict):
-            self._current_macro.append(event)
-        else:
-            logger.info("Event must be a dict and is : ",type(event), " and the value is : ", event)
-
-    def get_current_macro(self):
-        return self._current_macro if self._current_macro is not None else copy([])
     
-    def clear_current_macro(self):
-        self._current_macro = None
-
     @monitor_error
     def _on_move(self, x, y, injected):
         if injected:
-            print(f"move enviado por software!({x}, {y})   ignorando")
+            # print(f"move enviado por software!({x}, {y})   ignorando")
             return
         
         from PythonSistemAutomation.main import AutomationSystem
@@ -232,7 +222,7 @@ class EventObserver:
     @monitor_error
     def _on_click(self, x, y, button, pressed, injected):
         if injected:
-            print(f"click enviado por software!({x}, {y}) ignorando!")
+            # print(f"click enviado por software!({x}, {y}) ignorando!")
             return
         if pressed:
             event_type = 'press'
@@ -253,7 +243,7 @@ class EventObserver:
     @monitor_error
     def _on_scroll(self, x, y, dx, dy,injected):
         if injected:
-            print(f"scroll enviado por software!({x} ,{y}, {dx}, {dy}) ignorando...")
+            # print(f"scroll enviado por software!({x} ,{y}, {dx}, {dy}) ignorando...")
             return
         event = {
             # 'timestamp':datetime.now(timezone.utc).isoformat(),
@@ -268,7 +258,7 @@ class EventObserver:
     @monitor_error
     def _on_press(self, key,injected):
         if injected:
-            print(f"press enviado por software( {key}), ignorando")
+            # print(f"press enviado por software( {key}), ignorando")
             return 
         from PythonSistemAutomation.main import AutomationSystem
         key = treat_key_as_string(key)
@@ -304,7 +294,7 @@ class EventObserver:
     @monitor_error
     def _on_release(self, key,injected):
         if injected:
-            print(f"release enviado por software!({key}) ignorando")
+            # print(f"release enviado por software!({key}) ignorando")
             return
         key = treat_key_as_string(key)
         event = {
@@ -321,10 +311,6 @@ class EventObserver:
         #     print("this eent is a eco: ",event)
         
 
-    def set_event_callback(self,callback):
-        """Defines the function that will be called for each captured event."""
-        logger.info(f"Setting event callback: {callback}")
-        self._on_event_callback = callback
 
     # @monitor_error
     async def buffer_loop(self): #segundo loop
@@ -340,7 +326,11 @@ class EventObserver:
         while self.listeners_running:
             try:
                 # 1. Espera o PRIMEIRO evento do lote (fica dormindo aqui até chegar algo)
-                event = await self.send_queue.get()
+                try:
+                    event = await asyncio.wait_for(self.send_queue.get(), timeout=0.1)
+                except asyncio.TimeoutError:
+                    continue
+                # event = await self.send_queue.get()
                 buffer.append(event)
                 
                 # 2. Assim que o primeiro chega, iniciamos a contagem do timer
@@ -371,15 +361,16 @@ class EventObserver:
                         print("envio confirmado, o tempo de envio foi: ",time_taken)
                         for _ in range(len(buffer)):
                             if buffer: buffer.popleft()
-
+            except asyncio.CancelledError:
+                print("[EventObserver.buffer_loop] segundo loop cancelado")
             except Exception as e:
                 print(f"Erro no loop de rede: {e}")
                 log_error_forensics_plus(e)
                 warnings.warn(e)
 
     def start(self): # inicia os listeners
-        if self._on_event_callback is None:
-            self.set_event_callback(default_callback)
+        # if self._on_event_callback is None:
+        #     self.set_event_callback(default_callback)
 
         if self.listeners_running:# pra previnir reentrada!
             warnings.warn("tentando iniciar os listeners no observer quando eles ja foram iniciados!")
@@ -401,6 +392,7 @@ class EventObserver:
         print("[EventObserver]stop called ")
         self.listener_mouse.stop()
         self.listener_keyboard.stop()
+        self.listeners_running = False
         for metric in self.counter:
             print(metric)
             if isinstance(self.counter[metric],int ):
@@ -412,3 +404,23 @@ class EventObserver:
         print("macro events not send:")
         for ev in self.events_from_macro:
             print(ev)
+
+
+    # def add_event(self, event):
+    #     if self._current_macro is None:
+    #         self._current_macro = copy([])
+    #     if isinstance(event, dict):
+    #         self._current_macro.append(event)
+    #     else:
+    #         logger.info("Event must be a dict and is : ",type(event), " and the value is : ", event)
+
+    # def get_current_macro(self):
+    #     return self._current_macro if self._current_macro is not None else copy([])
+    
+    # def clear_current_macro(self):
+    #     self._current_macro = None
+
+        # def set_event_callback(self,callback):
+    #     """Defines the function that will be called for each captured event."""
+    #     logger.info(f"Setting event callback: {callback}")
+    #     self._on_event_callback = callback

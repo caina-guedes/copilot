@@ -93,7 +93,10 @@ class WebSocketClient:
             await threatHandShake(cls,sender,False)
             # starting receiver connection
             receiver = await websockets.connect(cls.uri)
-            cls.connection.set_receiver(receiver,GlobalExecutor.enqueue,cls.system.controlsToIgnore,cls.system.ExecutingMacro)
+            cls.connection.set_receiver(receiver,
+                                        handle_message_function = GlobalExecutor.enqueue,
+                                        controlsToIgnore = cls.system.controlsToIgnore,
+                                        ExecutingMacro = cls.system.ExecutingMacro)
             await threatHandShake(cls,receiver,True)
 
             assert cls.connection.sender is not None, "Sender connection was not set properly."

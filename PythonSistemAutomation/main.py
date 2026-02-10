@@ -46,7 +46,7 @@ logger = LoggerManager.get_logger(__name__)
 
 shutDownNotComplete = True
 
-@count_methods
+# @count_methods
 class AutomationSystem:
     """AutomationSystem class that manages the event observer and WebSocket client.
     It handles saving events to a database and sending them through a WebSocket connection.

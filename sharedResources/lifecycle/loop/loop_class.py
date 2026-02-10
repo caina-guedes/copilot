@@ -12,9 +12,9 @@ from sharedResources.lifecycle.loop.logging_utils import set_register_log, _log,
 from sharedResources.lifecycle.loop.checks import instance_check, loop_is_none, is_running, is_closed, _loop_is_ok, _can_interact
 from sharedResources.lifecycle.loop.start_and_stop import start_loop, stop_loop
 from sharedResources.lifecycle.loop.threadsafe import call_soon, submit, gather
-from sharedResources.debuggingResources.exec_monitor import  count_methods
+# from sharedResources.debuggingResources.exec_monitor import  count_methods
 
-@count_methods
+# @count_methods
 class MyLoop():
     """ 
         em breve mudarei o loop pra ser uma classe com o 

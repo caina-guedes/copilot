@@ -25,7 +25,7 @@ class Flag:
     def set_value(self, value ):
         self.value = value 
 
-@count_methods
+# @count_methods
 class GlobalExecutor:
     _queue = asyncio.Queue()
     _running = False
@@ -137,30 +137,34 @@ class GlobalExecutor:
         if cls._running:
             return
         cls._running = True
-        cls._task = LifecycleMaster.run_async(cls._executor_loop(),name = "GlobalExecutorLoopTask")
+        cls._task = LifecycleMaster.run_async(cls._executor_loop(),
+                                              name = "GlobalExecutorLoopTask",
+                                              cleanup_function = cls.stop
+                                              
+                                              )
         # cls._task = asyncio.create_task(cls._executor_loop(),name = "GlobalExecutorLoopTask")
         print("created task and the name is: ",cls._task.get_name())
         print("[GlobalExecutor] Started (auto-start).")
 
     @classmethod
-    async def stop(cls):
+    def stop(cls):
         """Para o loop global e aguarda conclusão das tarefas."""
         if not cls._running:
             return
         cls._running = False
 
-        await cls._queue.join(timeout = 3)  # Espera a fila esvaziar
+        # await cls._queue.join(timeout = 3)  # Espera a fila esvaziar
         if cls._task:
             cls._task.cancel()
-            try:
-                await cls._task
-            except asyncio.CancelledError:
-                pass
-            except Exception as e:
-                print(f"[GlobalExecutor] Error stopping executor: {e}")
-                log_error_forensics_plus(e)
-                LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error stopping executor: {e}",e)
-        cls._reset_macro_state()
+            # try:
+            #     await cls._task
+            # except asyncio.CancelledError:
+            #     pass
+            # except Exception as e:
+            #     print(f"[GlobalExecutor] Error stopping executor: {e}")
+            #     log_error_forensics_plus(e)
+            #     LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error stopping executor: {e}",e)
+        # cls._reset_macro_state()
         print("[GlobalExecutor] Stopped.")
 
     @classmethod
@@ -182,7 +186,7 @@ class GlobalExecutor:
                 except asyncio.TimeoutError:
                     continue
                 except asyncio.CancelledError:
-                    print("tarefa do loop da macro cancelada, encerrando")
+                    print("[GlobalExecutor._executor_loop] tarefa do loop da macro cancelada, encerrando")
                     cls._reset_macro_state()
                     break
                 if cls._stop_running_macro_flag.get_value():

@@ -26,7 +26,7 @@ logger = logging.getLogger("LifecycleTracker")
 
 
 
-@count_methods
+# @count_methods
 class LifecycleMaster():
     """
         dono do ciclo de vida de tudo que precisa ser controlado 
@@ -98,7 +98,7 @@ class LifecycleMaster():
         try:
             if cls._loop_is_ok():
                 print("setando o stop do loop durante emergencia... boa sorte")
-                cls.schedule(MyLoop.stop_loop)
+                cls.call_soon(MyLoop.stop_loop)
 
                 # cls.running_loop.get().call_soon_threadsafe(cls.running_loop.get().stop)
             else:
@@ -245,19 +245,19 @@ class LifecycleMaster():
     # Wrappers de callbacks síncronos
     # -------------------------------
 
-    @staticmethod
-    def schedule(fn, *args):
-        """Agenda uma função sync no loop (thread-safe)"""
-        return MyLoop.call_soon(fn, *args)
+    # @staticmethod
+    # def schedule(fn, *args):
+    #     """Agenda uma função sync no loop (thread-safe)"""
+    #     return MyLoop.call_soon(fn, *args)
 
     # -------------------------------
     # Wrappers de controle do loop
     # -------------------------------
 
-    @staticmethod
-    def shutdown_loop(graceful=True):
-        """Encerra o loop de forma segura"""
-        return MyLoop.stop(graceful=graceful)
+    # @staticmethod
+    # def shutdown_loop(graceful=True):
+    #     """Encerra o loop de forma segura"""
+    #     return MyLoop.stop(graceful=graceful)
 
 
     @classmethod
