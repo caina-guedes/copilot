@@ -5,6 +5,7 @@ import asyncio
 import inspect
 import threading
 # from websockets import ConnectionClosedError
+import websockets
 from websockets.exceptions import ConnectionClosedError
 
 import sys
@@ -182,6 +183,13 @@ class TwoWayConnection:
                         except ConnectionClosedError:
                             # message = "the connection was closed"
                             pass
+                        except websockets.exceptions.ConnectionClosedOK:
+                            if not LifecycleMaster.first_shutdown_event.is_set():
+                                LifecycleMaster.first_shutdown_event.set()
+
+                            print("Conexão fechada normalmente pelo servidor")
+                            break
+
                         except Exception as e:
                             log_error_forensics_plus(e)
                             LoggerManager.log_exception_with_context(f"deu exceção recebendo mensagem no receiver e é: {e}",e)

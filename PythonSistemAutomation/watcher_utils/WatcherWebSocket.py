@@ -5,7 +5,7 @@ import json
 from PythonServer.serverConfig import serverConfig, connection_types
 from PythonSistemAutomation.watcher_utils.GlobalMacroExecutor import GlobalExecutor
 # from PythonSistemAutomation.watcher_utils.default_receiving_function import default_receiving_function
-from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
+from sharedResources.debuggingResources.error_tracker import monitor_error , log_error_forensics_plus
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.connection.connectionObject import TwoWayConnection
@@ -13,7 +13,7 @@ from PythonSistemAutomation.watcher_utils.websocket_utils.threatHandShake import
 logger = LoggerManager.get_logger(__name__)
 
 
-
+# @monitor_error
 class WebSocketClient:
     connection = None
     connected = False

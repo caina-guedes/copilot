@@ -23,6 +23,7 @@ class macroManager:
 
 
     def __init__(self,serverConf):
+        print("__init__ do macroManager e o serverConfig é: " ,serverConf )
         self.__class__.serverConf = serverConf
         self.__class__.macroConf  = serverConf.MacroConfig
         self.__class__.lock = serverConf.MacroConfig._threading_lock

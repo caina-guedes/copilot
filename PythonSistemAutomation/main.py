@@ -61,7 +61,7 @@ class AutomationSystem:
     # sender_task   = None
     stop_event = asyncio.Event() #used in the main function 
     
-    watcher_shutdown_event = LifecycleMaster.shutdown_event
+    watcher_shutdown_event = LifecycleMaster.first_shutdown_event
     shutDownComplete = LifecycleMaster.shutDownComplete
     shutDownIniciated = False
     main_instance = None
@@ -85,6 +85,7 @@ class AutomationSystem:
                     LoggerManager.stop_listener()
                     # Chamadas assíncronas
                     LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), name= "umpress_task" , protected = True , state = LifecycleMaster.state)
+
                     if LifecycleMaster.run_async( AutomationSystem.main_instance.not_sent_db.close(),name = "not_sent_db.close", protected = True):
                         pass
                     else:

@@ -42,7 +42,7 @@ async def test_task_shutdown():
     t2 = TrackedTask(cancellable_task(), name="task2", created_from = "test_task_shutdown")
 
     await asyncio.sleep(0.3)  # deixa as tasks rodarem um pouco
-    LifecycleMaster.shutdown_event.set()  # sinaliza shutdown
+    LifecycleMaster.first_shutdown_event.set()  # sinaliza shutdown
     await asyncio.gather(t1, t2, return_exceptions=True)
     print("✅ shutdown test passed")
 
@@ -56,7 +56,7 @@ def test_thread_shutdown():
     t.start()
 
     time.sleep(0.3)
-    LifecycleMaster.shutdown_event.set()
+    LifecycleMaster.first_shutdown_event.set()
     # t.join()
 
 # ---------------- Test integrado ----------------
@@ -94,7 +94,7 @@ async def test_integrated():
 
     # -------- Sinaliza shutdown --------
     print("[Test] Triggering shutdown")
-    LifecycleMaster.shutdown_event.set()
+    LifecycleMaster.first_shutdown_event.set()
 
     # -------- Espera async tasks --------
     # await shutdown_tasks()

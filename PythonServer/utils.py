@@ -81,6 +81,40 @@ class connections:
         sender = None
         receiver = None
     
+    @classmethod
+    def active_clients(cls):
+        active = []
+        print(f"[connections.active_clients] init!")
+        for group_name, group in cls.__dict__.items(): # nome vai ser OS ou front_end ou browser
+            # attr = getattr(cls, attr_name)
+
+            # só classes internas
+            if not isinstance(group, type):
+                # print(f"[connections.active_clients] {group_name} is not a internal class")
+                continue
+
+            # ignora coisas privadas
+            if group_name.startswith("_"):
+                # print(f"[connections.active_clients]{group_name} is private! ")
+                continue
+
+            for conn_name in ("unique", "sender", "receiver"):
+                conn = getattr(group, conn_name, None)
+                if conn is not None:
+                    register= [group_name,conn_name,conn]
+                    # print(f"[connections.active_clients] appending {register}")
+                    active.append(register)
+                else:
+                    pass
+                    # print(f"[connections.active_clients] {group_name}.{conn_name} is {conn} ")
+        print(f"[connections.active_clients] number of active conns  is:",len(active))
+        if active:
+            for part in active:
+                print(f"[connections.active_clients] con:  " , part)
+        return active
+
+        
+    
     
 # async def run_command(fn, *args):
 #     if asyncio.iscoroutinefunction(fn):

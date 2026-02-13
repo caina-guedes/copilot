@@ -3,350 +3,223 @@ import signal
 import websockets
 import threading
 import json
-import copy
-from datetime import datetime
-import time
 import sys
-
 from pathlib import Path
+from datetime import datetime
 
+# Adiciona o caminho base ao path (mantido do original)
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-import builtins
+# Imports Utilitários e Debug
+# from PythonServer.port_handler import free_port
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
-from sharedResources.generalUtils.aprint import aprint  # my assyncronous aprint function
-# builtins.print = aprint # Override the built-in aprint with asynchronous aprint
-
-from PythonServer.serverReactions import answerMapping
-from sharedResources.DataBases.mainDatabase.main_db import MainDatabase as mainDb
-from PythonServer.validador_comandos import validar_comando
-from PythonServer.serverConfig import serverConfig, connection_types, SOWatcherActions
+from sharedResources.generalUtils.aprint import aprint
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
-from PythonServer.utils import connections, handleSpecialCommand, resumedMesssage
-from PythonServer.macroManager.macroManager import macroManager
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 
-# Flag global de shutdown
-serverShutdown_event = threading.Event()
+# Imports de Configuração e Banco
+from PythonServer.serverConfig import serverConfig, connection_types, SOWatcherActions
+from sharedResources.DataBases.mainDatabase.main_db import MainDatabase as MainDbClass
+from PythonServer.macroManager.macroManager import macroManager
 
+# --- NOVOS IMPORTS (A Mágica da Refatoração) ---
+from PythonServer.core import state  # Onde guardamos as variáveis globais
+from PythonServer.core.handlers import os_watcher_handler, browser_handler, frontend_handler
+from PythonServer.utils import connections # Ainda precisamos disso para o check_connections antigo
 
-macroManager(serverConfig)
-
-watcherConfigs = SOWatcherActions()
-commands = watcherConfigs.actionDispatch
-conditionsMap = watcherConfigs.actionConditions
-
-commands_per_connection = {}
-
-front_end_connection = []
-
-
+# Logger Setup
 logger = LoggerManager.get_logger(__name__)
-mainDb = mainDb(serverConfig = serverConfig)
 
+# ==============================================================================
+# 1. INICIALIZAÇÃO DE ESTADO (BOOTSTRAP)
+# ==============================================================================
+@monitor_error
+def initialize_server_state():
+    """
+    Inicializa todos os componentes pesados e os injeta no módulo de estado.
+    Isso substitui as variáveis globais soltas.
+    """
+    print("🔄 Inicializando estado do servidor...")
+    
+    # 1. Macro Manager
+    macroManager(serverConfig) # No seu código original parecia ser uma chamada de função ou init
+    # Assumindo que macroManager é um módulo ou classe singleton, vamos guardar a referência
+    state.macro_manager = macroManager 
+    
+    # 2. Configurações do Watcher
+    watcher_configs = SOWatcherActions()
+    state.watcher_configs = watcher_configs
+    state.commands = watcher_configs.actionDispatch
+    state.conditions_map = watcher_configs.actionConditions
+    
+    # 3. Configurações do Servidor
+    state.server_config = serverConfig
+    
+    # 4. Banco de Dados
+    # Instancia e guarda no estado global para os handlers usarem
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+    
+    print("✅ Estado do servidor inicializado e injetado em 'core.state'.")
+
+# Chama a inicialização imediatamente ao importar/rodar este script
+initialize_server_state()
+
+# ==============================================================================
+# 2. ROTEADOR DE CONEXÕES (O ANTIGO server())
+# ==============================================================================
 def get_current_time(format: str = "%X"):
-    """
-    Returns the current time formatted as a string.
-    """
-    current_time = datetime.now()
-    return current_time.strftime(format)
+    return datetime.now().strftime(format)
 
 @monitor_error
-async def server(websocket):
+async def server_router(websocket):
+    """
+    Função principal que recebe a conexão e roteia para o handler correto.
+    Substitui a antiga função monolítica 'server'.
+    """
     try:
+        # Lê a primeira mensagem para identificar quem é
         msg = await websocket.recv()
         initial_data = json.loads(msg)
-        tipo = initial_data.get("tipo",None)
-        # print(f'tipo : {tipo}')
+        tipo = initial_data.get("tipo", None)
         
-        
+        # --- ROTEAMENTO ---
+         
+        # 1. PING (Healthcheck simples)
         if tipo == connection_types['ping']:
-            logger.info(f"🔄 {get_current_time()} Received ping from browser.")
-            response = {
-                "status": "sucesso",
-                "mensagem": "Ping recebido com sucesso!"
-            }
+            logger.info(f"🔄 {get_current_time()} Ping recebido.")
+            response = {"status": "sucesso", "mensagem": "Ping recebido com sucesso!"}
             await websocket.send(json.dumps(response))
-            logger.warning(f"📥-({get_current_time()})response sent to browser: {response}")
+            logger.warning(f"📥 Response sent to browser: {response}")
 
-        elif tipo in [ connection_types['OSwatcherSender'] , connection_types['OSwatcherReceiver']]:
-            if tipo == connection_types['OSwatcherSender']:
-                connections.OS.sender = websocket
-            elif tipo == connection_types["OSwatcherReceiver"]:
-                connections.OS.receiver = websocket
-            # SOWatcher_connection.add((tipo,websocket))
-            if connections.OS.sender and connections.OS.receiver:
-                logger.warning(f"🖥️ {get_current_time()}  SOWatcher Conection Started!")
-            # Sends a confirmation message
-            response = {
-                "status": "sucesso",
-                "mensagem": "Conexão SOWatcher estabelecida!"
-            }
-            await websocket.send(json.dumps(response))
-            # logger.info(f"📥-({get_current_time()})response send to SOWatcher:", response)
-            # Loop listening to messages from SOWatcher 
-            if connections.OS.sender == websocket:
-                while True:
-                    try:
-                        message = await websocket.recv()
-                        message = json.loads(message)
-                        if isinstance(message, str):
-                            message = json.loads(message)
-                        if isinstance(message,list):
-                            # print("o comando veio como uma lista!")
-                            for msg in message:
-                                print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+        # 2. OS WATCHER (Sender ou Receiver)
+        elif tipo in [connection_types['OSwatcherSender'], connection_types['OSwatcherReceiver']]:
+            await os_watcher_handler.handle_os_connection(websocket, tipo)
 
-                                await process_watcher_msg(msg)
-                        else:
-                            print("o comando não veio como uma lista!  e ele é: ",message)
-                            a = 1.0/0.0
-
-
-                    except websockets.exceptions.ConnectionClosed:
-                        logger.warning(f"❌ {get_current_time()} Conexão encerrada com o SOWatcher Sender.")
-                        connections.OS.sender = None
-                        logger.warning("connection was not discarded correctly")
-                        break
-                    except asyncio.CancelledError:
-                        logger.info(f"⚠️ {get_current_time()} Loop do SOWatcher Sender cancelado.")
-                        connections.OS.sender = None
-                        break
-                    except Exception as e:
-                        log_error_forensics_plus(e)
-                        logger.exception(f"❌ {get_current_time()} Erro ao receber mensagem do SOWatcher: {e}")
-                        await asyncio.sleep(0.3)
-            elif connections.OS.receiver == websocket:
-                try:    
-                    message = await websocket.recv()
-                    LoggerManager.log_exception_with_context(f"o receiver do SO está mandando mensagem e não devia! e é: {message}")
-                except websockets.exceptions.ConnectionClosed:
-                    connections.OS.receiver = None
-                except asyncio.CancelledError:
-                    connections.OS.receiver = None
-                except Exception as e:
-                    connections.OS.receiver = None
-                    LoggerManager.log_exception_with_context(f"erro inesperado no receiver e é: {e}",e)
-                
-        # Verifica o tipo de conexão
+        # 3. EXTENSÃO DO BROWSER
         elif tipo == connection_types['extension']:
-            connections.browser.unique = websocket
-            allowed_commands = initial_data.get("comandos", [])
-            commands_per_connection[websocket] = allowed_commands
-            logger.warning(f"🌐 {get_current_time()} Connected browser extension !")
-            # Loop listening to browser messages
-            while True:
-                try:
-                    message = await websocket.recv()
-                    logger.info(f"📩 {get_current_time()} Do navegador: {message}")
-                except websockets.exceptions.ConnectionClosed:
-                    logger.warning(f"❌ {get_current_time()} Conexão encerrada com {tipo}.")
-                    # limpa referência
-                    connections.browser.unique = None
-                    break  # sai do loop
-                except asyncio.CancelledError:
-                    logger.info(f"⚠️ {get_current_time()} Loop de {tipo} cancelado.")
-                    connections.browser.unique = None
-                    break
-                except Exception as e:
-                    connections.browser.unique = None
-                    LoggerManager.log_exception_with_context(f"[server.py] Erro no loop de {tipo}: {e}", e)
-                    await asyncio.sleep(0.5)
+            await browser_handler.handle_browser_extension(websocket, initial_data)
 
+        # 4. FRONT-END (Controle)
         elif tipo == connection_types['front_end']:
-            print(f"conexão do front end estabelecida")
-            logger.info(f"🛠️ {get_current_time()} Conexão de controle iniciada!")
-            front_end_connection.append(websocket)
+            await frontend_handler.handle_frontend(websocket)
 
-            while True:
-                try:
-                    error = True
-                    message = await websocket.recv()
-                    print(f"Do Front_end: {message}")
-                    message = json.loads(message)
-  
-                    if "payload" in message and "ts" in message["payload"] and message["payload"]["ts"] != 0 :
-                        payload = message["payload"]
-                        click_to_ignore = payload.get("click", None) 
-                        prepared_command_toIgnore = {
-                            "ts": payload.get("ts",0) , 
-                            "type":"mouse" , 
-                            "button": click_to_ignore.get("button","left") , 
-                            "action":"click" , "x": click_to_ignore.get("x",0) , 
-                            "y": click_to_ignore.get("y",0) } if click_to_ignore else None
-    
-                        # print("the prepared_command_toIgnore is: ", prepared_command_toIgnore)
-                        if click_to_ignore:
-                            # print("click to ignore added to the commandsToNotFlush list")
-                            mouseCmd = serverConfig.mouseCommmand(prepared_command_toIgnore)
-                            serverConfig.FlushConfig.commandsToNotFlush.append(mouseCmd)
-                            # print(f"the list is now: {serverConfig.FlushConfig.commandsToNotFlush}")
-                        else:
-                            print("no click to ignore found in the payload")
-
-                    command_name = message.get("command", None)
-                    # if command_name:
-                    #     print(f"o command_name é: {command_name}")
-                    if not commands:
-                        print(f"⚠️ Nenhum comando disponível para execução.")
-                    
-                    if command_name in commands:
-                        # Executa a função correspondente
-                        print(f"executando o comando: {command_name}")
-                        # continue 
-                        # if False:  # Placeholder para validação futura    
-                        response = commands[command_name]()
-                        logger.info(f"✅ {get_current_time()} Comando {command_name} executado com sucesso!")
-                        if callable(response):
-                            print("response is a callable, awaiting it...")
-                            resp = await response()
-                            print("the awaited response is: ", resp)
-                            await front_end_connection[0].send(json.dumps(resp))
-                        
-                        # ainda falta implementar ações mais complexas aqui, da mesma forma como ja acontece na interação direta com o watcher
-
-                        # Opcional: enviar confirmação para o front-end
-                        await websocket.send({"status": "ok", "command": command_name})
-                    else:
-                        print(f"⚠️ Comando desconhecido recebido do front-end: {command_name}")
-                        logger.warning(f"⚠️ Comando desconhecido: {command_name}")
-                    error = False
-
-
-                
-                except websockets.exceptions.ConnectionClosed:
-                    logger.warning(f"❌ {get_current_time()} Conexão encerrada com {tipo}.")
-                    
-                    # break  # sai do loop
-                except asyncio.CancelledError:
-                    logger.info(f"⚠️ {get_current_time()} Loop de {tipo} cancelado.")
-                    # break
-                except Exception as e:
-                    logger.error(f"❌ Erro ao processar comando: {e}")
-                    # break
-                if error:
-                    await asyncio.sleep(0.3)
+        # 5. DESCONHECIDO
         else:
-            print(f"⚠️ {get_current_time()} Unknown connection type. info: {initial_data}")
-
-                
-                    # ok, err = validar_comando(json.loads(message))
-                    # if ok:
-                    #     logger.info(f"✅ {get_current_time()} Comando válido.  {message}")
-
-                    # else:
-                    #     logger.info(f"❌ {get_current_time()} Comando inválido.  {message}")
-                    #     logger.info(f"❌ {get_current_time()} Erro: {err}")
-                    #     # Envia uma resposta de erro para o controlador
-                    #     response = {
-                    #         "status": "falha",
-                    #         "mensagem": "Comando inválido."
-                    #     }
-                    #     await websocket.send(json.dumps(response))
-                    #     continue
-                    # response = { 
-                    #     "status": "falha",
-                    #     "mensagem": "nenhum navegador conectado."
-                    # }
-                    # # for nav in browser_connections.copy():
-                    # try:
-                    #     await connections.browser.unique.send(message)
-                    #     logger.info(f"📤 {get_current_time()} Comando enviado ao navegador")
-                    #     response = {
-                    #             "status": "sucesso",
-                    #             "mensagem": "Comando enviado com sucesso!"
-                    #         }
-                    # except websockets.exceptions.ConnectionClosed:
-                    #     logger.warning(f"❌ {get_current_time()} Conexão encerrada com o navegador.")
-                    #     response = {
-                    #         "status": "falha",
-                    #         "mensagem": "Comando falhou ao ser enviado."
-                    #         }
-                    # finally:
-                    #     pass
-                    # # Envia uma resposta de volta para o controlador
-                    
-                    # await websocket.send(json.dumps(response))
-                    # logger.info(f"📥 {get_current_time()} Response sent to the controller: {response}")
-            
+            logger.warning(f"⚠️ {get_current_time()} Tipo de conexão desconhecido: {initial_data}")
+            await websocket.close()
 
     except websockets.exceptions.ConnectionClosed:
-        logger.warning(f"❌ {get_current_time()} Connection closed.")
+        pass # Conexão fechada durante o handshake é normal
     except Exception as e:
-        LoggerManager.log_exception_with_context(e)    
-    finally:
+        LoggerManager.log_exception_with_context(e)
 
-        connections.browser.unique = None
+# ==============================================================================
+# 3. GERENCIAMENTO DE CICLO DE VIDA (SERVER MANAGER)
+# ==============================================================================
+# (Mantivemos a classe aqui por enquanto, mas ela usa a nova função router)
 
-async def process_watcher_msg(message):
-    if macroManager.handlePendingMacroCommand(message):
-        return    #if is command from the current executing macro, stops processing here
-    
-    
-    isSpecialCommand , isPress = handleSpecialCommand(message,serverConfig.specialCommands, commands, conditionsMap)
-    if isSpecialCommand:
-        if not isPress:
-            return
-        print("deu que é comando especial")
-        if serverConfig.MacroConfig.get_flag("stopRunningMacroFlag"):
-            try:
-                print("vou enviar o killmacro")
-                await connections.OS.receiver.send(json.dumps({"action":"killmacro"}))
-            except Exception as e:
-                print("o server deveria mandar o comando de parar a macro deu erro e foi:" , e)
-        serverConfig.MacroConfig.set_flag("stopRunningMacroFlag", False)
-        
-    mainDb.log_background_event(message,isSpecialCommand)
-
-    if mainDb.answer is not None: ## futuramente quero trocar isso para um while para que seja possível usar recorrentemente
-        mapping =  await answerMapping.create(mainDb.answer,serverConfig,connections)
 
 class WebSocketServerManager:
+    
+    funcs_for_shutdown = []
+
     def __init__(self):
         self.server_task = None
         self.check_conn_task = None
         self.ws_server = None
+
     async def start(self):
         """Método principal que o LifecycleMaster vai submeter"""
         try:
-            # 1. Inicia o servidor usando o websockets.serve (sem o 'async with' aqui para controle manual)
-            # ou use o async with com um evento de parada
-            async with websockets.serve(server, "localhost", 8765) as ws_server:
+            # Note que agora passamos 'server_router' em vez de 'server'
+            # free_port(8765)
+            async with websockets.serve(server_router, "localhost", 8765) as ws_server:
+                LifecycleMaster.cleanup_manager.register_hook(self.stop_procedure, priority=100)
+                # Registra hooks de limpeza
+                # WebSocketServerManager.funcs_for_shutdown.append([-1, ws_server.close])
+                # Usando o novo hook do LifecycleMaster que implementamos antes!
+                # LifecycleMaster.cleanup_manager.register_hook(ws_server.close, priority=90)
+                
                 LifecycleMaster.register_log(f"🚀 Server WebSocket rodando em ws://localhost:8765", "server")
                 self.ws_server = ws_server
-                # 2. Lançamos a verificação de conexões como uma task filha
+                
+                # Lança verificação de conexões
                 self.check_conn_task = LifecycleMaster.run_async(
                     self.check_connections(period=10), 
                     name="ServerConnectionCheck"
                 )
 
-                # 3. MANTRA DO SHUTDOWN: 
-                # Em vez de asyncio.Future(), esperamos o evento do LifecycleMaster
-                # Isso permite que o ShutdownMaster pare o servidor graciosamente
+                # Loop de espera do Shutdown
                 LifecycleMaster.shutdown_event.clear()
                 while not LifecycleMaster.shutdown_event.is_set():
                     await asyncio.sleep(0.05)
-                print("Encerrando servidor WebSocket...")
-                LifecycleMaster.register_log("Encerrando servidor WebSocket...", "server")
+                
+                print("Sinal de shutdown recebido no Server Manager...")
                 ws_server.close()
-                print("mandei o close")
                 await ws_server.wait_closed()
-                print("consegui esperar o close")
+                print("Servidor WebSocket fechado com sucesso.")
+                
         except Exception as e:
             log_error_forensics_plus(e, "Falha na inicialização do Servidor")
             LifecycleMaster.emergency_shutdown(e)
         finally:
-            print("cheguei no finally do start")
+            # Segurança extra no finally
             try:
-                ws_server.close()
-                await ws_server.wait_closed()
-                print("consegui fechar o server!!!")
+                # free_port(8765)
+                await self.stop_procedure()
+                if 'ws_server' in locals() and ws_server.is_serving():
+
+                    ws_server.close()
+                    await ws_server.wait_closed()
+            except Exception:
+                pass
+    
+    async def stop_procedure(self):
+        """Rotina de limpeza explícita para liberar a porta rápido"""
+        print("🛑 Executando stop_procedure do WebSocket...")
+        
+        # 1. Cancela a tarefa de check (para não pingar em socket fechando)
+        if self.check_conn_task and not self.check_conn_task.done():
+            self.check_conn_task.cancel()
+            try:
+                await self.check_conn_task
+            except asyncio.CancelledError:
+                pass
+        
+        # 2. Desconecta clientes ativos na força (Isso evita o TIME_WAIT)
+        # Importamos as conexões do core.utils ou state
+        from PythonServer.utils import connections 
+        
+        active_clients = connections.active_clients()
+        # [
+        #     connections.browser.unique,
+        #     connections.OS.sender,
+        #     connections.OS.receiver,
+        #     connections.front_end.unique
+        # ] 
+        # print("the active_clients return value is: ",active_clients)
+        for client_register in active_clients:
+            group_name, conn_name , conn = client_register
+            try:
+                # if conn.open:
+                print(f"closing conn {group_name} - {conn_name}")
+                await conn.close(code=1000, reason="Server Shutdown")
+                # else:
+                #     print(f"[stop_procedure] connection {group_name}.{conn_name} already closed ")
             except Exception as e:
-                print("a exceção que deu no finally do start foi:",e)
-                log_error_forensics_plus(e, "Falha na finalização do Servidor")
-                
+                print("[stop_procedure] deu erro e foi:  ",str(e))
+
+                # pass
+        
+        # 3. Fecha o servidor
+        if self.ws_server:
+            self.ws_server.close()
+            await self.ws_server.wait_closed()
+            print("✅ Socket do servidor fechado e liberado.")
+
+
     async def check_connections(self, period=10):
-        """Sua lógica de ping, agora protegida pelo monitor de erro"""
+        """Verifica conexões ativas (Ping/Pong)"""
         while not LifecycleMaster.shutdown_event.is_set():
             try:
                 await asyncio.sleep(period)
@@ -357,138 +230,30 @@ class WebSocketServerManager:
                 LifecycleMaster.register_log("⚠️ Conexão browser timeout", "server")
                 connections.browser.unique = None
             except asyncio.CancelledError:
-                print("[check_connections] cancelada")
+                print("[check_connections] cancelled successfully")
+                break
             except Exception as e:
-                # Aqui entra o seu novo monitor!
                 log_error_forensics_plus(e, "Erro no check_connections")
                 break
     
     @staticmethod
-    def shutdown(a,b):
-        print("peguei o shutdown do websocketServer!!!")
-        if not LifecycleMaster.shutdown_event.is_set(): 
-            LifecycleMaster.shutdown_event.set()
+    def shutdown(a, b):
+        print("Sinal de SO recebido (SIGINT/SIGTERM)")
+        if not LifecycleMaster.first_shutdown_event.is_set():
+            LifecycleMaster.first_shutdown_event.set() # Apenas avisa a thread principal
         else:
-            print("evento the shutdown ja setado!, ignorando aqui!")    
-        # WebSocketServerManager.myShutdown()
-    
-    # def myShutdown(self):
-
+            print("ja mandei o sinal de fechamento antes!")
 if __name__ == "__main__":
+    # Configura sinais de SO
     for sig in (signal.SIGINT, signal.SIGTERM):
-            # print(f"pondo o sinal {AutomationSystem.shutdown} no {sig}")
-            signal.signal(sig, WebSocketServerManager.shutdown)
+        signal.signal(sig, WebSocketServerManager.shutdown)
+        
     manager = WebSocketServerManager()
     
-    # 1. Prepara o loop e submete a corrotina start
-    # O LifecycleMaster vai criar a thread do loop e colocar o 'start' lá
+    # Inicia o runtime via LifecycleMaster
     LifecycleMaster.start_runtime(manager.start())
     
-    # 2. Bloqueia a thread principal esperando o comando de fechar (Ctrl+C, etc)
-
+    # Bloqueia thread principal
     LifecycleMaster.byebye.wait()
-    print("byebye setado!!!!")
-
-# async def check_connections(period = 10):
-#     while True:
-#         await asyncio.sleep(period)
-#         # for conn in list(browser_connections):
-#         try:
-#             if connections.browser.unique:
-#                 pong_waiter = await connections.browser.unique.ping()
-#                 await asyncio.wait_for(pong_waiter, timeout=5)
-#         except Exception as e:
-#             logger.warning(f"⚠️ Conexão inativa detectada e removida: ")
-#             connections.browser.unique = None
-#             commands_per_connection={}
-
-# async def start_ws_server():
-#     async with websockets.serve(server, "localhost", 8765):
-#         logger.warning(f"🚀 {get_current_time()} server WebSocket rodando em ws://localhost:{serverConfig.serverPort}")
-#         await asyncio.gather(
-#             asyncio.Future(),  # Mantém o server ativo
-#             check_connections()  # Verifica as conexões periodicamente
-#             )
-
-# # Roda o server em uma thread separada
-# def iniciar_server():
-#     asyncio.run(start_ws_server())
-
-
-# def main():
-#     # Inicializa o server na thread principal ou não-daemon
-#     try:
-#         server_thread = threading.Thread(target=iniciar_server, name="ServerThread")
-#         server_thread.start()
-#         print("created thread  and the name is:", server_thread.name)
-#     except KeyboardInterrupt:
-#         print("❌ Interrompido pelo usuário.")
-#         # serverShutdownEvent.set()
-#     except Exception as e:
-#         print("❌ Erro ao iniciar o servidor WebSocket:", e)
-
-#     # Aguarda server estar pronto (opcional: pode colocar sleep ou flag)
-#     # asyncio.run(enviar_comando())
-#     finally:
-#         # Fecha listener do logger quando tudo terminar
-#         LoggerManager.stop_listener()
-
-#         # Espera server terminar se necessário
-#         server_thread.join()
-
-
-# if __name__ == "__main__":
-#     # threading.Thread(target=iniciar_server, daemon=True).start()
-#     # asyncio.run(enviar_comando())
-#     # LoggerManager.stop_listener()  # Stop logger listener when script ends
-#     main()
-    # iniciar_server()
-    # while True:
-    #     time.sleep(5)
-    
-    # Inicia o server WebSocket
-
-# # Inicia o server em uma thread paralela
-# threading.Thread(target=iniciar_server, daemon=True).start()
-
-# # Inicia o input de comandos
-# enviar_comando()
-
-# Envia comandos para todos os navegadores conectados
-# async def enviar_comando(comandoInicial  =  ''  ):
-#     if comandoInicial:
-#         message = {
-#             "acao": comandoInicial,
-#         }
-#         logger.info(f"recebi o comando , {comandoInicial}")
-#         logger.info(f"tenho {len([connections.browser.unique])} conexões ativas")
-#         data = json.dumps(message)
-        
-#         if connections.browser.unique is None:
-#             logger.info(f"⚠️ {get_current_time()} Nenhum navegador conectado para enviar o comando.")
-#             return
-#         logger.info(f" {get_current_time()} Enviando comando para navegador conectado...")
-#         await connections.browser.unique.send(data)
-#         logger.info(f"📤 Comando enviado: {data}")
-#     else:
-#         while True:
-#             comando = input("💻 Digite o comando para enviar ao navegador (ex: preencher_formulario):\n> ")
-#             if comando.lower() == "list":
-#                 logger.info(f"Conexões ativas: {len([connections.browser.unique])}")
-#                 for conn in connections.browser.unique:
-#                     logger.info(f"Conexão ativa: {conn}")
-#                 continue
-#             elif comando.lower() == "exit":
-#                 logger.info("Saindo...")
-#                 break
-#             message = {
-#                 "acao": comando,
-#                 "dados": {
-#                     "nome": "João",
-#                     "email": "joao@email.com",
-#                     "telefone": "123456789"
-#                 }
-#             }
-#             data = json.dumps(message)
-#             await connections.browser.unique.send(data)
-#             logger.info(f"📤 Comando enviado: {data}")
+    print("Aplicação encerrada. Bye bye!")
+    # free_port(8765)

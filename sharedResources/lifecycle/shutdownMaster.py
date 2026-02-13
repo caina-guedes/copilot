@@ -11,6 +11,8 @@ basePath = Path(__file__).resolve().parent.parent.parent
 # print("Path added to sys.path:", str(basePath))
 sys.path.append(str(basePath))
 
+
+from sharedResources.lifecycle.gracious_cleanup_manager import GraciousCleanupManager
 from sharedResources.lifecycle.shutdownThreadUtils import TrackedThread
 from sharedResources.lifecycle.shutdownTaskUtils import TrackedTask
 from sharedResources.lifecycle.printUtils import print_thread_status, print_async_tasks_status
@@ -32,7 +34,8 @@ class LifecycleMaster():
         dono do ciclo de vida de tudo que precisa ser controlado 
         para organizar inicialização e shutdown
     """
-    
+    cleanup_manager = GraciousCleanupManager
+
     running_loop = MyLoop() # loop principal único!
     state = "INIT" #  
 
@@ -40,6 +43,7 @@ class LifecycleMaster():
     testing = False
 
     # ------- events -------
+    first_shutdown_event = threading.Event()
     shutdown_event = threading.Event() #tem que setar esse evento em runtime pelo processo principal
     shutDownComplete = threading.Event()
     byebye           = threading.Event()
@@ -150,6 +154,10 @@ class LifecycleMaster():
                 if not cls._loop_is_ok():
                     cls.register_log("[autoShutDown] loop is not ok just before task_shutdown_function be called!","general")
                 else:
+                    cls.register_log("iniciating cleanup for shutdown","general")
+                    cls.cleanup_manager.execute_hooks()
+                    cls.register_log("finished cleanup before shutdown","general")
+                    cls.shutdown_event.set()
                     cls.register_log("iniciating tasks shutdown","general")
                     res = asyncio.run_coroutine_threadsafe(cls.task_shutdown_function(), cls.running_loop.get())
                     res.result(timeout = 10)
@@ -192,9 +200,9 @@ class LifecycleMaster():
         try:
             print("Waiting for shutdown to begin...")
             if cls.testing: #for isolated tests only!
-                wait_event(cls.shutdown_event,"LifecycleMaster.shutdown_event")
+                wait_event(cls.first_shutdown_event,"LifecycleMaster.first_shutdown_event")
             else:
-                cls.shutdown_event.wait()
+                cls.first_shutdown_event.wait()
             cls.register_log("Shutdown event detected, proceeding with shutdown...","general")
             cls.autoShutdown()
         finally:
@@ -269,6 +277,7 @@ class LifecycleMaster():
     @classmethod
     def prepare_dependencies(cls):
         # preparando as dependências para o lifecycle master
+        cls.cleanup_manager.prepare_class(cls.register_log,cls)
 
         # setting up the register log functions
         MyLoop.set_register_log(        cls.register_log)

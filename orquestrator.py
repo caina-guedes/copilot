@@ -4,6 +4,7 @@ import signal
 import sys
 import socket
 import threading
+import psutil
 
 from colorama import init, Fore, Style
 
@@ -53,11 +54,56 @@ def wait_for_port(port, host="127.0.0.1", timeout=10):
             time.sleep(0.2)
     return True
 
+def check_port_in_use(port: int, host="0.0.0.0"):
+    for conn in psutil.net_connections(kind="inet"):
+        if conn.laddr and conn.laddr.port == port:
+            return conn
+    return None
+
+
+def free_port(port: int):
+    conn = check_port_in_use(port)
+
+    if not conn:
+        print(f"[OK] Porta {port} está livre")
+        return
+
+    pid = conn.pid
+
+    # CASO 1: TIME_WAIT ou Sem Permissão
+    if pid is None:
+        print(f"[WARN] Porta {port} está ocupada (Status: {conn.status}), mas não consegui identificar o PID.")
+        print("[HINT] Pode ser uma conexão em TIME_WAIT ou falta de permissão (tente rodar como sudo).")
+        # Não temos como matar um processo sem PID. 
+        # Se for TIME_WAIT, só esperando.
+        return
+    try:
+        proc = psutil.Process(pid)
+        print(
+            f"[WARN] Porta {port} em uso por PID={pid} "
+            f"({proc.name()})"
+        )
+
+        proc.terminate()   # tenta encerrar educadamente
+        proc.wait(timeout=3)
+
+        print(f"[OK] Processo {pid} finalizado, porta liberada")
+
+    except psutil.TimeoutExpired:
+        print(f"[WARN] Processo {pid} não respondeu, forçando kill")
+        proc.kill()
+
+    except Exception as e:
+        print(f"[ERROR] Falha ao liberar porta {port}: {e}")
+    finally:
+        time.sleep(0.2)
+
 
 # -------------------------
 # Start dos processos
 # -------------------------
 def start_server():
+    free_port(8765)
     print("[orchestrator] Iniciando server...")
     p = subprocess.Popen(
         ["python3","-u", "PythonServer/server.py"],
@@ -184,6 +230,8 @@ def main():
                 pass
 
         print("[orchestrator] Finalizado")
+        free_port(8765)
+    
 
 
 if __name__ == "__main__":

@@ -393,17 +393,17 @@ class EventObserver:
         self.listener_mouse.stop()
         self.listener_keyboard.stop()
         self.listeners_running = False
-        for metric in self.counter:
-            print(metric)
-            if isinstance(self.counter[metric],int ):
-                print(self.counter[metric])
-            else:
-                print(len(self.counter[metric]))
-                for ev in self.counter[metric]:
-                    print(ev)
-        print("macro events not send:")
-        for ev in self.events_from_macro:
-            print(ev)
+        # for metric in self.counter:
+        #     print(metric)
+        #     if isinstance(self.counter[metric],int ):
+        #         print(self.counter[metric])
+        #     else:
+        #         print(len(self.counter[metric]))
+        #         for ev in self.counter[metric]:
+        #             print(ev)
+        # print("macro events not send:")
+        # for ev in self.events_from_macro:
+        #     print(ev)
 
 
     # def add_event(self, event):
