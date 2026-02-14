@@ -15,6 +15,7 @@ from PythonSistemAutomation.watcher_utils.default_receiving_function import defa
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
 from sharedResources.debuggingResources.exec_monitor import count_methods
+from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 
 class Flag:
@@ -25,7 +26,7 @@ class Flag:
     def set_value(self, value ):
         self.value = value 
 
-# @count_methods
+@monitor_class
 class GlobalExecutor:
     _queue = asyncio.Queue()
     _running = False
@@ -283,13 +284,14 @@ class GlobalExecutor:
                         
                         except Exception as e:
                             log_error_forensics_plus(e)
-                            LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error calculating macro times: {e}",e)
+                            # LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error calculating macro times: {e}",e)
                         
                         time_it_should_take = 0.0
                         macroAcumulatedInteractionWithSOTime = 0.0
                         cls._reset_macro_state()
                     else:
-                        LoggerManager.log_exception_with_context(f"[GlobalExecutor] endMacro received without a matching startMacro.")
+                        warnings.warn(f"[GlobalExecutor] endMacro received without a matching startMacro.")
+                        # LoggerManager.log_exception_with_context(f"[GlobalExecutor] endMacro received without a matching startMacro.")
                 cls._queue.task_done()
             except asyncio.CancelledError:
                 warnings.warn(" GlobalExecutorLoopTask task cancelled!")
@@ -299,7 +301,7 @@ class GlobalExecutor:
                 print(f"[GlobalExecutor] Error executing command: {e}")
                 cls.umpress_keys()
                 log_error_forensics_plus(e)
-                LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error executing command: {e}",e)
+                # LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error executing command: {e}",e)
 
     @classmethod
     async def _execute_command(cls, command: dict, frozen_controls_to_ignore = None):

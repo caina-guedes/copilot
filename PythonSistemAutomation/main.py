@@ -39,7 +39,8 @@ from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 from sharedResources.lifecycle.shutdownThreadUtils  import TrackedThread 
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 # from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
-from sharedResources.debuggingResources.exec_monitor import CallRegistry, count_methods
+from sharedResources.debuggingResources.exec_monitor import CallRegistry
+from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 
 from sharedResources.lifecycle.printUtils import print_thread_status, print_async_tasks_status
 # from sharedResources.debuggingResources.task_monitor import task_monitor
@@ -48,7 +49,7 @@ logger = LoggerManager.get_logger(__name__)
 
 shutDownNotComplete = True
 
-# @count_methods
+@monitor_class
 class AutomationSystem:
     """AutomationSystem class that manages the event observer and WebSocket client.
     It handles saving events to a database and sending them through a WebSocket connection.
@@ -129,8 +130,9 @@ class AutomationSystem:
         try:
             quant = await self.not_sent_db.show_not_sent_events(only_quantity=True)
         except Exception as e:
-            LoggerManager.log_exception_with_context(f"Error checking not sent events database: {e}")
-            logger.error(f"Error checking not sent events database: {e}")
+            raise
+            # LoggerManager.log_exception_with_context(f"Error checking not sent events database: {e}")
+            # logger.error(f"Error checking not sent events database: {e}")
             # raise e
             # return self._not_sent_db_is_empty_last_check
         if quant == 0:
@@ -159,8 +161,9 @@ class AutomationSystem:
                 logger.info("Event not saved to database, id is None.")
 
         except Exception as e:
-            LoggerManager.log_exception_with_context(f"Error saving event to database: {e}")
-            logger.info(f"Error saving event to database: {e}")
+            raise
+            # LoggerManager.log_exception_with_context(f"Error saving event to database: {e}")
+            # logger.info(f"Error saving event to database: {e}")
 
     async def delete_event(self, event_id):
         """ Deletes an event from the not sent events database and 
@@ -173,8 +176,9 @@ class AutomationSystem:
                 # async with self.about_to_send_lock:
                 # self.__class__.about_to_send = ThreadAsyncSafeWrapper([event for event in self.__class__.about_to_send if event.get('id') != event_id])
         except Exception as e:
-            LoggerManager.log_exception_with_context(f"Error deleting event from database: {e}")
-            logger.info(f"Error deleting event from database: {e}")    
+            raise
+            # LoggerManager.log_exception_with_context(f"Error deleting event from database: {e}")
+            # logger.info(f"Error deleting event from database: {e}")    
 
     async def initializeWebsocket(self):
         """
@@ -186,9 +190,9 @@ class AutomationSystem:
             logger.info("WebSocket client initialized.")
         except Exception as e:
 
-            LoggerManager.log_exception_with_context(f"Error initializing WebSocket client: {e}")
-            logger.error(f"Error initializing WebSocket client: {e}")
-            raise e
+            # LoggerManager.log_exception_with_context(f"Error initializing WebSocket client: {e}")
+            # logger.error(f"Error initializing WebSocket client: {e}")
+            raise 
 
     # def set_event_callback(self, callback):
     #     self.observer.set_event_callback(self,callback)

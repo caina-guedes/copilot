@@ -15,11 +15,12 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
-from sharedResources.debuggingResources.exec_monitor import  count_methods
+# from sharedResources.debuggingResources.exec_monitor import  count_methods
+from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 logger = LoggerManager.get_logger(__name__)
 
-@count_methods
+@monitor_class
 class TwoWayConnection:
     def __init__(self, sender=None, receiver=None):
         print("dentro do init da TwoWayConnection")
@@ -130,7 +131,10 @@ class TwoWayConnection:
             return False
 
 
-    def stop_receiving(self):
+    def stop_receiving(self, tracked = None):
+        """
+        função para parar esse looop, não precisa do tracked no fim da task
+        """
         if self._receiver_task:
             print("[TwoWayConnection.stop_receiving] function was called!!!")
             logger.info("[TwoWayConnection] Stopping receiver task...")
@@ -192,7 +196,7 @@ class TwoWayConnection:
 
                         except Exception as e:
                             log_error_forensics_plus(e)
-                            LoggerManager.log_exception_with_context(f"deu exceção recebendo mensagem no receiver e é: {e}",e)
+                            # LoggerManager.log_exception_with_context(f"deu exceção recebendo mensagem no receiver e é: {e}",e)
                             # print("deu exceção recebendo mensagem no receiver e é: ",e)
                         # print("ultima linha do receiver lock")
                     # message = await self.receiver.recv()
@@ -223,7 +227,7 @@ class TwoWayConnection:
                     Error = True
                     print(f"deu exceção no receiver_loop e é : {e}")
                     log_error_forensics_plus(e)
-                    LoggerManager.log_exception_with_context(f"deu exceção no receiver_loop e é : {e}")
+                    # LoggerManager.log_exception_with_context(f"deu exceção no receiver_loop e é : {e}")
                 
                 if Error:
                     await asyncio.sleep(1)  # evita loop infinito rápido em caso de falha
@@ -231,7 +235,7 @@ class TwoWayConnection:
                 await asyncio.sleep(0)  
         except Exception as e:
             log_error_forensics_plus(e)
-            LoggerManager.log_exception_with_context(f"deu ruim no receiver_loop {e}")
+            # LoggerManager.log_exception_with_context(f"deu ruim no receiver_loop {e}")
         finally:
             print("[TwoWayConnection.receiver_loop] entrei no finally da função e vou setar o evento")
             self._receiver_task_cancel_complete_event.set()                  
@@ -253,7 +257,7 @@ class TwoWayConnection:
                 LoggerManager.log("No handler defined for received message")
         except Exception as e:
             log_error_forensics_plus(e)
-            LoggerManager.log_exception_with_context(f"deu ruim na _handle_message e foi : {e}")
+            # LoggerManager.log_exception_with_context(f"deu ruim na _handle_message e foi : {e}")
 
     async def close(self):
         print("[TwoWayConnection] close function begin")
@@ -281,7 +285,7 @@ class TwoWayConnection:
                 #         print("[TwoWayConnection] Receiver connection actually closed")
             except Exception as e:
                 log_error_forensics_plus(e)
-                LoggerManager.log_exception_with_context(e)
+                # LoggerManager.log_exception_with_context(e)
             finally:
                 self.receiver_loop_running = False
         else:

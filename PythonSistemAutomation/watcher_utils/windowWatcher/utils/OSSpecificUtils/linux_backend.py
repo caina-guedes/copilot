@@ -14,13 +14,14 @@ sys.path.append(str(second_base_path))
 
 
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
-from sharedResources.debuggingResources.exec_monitor import count_methods
+# from sharedResources.debuggingResources.exec_monitor import count_methods
+from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 from abstractClassBase import BaseWindowBackend
 from windowFingerPrint import WindowFingerPrint
 from typing import Optional
 # from sharedResources.generalUtils.a# print import a# print
 
-@count_methods
+@monitor_class
 class LinuxWindowBackend(BaseWindowBackend):
 
     def __init__(self):

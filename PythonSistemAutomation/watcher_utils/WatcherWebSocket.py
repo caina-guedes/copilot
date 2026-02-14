@@ -8,12 +8,14 @@ from PythonSistemAutomation.watcher_utils.GlobalMacroExecutor import GlobalExecu
 from sharedResources.debuggingResources.error_tracker import monitor_error , log_error_forensics_plus
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
+from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
+
 from sharedResources.connection.connectionObject import TwoWayConnection
 from PythonSistemAutomation.watcher_utils.websocket_utils.threatHandShake import threatHandShake
 logger = LoggerManager.get_logger(__name__)
 
 
-# @monitor_error
+@monitor_class
 class WebSocketClient:
     connection = None
     connected = False
@@ -56,7 +58,7 @@ class WebSocketClient:
                 if not cls.connected:
                     await cls.reconnect()  # Attempt to reconnect if sending fails
                 log_error_forensics_plus(e)
-                LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error sending event from not sent database: {str(e)}")
+                # LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error sending event from not sent database: {str(e)}")
                 logger.info(f"[{__name__}] ❌ Error sending event from not sent database: {str(e)}")
 
     @classmethod
@@ -110,7 +112,7 @@ class WebSocketClient:
             cls.connected = False
         except Exception as e:
             log_error_forensics_plus(e)
-            LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error connecting to the server: {str(e)}")
+            # LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error connecting to the server: {str(e)}")
 
     @classmethod
     async def connect(cls):
@@ -139,7 +141,7 @@ class WebSocketClient:
         except Exception as e:
             cls.connected = False
             log_error_forensics_plus(e)
-            LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error connecting to the server: {str(e)}")
+            # LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error connecting to the server: {str(e)}")
             logger.info(f"[{__name__}] ❌ Failed to connect    {str(e)}")
         
         if not cls.connected and cls.auto_reconnect and not cls.reconnecting:
@@ -168,8 +170,8 @@ class WebSocketClient:
             except Exception as e:
                 log_error_forensics_plus(e)
                 return False
-                LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error reconnecting: {str(e)}")
-                logger.info(f"[{__name__}] ❌ Error reconnecting:  {str(e)}")
+                # LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error reconnecting: {str(e)}")
+                # logger.info(f"[{__name__}] ❌ Error reconnecting:  {str(e)}")
         
         cls.reconnecting = False
     
@@ -189,13 +191,14 @@ class WebSocketClient:
 
             else:
                 logger.info(f"[{__name__}] Generic message : {str(args)}")
-        except json.JSONDecodeError:
-            LoggerManager.log_exception_with_context("[CLIENT] ⚠️ Received message is not JSON valid.")
-            logger.info(f"[{__name__}] ⚠️ Received message is not JSON valid.")
+        except json.JSONDecodeError as e:
+            log_error_forensics_plus(e)
+            # LoggerManager.log_exception_with_context("[CLIENT] ⚠️ Received message is not JSON valid.")
+            # logger.info(f"[{__name__}] ⚠️ Received message is not JSON valid.")
         except Exception as e:
             log_error_forensics_plus(e)
-            LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error handling server message: {str(e)}")
-            logger.info(f"[CLIENT] ❌ Error handling server message: {str(e)}")
+            # LoggerManager.log_exception_with_context(f"[CLIENT] ❌ Error handling server message: {str(e)}")
+            # logger.info(f"[CLIENT] ❌ Error handling server message: {str(e)}")
 
     @classmethod
     async def close(cls):

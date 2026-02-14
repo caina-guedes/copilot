@@ -156,7 +156,7 @@ def exec_mouse_or_kb(message, macroExecutor,frozen_controls_to_ignore = None ):
         except Exception as e:
             print(f"Error processing keyboard command: {e}")
             log_error_forensics_plus(e)
-            LoggerManager.log_exception_with_context(f"Error processing keyboard command: {e}",e)
+            # LoggerManager.log_exception_with_context(f"Error processing keyboard command: {e}",e)
 
     elif equipment == "mouse":
         try:
@@ -167,11 +167,12 @@ def exec_mouse_or_kb(message, macroExecutor,frozen_controls_to_ignore = None ):
         except Exception as e:
             print(f"Error processing mouse command: {e}")
             log_error_forensics_plus(e)
-            LoggerManager.log_exception_with_context(f"Error processing mouse command: {e}",e)
+            # LoggerManager.log_exception_with_context(f"Error processing mouse command: {e}",e)
 
     else:
         print(f"equipment {equipment} not recognized")
-        LoggerManager.log_exception_with_context(f"equipment {equipment} not recognized")
+        1/0
+        # LoggerManager.log_exception_with_context(f"equipment {equipment} not recognized")
 
 
     return InternalResponse(0,0)
@@ -203,7 +204,7 @@ async def default_receiving_function(message, macroExecutor,frozen_controls_to_i
         print("[default_receiving_function] a exceção é: ",e)
         print("[default_receiving_function] a mensagem recebida na função é: ",message)
         log_error_forensics_plus(e)
-        LoggerManager.log_exception_with_context(f"[WATCHER] ❌ Error in default receiving function: {str(e)}")
+        # LoggerManager.log_exception_with_context(f"[WATCHER] ❌ Error in default receiving function: {str(e)}")
     
         return InternalResponse(0,0)
 

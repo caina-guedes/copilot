@@ -8,6 +8,7 @@ import psutil
 
 from colorama import init, Fore, Style
 
+_STDOUT_LOCK = threading.Lock()
 init(autoreset=True)  # reseta cores automaticamente
 
 PROCESS_COLORS = {
@@ -36,8 +37,16 @@ whatToShow = {
 def stream_output(prefix, stream,show = True):
     color = PROCESS_COLORS.get(prefix, "")  # padrão se algo desconhecido aparecer
     for line in iter(stream.readline, ''):
-        if line and show:
-            print(f"{color}[{prefix}] {line}\033[0m", end='')
+        if not line or not show:
+            continue
+
+        msg = f"{color}[{prefix}] {line}\033[0m"
+
+        with _STDOUT_LOCK:
+            print(msg, end='', flush=True)
+        # if line and show:
+
+        #     print(f"{color}[{prefix}] {line}\033[0m", end='')
 
 
 # -------------------------

@@ -20,7 +20,9 @@ from sharedResources.lifecycle.utils import wait_event
 from sharedResources.lifecycle.loop.loop_class import MyLoop
 from sharedResources.lifecycle.trackedUtils.tasksMapClass import TasksMapClass
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
-from sharedResources.debuggingResources.exec_monitor import  count_methods
+# from sharedResources.debuggingResources.exec_monitor import  count_methods
+from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
+from sharedResources.debuggingResources.exec_monitor import CallRegistry
 
 # Setup básico de logging
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
@@ -28,7 +30,7 @@ logger = logging.getLogger("LifecycleTracker")
 
 
 
-@count_methods
+@monitor_class
 class LifecycleMaster():
     """
         dono do ciclo de vida de tudo que precisa ser controlado 
@@ -238,6 +240,8 @@ class LifecycleMaster():
                         last_time =ev[0]
                         print(delta," - ",ev[1])
                 print("Shutdown complete.")
+            
+            CallRegistry.report()
             cls.byebye.set()
     # -------------------------------
     # Wrappers de execução de coroutines

@@ -12,7 +12,8 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 # Imports Utilitários e Debug
 # from PythonServer.port_handler import free_port
-from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
+
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
@@ -26,6 +27,7 @@ from PythonServer.macroManager.macroManager import macroManager
 from PythonServer.core import state  # Onde guardamos as variáveis globais
 from PythonServer.core.handlers import os_watcher_handler, browser_handler, frontend_handler
 from PythonServer.utils import connections # Ainda precisamos disso para o check_connections antigo
+from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 
 # Logger Setup
 logger = LoggerManager.get_logger(__name__)
@@ -33,7 +35,7 @@ logger = LoggerManager.get_logger(__name__)
 # ==============================================================================
 # 1. INICIALIZAÇÃO DE ESTADO (BOOTSTRAP)
 # ==============================================================================
-@monitor_error
+@sys_monitor
 def initialize_server_state():
     """
     Inicializa todos os componentes pesados e os injeta no módulo de estado.
@@ -70,7 +72,7 @@ initialize_server_state()
 def get_current_time(format: str = "%X"):
     return datetime.now().strftime(format)
 
-@monitor_error
+@sys_monitor
 async def server_router(websocket):
     """
     Função principal que recebe a conexão e roteia para o handler correto.
@@ -93,7 +95,7 @@ async def server_router(websocket):
 
         # 2. OS WATCHER (Sender ou Receiver)
         elif tipo in [connection_types['OSwatcherSender'], connection_types['OSwatcherReceiver']]:
-            await os_watcher_handler.handle_os_connection(websocket, tipo)
+            await os_watcher_handler.OSProcessorClass.handle_os_connection(websocket, tipo)
 
         # 3. EXTENSÃO DO BROWSER
         elif tipo == connection_types['extension']:
@@ -110,18 +112,18 @@ async def server_router(websocket):
 
     except websockets.exceptions.ConnectionClosed:
         pass # Conexão fechada durante o handshake é normal
-    except Exception as e:
-        LoggerManager.log_exception_with_context(e)
+    # except Exception as e:
+        # LoggerManager.log_exception_with_context(e)
+        # raise 
 
 # ==============================================================================
 # 3. GERENCIAMENTO DE CICLO DE VIDA (SERVER MANAGER)
 # ==============================================================================
 # (Mantivemos a classe aqui por enquanto, mas ela usa a nova função router)
 
-
+@monitor_class
 class WebSocketServerManager:
     
-    funcs_for_shutdown = []
 
     def __init__(self):
         self.server_task = None
@@ -136,7 +138,6 @@ class WebSocketServerManager:
             async with websockets.serve(server_router, "localhost", 8765) as ws_server:
                 LifecycleMaster.cleanup_manager.register_hook(self.stop_procedure, priority=100)
                 # Registra hooks de limpeza
-                # WebSocketServerManager.funcs_for_shutdown.append([-1, ws_server.close])
                 # Usando o novo hook do LifecycleMaster que implementamos antes!
                 # LifecycleMaster.cleanup_manager.register_hook(ws_server.close, priority=90)
                 
@@ -255,5 +256,6 @@ if __name__ == "__main__":
     
     # Bloqueia thread principal
     LifecycleMaster.byebye.wait()
+
     print("Aplicação encerrada. Bye bye!")
     # free_port(8765)

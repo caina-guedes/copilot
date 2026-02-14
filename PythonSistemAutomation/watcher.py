@@ -15,14 +15,14 @@ from PythonSistemAutomation.watcher_utils.pressed_key_tracker import SafePressed
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
-from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
-from sharedResources.debuggingResources.exec_monitor import count_methods
-
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
+# from sharedResources.debuggingResources.exec_monitor import count_methods
+from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 logger = LoggerManager.get_logger(__name__)
 window = WindowManager()
 
 ##### tive que comentar esse monitor pq não está funcionando.
-# @count_methods 
+@monitor_class 
 class EventObserver:
     """
     Observes mouse and keyboard events and triggers a callback for each one.
@@ -31,7 +31,7 @@ class EventObserver:
     already_init = False
     definition_thread = threading.current_thread().name
     
-    # @monitor_error
+    # # @sys_monitor
     def __init__(self, system):
         if self.__class__.already_init:
             warnings.warn("iniciando o eventObserver quando ja foi iniciado!")
@@ -69,7 +69,7 @@ class EventObserver:
         self.thread_do_evento = None
     
     
-    @monitor_error
+    # @sys_monitor
     def should_process_event(self, event):
         # print(f"[_process_event] event: {event}")
         # async with self._callback_lock:
@@ -117,7 +117,7 @@ class EventObserver:
             logger.debug("Finished processing one event")
             warnings.warn(e)
 
-    @monitor_error
+    # @sys_monitor
     async def _event_consumer(self): # primeiro loop
         """
         O único trabalhador: processa a fila um por um.
@@ -199,7 +199,7 @@ class EventObserver:
             )
 
     
-    @monitor_error
+    # @sys_monitor
     def _on_move(self, x, y, injected):
         if injected:
             # print(f"move enviado por software!({x}, {y})   ignorando")
@@ -219,7 +219,7 @@ class EventObserver:
         }
         
         # self.put_in_queue(event)
-    @monitor_error
+    # @sys_monitor
     def _on_click(self, x, y, button, pressed, injected):
         if injected:
             # print(f"click enviado por software!({x}, {y}) ignorando!")
@@ -240,7 +240,7 @@ class EventObserver:
         }
         self.put_in_queue(event)
 
-    @monitor_error
+    # @sys_monitor
     def _on_scroll(self, x, y, dx, dy,injected):
         if injected:
             # print(f"scroll enviado por software!({x} ,{y}, {dx}, {dy}) ignorando...")
@@ -255,7 +255,7 @@ class EventObserver:
         }
         self.put_in_queue(event)
     
-    @monitor_error
+    # @sys_monitor
     def _on_press(self, key,injected):
         if injected:
             # print(f"press enviado por software( {key}), ignorando")
@@ -291,7 +291,7 @@ class EventObserver:
         
         self.put_in_queue(event)
                 
-    @monitor_error
+    # @sys_monitor
     def _on_release(self, key,injected):
         if injected:
             # print(f"release enviado por software!({key}) ignorando")

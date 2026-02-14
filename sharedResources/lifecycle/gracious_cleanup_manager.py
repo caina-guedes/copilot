@@ -7,10 +7,10 @@ from pathlib import Path
 basePath = Path(__file__).resolve().parent.parent.parent
 # print("Path added to sys.path:", str(basePath))
 sys.path.append(str(basePath))
-
+from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus, monitor_error
 
-
+@monitor_class
 class GraciousCleanupManager:
     """
     Gerencia funções de limpeza que devem rodar ANTES do shutdown total.

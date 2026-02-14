@@ -9,6 +9,7 @@ print(RootDir)
 
 DBDir = RootDir + '/sharedResources/DataBases/DBs'
 sys.path.append(RootDir)
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 from sharedResources.generalUtils.aprint import aprint
 print(f'RootDir set to: {RootDir}')
 
@@ -85,7 +86,8 @@ class MainDatabase:
             try:
                 self.cursor.execute(command)
             except Exception as e:
-                LoggerManager.log_exception_with_context(f'Exception during creation of main DB occurred, {e}',e)
+                log_error_forensics_plus(e)
+                # LoggerManager.log_exception_with_context(f'Exception during creation of main DB occurred, {e}',e)
         self.conn.commit()
 
     def _configure_connection(self):

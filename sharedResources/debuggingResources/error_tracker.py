@@ -1,10 +1,8 @@
 # from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
 import traceback
 import functools
-import warnings
 import asyncio
 import inspect
-import time
 import reprlib
 import threading
 from datetime import datetime
@@ -13,65 +11,57 @@ from pathlib import Path
 import sys
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
-from sharedResources.pythonLoggerSistem.logger import LoggerManager
+# from sharedResources.pythonLoggerSistem.logger import LoggerManager
 r = reprlib.Repr()
 r.maxstring = 100 # Limita strings
 r.maxother = 100   # Limita outros objetos
 
-
 def monitor_error(func):
-    # Verifica se é async antes de envolver para manter a assinatura correta
+    # Detecta se a função original é async
     if inspect.iscoroutinefunction(func):
-        @functools.wraps(func)
-        async def wrapper(*args, **kwargs):
+        @functools.wraps(func) # 1. Copia o nome 'enqueue' para 'async_wrapper'
+        async def async_wrapper(*args, **kwargs):
             try:
                 return await func(*args, **kwargs)
             except asyncio.CancelledError:
-                # NÃO LOGA ERRO AQUI!
-                # Apenas repassa o cancelamento para o loop saber que terminou ok.
                 raise 
             except Exception as e:
                 log_error_forensics_plus(e)
-                raise e # Ou trate como preferir
+                raise e 
         
-        # --- O SEGREDO ESTÁ AQUI ---
-        # Quando o wrapper é chamado, ele retorna uma corrotina. 
-        # Vamos criar um "falso chamador" para que a corrotina se identifique como a original.
-        @functools.wraps(func)
-        def wrapper_dispatcher(*args, **kwargs):
-            coro = wrapper(*args, **kwargs)
-            # Forçamos a corrotina a ter o nome da função original no rastro
-            coro.__qualname__ = func.__qualname__
-            coro.__name__ = func.__name__
-            return coro
-            
-        return wrapper_dispatcher
+        # 2. (Opcional/Paranóia) Se você quiser ter 1000% de certeza 
+        # que o objeto função tem o nome certo, o wraps já fez isso.
+        # async_wrapper.__name__ já é igual a func.__name__ aqui.
+        
+        return async_wrapper # Retorna uma FUNÇÃO async (count_calls entende isso!)
+        
     else:
         @functools.wraps(func)
-        def wrapper(*args, **kwargs):
+        def sync_wrapper(*args, **kwargs):
             try:
                 return func(*args, **kwargs)
             except Exception as e:
                 log_error_forensics_plus(e)
                 raise e
-        return wrapper
+        return sync_wrapper
+  
 
 
-def log_error_forensics_plus(e: Exception, extra_message: str = ""):
-    # --- O Pulo do Gato: Capturando a Task do Asyncio ---
-    # Loop_Lag = None
+
+def log_error_forensics_plus(e: Exception, 
+                             extra_message: str = "",*,  
+                             printar = True , 
+                             retornar = False):
+    
     try:
         current_task = asyncio.current_task()
-        loop = asyncio.get_running_loop()
-        # Loop_Lag =  loop.time() - time.time()
-        # print("o Loop_Lag calculado foi: ",Loop_Lag)
         if current_task:
             task_info = (
                 f"ID: {id(current_task)} | "
                 f"Nome: {current_task.get_name()} | "
                 f"Coro: {current_task.get_coro().__name__ if hasattr(current_task.get_coro(), '__name__') else 'N/A'}"
             )
-            # Se você usou setattr(task, 'protected', ...), pegamos aqui:
+            # Tenta pegar flag protected se existir
             is_protected = getattr(current_task, 'protected', 'N/A')
             task_info += f" | Protected: {is_protected}"
             task_info += f" | Total Tasks Vivas: {len(asyncio.all_tasks())}"
@@ -80,12 +70,6 @@ def log_error_forensics_plus(e: Exception, extra_message: str = ""):
     except RuntimeError:
         task_info = "Fora de um Event Loop"
     
-    # if Loop_Lag is not None:
-    #     print("o Loop_Lag é: ",Loop_Lag)
-    #     task_info += f"  Loop_Lag: {Loop_Lag}"
-    #     print("a task_info é: ", task_info)
-    # else:
-    #     print("o Loop_Lag é None")
     
     tb = e.__traceback__
     
@@ -96,7 +80,6 @@ def log_error_forensics_plus(e: Exception, extra_message: str = ""):
     error_frame = error_traceback.tb_frame
      
     # 2. Localiza o frame da CHAMADA (quem chamou a função que deu erro)
-    # O f_back nos leva para um nível acima na pilha
     caller_frame = error_frame.f_back
     while caller_frame and (caller_frame.f_code.co_name == "run_async" or "wrapper" in caller_frame.f_code.co_name.lower()):
         caller_frame = caller_frame.f_back
@@ -106,32 +89,104 @@ def log_error_forensics_plus(e: Exception, extra_message: str = ""):
         return "\n".join([f"    {k} = {r.repr(v)}" for k, v in frame_obj.f_locals.items() if not k.startswith('__')])
 
     # Extração de dados para o cabeçalho
-    extract = traceback.extract_tb(tb)[-1]
+    try:
+        extract = traceback.extract_tb(tb)[-1]
+        filename = extract.filename
+        lineno = extract.lineno
+        line_code = extract.line
+    except IndexError:
+        filename = "Desconhecido"
+        lineno = "?"
+        line_code = "N/A"
 
     agora = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
     thread_info = threading.current_thread().name
 
-    full_message = (
+    current_stack = traceback.extract_stack()[:-1]
 
+    # 2. Pega o local exato do erro (Traceback do objeto de exceção)
+    # É aqui que mora a linha 'raise ValueError(...)' que você quer ver!
+    exception_stack = traceback.extract_tb(e.__traceback__)
+
+    # 3. Junta as duas listas para criar a história completa
+    full_raw_stack = current_stack + exception_stack
+
+    # 4. Filtra: Remove bibliotecas do sistema E o próprio arquivo do monitor/wrapper
+    excluded_path_terms = [
+        "site-packages", "dist-packages", "/usr/lib/", "lib/python", 
+        "<frozen", "threading.py", "asyncio",
+        # ADIÇÃO IMPORTANTE: O nome do arquivo do seu monitor para esconder o wrapper
+        # "unified_monitor.py", 
+        # "error_tracker.py"
+    ]
+
+    # Lista de nomes de funções que queremos esconder explicitamente (os wrappers)
+    excluded_functions = [
+        "unified_sync_wrapper", 
+        "unified_async_wrapper", 
+        "wrapper", 
+        "log_error_forensics_plus"
+    ]
+
+    filtered_frames = []
+    seen_frames = set() # Para evitar duplicatas na emenda das listas
+
+    for frame in full_raw_stack:
+        # Cria uma chave única para o frame (arquivo + linha)
+        frame_id = (frame.filename, frame.lineno)
+        
+        # Se já vimos esse frame ou ele é "proibido", pula
+        if frame_id in seen_frames:
+            continue
+            
+        # Filtro de Arquivos de Sistema / Monitor
+        if any(term in frame.filename for term in excluded_path_terms):
+            continue
+            
+        # Filtro de Nomes de Função (Esconde o wrapper)
+        if frame.name in excluded_functions:
+            continue
+
+        seen_frames.add(frame_id)
+        filtered_frames.append(frame)
+
+    # # 5. Formata
+    # if filtered_frames:
+    #     call_stack = "".join(traceback.format_list(filtered_frames))
+    # else:
+    #     call_stack = "    [Nenhum frame de código do usuário encontrado]\n"
+
+    # 3. Formata apenas os frames que sobraram (o seu código)
+    if filtered_frames:
+        call_stack = "".join(traceback.format_list(filtered_frames))
+    else:
+        call_stack = "    [Nenhum frame de código do usuário encontrado na pilha]\n"
+    # Traceback do erro (Do ponto da falha para baixo)
+    exception_trace = "".join(traceback.format_exception(type(e), e, tb))
+
+    full_message = (
         f"\n{'='*70}\n"
         f"🕵️ INVESTIGAÇÃO PROFUNDA: [{type(e).__name__}]\n"
-
-        f"📍 No arquivo: {extract.filename} | Linha: {extract.lineno}\n"
-        f"💻 Código: `{extract.line}`\n"
+        f"📍 No arquivo: {filename} | Linha: {lineno}\n"
+        f"💻 Código: `{line_code}`\n"
         f"🕒 Horário: {agora} | 🧵 Thread: {thread_info}  Task: {task_info}\n "
         f"💬 Mensagem: {str(e)}\n"
+        f"extra_message = {extra_message}\n"
         f"{'-'*30}\n"
         f"📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):\n{format_vars(error_frame)}\n"
         f"{'-'*30}\n"
         f"🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - {caller_frame.f_code.co_name if caller_frame else 'N/A'}):\n{format_vars(caller_frame)}\n"
-        f"{'='*70}"
-        f"📜 STACK TRACE:\n"
-        f"{''.join(traceback.format_exception(type(e), e, tb))}"
+        f"{'='*70}\n"
+        f"📜 RASTRO COMPLETO (Call Stack + Error):\n"
+        f"{call_stack}"  # Mostra o caminho até o wrapper (incluindo o runner)
+        f"{'-'*20} [Ponto de Captura do Erro] {'-'*20}\n"
+        f"{exception_trace}" # Mostra o erro em si
         f"{'X'*60}"
     )
-
-    print(full_message)
-
+    if printar:
+        print(full_message)
+    if retornar:
+        return full_message
 
 if __name__ == "__main__":
 
@@ -143,3 +198,5 @@ if __name__ == "__main__":
     div(6,1)
     div(2,0)
 
+
+  

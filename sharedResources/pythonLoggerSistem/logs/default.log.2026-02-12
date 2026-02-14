@@ -1,0 +1,394 @@
+WARNING  in os_watcher_handler:74 [MainProcess/AsyncioLoopThread] → 🖥️ 11:22:26 SOWatcher Connection Started!  [2026-02-12 11:22:26,853]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 11:22:30,703]
+ERROR  in os_watcher_handler:108 [MainProcess/AsyncioLoopThread] → ❌ Erro no SOWatcher: __enter__
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 93, in handle_os_connection
+    await process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 33, in process_watcher_msg
+    if state.macro_manager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 81, in handlePendingMacroCommand
+    with cls.lock:
+AttributeError: __enter__  [2026-02-12 11:22:32,578]
+ERROR  in os_watcher_handler:108 [MainProcess/AsyncioLoopThread] → ❌ Erro no SOWatcher: __enter__
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 93, in handle_os_connection
+    await process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 33, in process_watcher_msg
+    if state.macro_manager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 81, in handlePendingMacroCommand
+    with cls.lock:
+AttributeError: __enter__  [2026-02-12 11:22:34,475]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 11:22:34 Conexão encerrada com front_end.  [2026-02-12 11:22:34,876]
+WARNING  in os_watcher_handler:99 [MainProcess/AsyncioLoopThread] → ❌ 11:22:34 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 11:22:34,895]
+WARNING  in os_watcher_handler:74 [MainProcess/AsyncioLoopThread] → 🖥️ 11:26:08 SOWatcher Connection Started!  [2026-02-12 11:26:08,332]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: BrokenPipeError - [Errno 32] Broken pipe  [2026-02-12 11:26:12,155]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py, Line: 133, Function: log_error_forensics_plus  [2026-02-12 11:26:12,155]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 11:26:12,155]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     websocket = <websockets.asyncio.server.ServerConnection object at 0x71d491990c70>  [2026-02-12 11:26:12,155]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     msg = '{"tipo":"front_end"}'  [2026-02-12 11:26:12,155]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     initial_data = {'tipo': 'front_end'}  [2026-02-12 11:26:12,155]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     tipo = 'front_end'  [2026-02-12 11:26:12,155]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = BrokenPipeError(32, 'Broken pipe')  [2026-02-12 11:26:12,155]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: UnboundLocalError - local variable 'sender' referenced before assignment  [2026-02-12 11:36:48,071]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/WatcherWebSocket.py, Line: 91, Function: connectDoubleConnection  [2026-02-12 11:36:48,071]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 11:36:48,071]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     cls = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>  [2026-02-12 11:36:48,071]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     string = '[CLIENT] 🔄 Attempting to connect to the server...'  [2026-02-12 11:36:48,071]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = UnboundLocalError("local variable 'sender' referenced before assignment")  [2026-02-12 11:36:48,071]
+ERROR  in logger:215 [MainProcess/AsyncioLoopThread] → [LoggerManager] Error inside log_exception_with_context: local variable 'sender' referenced before assignment  [2026-02-12 11:36:48,072]
+ERROR  in WatcherWebSocket:225 [MainProcess/AsyncioLoopThread] → error stopping receiver loop: object NoneType can't be used in 'await' expression  [2026-02-12 11:36:48,074]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 11:36:49,010]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 11:36:49 SOWatcher Connection Started!  [2026-02-12 11:36:49,082]
+WARNING  in connectionObject:92 [MainProcess/AsyncioLoopThread] → [TwoWayConnection] Receiver task is already running.  [2026-02-12 11:36:49,084]
+ERROR  in os_watcher_handler:109 [MainProcess/AsyncioLoopThread] → ❌ Erro no SOWatcher: __enter__
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 94, in handle_os_connection
+    await process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 35, in wrapper
+    raise e # Ou trate como preferir
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 28, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 34, in process_watcher_msg
+    if state.macro_manager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 81, in handlePendingMacroCommand
+    with cls.lock:
+AttributeError: __enter__  [2026-02-12 11:36:50,933]
+ERROR  in os_watcher_handler:109 [MainProcess/AsyncioLoopThread] → ❌ Erro no SOWatcher: __enter__
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 94, in handle_os_connection
+    await process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 35, in wrapper
+    raise e # Ou trate como preferir
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 28, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 34, in process_watcher_msg
+    if state.macro_manager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 81, in handlePendingMacroCommand
+    with cls.lock:
+AttributeError: __enter__  [2026-02-12 11:36:52,228]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 11:36:52 Conexão encerrada com front_end.  [2026-02-12 11:36:52,437]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 11:36:52 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 11:36:52,532]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 11:40:49 SOWatcher Connection Started!  [2026-02-12 11:40:49,072]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 11:40:52,838]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 11:42:08 Conexão encerrada com front_end.  [2026-02-12 11:42:08,202]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 11:42:16 SOWatcher Connection Started!  [2026-02-12 11:42:16,525]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 11:42:20,331]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 11:42:29 Conexão encerrada com front_end.  [2026-02-12 11:42:29,497]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 11:48:51 SOWatcher Connection Started!  [2026-02-12 11:48:51,578]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 11:48:55,532]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 11:49:06 Conexão encerrada com front_end.  [2026-02-12 11:49:06,080]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 11:49:41 SOWatcher Connection Started!  [2026-02-12 11:49:41,275]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 11:49:44,951]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 11:50:45 Conexão encerrada com front_end.  [2026-02-12 11:50:45,735]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 11:52:05 SOWatcher Connection Started!  [2026-02-12 11:52:05,872]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 11:52:09,833]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 11:52:24 Conexão encerrada com front_end.  [2026-02-12 11:52:24,157]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 11:52:55 SOWatcher Connection Started!  [2026-02-12 11:52:55,025]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: BrokenPipeError - [Errno 32] Broken pipe  [2026-02-12 11:52:58,669]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py, Line: 133, Function: log_error_forensics_plus  [2026-02-12 11:52:58,669]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 11:52:58,669]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     websocket = <websockets.asyncio.server.ServerConnection object at 0x7cde1d3cfe80>  [2026-02-12 11:52:58,669]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     msg = '{"tipo":"front_end"}'  [2026-02-12 11:52:58,669]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     initial_data = {'tipo': 'front_end'}  [2026-02-12 11:52:58,670]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     tipo = 'front_end'  [2026-02-12 11:52:58,670]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = BrokenPipeError(32, 'Broken pipe')  [2026-02-12 11:52:58,670]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: UnboundLocalError - local variable 'sender' referenced before assignment  [2026-02-12 11:54:49,214]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/WatcherWebSocket.py, Line: 91, Function: connectDoubleConnection  [2026-02-12 11:54:49,214]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 11:54:49,214]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     cls = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>  [2026-02-12 11:54:49,214]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     string = '[CLIENT] 🔄 Attempting to connect to the server...'  [2026-02-12 11:54:49,215]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = UnboundLocalError("local variable 'sender' referenced before assignment")  [2026-02-12 11:54:49,215]
+ERROR  in logger:215 [MainProcess/AsyncioLoopThread] → [LoggerManager] Error inside log_exception_with_context: local variable 'sender' referenced before assignment  [2026-02-12 11:54:49,215]
+ERROR  in WatcherWebSocket:225 [MainProcess/AsyncioLoopThread] → error stopping receiver loop: object NoneType can't be used in 'await' expression  [2026-02-12 11:54:49,217]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 11:54:50,040]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 11:54:50 SOWatcher Connection Started!  [2026-02-12 11:54:50,224]
+WARNING  in connectionObject:92 [MainProcess/AsyncioLoopThread] → [TwoWayConnection] Receiver task is already running.  [2026-02-12 11:54:50,226]
+ERROR  in os_watcher_handler:109 [MainProcess/AsyncioLoopThread] → ❌ Erro no SOWatcher: __enter__
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 94, in handle_os_connection
+    await process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 35, in wrapper
+    raise e # Ou trate como preferir
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 28, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 34, in process_watcher_msg
+    if state.macro_manager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    with cls.lock:
+AttributeError: __enter__  [2026-02-12 11:54:51,549]
+ERROR  in os_watcher_handler:109 [MainProcess/AsyncioLoopThread] → ❌ Erro no SOWatcher: __enter__
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 94, in handle_os_connection
+    await process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 35, in wrapper
+    raise e # Ou trate como preferir
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 28, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 34, in process_watcher_msg
+    if state.macro_manager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    with cls.lock:
+AttributeError: __enter__  [2026-02-12 11:54:52,816]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 11:54:53 Conexão encerrada com front_end.  [2026-02-12 11:54:53,344]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 11:54:53 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 11:54:53,358]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: UnboundLocalError - local variable 'sender' referenced before assignment  [2026-02-12 11:55:10,810]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/WatcherWebSocket.py, Line: 91, Function: connectDoubleConnection  [2026-02-12 11:55:10,811]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 11:55:10,811]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     cls = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>  [2026-02-12 11:55:10,811]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     string = '[CLIENT] 🔄 Attempting to connect to the server...'  [2026-02-12 11:55:10,811]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = UnboundLocalError("local variable 'sender' referenced before assignment")  [2026-02-12 11:55:10,811]
+ERROR  in logger:215 [MainProcess/AsyncioLoopThread] → [LoggerManager] Error inside log_exception_with_context: local variable 'sender' referenced before assignment  [2026-02-12 11:55:10,812]
+ERROR  in WatcherWebSocket:225 [MainProcess/AsyncioLoopThread] → error stopping receiver loop: object NoneType can't be used in 'await' expression  [2026-02-12 11:55:10,814]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: UnboundLocalError - local variable 'sender' referenced before assignment  [2026-02-12 11:55:11,817]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/WatcherWebSocket.py, Line: 91, Function: connectDoubleConnection  [2026-02-12 11:55:11,817]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 11:55:11,817]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     cls = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>  [2026-02-12 11:55:11,817]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     string = '[CLIENT] 🔄 Attempting to connect to the server...'  [2026-02-12 11:55:11,817]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = UnboundLocalError("local variable 'sender' referenced before assignment")  [2026-02-12 11:55:11,817]
+ERROR  in logger:215 [MainProcess/AsyncioLoopThread] → [LoggerManager] Error inside log_exception_with_context: local variable 'sender' referenced before assignment  [2026-02-12 11:55:11,817]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: UnboundLocalError - local variable 'sender' referenced before assignment  [2026-02-12 11:55:12,824]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/WatcherWebSocket.py, Line: 91, Function: connectDoubleConnection  [2026-02-12 11:55:12,825]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 11:55:12,826]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     cls = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>  [2026-02-12 11:55:12,827]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     string = '[CLIENT] 🔄 Attempting to connect to the server...'  [2026-02-12 11:55:12,827]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = UnboundLocalError("local variable 'sender' referenced before assignment")  [2026-02-12 11:55:12,828]
+ERROR  in logger:215 [MainProcess/AsyncioLoopThread] → [LoggerManager] Error inside log_exception_with_context: local variable 'sender' referenced before assignment  [2026-02-12 11:55:12,829]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: UnboundLocalError - local variable 'sender' referenced before assignment  [2026-02-12 11:55:13,841]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/WatcherWebSocket.py, Line: 91, Function: connectDoubleConnection  [2026-02-12 11:55:13,841]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 11:55:13,842]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     cls = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>  [2026-02-12 11:55:13,842]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     string = '[CLIENT] 🔄 Attempting to connect to the server...'  [2026-02-12 11:55:13,842]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = UnboundLocalError("local variable 'sender' referenced before assignment")  [2026-02-12 11:55:13,842]
+ERROR  in logger:215 [MainProcess/AsyncioLoopThread] → [LoggerManager] Error inside log_exception_with_context: local variable 'sender' referenced before assignment  [2026-02-12 11:55:13,843]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: UnboundLocalError - local variable 'sender' referenced before assignment  [2026-02-12 11:55:14,850]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/WatcherWebSocket.py, Line: 91, Function: connectDoubleConnection  [2026-02-12 11:55:14,850]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 11:55:14,850]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     cls = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>  [2026-02-12 11:55:14,850]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     string = '[CLIENT] 🔄 Attempting to connect to the server...'  [2026-02-12 11:55:14,850]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = UnboundLocalError("local variable 'sender' referenced before assignment")  [2026-02-12 11:55:14,850]
+ERROR  in logger:215 [MainProcess/AsyncioLoopThread] → [LoggerManager] Error inside log_exception_with_context: local variable 'sender' referenced before assignment  [2026-02-12 11:55:14,850]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: UnboundLocalError - local variable 'sender' referenced before assignment  [2026-02-12 11:55:15,859]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/WatcherWebSocket.py, Line: 91, Function: connectDoubleConnection  [2026-02-12 11:55:15,859]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 11:55:15,860]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     cls = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>  [2026-02-12 11:55:15,860]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     string = '[CLIENT] 🔄 Attempting to connect to the server...'  [2026-02-12 11:55:15,860]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = UnboundLocalError("local variable 'sender' referenced before assignment")  [2026-02-12 11:55:15,861]
+ERROR  in logger:215 [MainProcess/AsyncioLoopThread] → [LoggerManager] Error inside log_exception_with_context: local variable 'sender' referenced before assignment  [2026-02-12 11:55:15,862]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: UnboundLocalError - local variable 'sender' referenced before assignment  [2026-02-12 11:55:16,871]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/WatcherWebSocket.py, Line: 91, Function: connectDoubleConnection  [2026-02-12 11:55:16,871]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 11:55:16,871]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     cls = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>  [2026-02-12 11:55:16,871]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     string = '[CLIENT] 🔄 Attempting to connect to the server...'  [2026-02-12 11:55:16,872]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = UnboundLocalError("local variable 'sender' referenced before assignment")  [2026-02-12 11:55:16,872]
+ERROR  in logger:215 [MainProcess/AsyncioLoopThread] → [LoggerManager] Error inside log_exception_with_context: local variable 'sender' referenced before assignment  [2026-02-12 11:55:16,872]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 12:03:29 SOWatcher Connection Started!  [2026-02-12 12:03:29,113]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 12:03:32,934]
+ERROR  in os_watcher_handler:109 [MainProcess/AsyncioLoopThread] → ❌ Erro no SOWatcher: __enter__
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 94, in handle_os_connection
+    await process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 35, in wrapper
+    raise e # Ou trate como preferir
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 28, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 34, in process_watcher_msg
+    if state.macro_manager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    with cls.lock:
+AttributeError: __enter__  [2026-02-12 12:03:34,462]
+ERROR  in os_watcher_handler:109 [MainProcess/AsyncioLoopThread] → ❌ Erro no SOWatcher: __enter__
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 94, in handle_os_connection
+    await process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 35, in wrapper
+    raise e # Ou trate como preferir
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 28, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 34, in process_watcher_msg
+    if state.macro_manager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    with cls.lock:
+AttributeError: __enter__  [2026-02-12 12:03:37,175]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 12:03:37 Conexão encerrada com front_end.  [2026-02-12 12:03:37,771]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 12:03:37 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 12:03:37,809]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 12:03:55 SOWatcher Connection Started!  [2026-02-12 12:03:55,769]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 12:03:59,664]
+ERROR  in os_watcher_handler:109 [MainProcess/AsyncioLoopThread] → ❌ Erro no SOWatcher: __enter__
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 94, in handle_os_connection
+    await process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 35, in wrapper
+    raise e # Ou trate como preferir
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 28, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 34, in process_watcher_msg
+    if state.macro_manager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    with cls.lock:
+AttributeError: __enter__  [2026-02-12 12:04:00,872]
+ERROR  in os_watcher_handler:109 [MainProcess/AsyncioLoopThread] → ❌ Erro no SOWatcher: __enter__
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 94, in handle_os_connection
+    await process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 35, in wrapper
+    raise e # Ou trate como preferir
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 28, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 34, in process_watcher_msg
+    if state.macro_manager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    with cls.lock:
+AttributeError: __enter__  [2026-02-12 12:04:01,321]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 12:04:01 Conexão encerrada com front_end.  [2026-02-12 12:04:01,398]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 12:04:01 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 12:04:01,623]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 12:05:12 SOWatcher Connection Started!  [2026-02-12 12:05:12,026]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 12:05:15,785]
+ERROR  in os_watcher_handler:109 [MainProcess/AsyncioLoopThread] → ❌ Erro no SOWatcher: __enter__
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 94, in handle_os_connection
+    await process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 35, in wrapper
+    raise e # Ou trate como preferir
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 28, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 34, in process_watcher_msg
+    if state.macro_manager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    with cls.lock:
+AttributeError: __enter__  [2026-02-12 12:05:18,956]
+ERROR  in os_watcher_handler:109 [MainProcess/AsyncioLoopThread] → ❌ Erro no SOWatcher: __enter__
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 94, in handle_os_connection
+    await process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 35, in wrapper
+    raise e # Ou trate como preferir
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 28, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 34, in process_watcher_msg
+    if state.macro_manager.handlePendingMacroCommand(message):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/macroManager/macroManager.py", line 82, in handlePendingMacroCommand
+    with cls.lock:
+AttributeError: __enter__  [2026-02-12 12:05:21,956]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 12:05:22 Conexão encerrada com front_end.  [2026-02-12 12:05:22,317]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 12:05:22 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 12:05:22,357]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 12:14:01 SOWatcher Connection Started!  [2026-02-12 12:14:01,905]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 12:14:05,722]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 12:14:09 Conexão encerrada com front_end.  [2026-02-12 12:14:09,781]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 12:14:09 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 12:14:09,796]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 12:15:16 SOWatcher Connection Started!  [2026-02-12 12:15:16,388]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 12:15:20,192]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 12:16:32 Conexão encerrada com front_end.  [2026-02-12 12:16:32,759]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 12:16:32 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 12:16:32,780]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 12:16:44 SOWatcher Connection Started!  [2026-02-12 12:16:44,902]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 12:16:48,685]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 12:16:59 Conexão encerrada com front_end.  [2026-02-12 12:16:59,224]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 12:16:59 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 12:16:59,232]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 12:57:21 SOWatcher Connection Started!  [2026-02-12 12:57:21,686]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 12:57:24 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 12:57:24,497]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 12:57:59 SOWatcher Connection Started!  [2026-02-12 12:57:59,480]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 12:58:03,419]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 13:00:32 Conexão encerrada com front_end.  [2026-02-12 13:00:32,139]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 13:00:32 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 13:00:32,148]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 13:04:55 SOWatcher Connection Started!  [2026-02-12 13:04:55,547]
+WARNING  in frontend_handler:87 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 13:04:59,591]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 13:05:07 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 13:05:07,160]
+WARNING  in frontend_handler:92 [MainProcess/AsyncioLoopThread] → ❌ 13:05:07 Conexão encerrada com front_end.  [2026-02-12 13:05:07,183]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: UnboundLocalError - local variable 'sender' referenced before assignment  [2026-02-12 13:51:24,638]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/WatcherWebSocket.py, Line: 91, Function: connectDoubleConnection  [2026-02-12 13:51:24,638]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 13:51:24,638]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     cls = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>  [2026-02-12 13:51:24,638]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     string = '[CLIENT] 🔄 Attempting to connect to the server...'  [2026-02-12 13:51:24,639]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = UnboundLocalError("local variable 'sender' referenced before assignment")  [2026-02-12 13:51:24,639]
+ERROR  in logger:215 [MainProcess/AsyncioLoopThread] → [LoggerManager] Error inside log_exception_with_context: local variable 'sender' referenced before assignment  [2026-02-12 13:51:24,639]
+ERROR  in WatcherWebSocket:225 [MainProcess/AsyncioLoopThread] → error stopping receiver loop: object NoneType can't be used in 'await' expression  [2026-02-12 13:51:24,641]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: UnboundLocalError - local variable 'sender' referenced before assignment  [2026-02-12 13:51:25,642]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/WatcherWebSocket.py, Line: 91, Function: connectDoubleConnection  [2026-02-12 13:51:25,642]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 13:51:25,643]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     cls = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>  [2026-02-12 13:51:25,643]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     string = '[CLIENT] 🔄 Attempting to connect to the server...'  [2026-02-12 13:51:25,643]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = UnboundLocalError("local variable 'sender' referenced before assignment")  [2026-02-12 13:51:25,643]
+ERROR  in logger:215 [MainProcess/AsyncioLoopThread] → [LoggerManager] Error inside log_exception_with_context: local variable 'sender' referenced before assignment  [2026-02-12 13:51:25,643]
+ERROR  in logger:155 [MainProcess/AsyncioLoopThread] → Exception occurred: UnboundLocalError - local variable 'sender' referenced before assignment  [2026-02-12 13:51:26,650]
+ERROR  in logger:157 [MainProcess/AsyncioLoopThread] → File: /home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/WatcherWebSocket.py, Line: 91, Function: connectDoubleConnection  [2026-02-12 13:51:26,650]
+ERROR  in logger:158 [MainProcess/AsyncioLoopThread] → Locals at error point:  [2026-02-12 13:51:26,650]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     cls = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>  [2026-02-12 13:51:26,651]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     string = '[CLIENT] 🔄 Attempting to connect to the server...'  [2026-02-12 13:51:26,651]
+ERROR  in logger:165 [MainProcess/AsyncioLoopThread] →     e = UnboundLocalError("local variable 'sender' referenced before assignment")  [2026-02-12 13:51:26,651]
+ERROR  in logger:215 [MainProcess/AsyncioLoopThread] → [LoggerManager] Error inside log_exception_with_context: local variable 'sender' referenced before assignment  [2026-02-12 13:51:26,653]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 13:52:07 SOWatcher Connection Started!  [2026-02-12 13:52:07,500]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 13:52:11,313]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 13:52:27 Conexão encerrada com front_end.  [2026-02-12 13:52:27,479]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 13:52:27 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 13:52:27,481]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 13:58:30 SOWatcher Connection Started!  [2026-02-12 13:58:30,602]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 13:58:34,641]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 13:58:45 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 13:58:45,103]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 13:58:45 Conexão encerrada com front_end.  [2026-02-12 13:58:45,125]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 14:00:18 SOWatcher Connection Started!  [2026-02-12 14:00:18,443]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 14:00:22,291]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 14:00:31 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 14:00:31,032]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 14:00:31 Conexão encerrada com front_end.  [2026-02-12 14:00:31,051]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 14:06:45 SOWatcher Connection Started!  [2026-02-12 14:06:45,666]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 14:06:49,567]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 14:06:56 Conexão encerrada com front_end.  [2026-02-12 14:06:56,364]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 14:06:56 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 14:06:56,416]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 14:09:24 SOWatcher Connection Started!  [2026-02-12 14:09:24,028]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 14:09:27,850]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 14:09:31 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 14:09:31,308]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 14:09:31 Conexão encerrada com front_end.  [2026-02-12 14:09:31,332]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 14:11:29 SOWatcher Connection Started!  [2026-02-12 14:11:29,387]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 14:11:33,171]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 14:11:36 Conexão encerrada com front_end.  [2026-02-12 14:11:36,359]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 14:11:36 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 14:11:36,373]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 14:13:17 SOWatcher Connection Started!  [2026-02-12 14:13:17,087]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 14:13:20,919]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 14:13:24 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 14:13:24,686]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 14:13:24 Conexão encerrada com front_end.  [2026-02-12 14:13:24,704]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 14:46:24 SOWatcher Connection Started!  [2026-02-12 14:46:24,695]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 14:46:28,534]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 14:46:31 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 14:46:31,568]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 14:46:31 Conexão encerrada com front_end.  [2026-02-12 14:46:31,653]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 14:47:33 SOWatcher Connection Started!  [2026-02-12 14:47:33,427]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 14:47:37,299]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 14:47:40 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 14:47:40,029]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 14:47:40 Conexão encerrada com front_end.  [2026-02-12 14:47:40,089]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 14:50:15 SOWatcher Connection Started!  [2026-02-12 14:50:15,410]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 14:50:19,199]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 14:50:24 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 14:50:24,149]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 14:50:24 Conexão encerrada com front_end.  [2026-02-12 14:50:24,225]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 14:54:10 SOWatcher Connection Started!  [2026-02-12 14:54:10,079]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 14:54:13,911]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 14:54:18 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 14:54:18,881]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 14:54:18 Conexão encerrada com front_end.  [2026-02-12 14:54:18,957]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 15:39:03 SOWatcher Connection Started!  [2026-02-12 15:39:03,668]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 15:39:07,522]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 15:39:11 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 15:39:11,749]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 15:39:11 Conexão encerrada com front_end.  [2026-02-12 15:39:11,795]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 15:46:07,332]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 15:49:11 Conexão encerrada com front_end.  [2026-02-12 15:49:11,963]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 15:49:17 SOWatcher Connection Started!  [2026-02-12 15:49:17,858]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 15:49:21,659]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 15:49:25 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 15:49:25,345]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 15:49:25 Conexão encerrada com front_end.  [2026-02-12 15:49:25,387]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 16:06:06 SOWatcher Connection Started!  [2026-02-12 16:06:06,659]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 16:06:10,482]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 16:06:15 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 16:06:15,094]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 16:06:15 Conexão encerrada com front_end.  [2026-02-12 16:06:15,118]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 16:13:16 SOWatcher Connection Started!  [2026-02-12 16:13:16,614]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 16:13:20,438]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 16:13:24 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 16:13:24,257]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 16:13:24 Conexão encerrada com front_end.  [2026-02-12 16:13:24,307]
+WARNING  in os_watcher_handler:75 [MainProcess/AsyncioLoopThread] → 🖥️ 16:16:01 SOWatcher Connection Started!  [2026-02-12 16:16:01,677]
+WARNING  in frontend_handler:89 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 16:16:05,509]
+WARNING  in os_watcher_handler:100 [MainProcess/AsyncioLoopThread] → ❌ 16:16:11 Conexão encerrada com o SOWatcher Sender.  [2026-02-12 16:16:11,148]
+WARNING  in frontend_handler:94 [MainProcess/AsyncioLoopThread] → ❌ 16:16:11 Conexão encerrada com front_end.  [2026-02-12 16:16:11,233]
+WARNING  in os_watcher_handler:77 [MainProcess/AsyncioLoopThread] → 🖥️ 16:59:55 SOWatcher Connection Started!  [2026-02-12 16:59:55,689]
+WARNING  in frontend_handler:91 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 16:59:59,506]
+WARNING  in os_watcher_handler:77 [MainProcess/AsyncioLoopThread] → 🖥️ 17:06:20 SOWatcher Connection Started!  [2026-02-12 17:06:20,783]
+WARNING  in frontend_handler:91 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 17:06:24,696]
+WARNING  in frontend_handler:101 [MainProcess/AsyncioLoopThread] → ❌ 17:06:33 Conexão encerrada com front_end.  [2026-02-12 17:06:33,617]
+WARNING  in os_watcher_handler:77 [MainProcess/AsyncioLoopThread] → 🖥️ 17:33:04 SOWatcher Connection Started!  [2026-02-12 17:33:04,174]
+WARNING  in frontend_handler:91 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 17:33:08,017]
+WARNING  in frontend_handler:101 [MainProcess/AsyncioLoopThread] → ❌ 17:33:13 Conexão encerrada com front_end.  [2026-02-12 17:33:13,059]
+WARNING  in os_watcher_handler:77 [MainProcess/AsyncioLoopThread] → 🖥️ 17:37:23 SOWatcher Connection Started!  [2026-02-12 17:37:23,536]
+WARNING  in frontend_handler:91 [MainProcess/AsyncioLoopThread] → ⚠️ Comando desconhecido: Conexão do front-end estabelecida  [2026-02-12 17:37:27,368]
+WARNING  in frontend_handler:102 [MainProcess/AsyncioLoopThread] → ❌ 17:37:31 Conexão encerrada com front_end.  [2026-02-12 17:37:31,149]
