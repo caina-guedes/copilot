@@ -1,0 +1,73 @@
+2026-02-25 14:54:39,257 [INFO] [AsyncioLoopThread] main:218 - Starting event observer...
+2026-02-25 14:54:39,271 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-02-25 14:54:39,323 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-02-25 14:54:39,327 [INFO] [AsyncioLoopThread] threatHandShake:21 - consegui enviar a resposta
+2026-02-25 14:54:39,329 [INFO] [AsyncioLoopThread] threatHandShake:30 - recebi resposta da resposta de volta ({"status": "sucesso", "mensagem": "Conex\u00e3o SOWatcher estabelecida!"}) !!!
+2026-02-25 14:54:39,330 [INFO] [AsyncioLoopThread] threatHandShake:35 - [PythonSistemAutomation.watcher_utils.websocket_utils.threatHandShake] 🖥️ Operating System Watcher Sender Connection Started!
+2026-02-25 14:54:39,337 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-02-25 14:54:39,339 [INFO] [AsyncioLoopThread] threatHandShake:21 - consegui enviar a resposta
+2026-02-25 14:54:39,344 [INFO] [AsyncioLoopThread] threatHandShake:30 - recebi resposta da resposta de volta ({"status": "sucesso", "mensagem": "Conex\u00e3o SOWatcher estabelecida!"}) !!!
+2026-02-25 14:54:39,344 [INFO] [AsyncioLoopThread] threatHandShake:35 - [PythonSistemAutomation.watcher_utils.websocket_utils.threatHandShake] 🖥️ Operating System Watcher Receiver Connection Started!
+2026-02-25 14:54:39,344 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-02-25 14:54:39,351 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-02-25 14:54:39,351 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-02-25 14:54:39,351 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-02-25 14:54:39,358 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-02-25 14:54:39,358 [INFO] [AsyncioLoopThread] main:187 - WebSocket client initialized.
+2026-02-25 14:54:45,717 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:46,063 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:46,745 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:46,998 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:48,372 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:48,613 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:49,283 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:49,565 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:50,401 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:50,623 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:51,294 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:51,567 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:52,804 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:53,775 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:54,759 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:55,080 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:55,417 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:56,170 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:56,399 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:54:57,232 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:18,229 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:18,535 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:19,644 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:20,005 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:20,399 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:21,224 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:21,474 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:24,341 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:25,417 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:25,682 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:26,126 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:26,545 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:26,803 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:27,340 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:28,490 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:30,322 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:30,623 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:30,982 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:31,463 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:31,921 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:32,212 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:32,766 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:42,456 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:43,311 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:50,600 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:50,925 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:51,277 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:51,758 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:52,215 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:52,508 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:53,062 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:55,328 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:56,250 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:58,205 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:59,294 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x7d4f943a8a60>
+2026-02-25 14:56:59,590 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-02-25 14:56:59,590 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...

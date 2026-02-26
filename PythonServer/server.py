@@ -88,7 +88,7 @@ async def server_router(websocket):
          
         # 1. PING (Healthcheck simples)
         if tipo == connection_types['ping']:
-            logger.info(f"🔄 {get_current_time()} Ping recebido.")
+            # logger.info(f"🔄 {get_current_time()} Ping recebido.")
             response = {"status": "sucesso", "mensagem": "Ping recebido com sucesso!"}
             await websocket.send(json.dumps(response))
             logger.warning(f"📥 Response sent to browser: {response}")
@@ -96,14 +96,16 @@ async def server_router(websocket):
         # 2. OS WATCHER (Sender ou Receiver)
         elif tipo in [connection_types['OSwatcherSender'], connection_types['OSwatcherReceiver']]:
             await os_watcher_handler.OSProcessorClass.handle_os_connection(websocket, tipo)
-
+            await websocket.wait_closed()
         # 3. EXTENSÃO DO BROWSER
         elif tipo == connection_types['extension']:
             await browser_handler.handle_browser_extension(websocket, initial_data)
+            await websocket.wait_closed()
 
         # 4. FRONT-END (Controle)
         elif tipo == connection_types['front_end']:
             await frontend_handler.handle_frontend(websocket)
+            await websocket.wait_closed() # O handler do front-end é o único que mantém a conexão aberta para receber comandos, então esperamos ele fechar aqui.
 
         # 5. DESCONHECIDO
         else:
@@ -111,6 +113,7 @@ async def server_router(websocket):
             await websocket.close()
 
     except websockets.exceptions.ConnectionClosed:
+        print("[server_router] Conexão fechada durante o handshake ou comunicação. Isso é normal se o cliente desconectar rapidamente.")
         pass # Conexão fechada durante o handshake é normal
     # except Exception as e:
         # LoggerManager.log_exception_with_context(e)
@@ -136,7 +139,7 @@ class WebSocketServerManager:
             # Note que agora passamos 'server_router' em vez de 'server'
             # free_port(8765)
             async with websockets.serve(server_router, "localhost", 8765) as ws_server:
-                LifecycleMaster.cleanup_manager.register_hook(self.stop_procedure, priority=100)
+                LifecycleMaster.cleanup_manager.register_hook(self.stop_procedure, priority=100,name = "WebSocketServerManager.stop_procedure")
                 # Registra hooks de limpeza
                 # Usando o novo hook do LifecycleMaster que implementamos antes!
                 # LifecycleMaster.cleanup_manager.register_hook(ws_server.close, priority=90)

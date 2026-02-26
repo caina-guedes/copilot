@@ -1,7 +1,6 @@
-2026-02-18 14:40:13,654 [DEBUG] [MainThread] new_logger:200 - Conectando ao banco...
-2026-02-18 14:40:13,655 [WARNING] [MainThread] new_logger:201 - Aviso geral
-2026-02-18 14:40:13,669 [ERROR] [MainThread] new_logger:185 - Erro fatal no teste -> division by zero
+2026-02-23 16:43:28,526 [DEBUG] [MainThread] <string>:200 - Conectando ao banco...
+2026-02-23 16:43:28,526 [WARNING] [MainThread] <string>:201 - Aviso geral
+2026-02-23 16:43:28,529 [ERROR] [MainThread] <string>:185 - Erro fatal no teste -> division by zero
 Traceback (most recent call last):
-  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/pythonLoggerSistem/new_logger.py", line 205, in <module>
-    1 / 0
+  File "<string>", line 205, in <module>
 ZeroDivisionError: division by zero

@@ -1,3 +1,4 @@
+from sharedResources.debuggingResources.unified_monitor import monitor_class, sys_monitor
 
 
 
@@ -5,6 +6,7 @@
 _cache_codes, _load_cache, get_or_create_code functions for managing cache codes in the main database.
 """
 
+@sys_monitor
 def _cache_codes(self):
     self.key_cache = _load_cache(self , 'key_codes')
     self.type_cache = _load_cache(self , 'type_codes')
@@ -12,6 +14,7 @@ def _cache_codes(self):
     self.source_cache = _load_cache(self , 'source_codes')
     self.device_cache = _load_cache(self , 'device_codes')
 
+@sys_monitor
 def _load_cache(self, table):
     cache = {}
     self.cursor.execute(f"SELECT id, name FROM {table}")
@@ -19,6 +22,7 @@ def _load_cache(self, table):
         cache[name] = id_
     return cache
 
+@sys_monitor
 def get_or_create_code(self, table, cache, name):
     if name in cache:
         return cache[name]

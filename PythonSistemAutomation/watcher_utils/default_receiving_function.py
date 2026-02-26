@@ -10,14 +10,14 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
-
+from sharedResources.debuggingResources.unified_monitor import sys_monitor
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 
 keyboard = KeyboardController()
 mouse    = MouseController()
 
 
-
+@sys_monitor
 def mouseExecCommand(message, action, controlsToIgnore):
     print(f"vou executar um comando de mouse e é: {message}")
     button = message["button"][7:] if 'button.' in message['button'].lower() else message['button'] 
@@ -60,6 +60,7 @@ def mouseExecCommand(message, action, controlsToIgnore):
 
     return (before,after)
 
+@sys_monitor
 def kbPressOrRelease(message, action, controlsToIgnore):
     key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
 
@@ -109,7 +110,7 @@ class  InternalResponse:
 
 
 
-
+@sys_monitor
 def exec_mouse_or_kb(message, macroExecutor,frozen_controls_to_ignore = None ):
     if isinstance(message, str): 
         message = json.loads(message)
@@ -177,7 +178,7 @@ def exec_mouse_or_kb(message, macroExecutor,frozen_controls_to_ignore = None ):
 
     return InternalResponse(0,0)
 
-    
+@sys_monitor
 async def default_receiving_function(message, macroExecutor,frozen_controls_to_ignore = None ):
     """
     this functions needs the message to be [deltaTime,[equipment,action,key],modifiers]

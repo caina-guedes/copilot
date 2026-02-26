@@ -14,7 +14,6 @@ from sharedResources.generalUtils.aprint import aprint
 from PythonSistemAutomation.watcher_utils.default_receiving_function import default_receiving_function, exec_mouse_or_kb
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
-from sharedResources.debuggingResources.exec_monitor import count_methods
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 
@@ -148,8 +147,13 @@ class GlobalExecutor:
         print("[GlobalExecutor] Started (auto-start).")
 
     @classmethod
-    def stop(cls):
-        """Para o loop global e aguarda conclusão das tarefas."""
+    def stop(cls, tracked = None):
+
+        """Para o loop global e aguarda conclusão das tarefas.
+        
+        a variável tracked é apenas para usar no momento de on_task_finish do 
+        LifecycleMaster e não tem função dentro do stop é apenas um parâmetro obrigatório 
+        para ser registrado como cleanup function."""
         if not cls._running:
             return
         cls._running = False

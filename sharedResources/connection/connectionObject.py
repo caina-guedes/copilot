@@ -15,7 +15,6 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
-# from sharedResources.debuggingResources.exec_monitor import  count_methods
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 logger = LoggerManager.get_logger(__name__)
@@ -107,7 +106,7 @@ class TwoWayConnection:
         #     return False
 
     async def is_running(self):
-        LoggerManager.get_logger().info("[TwoWayConnection] is_running function")
+        # LoggerManager.get_logger().info("[TwoWayConnection] is_running function")
         
         # A verificação de 'open' depende da lib (ex: websockets, aiohttp)
         try:
@@ -188,10 +187,12 @@ class TwoWayConnection:
                             # message = "the connection was closed"
                             pass
                         except websockets.exceptions.ConnectionClosedOK:
+                            horario = time.perf_counter()
+                            print("")
                             if not LifecycleMaster.first_shutdown_event.is_set():
                                 LifecycleMaster.first_shutdown_event.set()
 
-                            print("Conexão fechada normalmente pelo servidor")
+                            print(f"{horario} - Conexão fechada normalmente pelo servidor")
                             break
 
                         except Exception as e:
@@ -201,7 +202,7 @@ class TwoWayConnection:
                         # print("ultima linha do receiver lock")
                     # message = await self.receiver.recv()
                     # print(f"[RECEIVE LOOP] Received message: {message}")
-                    self.logger.info(f"[RECEIVE LOOP] Received message: {message}")
+                    # self.logger.info(f"[RECEIVE LOOP] Received message: {message}")
                     if noError:
                         await self._handle_message_from_server(message)
                     else:

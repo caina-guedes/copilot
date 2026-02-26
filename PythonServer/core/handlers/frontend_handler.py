@@ -81,7 +81,9 @@ async def handle_frontend(websocket):
                     # Envia a resposta para O PRIMEIRO front conectado (cuidado com múltiplos fronts)
                     
                     if connections.front_end.unique:
-                        await connections.front_end.unique[0].send(json.dumps(resp))
+                        print("sending response back to front end")
+                        print(f"the object i'm trying to knwo what is it is: {connections.front_end.unique}  and its type is: {type(connections.front_end.unique)}")
+                        await connections.front_end.unique.send(json.dumps(resp))
 
                 # Confirmação simples
                 await websocket.send(json.dumps({"status": "ok", "command": command_name}))

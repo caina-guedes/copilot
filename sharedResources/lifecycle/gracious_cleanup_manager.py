@@ -23,7 +23,7 @@ class GraciousCleanupManager:
     
     
     @classmethod
-    def register_hook(cls, func, priority=10, *args, **kwargs):
+    def register_hook(cls, func, priority, name , *args, **kwargs):
         """
         Registra uma função para rodar no shutdown.
         priority: Quanto MAIOR, mais cedo roda (100 roda antes de 10).
@@ -31,21 +31,25 @@ class GraciousCleanupManager:
         with cls._lock:
             # Usamos partial para "congelar" os argumentos
             # Mas guardamos separado para debug se precisar
+            hook_name = getattr(func, '__name__', str(func)) if name is None else name
+            for hook in cls._hooks:
+                if hook['name'] == hook_name:
+                    cls._log(
+                        f"[GraciousCleanupManager] Hook '{hook_name}' já registrado — ignorando",
+                        "general"
+                    )
+                    return False  # <- importante: sinaliza que não registrou
+
             cls._hooks.append({
                 'priority': priority,
                 'func': func,
                 'args': args,
                 'kwargs': kwargs,
-                'name': getattr(func, '__name__', str(func))
+                'name': hook_name
             })
-            cls._log(f"[GraciousCleanupManager] Hook registrado: {getattr(func, '__name__', str(func))} (Prio: {priority})", "general")
-
-    @classmethod
-    async def _run_hook_async(cls, func, *args, **kwargs):
-        if asyncio.iscoroutinefunction(func):
-            await func(*args, **kwargs)
-        else:
-            func(*args, **kwargs)
+            cls._log(f"[GraciousCleanupManager] Hook registrado: {hook_name} (Prio: {priority})", "general")
+            return True  # <- sinaliza que registrou com sucesso
+    
 
 
     @classmethod
@@ -77,32 +81,34 @@ class GraciousCleanupManager:
             async_coros = []
             
             for hook in batch:
-                func = hook['func']
-                args = hook['args']
-                kwargs = hook['kwargs']
-                name = hook['name']
-
                 try:
+                    func = hook['func']
+                    args = hook['args']
+                    kwargs = hook['kwargs']
+                    name = hook['name']
+
                     if asyncio.iscoroutinefunction(func):
                         # Se for async, preparamos para o gather
-                        async_coros.append(func(*args, **kwargs))
+                        async_coros.append({name: func(*args, **kwargs)})
                     else:
                         # Se for sync, rodamos imediatamente (não tem jeito, bloqueia o lote)
                         # Ou poderíamos rodar em thread separada, mas manter simples é melhor no shutdown
                         cls._log(f"[ShutdownManager] Executando sync: {name}", "general")
                         func(*args, **kwargs)
                 except Exception as e:
-                    log_error_forensics_plus(e)
+                    log_error_forensics_plus(e, extra_message = f"[ShutdownManager] ocorreu no hook do cleanup manager para funções sincronas do lote {prio}")
 
             # Se tivermos coroutines async neste lote, rodamos elas em GATHER
             if async_coros and cls.LifecycleMaster._loop_is_ok():
                 try:
-                    cls._log(f"[ShutdownManager] Aguardando {len(async_coros)} tarefas async do lote {prio}...", "general")
+                    cls._log(f"[ShutdownManager] Aguardando {len(async_coros)} tarefas async do lote {prio}, são elas:{[[a for a in f][0] for f in async_coros]}", "general")
                     
                     # Função auxiliar para rodar o gather dentro do loop
                     async def run_batch():
                         # return_exceptions=True impede que um erro cancele os outros do mesmo lote
-                        return await asyncio.gather(*async_coros, return_exceptions=True)
+                        functions_list = [[hook for hook in f.values()][0] for f in async_coros]
+                        print(f"[ShutdownManager] the functions list for the gather is: {functions_list}")
+                        return await asyncio.gather(*functions_list, return_exceptions=True)
 
                     future = asyncio.run_coroutine_threadsafe(run_batch(), cls.LifecycleMaster.running_loop.get())
                     
@@ -112,9 +118,10 @@ class GraciousCleanupManager:
                     # Logar erros do gather
                     for res in results:
                         if isinstance(res, Exception):
-                            log_error_forensics_plus(res)
+                            log_error_forensics_plus(res, extra_message = f"[ShutdownManager] ocorreu em uma das funções do gather do lote {prio} , do cleanup manager")
 
                 except Exception as e:
+                    log_error_forensics_plus(e, extra_message = f"[ShutdownManager] ocorreu no gather do lote {prio} , do cleanup manager")
                     cls._log(f"[ShutdownManager] Erro/Timeout no lote async {prio}: {e}", "general")
             
         cls._log("[ShutdownManager] Todos os hooks finalizados.", "general")

@@ -11,6 +11,25 @@ from pathlib import Path
 import sys
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
+class errorExtruture():
+    lifeCycleMaster = None
+    lifeCycleState = None
+    # stateEnum = None
+    # loggerManager = None
+    logger = None
+    devMode = None # isso tem que vir da origem pra que eu não tenha um monte de bandeiras diferentes
+
+    @classmethod
+    def set_lifecycle_master(cls, lifecycleMaster, loggerManager):
+        cls.lifeCycleMaster = lifecycleMaster 
+        cls.lifeCycleState = lifecycleMaster.lifecycleState.state
+        # cls.loggerManager = loggerManager
+        cls.logger = loggerManager.get_logger("forensics_error")
+
+        print("[errorExtruture.set_lifecycle_master] LifecycleMaster ,State e logger configurados no errorExtruture")
+        # cls.stateEnum = lifecycleMaster.stateEnum 
+    
+
 # from sharedResources.pythonLoggerSistem.logger import LoggerManager
 r = reprlib.Repr()
 r.maxstring = 100 # Limita strings
@@ -163,7 +182,10 @@ def log_error_forensics_plus(e: Exception,
         call_stack = "    [Nenhum frame de código do usuário encontrado na pilha]\n"
     # Traceback do erro (Do ponto da falha para baixo)
     exception_trace = "".join(traceback.format_exception(type(e), e, tb))
-
+    ciclo_de_vida = "undefined"
+    if errorExtruture.lifeCycleState and hasattr(errorExtruture.lifeCycleState, 'lifecycleState'):
+        ciclo_de_vida = errorExtruture.lifeCycleState.lifecycleState 
+    
     full_message = (
         f"\n{'='*70}\n"
         f"🕵️ INVESTIGAÇÃO PROFUNDA: [{type(e).__name__}]\n"
@@ -172,6 +194,7 @@ def log_error_forensics_plus(e: Exception,
         f"🕒 Horário: {agora} | 🧵 Thread: {thread_info}  Task: {task_info}\n "
         f"💬 Mensagem: {str(e)}\n"
         f"extra_message = {extra_message}\n"
+        f"Estado do ciclo de vida: {ciclo_de_vida}\n"
         f"{'-'*30}\n"
         f"📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):\n{format_vars(error_frame)}\n"
         f"{'-'*30}\n"
@@ -183,8 +206,15 @@ def log_error_forensics_plus(e: Exception,
         f"{exception_trace}" # Mostra o erro em si
         f"{'X'*60}"
     )
-    if printar:
-        print(full_message)
+    
+    if hasattr(errorExtruture,'logger') and errorExtruture.logger is not None:
+        errorExtruture.logger.warning(full_message)
+    else:
+        print("[Profunda] - não consegui registrar o log na forensics!")
+    if errorExtruture.devMode == True:
+        if printar:
+            print(full_message)
+
     if retornar:
         return full_message
 

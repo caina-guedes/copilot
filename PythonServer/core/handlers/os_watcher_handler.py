@@ -1,5 +1,6 @@
 import json
 import asyncio
+import time
 import websockets
 from datetime import datetime
 
@@ -42,12 +43,14 @@ class OSProcessorClass():
     receiver_loop_task = None
     receiver_conn = None
     sender_conn = None
+    first_closed_ok_received = False
+
     @classmethod
-    def start_receiver(cls,websocket):
+    async def start_receiver(cls,websocket):
         if cls.receiver_conn is None:
             cls.receiver_conn = websocket
             cls. receiver_loop_task = LifecycleMaster.run_async(cls.receiver_loop(websocket), name="loop do receiver do watcher")
-    
+            # await websocket.wait_closed()
     @classmethod
     async def receiver_loop(cls,websocket):
         while True:
@@ -66,7 +69,13 @@ class OSProcessorClass():
                     logger.warning(f"Formato inesperado do SOWatcher: {message_data}")
                     # O código original tinha um erro forçado aqui (1.0/0.0), removi por segurança
             except websockets.exceptions.ConnectionClosedOK:
-                print("[handle_os_connection] recebi ConnectionClosedOK no sender")
+                horario = time.perf_counter()
+                print(f"[handle_os_connection {horario}] recebi ConnectionClosedOK no sender")
+                if not cls.first_closed_ok_received:# esse erro está vindo no inicio da conexão com o watcher então vou ver se ele ignorando a primeira ve é suficiente
+                    
+                    cls.first_closed_ok_received = True
+                    asyncio.sleep(0.1)
+                    continue
                 if not LifecycleMaster.first_shutdown_event.is_set():
                     LifecycleMaster.first_shutdown_event.set()
                 connections.OS.sender = None
@@ -104,11 +113,12 @@ class OSProcessorClass():
         try:
             await websocket.send(json.dumps(response))
         except Exception as e:
+            print(f"[OSProcessorClass.handle_os_connection] deu erro e foi:{str(e)}")
             log_error_forensics_plus(e)
         # Loop de escuta (Apenas para o Sender)
         if connections.OS.sender == websocket:
             if cls.receiver_conn is None and cls.receiver_loop_task is None:
-                cls.start_receiver(websocket)
+                await cls.start_receiver(websocket)
             else:
                 print("tentaram iniciar o receiver loop do watcher indevidamente!!!")
                 try:

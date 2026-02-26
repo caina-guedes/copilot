@@ -1,3 +1,4 @@
+import atexit
 import sqlite3
 
 from pathlib import Path
@@ -9,8 +10,6 @@ print(RootDir)
 
 DBDir = RootDir + '/sharedResources/DataBases/DBs'
 sys.path.append(RootDir)
-from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
-from sharedResources.generalUtils.aprint import aprint
 print(f'RootDir set to: {RootDir}')
 
 """
@@ -22,15 +21,17 @@ diugd
 
 
 from PythonServer.serverConfig import serverConfig
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
+from sharedResources.generalUtils.aprint import aprint
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
-# sys.path.append(str(Path(__file__).resolve().parent.parent.action': 'press', 'key': 'c'}parent.parent))
 from sharedResources.DataBases.utils.BaseSqlDB import BaseDbCommands
-import atexit
 from sharedResources.DataBases.mainDatabase.macro_manager import startNewMacro, stopMacro, GetCurrentMacroFunction
 from sharedResources.DataBases.mainDatabase.cache_manager import _cache_codes,get_or_create_code
 from sharedResources.DataBases.mainDatabase.event_logger import log_background_event
 from sharedResources.DataBases.mainDatabase.flush_worker import _flush, _flush_worker
+from sharedResources.debuggingResources.unified_monitor import monitor_class
 
+@monitor_class
 class MainDatabase:
     
     def __init__(self, serverConfig = serverConfig, db_path = DBDir ,batch_size = 100, flush_interval=5):

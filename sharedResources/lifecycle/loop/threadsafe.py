@@ -11,8 +11,7 @@ sys.path.append(str(basePath))
 from sharedResources.lifecycle.trackedUtils.trackedItem import TrackedItem, TaskFinishRecord
 from sharedResources.lifecycle.shutdownTaskUtils import TrackedTask
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
-
-
+from sharedResources.lifecycle.stateManager import State
 def call_soon(cls, fn, *args):
 
     if not cls._can_interact():
@@ -57,14 +56,14 @@ def submit(
 
     if not asyncio.iscoroutine(coro):
         cls._log(
-            f"submit received non-coroutine: {type(coro)} -> {coro}",
+            f"submit received non-coroutine: {type(coro)} -> {coro} , 'state' : {state}",
             "loop"
         )
-        if state in ("INIT", "SHUTTING_DOWN"):
+        # print()
+        if state in (State.INIT, State.SHUTTING_DOWN):
             return None # coloquei isso aqui pq durante  o shutdown estou tentando usar funções que ja foram fechadas, é mais pra se eu fizer alguma merda e isso mudar ai avisar
         
         else:
-            print("state : ",state)
             1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
 
     try:

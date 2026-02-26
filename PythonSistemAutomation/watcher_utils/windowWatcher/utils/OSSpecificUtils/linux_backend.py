@@ -14,7 +14,6 @@ sys.path.append(str(second_base_path))
 
 
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
-# from sharedResources.debuggingResources.exec_monitor import count_methods
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 from abstractClassBase import BaseWindowBackend
 from windowFingerPrint import WindowFingerPrint

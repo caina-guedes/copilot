@@ -60,8 +60,6 @@ def sys_monitor(
         
         # Registra a função no CallRegistry imediatamente (para aparecer no relatório zerada)
         if stats:
-            # Assumindo que você importou CallRegistry
-            # from sharedResources.debuggingResources.exec_monitor import CallRegistry
             CallRegistry.register(real_scope, real_group, func_name)
 
         # ----------------------------------------------------------------------
@@ -75,7 +73,6 @@ def sys_monitor(
                 elapsed = None
                 # A. Início do Tracking (Stats)
                 if stats:
-                    # from sharedResources.debuggingResources.exec_monitor import CallRegistry
                     token, start_time = CallRegistry.start_track(real_scope, real_group, func_name)
                 
                 try:
@@ -119,7 +116,6 @@ def sys_monitor(
                 elapsed = None
                 
                 if stats:
-                    from sharedResources.debuggingResources.exec_monitor import CallRegistry
                     token, start_time = CallRegistry.start_track(real_scope, real_group, func_name)
                 
                 try:
@@ -203,7 +199,6 @@ def monitor_class(cls=None, *, stats=True, errors=True):
         # Injeta método de report de conveniência
         if stats:
             def report_calls(self_or_cls=None):
-                from sharedResources.debuggingResources.exec_monitor import CallRegistry
                 CallRegistry.report()
             setattr(target_cls, "report_calls", report_calls)
             
@@ -220,7 +215,6 @@ def monitor_class(cls=None, *, stats=True, errors=True):
 if __name__ == "__main__":
     import asyncio
     import time
-    from sharedResources.debuggingResources.exec_monitor import CallRegistry
 
     print("\n" + "="*60)
     print("🚀 INICIANDO BATERIA DE TESTES: SYS_MONITOR & MONITOR_CLASS")

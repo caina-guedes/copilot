@@ -15,13 +15,12 @@ if STRICT_MODE:
 import signal 
 import json
 import logging
-from threading import Thread
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 # import builtins
-from sharedResources.generalUtils.aprint import aprint  # my assyncronous print function
+# from sharedResources.generalUtils.aprint import aprint  # my assyncronous print function
 # builtins.print = aprint # Override the built-in print with asynchronous print
 from PythonSistemAutomation.watcher_utils.GlobalMacroExecutor import GlobalExecutor
 
@@ -38,8 +37,6 @@ import asyncio
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 from sharedResources.lifecycle.shutdownThreadUtils  import TrackedThread 
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
-# from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
-from sharedResources.debuggingResources.exec_monitor import CallRegistry
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 
 from sharedResources.lifecycle.printUtils import print_thread_status, print_async_tasks_status
@@ -82,10 +79,10 @@ class AutomationSystem:
                     print("Setting watcher shutdown event.")
                     cls.shutDownIniciated = True
                     # cls.shutDownComplete.clear() # reset the event before shutdown
-                    AutomationSystem.main_instance.stop_observer()
-                    LoggerManager.stop_listener()
+                    # AutomationSystem.main_instance.stop_observer()
+                    # LoggerManager.stop_listener()
                     # Chamadas assíncronas
-                    LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), name= "umpress_task" , protected = True , state = LifecycleMaster.state)
+                    LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), name= "umpress_task" , protected = True , state = LifecycleMaster.lifecycleState.state)
 
                     if LifecycleMaster.run_async( AutomationSystem.main_instance.not_sent_db.close(),name = "not_sent_db.close", protected = True):
                         pass
@@ -99,7 +96,7 @@ class AutomationSystem:
                     # Wait for all threads and async tasks to finish
                     print("Waiting for all threads and tasks to finish...")
                     cls.shutDownComplete.wait()
-                    CallRegistry.report()
+                    # CallRegistry.report()
                     print("AutomationSystem shutdown complete.")
             except Exception as e:
                 print("deu erro no shutDown do automation system e foi: ",e)
@@ -208,7 +205,6 @@ class AutomationSystem:
         self.observer.stop()
 
 
-
 async def main():
     # loop = asyncio.get_running_loop()
     # LifecycleMaster.set_loop(loop)
@@ -224,6 +220,9 @@ async def main():
         print("comecei o start_observer")
         await autoSystem.initializeWebsocket()
         print("comecei o websocket")
+        LifecycleMaster.cleanup_manager.register_hook(autoSystem.stop_observer,priority = 100,name = "AutomationSistem.stop_observer")
+        LifecycleMaster.cleanup_manager.register_hook(LoggerManager.stop_listener,priority = 99,name = "LoggerManager.stop_listener")
+        
         await AutomationSystem.stop_event.wait()  # Aguarda sinal de parada
 
     # except KeyboardInterrupt:
@@ -236,7 +235,7 @@ async def main():
     finally:
         print("entrou no finally da main...")
         try:
-            LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), state = LifecycleMaster.state)
+            LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), state = LifecycleMaster.lifecycleState)
 
             if not LifecycleMaster.byebye.is_set():
                 print("esperando o byebye")
@@ -265,7 +264,7 @@ if __name__ == "__main__":
         print("esperando byebye na thread principal!")
         LifecycleMaster.byebye.wait()
         print("byebye setado na thread principal")
-        LifecycleMaster.tasksMap.relatorio()
+        # LifecycleMaster.tasksMap.relatorio()
     
     except Exception as e:
         print(f"deu erro fora da main e foi: {e}")

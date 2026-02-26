@@ -1,0 +1,35 @@
+2026-02-24 11:58:11,131 [INFO] [AsyncioLoopThread] main:221 - Starting event observer...
+2026-02-24 11:58:11,142 [INFO] [AsyncioLoopThread] WatcherWebSocket:130 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-02-24 11:58:11,143 [INFO] [AsyncioLoopThread] WatcherWebSocket:134 - Initializing a new TwoWayConnection instance.
+2026-02-24 11:58:11,143 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-02-24 11:58:11,202 [INFO] [AsyncioLoopThread] connectionObject:54 - [TwoWayConnection] Setting sender...
+2026-02-24 11:58:11,202 [INFO] [AsyncioLoopThread] threatHandShake:21 - consegui enviar a resposta
+2026-02-24 11:58:11,206 [INFO] [AsyncioLoopThread] threatHandShake:30 - recebi resposta da resposta de volta ({"status": "sucesso", "mensagem": "Conex\u00e3o SOWatcher estabelecida!"}) !!!
+2026-02-24 11:58:11,206 [INFO] [AsyncioLoopThread] threatHandShake:35 - [PythonSistemAutomation.watcher_utils.websocket_utils.threatHandShake] 🖥️ Operating System Watcher Sender Connection Started!
+2026-02-24 11:58:11,215 [INFO] [AsyncioLoopThread] connectionObject:59 - [TwoWayConnection] setting receiver function
+2026-02-24 11:58:11,215 [INFO] [AsyncioLoopThread] threatHandShake:21 - consegui enviar a resposta
+2026-02-24 11:58:11,221 [INFO] [AsyncioLoopThread] threatHandShake:30 - recebi resposta da resposta de volta ({"status": "sucesso", "mensagem": "Conex\u00e3o SOWatcher estabelecida!"}) !!!
+2026-02-24 11:58:11,221 [INFO] [AsyncioLoopThread] threatHandShake:35 - [PythonSistemAutomation.watcher_utils.websocket_utils.threatHandShake] 🖥️ Operating System Watcher Receiver Connection Started!
+2026-02-24 11:58:11,221 [INFO] [AsyncioLoopThread] connectionObject:72 - [TwoWayConnection] Starting receiver loop task...
+2026-02-24 11:58:11,222 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-02-24 11:58:11,222 [INFO] [AsyncioLoopThread] connectionObject:157 - [TwoWayConnection] receiver_loop function called 
+2026-02-24 11:58:11,222 [INFO] [AsyncioLoopThread] connectionObject:167 - [TwoWayConnection] Receiver loop started.
+2026-02-24 11:58:11,235 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-02-24 11:58:11,235 [INFO] [AsyncioLoopThread] main:189 - WebSocket client initialized.
+2026-02-24 11:58:17,437 [INFO] [AsyncioLoopThread] connectionObject:304 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x79522d3e84f0>
+2026-02-24 11:58:17,461 [INFO] [AsyncioLoopThread] connectionObject:206 - [RECEIVE LOOP] Received message: {"action": "startMacro"}
+2026-02-24 11:58:17,471 [INFO] [AsyncioLoopThread] connectionObject:206 - [RECEIVE LOOP] Received message: {"deltaTime": 0.0, "equipment": "keyboard", "key": "Key.alt", "action": "press", "modifiers": "{\"modifiers\": []}"}
+2026-02-24 11:58:17,486 [INFO] [AsyncioLoopThread] connectionObject:206 - [RECEIVE LOOP] Received message: {"deltaTime": 0.144, "equipment": "keyboard", "key": "Key.tab", "action": "press", "modifiers": "{\"modifiers\": []}"}
+2026-02-24 11:58:17,491 [INFO] [AsyncioLoopThread] connectionObject:206 - [RECEIVE LOOP] Received message: {"deltaTime": 0.197, "equipment": "keyboard", "key": "Key.tab", "action": "release", "modifiers": "{\"modifiers\": []}", "window_event": {"app": "gnome-terminal-server", "class_name": "gnome-terminal-server", "pid": 130204, "win_id": "0x0380000a", "title": "cain@cain-Aspire-F5-573: ~/Documentos/automacaoPythonJs", "details": "{\"titles_history\": [\"cain@cain-Aspire-F5-573: ~/Documentos/automacaoPythonJs\"], \"first_seen\": 1769033993.1214113, \"last_seen\": 1769033993.1214182, \"confidence_score\": 1.0, \"priority_fields\": {}}", "ts": 1769033993152}}
+2026-02-24 11:58:17,562 [INFO] [AsyncioLoopThread] connectionObject:206 - [RECEIVE LOOP] Received message: {"deltaTime": 0.162, "equipment": "keyboard", "key": "Key.alt", "action": "release", "modifiers": "{\"modifiers\": []}"}
+2026-02-24 11:58:17,565 [INFO] [AsyncioLoopThread] connectionObject:206 - [RECEIVE LOOP] Received message: {"deltaTime": 0.326, "equipment": "keyboard", "key": "Key.alt", "action": "press", "modifiers": "{\"modifiers\": []}"}
+2026-02-24 11:58:17,568 [INFO] [AsyncioLoopThread] connectionObject:206 - [RECEIVE LOOP] Received message: {"deltaTime": 0.097, "equipment": "keyboard", "key": "Key.tab", "action": "press", "modifiers": "{\"modifiers\": []}"}
+2026-02-24 11:58:17,569 [INFO] [AsyncioLoopThread] connectionObject:206 - [RECEIVE LOOP] Received message: {"deltaTime": 0.212, "equipment": "keyboard", "key": "Key.alt", "action": "release", "modifiers": "{\"modifiers\": []}", "window_event": {"app": "automation-ui-tauri", "class_name": "automation-ui-tauri", "pid": 341595, "win_id": "0x0fc00003", "title": "automation-ui-tauri", "details": "{\"titles_history\": [\"automation-ui-tauri\"], \"first_seen\": 1769033993.9357126, \"last_seen\": 1769033993.9357193, \"confidence_score\": 1.0, \"priority_fields\": {}}", "ts": 1769033993949}}
+2026-02-24 11:58:17,572 [INFO] [AsyncioLoopThread] connectionObject:206 - [RECEIVE LOOP] Received message: {"deltaTime": 0.154, "equipment": "keyboard", "key": "Key.tab", "action": "release", "modifiers": "{\"modifiers\": []}"}
+2026-02-24 11:58:17,572 [INFO] [AsyncioLoopThread] connectionObject:206 - [RECEIVE LOOP] Received message: {"action": "endMacro"}
+2026-02-24 11:58:17,764 [INFO] [AsyncioLoopThread] connectionObject:304 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x79522d3e84f0>
+2026-02-24 11:58:18,050 [INFO] [AsyncioLoopThread] connectionObject:304 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x79522d3e84f0>
+2026-02-24 11:58:18,579 [INFO] [AsyncioLoopThread] connectionObject:304 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x79522d3e84f0>
+2026-02-24 11:58:18,935 [INFO] [AsyncioLoopThread] connectionObject:304 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x79522d3e84f0>
+2026-02-24 11:58:22,093 [INFO] [AsyncioLoopThread] connectionObject:304 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x79522d3e84f0>
+2026-02-24 11:58:23,145 [INFO] [AsyncioLoopThread] connectionObject:304 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x79522d3e84f0>

@@ -1,7 +1,7 @@
 # error_handler.py
 import traceback
 import sys
-from logger import logger
+from sharedResources.pythonLoggerSistem.logger import logger
 import logging
 from pprint import pformat
 

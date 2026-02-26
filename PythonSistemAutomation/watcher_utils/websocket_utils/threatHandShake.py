@@ -15,8 +15,9 @@ async def threatHandShake(cls,connection,isReceiver=True):
                 "tipo": tipo
             }
         # async with cls.sender_lock:
-
-        await connection.send(json.dumps(msg))
+        resp = json.dumps(msg)
+        print(f"vou enviar ao server isso aqui: {resp}")
+        await connection.send(resp)
         # logger.info('consegui enviar a resposta')
         if isReceiver:
             # logger.info('!!!!!!!!!!!!!!!!!!!!!!!!!!! o lock do receiver é: ',cls.connection.receiver_lock)
@@ -26,15 +27,15 @@ async def threatHandShake(cls,connection,isReceiver=True):
             # logger.info('!!!!!!!!!!!!!!!!!!!!!!!!!!! o lock do sender é: ',cls.connection.sender_lock)
             async with cls.connection._sender_lock:
                 response = await connection.recv()
-        # logger.info('recebi resposta da resposta de volta !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         status = json.loads(response).get('status', 'unknown')
 
         if json.loads(response)['status'] == "sucesso":
             print(f"[{__name__}] 🖥️ {tipo} Connection Started!")
-            logger.info(f"[{__name__}] 🖥️ {tipo} Connection Started!")
+            # logger.info(f"[{__name__}] 🖥️ {tipo} Connection Started!")
         elif status == "falha":
             print(f"[{__name__}] ❌ Message processing failed.")
             logger.info(f"[{__name__}] ❌ Message processing failed.")
+            logger.info(f'recebi resposta da resposta de volta dessa falha:  ({response}) !!!')
             raise ConnectionError("Handshake failed")
         else:
             logger.info(f"[{__name__}] ⚠️ Unhandled status in message. {status} and response: {response}")

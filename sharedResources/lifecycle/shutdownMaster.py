@@ -1,3 +1,6 @@
+# from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
+
+from  enum import Enum
 import os
 import time
 import threading
@@ -19,15 +22,20 @@ from sharedResources.lifecycle.printUtils import print_thread_status, print_asyn
 from sharedResources.lifecycle.utils import wait_event
 from sharedResources.lifecycle.loop.loop_class import MyLoop
 from sharedResources.lifecycle.trackedUtils.tasksMapClass import TasksMapClass
-from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
-# from sharedResources.debuggingResources.exec_monitor import  count_methods
+from sharedResources.debuggingResources.error_tracker import errorExtruture, log_error_forensics_plus
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 from sharedResources.debuggingResources.exec_monitor import CallRegistry
-
+from sharedResources.lifecycle.stateManager import State, StateManager
+from sharedResources.pythonLoggerSistem.logger import LoggerManager
 # Setup básico de logging
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
 logger = logging.getLogger("LifecycleTracker")
 
+# class State (Enum):
+#     INIT = "INIT"
+#     RUNNING = "RUNNING"
+#     SHUTTING_DOWN = "SHUTTING_DOWN"
+#     EMERGENCY = "EMERGENCY"
 
 
 @monitor_class
@@ -39,7 +47,8 @@ class LifecycleMaster():
     cleanup_manager = GraciousCleanupManager
 
     running_loop = MyLoop() # loop principal único!
-    state = "INIT" #  
+    lifecycleState = StateManager #  
+    stateEnum = State
 
     #flag para modo de testes
     testing = False
@@ -85,9 +94,9 @@ class LifecycleMaster():
     @classmethod
     def emergency_shutdown(cls,erro):
         #previne reentrada!
-        if cls.state == "EMERGENCY":
+        if cls.lifecycleState.state is State.EMERGENCY:
             return
-        cls.state = "EMERGENCY"
+        cls.lifecycleState.state = State.EMERGENCY
         
         mensagem = "[Emergency] deu merda no loop principal e foi: " + str(erro)
         try:
@@ -123,7 +132,8 @@ class LifecycleMaster():
 
     @classmethod
     def start_runtime(cls, main_coro):
-        cls.running_loop.start_loop()
+        if cls.running_loop.loop_is_none():
+            cls.running_loop.start_loop()
         # print("Main loop started:", cls.running_loop.get())
         # print("Submitting main to the loop...")
         if asyncio.iscoroutine(main_coro) or asyncio.iscoroutinefunction(main_coro):
@@ -132,6 +142,9 @@ class LifecycleMaster():
         else:
             # print("Main coroutine is a regular function, scheduling it.")
             res  = cls.running_loop.call_soon(main_coro)
+        if cls.lifecycleState.state == State.INIT:
+            cls.lifecycleState.state = State.RUNNING
+        print("Main runtime started. the lifecicleState is: ", cls.lifecycleState.state )
         # print("Main coroutine submitted:", res)
     
 
@@ -144,14 +157,14 @@ class LifecycleMaster():
 
         """Função para iniciar o shutdown automático de threads e tasks"""
         # if cls.shutdown_event.is_set():
-        if cls.state == "SHUTTING_DOWN":
+        if cls.lifecycleState.state is State.SHUTTING_DOWN:
             cls.register_log("algo fez autoshutdown ser chamada mais de uma vez!","general")
         else:
-            cls.state = "SHUTTING_DOWN"
+            cls.lifecycleState.state = State.SHUTTING_DOWN
             cls.register_log("iniciando o autoshutdown","general")
         try:
             cls.register_log("Initiating automatic shutdown...","general")
-            # LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), state = cls.state)
+            # LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), state = cls.lifecycleState.state)
             if cls.running_loop.get() is not None:
                 if not cls._loop_is_ok():
                     cls.register_log("[autoShutDown] loop is not ok just before task_shutdown_function be called!","general")
@@ -303,6 +316,7 @@ class LifecycleMaster():
         #setting up the loop
         TrackedThread.set_running_loop(cls.running_loop)
         TrackedTask.set_running_loop( cls.running_loop)
+        errorExtruture.set_lifecycle_master(cls, LoggerManager )
     
 
 LifecycleMaster.prepare_dependencies()

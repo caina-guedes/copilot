@@ -1,0 +1,13 @@
+2026-02-26 07:47:19,262 [INFO] [AsyncioLoopThread] main:218 - Starting event observer...
+2026-02-26 07:47:19,270 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-02-26 07:47:19,332 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-02-26 07:47:19,337 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-02-26 07:47:19,347 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-02-26 07:47:19,347 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-02-26 07:47:19,348 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-02-26 07:47:19,348 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-02-26 07:47:19,352 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-02-26 07:47:19,352 [INFO] [AsyncioLoopThread] main:187 - WebSocket client initialized.
+2026-02-26 07:47:25,515 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x77403c111990>
+2026-02-26 07:47:27,399 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x77403c111990>
+2026-02-26 07:47:28,204 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None

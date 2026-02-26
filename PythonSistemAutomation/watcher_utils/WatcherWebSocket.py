@@ -13,7 +13,7 @@ from sharedResources.debuggingResources.unified_monitor import sys_monitor, moni
 from sharedResources.connection.connectionObject import TwoWayConnection
 from PythonSistemAutomation.watcher_utils.websocket_utils.threatHandShake import threatHandShake
 logger = LoggerManager.get_logger(__name__)
-
+from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 
 @monitor_class
 class WebSocketClient:
@@ -85,21 +85,27 @@ class WebSocketClient:
             #starting sender connection
             # print("starting sender connection ")
             try:
+                # print("trying to connect the sender")
                 sender = await websockets.connect(cls.uri)
+                # print("sender connected! starting handshake")
             except Exception as e:
                 log_error_forensics_plus(e)
-                print("the exception on the sender connect is: ",e)
+                # print("the exception on the sender connect is: ",e)
             # print("setting sender connection")
             cls.connection.set_sender(sender)
             # print("iniciando handshake")
             await threatHandShake(cls,sender,False)
+            # print(" sender handShake finished!")
             # starting receiver connection
             receiver = await websockets.connect(cls.uri)
+            # print("trying to connect the receiver!")
             cls.connection.set_receiver(receiver,
                                         handle_message_function = GlobalExecutor.enqueue,
                                         controlsToIgnore = cls.system.controlsToIgnore,
                                         ExecutingMacro = cls.system.ExecutingMacro)
+            # print("receiver connected! starting handshake!")
             await threatHandShake(cls,receiver,True)
+            # print(" receiver handshake finished!")
 
             assert cls.connection.sender is not None, "Sender connection was not set properly."
             assert cls.connection.receiver is not None, "Receiver connection was not set properly."
@@ -120,12 +126,12 @@ class WebSocketClient:
         If the connection is already established, it will close the existing connection
         and create a new one.
         """
-        print("[CLIENT] 🔄 Attempting to connect to the server...")
-        logger.info(f"[CLIENT] 🔄 Attempting to connect to the server...")
+        # print("[CLIENT] 🔄 Attempting to connect to the server...")
+        # logger.info(f"[CLIENT] 🔄 Attempting to connect to the server...")
         try:
             if cls.connection is None:
-                print("initializing a new twoWayConnection instance")
-                logger.info("Initializing a new TwoWayConnection instance.")
+                # print("initializing a new twoWayConnection instance")
+                # logger.info("Initializing a new TwoWayConnection instance.")
                 cls.connection = TwoWayConnection()
             await cls.connectDoubleConnection()
 
@@ -204,16 +210,19 @@ class WebSocketClient:
     async def close(cls):
         logger.info("função close do websocket foi chamada !")
         if cls.connection:
-            await cls.connection.close()
-            cls.connected = False
-            cls.__class__.connection = None
-            await cls.stop_loops()
+            try:
+                await cls.connection.close()
+                cls.connected = False
+                cls.connection = None
+                await cls.stop_loops()
 
-            cls.receive_loop.set_websocket(None) # Clear the websocket in the receive loop
-            # await cls.receive_loop.stop()  # Stop the receive loop
+                # cls.receive_loop.set_websocket(None) # Clear the websocket in the receive loop
+                # await cls.receive_loop.stop()  # Stop the receive loop
 
-            logger.info("Connection closed.")
-
+                logger.info("Connection closed.")
+            except Exception as e:
+                log_error_forensics_plus(e)
+                logger.error(f"Error closing connection: {str(e)}")
     @classmethod
     async def stop_loops(cls):
         """
@@ -222,12 +231,18 @@ class WebSocketClient:
 
         logger.info(f"[CLIENT] Stopping receiver loop if exists ...")
         try:
-            await cls.connection.stop_receiving()
+            if isinstance(cls.connection, TwoWayConnection):
+                await cls.connection.stop_receiving()
+            else:
+                print(f"""[WebSocketClient.stop_loops] No TwoWayConnection instance found in cls.connection , 
+                            now it is:{type(cls.connection)}  and it's type is: {type(cls.connection)} """)
+        
         except Exception as e:
             log_error_forensics_plus(e)
             logger.error(f"error stopping receiver loop: {str(e)}")
 
-   
+
+LifecycleMaster.cleanup_manager.register_hook(WebSocketClient.close, priority=80, name = "WebSocketClient.close")
 # Isolated usage example (for testing purposes only)):
 if __name__ == "__main__":
     client = WebSocketClient
