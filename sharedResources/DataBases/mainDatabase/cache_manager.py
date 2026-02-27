@@ -1,5 +1,5 @@
 from sharedResources.debuggingResources.unified_monitor import monitor_class, sys_monitor
-from sharedResources.DataBases.mainDatabase.querrys import querrys
+from sharedResources.DataBases.mainDatabase.querrys import querrys, put_table_in_querry
 
 
 """
@@ -17,7 +17,7 @@ def _cache_codes(self):
 @sys_monitor
 def _load_cache(self, table):
     cache = {}
-    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+    self.cursor.execute(put_table_in_querry(querrys["IdNameFromTable"],table))
     for id_, name in self.cursor.fetchall():
         cache[name] = id_
     return cache
@@ -29,10 +29,10 @@ def get_or_create_code(self, table, cache, name):
     if not name:
         raise ValueError(f"Tentativa de inserir código vazio na tabela {table}")
 
-    self.cursor.execute(querrys["insertOuIgnoreName"], (table, name,))
+    self.cursor.execute(put_table_in_querry(querrys["insertOuIgnoreName"] , table) , name)
     self.conn.commit()
 
-    self.cursor.execute(querrys["selectIdDaTabelaPeloNome"], (table,name,))
+    self.cursor.execute(put_table_in_querry(querrys["selectIdDaTabelaPeloNome"] , table) , name)
     row = self.cursor.fetchone()
     if row is None:
         raise ValueError(f"Falha ao inserir ou recuperar código '{name}' na tabela {table}")

@@ -1,4 +1,9 @@
 # from sharedResources.DataBases.mainDatabase.querrys import querrys 
+
+table_repr = "__table__"
+def put_table_in_querry(querry, table):
+    return querry.replace(table_repr, table)
+
 querrys = {
     "selectMacroAtiva": "select id from macros where end_time is null",
     "registroInicialMacro": "INSERT INTO macros (name, start_time) VALUES (?, ?)",
@@ -6,9 +11,9 @@ querrys = {
     "selectUltimoIdDeMacro" : "select id from macros order by ID desc limit 1",
     "get_all_macros" : """SELECT * FROM macros ORDER BY id DESC;""",
     "selectEventosComMudançaDeJanela" : "select * from events where window_event_id is not null",
-    "IdNameFromTable" : f"SELECT id, name FROM ? ", # só pra pegar id, name de tabelas específicas
-    "insertOuIgnoreName" : "INSERT OR IGNORE INTO ? (name) VALUES (?)",
-    "selectIdDaTabelaPeloNome" : "SELECT id FROM ? WHERE name = ?",
+    "IdNameFromTable" : f"SELECT id, name FROM {table_repr} ", # só pra pegar id, name de tabelas específicas
+    "insertOuIgnoreName" : f"INSERT OR IGNORE INTO {table_repr} (name) VALUES (?)",
+    "selectIdDaTabelaPeloNome" : f"SELECT id FROM {table_repr} WHERE name = ?",
 
     "dinamic_insert_querrys" : set(),
     "_configure_connection" : [ #commands beeins used only in the _configure_connection function

@@ -29,7 +29,7 @@ from sharedResources.DataBases.mainDatabase.macro_manager import startNewMacro, 
 from sharedResources.DataBases.mainDatabase.cache_manager import _cache_codes,get_or_create_code
 from sharedResources.DataBases.mainDatabase.event_logger import log_background_event
 from sharedResources.DataBases.mainDatabase.flush_worker import _flush, _flush_worker
-from sharedResources.debuggingResources.unified_monitor import monitor_class
+from sharedResources.debuggingResources.unified_monitor import sys_monitor , monitor_class
 from sharedResources.DataBases.mainDatabase.querrys import querrys
 
 @monitor_class
@@ -42,7 +42,7 @@ class MainDatabase:
         self.get_or_create_code = get_or_create_code.__get__(self)
         
         #from flush_worker
-        self._flush = _flush.__get__(self)
+        self._flush = sys_monitor(_flush.__get__(self), scope = "method",group = "MainDatabase")
         self._flush_worker = _flush_worker.__get__(self)
 
         # from macro_manager
