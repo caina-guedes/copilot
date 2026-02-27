@@ -30,6 +30,7 @@ from sharedResources.DataBases.mainDatabase.cache_manager import _cache_codes,ge
 from sharedResources.DataBases.mainDatabase.event_logger import log_background_event
 from sharedResources.DataBases.mainDatabase.flush_worker import _flush, _flush_worker
 from sharedResources.debuggingResources.unified_monitor import monitor_class
+from sharedResources.DataBases.mainDatabase.querrys import querrys
 
 @monitor_class
 class MainDatabase:
@@ -60,10 +61,10 @@ class MainDatabase:
         self.batch_size = batch_size
         self.flush_interval = flush_interval
         self.conn = sqlite3.connect(
-            self.db_path, 
-            check_same_thread=False,
-            isolation_level=None,  # autocommit mode
-            timeout=10)
+            self.db_path , 
+            check_same_thread = False ,
+            isolation_level = None ,  # autocommit mode
+            timeout = 10 )
         self.cursor = self.conn.cursor()
         self._configure_connection()
         self._initialize_main_bank()
@@ -92,16 +93,14 @@ class MainDatabase:
         self.conn.commit()
 
     def _configure_connection(self):
-        self.cursor.execute("PRAGMA foreign_keys = ON;")
-        self.cursor.execute("PRAGMA journal_mode = WAL;")
-        self.cursor.execute("PRAGMA synchronous = NORMAL;")
-        self.cursor.execute("PRAGMA cache_size = -10000;")  # ~10MB
-        self.cursor.execute("PRAGMA temp_store = MEMORY;")
-        self.cursor.execute("PRAGMA busy_timeout = 10000;")  # evita 'database is locked'
-        self.cursor.execute("PRAGMA mmap_size = 268435456;")  # ativa mmap até 256MB, melhora leitura
+        for configCommand in querrys["_configure_connection"]:
+            try:
+                self.cursor.execute(configCommand)
+            except Exception as e:
+                print("[MainDatabase._configure_connection] deu erro configurando conexão do main db e foi: ", str(e))
 
 
-    def exec(self,querry):
+    def exec(self,querry, fetchOne = False, ):
         self.cursor.execute(querry)
         return self.cursor.fetchall()
     ### Event Buffering and Insertion ###
@@ -175,40 +174,40 @@ if __name__ == "__main__":
     print("valores da tabela macros:")
     db.cursor.execute("select * from macros")
     a=db.cursor.fetchall()
-    querry_traduzida = """SELECT 
-    e.id,
-    e.ts,
-    e.session_id,
-    t.name      AS type_name,
-    k.name      AS key_name,
-    a.name      AS action_name,
-    s.name      AS source_name,
-    d.name      AS device_name,
-    m.name      AS macro_name,
-    e.x,
-    e.y,
-    e.value,
-    e.details_json,
-    e.window_event_id
-    FROM events e
-    LEFT JOIN type_codes   t ON e.type_id   = t.id
-    LEFT JOIN key_codes    k ON e.key_id    = k.id
-    LEFT JOIN action_codes a ON e.action_id = a.id
-    LEFT JOIN source_codes s ON e.source_id = s.id
-    LEFT JOIN device_codes d ON e.device_id = d.id
-    LEFT JOIN macros       m ON e.macro_id  = m.id
-    where macro_id = (?)
-    ORDER BY e.ts ASC;
-    """
+    # querry_traduzida = """SELECT 
+    # e.id,
+    # e.ts,
+    # e.session_id,
+    # t.name      AS type_name,
+    # k.name      AS key_name,
+    # a.name      AS action_name,
+    # s.name      AS source_name,
+    # d.name      AS device_name,
+    # m.name      AS macro_name,
+    # e.x,
+    # e.y,
+    # e.value,
+    # e.details_json,
+    # e.window_event_id
+    # FROM events e
+    # LEFT JOIN type_codes   t ON e.type_id   = t.id
+    # LEFT JOIN key_codes    k ON e.key_id    = k.id
+    # LEFT JOIN action_codes a ON e.action_id = a.id
+    # LEFT JOIN source_codes s ON e.source_id = s.id
+    # LEFT JOIN device_codes d ON e.device_id = d.id
+    # LEFT JOIN macros       m ON e.macro_id  = m.id
+    # where macro_id = (?)
+    # ORDER BY e.ts ASC;
+    # """
     
 
-    b=db.exec("select * from events where window_event_id is not null")
+    b=db.exec(querrys["selectEventosComMudançaDeJanela"])
     c = winChange()
     winChangeIdsInCurrentMacro = []
     for x in a:
         print(x)
         identifier=x[0]
-        db.cursor.execute(querry_traduzida,(identifier,))
+        db.cursor.execute(querrys["querry_traduzida"],(identifier,))
         for comando in db.cursor.fetchall():
             if comando[-1] is not None:
                 winChangeIdsInCurrentMacro.append(comando[-1])
@@ -216,32 +215,22 @@ if __name__ == "__main__":
     #for ev in b:
     #           print(ev)
     
-
-
-    
     # a=db.exec("select * from events where window_event_id is not null")
     events = db.exec("select * from events")
 
+#     """
+#     SERVER] the command to be sent is :  {'action': 'startMacro'}
+# [SERVER] the command to be sent is :  {'deltaTime': 0.0, 'equipment': 'mouse', 'button': 'Button.left', 'action': 'press', 'x': 274, 'y': 218, 'details': None, 'window_event': {'app': 'automation-ui-tauri', 'class_name': 'automation-ui-tauri', 'pid': 139627, 'win_id': '0x05600003', 'title': 'automation-ui-tauri', 'details': '{"titles_history": ["automation-ui-tauri"], "first_seen": 1767912658.7493122, "last_seen": 1767912658.7493176, "confidence_score": 1.0, "priority_fields": {}}', 'ts': 1767912658755}}
+# [SERVER] the command to be sent is :  {'deltaTime': 0.091, 'equipment': 'mouse', 'button': 'Button.left', 'action': 'release', 'x': 274, 'y': 218, 'details': None}
+# [SERVER] the command to be sent is :  {'deltaTime': 1.649, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'press', 'modifiers': '{"modifiers": []}'}
+# [SERVER] the command to be sent is :  {'deltaTime': 0.106, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'press', 'modifiers': '{"modifiers": []}'}
+# [SERVER] the command to be sent is :  {'deltaTime': 0.099, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'release', 'modifiers': '{"modifiers": []}'}
+# [SERVER] the command to be sent is :  {'deltaTime': 0.136, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'release', 'modifiers': '{"modifiers": []}', 'window_event': {'app': 'gnome-terminal-server', 'class_name': 'gnome-terminal-server', 'pid': 36904, 'win_id': '0x03e0000a', 'title': 'cain@cain-Aspire-F5-573: ~/Documentos/automacaoPythonJs', 'details': '{"titles_history": ["cain@cain-Aspire-F5-573: ~/Documentos/automacaoPythonJs"], "first_seen": 1767912660.808087, "last_seen": 1767912660.808092, "confidence_score": 1.0, "priority_fields": {}}', 'ts': 1767912660836}}
+# [SERVER] the command to be sent is :  {'deltaTime': 0.429, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'press', 'modifiers': '{"modifiers": []}'}
+# [SERVER] the command to be sent is :  {'deltaTime': 0.059, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'press', 'modifiers': '{"modifiers": []}'}
+# [SERVER] the command to be sent is :  {'deltaTime': 0.163, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'release', 'modifiers': '{"modifiers": []}', 'window_event': {'app': 'automation-ui-tauri', 'class_name': 'automation-ui-tauri', 'pid': 139627, 'win_id': '0x05600003', 'title': 'automation-ui-tauri', 'details': '{"titles_history": ["automation-ui-tauri"], "first_seen": 1767912661.4821124, "last_seen": 1767912661.4821193, "confidence_score": 1.0, "priority_fields": {}}', 'ts': 1767912661487}}
+# [SERVER] the command to be sent is :  {'deltaTime': 0.104, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'release', 'modifiers': '{"modifiers": []}'}
+# [SERVER] the command to be sent is :  {'action': 'endMacro'}
 
-
-
-
-
-
-
-    """
-    SERVER] the command to be sent is :  {'action': 'startMacro'}
-[SERVER] the command to be sent is :  {'deltaTime': 0.0, 'equipment': 'mouse', 'button': 'Button.left', 'action': 'press', 'x': 274, 'y': 218, 'details': None, 'window_event': {'app': 'automation-ui-tauri', 'class_name': 'automation-ui-tauri', 'pid': 139627, 'win_id': '0x05600003', 'title': 'automation-ui-tauri', 'details': '{"titles_history": ["automation-ui-tauri"], "first_seen": 1767912658.7493122, "last_seen": 1767912658.7493176, "confidence_score": 1.0, "priority_fields": {}}', 'ts': 1767912658755}}
-[SERVER] the command to be sent is :  {'deltaTime': 0.091, 'equipment': 'mouse', 'button': 'Button.left', 'action': 'release', 'x': 274, 'y': 218, 'details': None}
-[SERVER] the command to be sent is :  {'deltaTime': 1.649, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'press', 'modifiers': '{"modifiers": []}'}
-[SERVER] the command to be sent is :  {'deltaTime': 0.106, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'press', 'modifiers': '{"modifiers": []}'}
-[SERVER] the command to be sent is :  {'deltaTime': 0.099, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'release', 'modifiers': '{"modifiers": []}'}
-[SERVER] the command to be sent is :  {'deltaTime': 0.136, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'release', 'modifiers': '{"modifiers": []}', 'window_event': {'app': 'gnome-terminal-server', 'class_name': 'gnome-terminal-server', 'pid': 36904, 'win_id': '0x03e0000a', 'title': 'cain@cain-Aspire-F5-573: ~/Documentos/automacaoPythonJs', 'details': '{"titles_history": ["cain@cain-Aspire-F5-573: ~/Documentos/automacaoPythonJs"], "first_seen": 1767912660.808087, "last_seen": 1767912660.808092, "confidence_score": 1.0, "priority_fields": {}}', 'ts': 1767912660836}}
-[SERVER] the command to be sent is :  {'deltaTime': 0.429, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'press', 'modifiers': '{"modifiers": []}'}
-[SERVER] the command to be sent is :  {'deltaTime': 0.059, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'press', 'modifiers': '{"modifiers": []}'}
-[SERVER] the command to be sent is :  {'deltaTime': 0.163, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'release', 'modifiers': '{"modifiers": []}', 'window_event': {'app': 'automation-ui-tauri', 'class_name': 'automation-ui-tauri', 'pid': 139627, 'win_id': '0x05600003', 'title': 'automation-ui-tauri', 'details': '{"titles_history": ["automation-ui-tauri"], "first_seen": 1767912661.4821124, "last_seen": 1767912661.4821193, "confidence_score": 1.0, "priority_fields": {}}', 'ts': 1767912661487}}
-[SERVER] the command to be sent is :  {'deltaTime': 0.104, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'release', 'modifiers': '{"modifiers": []}'}
-[SERVER] the command to be sent is :  {'action': 'endMacro'}
-
-    """
+#     """
         

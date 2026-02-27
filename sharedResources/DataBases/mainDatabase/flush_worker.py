@@ -1,6 +1,7 @@
 from pathlib import Path
 RootDir = str(Path(__file__).resolve().parent.parent.parent.parent)
 from sharedResources.generalUtils.aprint import aprint
+from sharedResources.DataBases.mainDatabase.querrys import querrys
 import json
 import copy
 """
@@ -18,10 +19,13 @@ from PythonServer.serverConfig import serverConfig
 FlushConfig = serverConfig.FlushConfig
 
 def _build_insert_query(table, data: dict):
+    querrys_ja_existentes = querrys["dinamic_insert_querrys"]
     keys = ", ".join(data.keys())
     placeholders = ", ".join(["?"] * len(data))
 
     sql = f"INSERT INTO {table} ({keys}) VALUES ({placeholders})"
+    if sql not in querrys_ja_existentes:
+        querrys_ja_existentes.add(sql)
     return sql, tuple(data.values())
 
 def is_duplicate_click(ev,debug = True):

@@ -239,3 +239,555 @@ ZeroDivisionError: division by zero
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 2026-02-26 07:56:45,666 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
 2026-02-26 07:56:45,670 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-02-26 22:09:28,416 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py | Linha: 20
+💻 Código: `self.cursor.execute(querrys["IdNameFromTable"],(table,))`
+🕒 Horário: 2026-02-26 22:09:28.415806 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: near "?": syntax error
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x72bc3236bc10>
+    table = 'key_codes'
+    cache = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _cache_codes):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x72bc3236bc10>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 67, in <module>
+    initialize_server_state()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+sqlite3.OperationalError: near "?": syntax error
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-02-26 22:09:28,416 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py | Linha: 20
+💻 Código: `self.cursor.execute(querrys["IdNameFromTable"],(table,))`
+🕒 Horário: 2026-02-26 22:09:28.416775 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: near "?": syntax error
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x72bc3236bc10>
+    table = 'key_codes'
+    cache = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _cache_codes):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x72bc3236bc10>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 67, in <module>
+    initialize_server_state()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+sqlite3.OperationalError: near "?": syntax error
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-02-26 22:09:28,429 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py | Linha: 20
+💻 Código: `self.cursor.execute(querrys["IdNameFromTable"],(table,))`
+🕒 Horário: 2026-02-26 22:09:28.429253 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: near "?": syntax error
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x72bc3236bc10>
+    table = 'key_codes'
+    cache = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _cache_codes):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x72bc3236bc10>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 67, in <module>
+    initialize_server_state()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+sqlite3.OperationalError: near "?": syntax error
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-02-26 22:09:28,452 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py | Linha: 20
+💻 Código: `self.cursor.execute(querrys["IdNameFromTable"],(table,))`
+🕒 Horário: 2026-02-26 22:09:28.451559 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: near "?": syntax error
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x72bc3236bc10>
+    table = 'key_codes'
+    cache = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _cache_codes):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x72bc3236bc10>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 67, in <module>
+    initialize_server_state()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+sqlite3.OperationalError: near "?": syntax error
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-02-26 22:10:35,168 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py | Linha: 20
+💻 Código: `self.cursor.execute(querrys["IdNameFromTable"],(table,))`
+🕒 Horário: 2026-02-26 22:10:35.167372 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: near "?": syntax error
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x70b5feb5b2b0>
+    table = 'key_codes'
+    cache = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _cache_codes):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x70b5feb5b2b0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 67, in <module>
+    initialize_server_state()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+sqlite3.OperationalError: near "?": syntax error
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-02-26 22:10:35,168 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py | Linha: 20
+💻 Código: `self.cursor.execute(querrys["IdNameFromTable"],(table,))`
+🕒 Horário: 2026-02-26 22:10:35.168223 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: near "?": syntax error
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x70b5feb5b2b0>
+    table = 'key_codes'
+    cache = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _cache_codes):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x70b5feb5b2b0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 67, in <module>
+    initialize_server_state()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+sqlite3.OperationalError: near "?": syntax error
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-02-26 22:10:35,169 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py | Linha: 20
+💻 Código: `self.cursor.execute(querrys["IdNameFromTable"],(table,))`
+🕒 Horário: 2026-02-26 22:10:35.168628 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: near "?": syntax error
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x70b5feb5b2b0>
+    table = 'key_codes'
+    cache = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _cache_codes):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x70b5feb5b2b0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 67, in <module>
+    initialize_server_state()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+sqlite3.OperationalError: near "?": syntax error
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-02-26 22:10:35,182 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py | Linha: 20
+💻 Código: `self.cursor.execute(querrys["IdNameFromTable"],(table,))`
+🕒 Horário: 2026-02-26 22:10:35.169243 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: near "?": syntax error
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x70b5feb5b2b0>
+    table = 'key_codes'
+    cache = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _cache_codes):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x70b5feb5b2b0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 67, in <module>
+    initialize_server_state()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+sqlite3.OperationalError: near "?": syntax error
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-02-26 22:11:33,230 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py | Linha: 20
+💻 Código: `self.cursor.execute(querrys["IdNameFromTable"],(table,))`
+🕒 Horário: 2026-02-26 22:11:33.229924 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: near "?": syntax error
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x776262b572e0>
+    table = 'key_codes'
+    cache = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _cache_codes):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x776262b572e0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 67, in <module>
+    initialize_server_state()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+sqlite3.OperationalError: near "?": syntax error
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-02-26 22:11:33,244 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py | Linha: 20
+💻 Código: `self.cursor.execute(querrys["IdNameFromTable"],(table,))`
+🕒 Horário: 2026-02-26 22:11:33.243569 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: near "?": syntax error
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x776262b572e0>
+    table = 'key_codes'
+    cache = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _cache_codes):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x776262b572e0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 67, in <module>
+    initialize_server_state()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+sqlite3.OperationalError: near "?": syntax error
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-02-26 22:11:33,257 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py | Linha: 20
+💻 Código: `self.cursor.execute(querrys["IdNameFromTable"],(table,))`
+🕒 Horário: 2026-02-26 22:11:33.257426 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: near "?": syntax error
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x776262b572e0>
+    table = 'key_codes'
+    cache = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _cache_codes):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x776262b572e0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 67, in <module>
+    initialize_server_state()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+sqlite3.OperationalError: near "?": syntax error
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-02-26 22:11:33,270 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py | Linha: 20
+💻 Código: `self.cursor.execute(querrys["IdNameFromTable"],(table,))`
+🕒 Horário: 2026-02-26 22:11:33.263275 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: near "?": syntax error
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x776262b572e0>
+    table = 'key_codes'
+    cache = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _cache_codes):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x776262b572e0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 67, in <module>
+    initialize_server_state()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/server.py", line 62, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 71, in __init__
+    self._cache_codes()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 11, in _cache_codes
+    self.key_cache = _load_cache(self , 'key_codes')
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/cache_manager.py", line 20, in _load_cache
+    self.cursor.execute(querrys["IdNameFromTable"],(table,))
+sqlite3.OperationalError: near "?": syntax error
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
