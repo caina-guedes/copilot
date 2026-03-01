@@ -208,7 +208,10 @@ def log_error_forensics_plus(e: Exception,
     )
     
     if hasattr(errorExtruture,'logger') and errorExtruture.logger is not None:
-        errorExtruture.logger.warning(full_message)
+        try:
+            errorExtruture.logger.warning(full_message)
+        except Exception as e:
+            print(f"[Profunda] - Erro ao registrar o log na forensics: {e}")
     else:
         print("[Profunda] - não consegui registrar o log na forensics!")
     if errorExtruture.devMode == True:

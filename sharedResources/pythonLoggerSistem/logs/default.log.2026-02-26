@@ -1,0 +1,240 @@
+2026-03-01 10:31:40,973 [INFO] [AsyncioLoopThread] main:218 - Starting event observer...
+2026-03-01 10:31:40,995 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-01 10:31:41,079 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-01 10:31:41,089 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-01 10:31:41,093 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-01 10:31:41,094 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-01 10:31:41,094 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-01 10:31:41,094 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-01 10:31:41,095 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-01 10:31:41,095 [INFO] [AsyncioLoopThread] main:187 - WebSocket client initialized.
+2026-03-01 10:31:42,622 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:31:51,836 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:31:54,544 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:31:54,790 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:31:55,447 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:31:56,913 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:31:57,266 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:31:57,539 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:31:57,993 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:31:58,451 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:31:58,738 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:31:59,293 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:32:00,863 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:32:01,095 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:32:01,381 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:32:01,842 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:32:02,314 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:32:02,602 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:32:03,156 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:32:04,768 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:32:05,641 [INFO] [AsyncioLoopThread] connectionObject:303 - [TwoWayConnection] the sender is:  <websockets.asyncio.client.ClientConnection object at 0x75a6345327a0>
+2026-03-01 10:32:06,149 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ZeroDivisionError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/threadsafe.py | Linha: 67
+💻 Código: `1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra`
+🕒 Horário: 2026-03-01 10:32:06.145357 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: division by zero
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fn_or_coro = None
+    state = <State.RUNNING: 'RUNNING'>
+    cleanup_event = None
+    cleanup_function = None
+    cls = <class 'sharedResources.lifecycle.loop.loop_class.MyLoop'>
+    coro = None
+    created_from = 'unknown'
+    name = 'umpress_task'
+    protected = True
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - myShutdown):
+    cls = <class '__main__.AutomationSystem'>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py", line 265, in <module>
+    LifecycleMaster.byebye.wait()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py", line 70, in shutdown
+    AutomationSystem.myShutdown()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py", line 85, in myShutdown
+    LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), name= "umpress_task" , protected = True , state = LifecycleMaster.lifecycleState.state)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/shutdownMaster.py", line 266, in run_async
+    return MyLoop.submit(coro, *args, **kargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/threadsafe.py", line 67, in submit
+    1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/shutdownMaster.py", line 266, in run_async
+    return MyLoop.submit(coro, *args, **kargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/threadsafe.py", line 67, in submit
+    1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
+ZeroDivisionError: division by zero
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-01 10:32:06,155 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ZeroDivisionError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/threadsafe.py | Linha: 67
+💻 Código: `1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra`
+🕒 Horário: 2026-03-01 10:32:06.155222 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: division by zero
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fn_or_coro = None
+    state = <State.RUNNING: 'RUNNING'>
+    coro = None
+    cleanup_event = None
+    cleanup_function = None
+    cls = <class 'sharedResources.lifecycle.loop.loop_class.MyLoop'>
+    created_from = 'unknown'
+    name = 'umpress_task'
+    protected = True
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - myShutdown):
+    cls = <class '__main__.AutomationSystem'>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py", line 265, in <module>
+    LifecycleMaster.byebye.wait()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py", line 70, in shutdown
+    AutomationSystem.myShutdown()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py", line 85, in myShutdown
+    LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), name= "umpress_task" , protected = True , state = LifecycleMaster.lifecycleState.state)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/shutdownMaster.py", line 266, in run_async
+    return MyLoop.submit(coro, *args, **kargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/threadsafe.py", line 67, in submit
+    1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py", line 85, in myShutdown
+    LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), name= "umpress_task" , protected = True , state = LifecycleMaster.lifecycleState.state)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/shutdownMaster.py", line 266, in run_async
+    return MyLoop.submit(coro, *args, **kargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/threadsafe.py", line 67, in submit
+    1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
+ZeroDivisionError: division by zero
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-01 10:32:06,156 [WARNING] [MainThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ZeroDivisionError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/threadsafe.py | Linha: 67
+💻 Código: `1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra`
+🕒 Horário: 2026-03-01 10:32:06.155899 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: division by zero
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fn_or_coro = None
+    state = <State.RUNNING: 'RUNNING'>
+    coro = None
+    cleanup_event = None
+    cleanup_function = None
+    cls = <class 'sharedResources.lifecycle.loop.loop_class.MyLoop'>
+    created_from = 'unknown'
+    name = 'umpress_task'
+    protected = True
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - myShutdown):
+    cls = <class '__main__.AutomationSystem'>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py", line 265, in <module>
+    LifecycleMaster.byebye.wait()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py", line 70, in shutdown
+    AutomationSystem.myShutdown()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py", line 85, in myShutdown
+    LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), name= "umpress_task" , protected = True , state = LifecycleMaster.lifecycleState.state)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/shutdownMaster.py", line 266, in run_async
+    return MyLoop.submit(coro, *args, **kargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/threadsafe.py", line 67, in submit
+    1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py", line 70, in shutdown
+    AutomationSystem.myShutdown()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/main.py", line 85, in myShutdown
+    LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), name= "umpress_task" , protected = True , state = LifecycleMaster.lifecycleState.state)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 132, in unified_sync_wrapper
+    raise e
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/shutdownMaster.py", line 266, in run_async
+    return MyLoop.submit(coro, *args, **kargs)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/threadsafe.py", line 67, in submit
+    1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
+ZeroDivisionError: division by zero
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-01 10:32:06,235 [WARNING] [AsyncioLoopThread] error_tracker:211 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [CalledProcessError]
+📍 No arquivo: /usr/lib/python3.10/subprocess.py | Linha: 526
+💻 Código: `raise CalledProcessError(retcode, process.args,`
+🕒 Horário: 2026-03-01 10:32:06.228802 | 🧵 Thread: AsyncioLoopThread  Task: ID: 129356741085072 | Nome: on_event_consumer - primeiro loop | Coro: _event_consumer | Protected: False | Total Tasks Vivas: 10
+ 💬 Mensagem: Command '['wmctrl', '-l', '-p']' returned non-zero exit status 1.
+extra_message = 
+Estado do ciclo de vida: undefined
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    input = None
+    capture_output = False
+    timeout = None
+    check = True
+    popenargs = (['wmctrl', '-l', '-p'],)
+    kwargs = {'stdout': -1}
+    process = <Popen: returncode: 1 args: ['wmctrl', '-l', '-p']>
+    stdout = b''
+    stderr = None
+    retcode = 1
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - check_output):
+    timeout = None
+    popenargs = (['wmctrl', '-l', '-p'],)
+    kwargs = {}
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher.py", line 145, in _event_consumer
+    currentWindow, changed , os_call= window.get_active_window(event,self._pressed)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/error_tracker.py", line 61, in sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/windowWatcher/windowManager.py", line 97, in get_active_window
+    self.__class__.current_window = self.backend.get_active_window()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/windowWatcher/utils/OSSpecificUtils/linux_backend.py", line 292, in get_active_window
+    currentWindows = self.list_windows()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/windowWatcher/utils/OSSpecificUtils/linux_backend.py", line 185, in list_windows
+    output, first_call_duration = self.check_output(["wmctrl", "-l", "-p"])
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/windowWatcher/utils/OSSpecificUtils/linux_backend.py", line 59, in check_output
+    out = subprocess.check_output(args).decode()
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/debuggingResources/unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonSistemAutomation/watcher_utils/windowWatcher/utils/OSSpecificUtils/linux_backend.py", line 59, in check_output
+    out = subprocess.check_output(args).decode()
+  File "/usr/lib/python3.10/subprocess.py", line 421, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['wmctrl', '-l', '-p']' returned non-zero exit status 1.
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-01 10:32:06,256 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-01 10:32:06,259 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...

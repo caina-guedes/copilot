@@ -6,15 +6,15 @@ from sharedResources.DataBases.mainDatabase.querrys import querrys, put_table_in
 _cache_codes, _load_cache, get_or_create_code functions for managing cache codes in the main database.
 """
 
-@sys_monitor
-def _cache_codes(self):
+# @sys_monitor
+def _cache_codes_external(self):
     self.key_cache = _load_cache(self , 'key_codes')
     self.type_cache = _load_cache(self , 'type_codes')
     self.action_cache = _load_cache(self , 'action_codes')
     self.source_cache = _load_cache(self , 'source_codes')
     self.device_cache = _load_cache(self , 'device_codes')
 
-@sys_monitor
+# @sys_monitor
 def _load_cache(self, table):
     cache = {}
     self.cursor.execute(put_table_in_querry(querrys["IdNameFromTable"],table))
@@ -22,8 +22,8 @@ def _load_cache(self, table):
         cache[name] = id_
     return cache
 
-@sys_monitor
-def get_or_create_code(self, table, cache, name):
+# @sys_monitor
+def get_or_create_code_external(self, table, cache, name):
     if name in cache:
         return cache[name]
     if not name:

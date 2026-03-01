@@ -13,7 +13,7 @@ Função: Gerenciar o buffer de eventos e inserir em lote no banco.
 
 import sqlite3
 import time
-from .cache_manager import get_or_create_code
+# from .cache_manager import get_or_create_code_external
 import json
 from PythonServer.serverConfig import serverConfig
 FlushConfig = serverConfig.FlushConfig
@@ -138,15 +138,15 @@ def _flush_windowChange(self,windowEvent,ts):
 
 def _prepareEventToFlush(self, ev):
     ts = ev.get('ts')
-    type_id = get_or_create_code(self , 'type_codes', self.type_cache, ev.get('type'))
+    type_id = self.get_or_create_code( 'type_codes', self.type_cache, ev.get('type'))
     key_id = None
     if ev.get('key'):
-        key_id = get_or_create_code(self ,  'key_codes', self.key_cache, ev.get('key'))
+        key_id = self.get_or_create_code(  'key_codes', self.key_cache, ev.get('key'))
     if ev.get('button'):
-        key_id = get_or_create_code(self ,  'key_codes', self.key_cache, ev.get('button'))
-    action_id = get_or_create_code(self , 'action_codes', self.action_cache, ev.get('action'))
-    device_id = get_or_create_code(self , 'device_codes', self.device_cache, ev.get('device'))
-    source_id = get_or_create_code(self , 'source_codes', self.source_cache, ev.get('source'))
+        key_id = self.get_or_create_code(  'key_codes', self.key_cache, ev.get('button'))
+    action_id = self.get_or_create_code( 'action_codes', self.action_cache, ev.get('action'))
+    device_id = self.get_or_create_code( 'device_codes', self.device_cache, ev.get('device'))
+    source_id = self.get_or_create_code( 'source_codes', self.source_cache, ev.get('source'))
     details_json = ev.get('details', None)
     # Campos extras
     x = ev.get('x')
@@ -180,7 +180,7 @@ def _prepareEventToFlush(self, ev):
     return prepared_event_to_flush
 
 
-def _flush(self, final_flush=False):
+def _flush_external(self, final_flush=False):
     """Executa inserção em bloco de todos os eventos pendentes"""
     if len(self._pending_events) == 0: ## Nada para gravar porém esse atributo debug eu ainda tenho que olhar melhor futuramente
         # print("No pending events to flush.")
@@ -280,7 +280,7 @@ def _flush(self, final_flush=False):
             self._pending_events.clear()
             self._pending_events.extend(toRecentEvents)
 
-def _flush_worker(self):
+def _flush_worker_external(self):
     """Thread de flush periódico"""
     while not self._stop_event.is_set():
 
@@ -288,12 +288,13 @@ def _flush_worker(self):
             # if not serverConfig.MacroConfig.isRecording or serverConfig.MacroConfig.isRecording and serverConfig.MacroConfig.):
             print("force flush event detected.")
             time.sleep(0.05)  # Pequena espera para garantir que eventos recentes sejam capturados
-            _flush(self)
+            self._flush() # a definição original usa flush_external mas na instância ela é apenas flush
             FlushConfig.force_flush.clear()
         else:
-            _flush(self)
+            self._flush() # a definição original usa flush_external mas na instância ela é apenas flush
         # Espera 0.5s OU até o stop_event ser setado
         if self._stop_event.is_set():
             break  # Evento de parada foi acionado
+        
         
     

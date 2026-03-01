@@ -163,11 +163,13 @@ class LoggerManager:
         Encerramento gracioso. Processa o restante da fila e fecha arquivos.
         """
         if cls._listener:
-            print("[LoggerManager] Parando listener e descarregando fila...")
-            cls._listener.stop() # Isso bloqueia até a fila esvaziar
-            cls._is_listener_running = False
-            cls._listener = None
-            
+            try:
+                print("[LoggerManager] Parando listener e descarregando fila...")
+                cls._listener.stop() # Isso bloqueia até a fila esvaziar
+                cls._is_listener_running = False
+                cls._listener = None
+            except Exception as e:
+                print(f"[LoggerManager] Erro ao parar listener: {e}")
         # Fecha os handlers de arquivo para liberar lock do SO
         for path, handler in cls._active_file_handlers.items():
             try:
@@ -184,7 +186,7 @@ class LoggerManager:
         logger.error(f"{msg} -> {str(exc)}", exc_info=True)
 
 # Garante que o stop_listener rode ao fechar o Python (mesmo sem chamar explícito)
-atexit.register(LoggerManager.stop_listener)
+# atexit.register(LoggerManager.stop_listener)
 
 # ==========================================
 # TESTE

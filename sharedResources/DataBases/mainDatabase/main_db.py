@@ -7,6 +7,7 @@ from threading import Event, Thread, Lock
 import time
 RootDir = str(Path(__file__).resolve().parent.parent.parent.parent)
 print(RootDir)
+from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 
 DBDir = RootDir + '/sharedResources/DataBases/DBs'
 sys.path.append(RootDir)
@@ -25,34 +26,34 @@ from sharedResources.debuggingResources.error_tracker import log_error_forensics
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.DataBases.utils.BaseSqlDB import BaseDbCommands
-from sharedResources.DataBases.mainDatabase.macro_manager import startNewMacro, stopMacro, GetCurrentMacroFunction
-from sharedResources.DataBases.mainDatabase.cache_manager import _cache_codes,get_or_create_code
-from sharedResources.DataBases.mainDatabase.event_logger import log_background_event
-from sharedResources.DataBases.mainDatabase.flush_worker import _flush, _flush_worker
+from sharedResources.DataBases.mainDatabase.macro_manager import startRecordingNewMacro_external, stopRecordingMacro_external, GetCurrentMacroFunction_external
+from sharedResources.DataBases.mainDatabase.cache_manager import _cache_codes_external  , get_or_create_code_external
+from sharedResources.DataBases.mainDatabase.event_logger import log_background_event_external
+from sharedResources.DataBases.mainDatabase.flush_worker import _flush_external, _flush_worker_external
 from sharedResources.debuggingResources.unified_monitor import sys_monitor , monitor_class
 from sharedResources.DataBases.mainDatabase.querrys import querrys
 
 @monitor_class
 class MainDatabase:
-    
-    def __init__(self, serverConfig = serverConfig, db_path = DBDir ,batch_size = 100, flush_interval=5):
         # from cache_manager
-        self._cache_codes = _cache_codes.__get__(self)
-        # self._load_cache = _load_cache
-        self.get_or_create_code = get_or_create_code.__get__(self)
-        
+    _cache_codes = _cache_codes_external
+    get_or_create_code = get_or_create_code_external
+
         #from flush_worker
-        self._flush = sys_monitor(_flush.__get__(self), scope = "method",group = "MainDatabase")
-        self._flush_worker = _flush_worker.__get__(self)
+    _flush = _flush_external
+    _flush_worker = _flush_worker_external
 
-        # from macro_manager
-        self.GetCurrentMacroFunction = GetCurrentMacroFunction.__get__(self)
-        self.startNewMacro = startNewMacro.__get__(self)
-        self.stopMacro = stopMacro.__get__(self)
+    #from macro_manager
+    GetCurrentMacroFunction = GetCurrentMacroFunction_external
+    startNewMacro = startRecordingNewMacro_external
+    stopMacro = stopRecordingMacro_external
+
+    # from event_logger
+    log_background_event = log_background_event_external
+    main_instance = None
+
+    def __init__(self, serverConfig = serverConfig, db_path = DBDir ,batch_size = 100, flush_interval=5):
         
-        # from event_logger
-        self.log_background_event = log_background_event.__get__(self)
-
         self.db_path = db_path + '/main.db'
         self.serverConfig = serverConfig
         self.MacroStarted = False
@@ -80,8 +81,28 @@ class MainDatabase:
         self._flush_thread = Thread(target=self._flush_worker, daemon=True)
         self._flush_thread.start()
         self.answer = None
-        atexit.register(self.close)
+        # atexit.register(self.close)
+        if MainDatabase.main_instance is not None:
+            print("[MainDatabase.__init__] Aviso: Tentativa de criar uma nova instância de MainDatabase, mas uma instância já existe. ")
+        MainDatabase.main_instance = self
         
+        # from cache_manager
+        # self._cache_codes = _cache_codes.__get__(self)
+        # self._load_cache = _load_cache
+        # self.get_or_create_code = get_or_create_code.__get__(self)
+        
+        #from flush_worker
+        # self._flush = sys_monitor(_flush.__get__(self), scope = "method",group = "MainDatabase")
+        # self._flush_worker = _flush_worker.__get__(self)
+
+        # from macro_manager
+        # self.GetCurrentMacroFunction = GetCurrentMacroFunction.__get__(self)
+        # self.startNewMacro = startNewMacro.__get__(self)
+        # self.stopMacro = stopMacro.__get__(self)
+        
+        # from event_logger
+        # self.log_background_event = log_background_event.__get__(self)
+
     def _initialize_main_bank(self):
         for command in BaseDbCommands:
             # print(command)
@@ -147,15 +168,44 @@ class MainDatabase:
         if timeToFlush:
             self._flush()    
     
-    def close(self):
-        self._stop_event.set()
-        self._flush_thread.join(timeout=self.flush_interval + 0.5)
+    @classmethod
+    def close(cls):
+        self = cls.main_instance
+        if self:
+            print("[MainDatabase.close] Fechando o banco de dados principal...")
+            if not self._stop_event.is_set():
+                print("[MainDatabase.close] Sinalizando a thread de flush para parar...")
+                self._stop_event.set()
+                print("[MainDatabase.close] Aguardando a thread de flush terminar...")
+                self._flush_thread.join(timeout=self.flush_interval + 0.5)
+                print("[MainDatabase.close] Thread de flush finalizada. Realizando o flush final...")
+                self._flush()
+                print("[MainDatabase.close] Flush finalizado.")
+            else:
+                print("[MainDatabase.close] Aviso: O evento de parada já estava sinalizado. Isso pode indicar que o processo de fechamento já foi iniciado anteriormente.")
+            
+            if self.conn:
+                try:
+                    self.conn.commit()
+                    self.conn.close()   
+                    print("[MainDatabase.close] Conexão com o banco de dados fechada com sucesso.")
+                except Exception as e:
+                    print("[MainDatabase.close] Aviso: A conexão com o banco de dados já estava fechada.")
+                    # print(f"[MainDatabase.close] Detalhes do erro ao fechar a conexão: {str(e)}")
+        else:
+            print("[MainDatabase.close] Aviso: Tentativa de fechar o banco de dados, mas a instância é None. " \
+            "Isso pode indicar que o banco de dados já foi fechado ou " \
+            "não foi inicializado corretamente."   )
 
-        self._flush()
-        if self.conn:
-            self.conn.commit()
-            self.conn.close()
+LifecycleMaster.register_cleanup_function(MainDatabase.close, 
+                                          name = "MainDatabase.close" , 
+                                          priority = 10,
+                                          register_in_atexit = True,
+                                        #   args=(MainDatabase.main_instance)
+                                          ) 
 
+# prioridade 10 para garantir que seja chamado depois de outras funções de limpeza 
+# que possam depender do main database ainda estar aberto
 if __name__ == "__main__":
     db = MainDatabase(batch_size=10, flush_interval=3)
 

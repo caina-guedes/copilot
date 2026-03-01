@@ -14,7 +14,7 @@ basePath = Path(__file__).resolve().parent.parent.parent
 # print("Path added to sys.path:", str(basePath))
 sys.path.append(str(basePath))
 
-
+import sharedResources.lifecycle.atexit_manager as atexit_manager 
 from sharedResources.lifecycle.gracious_cleanup_manager import GraciousCleanupManager
 from sharedResources.lifecycle.shutdownThreadUtils import TrackedThread
 from sharedResources.lifecycle.shutdownTaskUtils import TrackedTask
@@ -37,7 +37,8 @@ logger = logging.getLogger("LifecycleTracker")
 #     SHUTTING_DOWN = "SHUTTING_DOWN"
 #     EMERGENCY = "EMERGENCY"
 
-
+# LifecycleMaster.register_cleanup_function
+# LifecycleMaster.register_cleanup_function
 @monitor_class
 class LifecycleMaster():
     """
@@ -106,6 +107,7 @@ class LifecycleMaster():
             
 
         cls.shutdown_event.set()
+        atexit_manager.shutdown_iniciated = True
         # task_shutdown_event.set()
         # thread_shutdown_event.set()
 
@@ -161,6 +163,7 @@ class LifecycleMaster():
             cls.register_log("algo fez autoshutdown ser chamada mais de uma vez!","general")
         else:
             cls.lifecycleState.state = State.SHUTTING_DOWN
+            atexit_manager.shutdown_iniciated = True
             cls.register_log("iniciando o autoshutdown","general")
         try:
             cls.register_log("Initiating automatic shutdown...","general")
@@ -198,6 +201,7 @@ class LifecycleMaster():
             else:
                 print("loop is not ok right after thread shutdown!!!! ")
             print("Automatic shutdown complete.")
+            atexit_manager.shutdown_finalized = True
         except Exception as e:
             print("[autoShutdown] the exception is:", e)
             log_error_forensics_plus(e)
@@ -259,7 +263,15 @@ class LifecycleMaster():
     # -------------------------------
     # Wrappers de execução de coroutines
     # -------------------------------
-
+    
+    @classmethod
+    def register_cleanup_function(cls, func,   priority , name   , register_in_atexit , args=(),kwargs ={}):
+        cls.cleanup_manager.register_hook(func, 
+                                          priority = priority, 
+                                          name = name, 
+                                          register_in_atexit = register_in_atexit,
+                                          args = args, 
+                                          kwargs = kwargs )
     @staticmethod
     def run_async(coro, *args, **kargs):
         """Submete uma coroutine para execução segura no loop"""
@@ -321,10 +333,15 @@ class LifecycleMaster():
 
 LifecycleMaster.prepare_dependencies()
 
+LifecycleMaster.register_cleanup_function(LoggerManager.stop_listener,
+                                                  priority = 99,
+                                                  name = "LoggerManager.stop_listener",
+                                                  register_in_atexit= True)
+atexit_manager.get_loop = MyLoop.get
 
 threading.Thread(target=LifecycleMaster.waitMyShutdown).start()
 
-
+# atexit_manager.shutdown_function = LifecycleMaster.autoShutdown
 
 
 # LifecycleMaster.set_task_shutdown_function(shutdown_tasks)

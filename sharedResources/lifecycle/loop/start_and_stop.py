@@ -33,6 +33,7 @@ def start_loop(cls):
             cls._log(f"Exception in loop thread: {e}","loop")
             log_error_forensics_plus(e)
         finally:
+            cls._current.close()
             cls._stop_loop_event.set()
             cls.change_state(LoopState.CLOSED)
 
@@ -107,6 +108,7 @@ def stop_loop(cls, graceful=True):
             
             cls._current.stop()
             cls._log("loop really stopped!!!")
+            # cls._current.close()
             cls.change_state(LoopState.CLOSED)
             loop_stopped.set()
         

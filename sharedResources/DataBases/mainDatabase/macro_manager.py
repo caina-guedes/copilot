@@ -8,7 +8,7 @@ from sharedResources.generalUtils.aprint import aprint
 # from sharedResources.DataBases.utils.mainDbUtils import preparedQuerryes
 from sharedResources.DataBases.mainDatabase.querrys import querrys
 
-def startNewMacro(self):
+def startRecordingNewMacro_external(self):
     with self.serverConfig.MacroConfig._threading_lock:
         try:
             self.cursor.execute(querrys["selectMacroAtiva"])
@@ -26,7 +26,7 @@ def startNewMacro(self):
         except Exception as e:
             print("exception occurrent while trying to start a new macro: (?)",e)
 
-def stopMacro(self):
+def stopRecordingMacro_external(self):
     self.cursor.execute(querrys["selectMacroAtiva"])
     row = self.cursor.fetchone()
     if not row:
@@ -41,7 +41,7 @@ def stopMacro(self):
         self.conn.commit()
 
 
-def GetCurrentMacroFunction(self , *args,**kargs):
+def GetCurrentMacroFunction_external(self , *args,**kargs):
     """Get the current macro."""
     try: 
         self.cursor.execute(querrys["selectUltimoIdDeMacro"])

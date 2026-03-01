@@ -242,7 +242,10 @@ class WebSocketClient:
             logger.error(f"error stopping receiver loop: {str(e)}")
 
 
-LifecycleMaster.cleanup_manager.register_hook(WebSocketClient.close, priority=80, name = "WebSocketClient.close")
+LifecycleMaster.register_cleanup_function(WebSocketClient.close, 
+                                          priority=80, 
+                                          name = "WebSocketClient.close",
+                                          register_in_atexit = False)
 # Isolated usage example (for testing purposes only)):
 if __name__ == "__main__":
     client = WebSocketClient

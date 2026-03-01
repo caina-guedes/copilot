@@ -64,8 +64,12 @@ def submit(
             return None # coloquei isso aqui pq durante  o shutdown estou tentando usar funções que ja foram fechadas, é mais pra se eu fizer alguma merda e isso mudar ai avisar
         
         else:
-            1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
-
+            try:
+                1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
+            except Exception as e:
+                cls._log(f"submit received non-coroutine and state is {state}, it is: {type(coro)} and value: {coro}","loop")
+                log_error_forensics_plus(e)
+            return None
     try:
         # ===========================
         # CASO 1: já estamos no loop

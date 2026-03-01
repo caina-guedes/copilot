@@ -29,7 +29,7 @@ def _log_browser_event(self, url, title, js_payload, device='browser-ext', sourc
         'details': json.dumps(details),
     }
     with self.serverConfig.MacroConfig._threading_lock:
-        event_dict['macro_id']: self.recordingMacroId
+        event_dict['macro_id'] = self.recordingMacroId
 
     if windowEvent["windowChange"]:
         # print("a janela mudou nesse evento de browser!")
@@ -64,7 +64,7 @@ def _log_mouse(self, x, y, action, button=None, clicks=None, wheel_delta=None,
         'y': y,
     }
     with self.serverConfig.MacroConfig._threading_lock:
-        event_dict['macro_id']: self.recordingMacroId
+        event_dict['macro_id'] = self.recordingMacroId
 
     if windowEvent["windowChange"]:
         # print("a janela mudou nesse evento de mouse!")
@@ -88,7 +88,7 @@ def _log_keyboard(self, key, action, modifiers=None, device='keyboard', source='
         'details': json.dumps(details),
     }
     with self.serverConfig.MacroConfig._threading_lock:
-        event_dict['macro_id']: self.recordingMacroId
+        event_dict['macro_id'] = self.recordingMacroId
 
     # print("o event_dict na log_keyboard  nesse ponto é: ",event_dict)
     if windowEvent["windowChange"]:
@@ -99,7 +99,7 @@ def _log_keyboard(self, key, action, modifiers=None, device='keyboard', source='
     # print("o evento que será adicionado a lista de flush na função de teclado é: ", event_dict)
     self.add_event(event_dict, isSpecialCommand)
 
-def log_background_event(self, event, isSpecialCommand):
+def log_background_event_external(self, event, isSpecialCommand):
     """
     Recebe um evento genérico do background e chama a função correta
     event: dicionário com pelo menos:

@@ -1,4 +1,8 @@
 # -------------------- Funções utilitárias Desatualizadas!!!!! --------------------
+import asyncio
+import threading
+
+
 def print_thread_status():
     print("=== THREAD STATUS ===")
     # logger.info("=== THREAD STATUS ===")

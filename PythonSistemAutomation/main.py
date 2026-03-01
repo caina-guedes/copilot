@@ -220,8 +220,14 @@ async def main():
         print("comecei o start_observer")
         await autoSystem.initializeWebsocket()
         print("comecei o websocket")
-        LifecycleMaster.cleanup_manager.register_hook(autoSystem.stop_observer,priority = 100,name = "AutomationSistem.stop_observer")
-        LifecycleMaster.cleanup_manager.register_hook(LoggerManager.stop_listener,priority = 99,name = "LoggerManager.stop_listener")
+        LifecycleMaster.register_cleanup_function(autoSystem.stop_observer,
+                                                  priority = 100,
+                                                  name = "AutomationSistem.stop_observer",
+                                                  register_in_atexit= True)
+        # LifecycleMaster.register_cleanup_function(LoggerManager.stop_listener,
+        #                                           priority = 99,
+        #                                           name = "LoggerManager.stop_listener",
+        #                                           register_in_atexit= True)
         
         await AutomationSystem.stop_event.wait()  # Aguarda sinal de parada
 
@@ -229,8 +235,8 @@ async def main():
     #     print("KeyboardInterrupt received, shutting down...")
     #     AutomationSystem.shutdown(loop)
     except Exception as e:
-        print(f"Error in main: {e}",level=logging.critical)
-        log_error_forensics_plus(e)
+        log_error_forensics_plus( e , extra_message = "Error in main watcher function")
+        # print(f"Error in main: {e}")
 
     finally:
         print("entrou no finally da main...")

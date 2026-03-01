@@ -139,10 +139,14 @@ class WebSocketServerManager:
             # Note que agora passamos 'server_router' em vez de 'server'
             # free_port(8765)
             async with websockets.serve(server_router, "localhost", 8765) as ws_server:
-                LifecycleMaster.cleanup_manager.register_hook(self.stop_procedure, priority=100,name = "WebSocketServerManager.stop_procedure")
+                LifecycleMaster.register_cleanup_function(self.stop_procedure, 
+                                                          priority = 100,
+                                                          name = "WebSocketServerManager.stop_procedure",
+                                                          register_in_atexit= False
+                                                          )
                 # Registra hooks de limpeza
                 # Usando o novo hook do LifecycleMaster que implementamos antes!
-                # LifecycleMaster.cleanup_manager.register_hook(ws_server.close, priority=90)
+                # LifecycleMaster.register_cleanup_function(ws_server.close, priority=90)
                 
                 LifecycleMaster.register_log(f"🚀 Server WebSocket rodando em ws://localhost:8765", "server")
                 self.ws_server = ws_server
@@ -192,7 +196,7 @@ class WebSocketServerManager:
         
         # 2. Desconecta clientes ativos na força (Isso evita o TIME_WAIT)
         # Importamos as conexões do core.utils ou state
-        from PythonServer.utils import connections 
+        # from PythonServer.utils import connections 
         
         active_clients = connections.active_clients()
         # [

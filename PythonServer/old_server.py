@@ -319,7 +319,7 @@
 #             # ou use o async with com um evento de parada
 #             async with websockets.serve(server, "localhost", 8765) as ws_server:
 #                 WebSocketServerManager.funcs_for_shutdown.append([-1, ws_server.close])
-#                 LifecycleMaster.cleanup_manager.register_hook(ws_server.close)
+#                 LifecycleMaster.register_cleanup_function(ws_server.close)
 #                 LifecycleMaster.register_log(f"🚀 Server WebSocket rodando em ws://localhost:8765", "server")
 #                 self.ws_server = ws_server
 #                 # 2. Lançamos a verificação de conexões como uma task filha

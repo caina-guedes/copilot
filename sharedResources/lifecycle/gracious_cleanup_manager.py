@@ -1,6 +1,8 @@
 # from sharedResources.lifecycle.gracious_cleanup_manager import GraciousCleanupManager
 # --- NOVA CLASSE INTERNA PARA GERENCIAR HOOKS ---
 import asyncio
+import atexit
+import inspect
 import threading
 import sys
 from pathlib import Path
@@ -9,6 +11,7 @@ basePath = Path(__file__).resolve().parent.parent.parent
 sys.path.append(str(basePath))
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus, monitor_error
+
 
 @monitor_class
 class GraciousCleanupManager:
@@ -23,7 +26,7 @@ class GraciousCleanupManager:
     
     
     @classmethod
-    def register_hook(cls, func, priority, name , *args, **kwargs):
+    def register_hook(cls, func, priority, name  ,register_in_atexit = True , args = (), kwargs = {}):
         """
         Registra uma função para rodar no shutdown.
         priority: Quanto MAIOR, mais cedo roda (100 roda antes de 10).
@@ -45,12 +48,47 @@ class GraciousCleanupManager:
                 'func': func,
                 'args': args,
                 'kwargs': kwargs,
-                'name': hook_name
+                'name': hook_name,
+                'register_in_atexit' : register_in_atexit
             })
             cls._log(f"[GraciousCleanupManager] Hook registrado: {hook_name} (Prio: {priority})", "general")
             return True  # <- sinaliza que registrou com sucesso
     
 
+    @classmethod
+    def atexit_register(cls):
+        """Registra no atexit apenas os hooks que pediram para ser registrados lá."""
+        # import atexit
+        with cls._lock:
+            hooks_map = {}
+            for hook in cls._hooks:
+                if not inspect.iscoroutinefunction(hook['func']): #só se não for async que registro no atexit, pq o atexit não suporta async
+                    if hook['register_in_atexit']:
+                        prio = hook['priority']
+                        if prio not in hooks_map:
+                            hooks_map[prio] = []
+                        hooks_map[prio].append(hook)
+                        print(f"[GraciousCleanupManager.atexit_register] sync Hook '{hook['name']}' registrado para atexit: {hook['register_in_atexit']} (Prio: {hook['priority']})")
+                    else:
+                        print(f"[GraciousCleanupManager.atexit_register] sync Hook '{hook['name']}' NÃO registrado para atexit: {hook['register_in_atexit']} (Prio: {hook['priority']})")
+            # Ordenar as prioridades da maior para a menor
+            sorted_priorities_to_atexit_register = sorted(hooks_map.keys(), reverse=True)
+            if len(sorted_priorities_to_atexit_register) > 0:
+                print("[GraciousCleanupManager.atexit_register] executando hooks no atexit")
+                print("o sorted_priorities_to_atexit_register é: ", sorted_priorities_to_atexit_register)
+            for priority in sorted_priorities_to_atexit_register:
+                hook_list = hooks_map[priority]
+                for hook in hook_list:
+                    try:
+                        print(f"[GraciousCleanupManager.atexit_register] Executando o hook {hook['name']} do lote {hook['priority']} no atexit")
+                        hook['func'](*hook['args'], **hook['kwargs'])
+                        print(f"[GraciousCleanupManager.atexit_register] foi sucesso executar o {hook['name']} do lote {hook['priority']} no atexit")
+                    except Exception as e:
+                        print(f"[GraciousCleanupManager.atexit_register] erro ao executar o hook {hook['name']} do lote {hook['priority']} no atexit: {str(e)}")
+                        try:
+                            log_error_forensics_plus(e, extra_message = f"[GraciousCleanupManager] Erro no atexit para funções sincronas do lote {hook['priority']}")
+                        except Exception:
+                            cls._log(f"[GraciousCleanupManager] Erro ao registrar log de erro no atexit para o hook do lote {hook['priority']}", "error")
 
     @classmethod
     def execute_hooks(cls):
@@ -132,6 +170,7 @@ class GraciousCleanupManager:
         cls.LifecycleMaster = lifecycleMaster
     # ------------------------------------------------
 
+atexit.register(GraciousCleanupManager.atexit_register)
 
 if __name__ == "__main__":
     manager = GraciousCleanupManager
