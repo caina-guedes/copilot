@@ -1,6 +1,0 @@
-2026-02-23 16:43:28,526 [DEBUG] [MainThread] <string>:200 - Conectando ao banco...
-2026-02-23 16:43:28,526 [WARNING] [MainThread] <string>:201 - Aviso geral
-2026-02-23 16:43:28,529 [ERROR] [MainThread] <string>:185 - Erro fatal no teste -> division by zero
-Traceback (most recent call last):
-  File "<string>", line 205, in <module>
-ZeroDivisionError: division by zero

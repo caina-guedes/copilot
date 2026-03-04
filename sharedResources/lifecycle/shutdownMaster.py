@@ -14,7 +14,8 @@ basePath = Path(__file__).resolve().parent.parent.parent
 # print("Path added to sys.path:", str(basePath))
 sys.path.append(str(basePath))
 
-import sharedResources.lifecycle.atexit_manager as atexit_manager 
+import sharedResources.lifecycle.atexit_manager as atexit_manager  
+from sharedResources.lifecycle.atexit_manager import AtexitShutdownMonitor as AtexitObserver
 from sharedResources.lifecycle.gracious_cleanup_manager import GraciousCleanupManager
 from sharedResources.lifecycle.shutdownThreadUtils import TrackedThread
 from sharedResources.lifecycle.shutdownTaskUtils import TrackedTask
@@ -39,6 +40,24 @@ logger = logging.getLogger("LifecycleTracker")
 
 # LifecycleMaster.register_cleanup_function
 # LifecycleMaster.register_cleanup_function
+checkpoints = [
+               "autoShutdown_init",
+               "autoShutdown_end",
+               "autoShutdown_finally",
+               "waitMyShutdown_init",
+               "waitMyShutdown_end",
+               "waitMyShutdown_finally",]
+for checkpoint in checkpoints:
+    AtexitObserver.register_checkpoint(checkpoint)
+
+badCheckpoints = ["autoShutdown_error",               
+                  "waitMyShutdown_error",
+                  "emergency_shutdown_init",
+                  "emergency_shutdown_end",
+                  ]
+for checkpoint in badCheckpoints:
+    AtexitObserver.register_checkpoint(checkpoint,occurrences = 0)
+
 @monitor_class
 class LifecycleMaster():
     """
@@ -94,6 +113,7 @@ class LifecycleMaster():
     
     @classmethod
     def emergency_shutdown(cls,erro):
+        AtexitObserver.check("emergency_shutdown_init") # checkpoint para monitorar se a função de emergência foi chamada durante o shutdown
         #previne reentrada!
         if cls.lifecycleState.state is State.EMERGENCY:
             return
@@ -125,6 +145,8 @@ class LifecycleMaster():
 
         # DO NOT WAIT
         try:
+            AtexitObserver.check("emergency_shutdown_end") # checkpoint para monitorar se a função de emergência foi chamada durante o shutdown
+
             os._exit(1)
         except:
             pass
@@ -164,10 +186,11 @@ class LifecycleMaster():
         else:
             cls.lifecycleState.state = State.SHUTTING_DOWN
             atexit_manager.shutdown_iniciated = True
+
             cls.register_log("iniciando o autoshutdown","general")
+        AtexitObserver.check("autoShutdown_init") # checkpoint para monitorar inicio
         try:
             cls.register_log("Initiating automatic shutdown...","general")
-            # LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), state = cls.lifecycleState.state)
             if cls.running_loop.get() is not None:
                 if not cls._loop_is_ok():
                     cls.register_log("[autoShutDown] loop is not ok just before task_shutdown_function be called!","general")
@@ -202,7 +225,9 @@ class LifecycleMaster():
                 print("loop is not ok right after thread shutdown!!!! ")
             print("Automatic shutdown complete.")
             atexit_manager.shutdown_finalized = True
+            AtexitObserver.check("autoShutdown_end") # checkpoint para monitorar fim do autoshutdown
         except Exception as e:
+            AtexitObserver.check("autoShutdown_error")
             print("[autoShutdown] the exception is:", e)
             log_error_forensics_plus(e)
         finally:
@@ -210,6 +235,7 @@ class LifecycleMaster():
             cls.tasksMap.relatorio()
             cls.shutDownComplete.set()
             print("setei o shutdownComplete")
+            AtexitObserver.check("autoShutdown_finally")
         # else:
         #     print("Shutdown already initiated.")
 
@@ -217,13 +243,20 @@ class LifecycleMaster():
     def waitMyShutdown(cls):
         """Função para esperar o shutdown ser completado"""
         try:
+            AtexitObserver.check("waitMyShutdown_init") # checkpoint para monitorar inicio do waitMyShutdown
             print("Waiting for shutdown to begin...")
             if cls.testing: #for isolated tests only!
                 wait_event(cls.first_shutdown_event,"LifecycleMaster.first_shutdown_event")
             else:
                 cls.first_shutdown_event.wait()
             cls.register_log("Shutdown event detected, proceeding with shutdown...","general")
+            AtexitObserver.start_watchdog()
             cls.autoShutdown()
+            AtexitObserver.check("waitMyShutdown_end") # checkpoint para monitorar fim do waitMyShutdown
+        except Exception as e:
+            print("deu erro no waitMyShutdown e foi: ",e)
+            log_error_forensics_plus(e, extra_message = "[waitMyShutdown] ocorreu um erro inesperado durante o waitMyShutdown")
+            AtexitObserver.check("waitMyShutdown_error")
         finally:
             print("estou no finally do waitMyShutdown")
             if not cls.shutDownComplete.is_set():
@@ -260,6 +293,8 @@ class LifecycleMaster():
             
             CallRegistry.report()
             cls.byebye.set()
+            AtexitObserver.check("waitMyShutdown_finally") # checkpoint para monitorar fim do waitMyShutdown
+
     # -------------------------------
     # Wrappers de execução de coroutines
     # -------------------------------
@@ -338,6 +373,7 @@ LifecycleMaster.register_cleanup_function(LoggerManager.stop_listener,
                                                   name = "LoggerManager.stop_listener",
                                                   register_in_atexit= True)
 atexit_manager.get_loop = MyLoop.get
+atexit_manager.log_error_forencis_plus = log_error_forensics_plus
 
 threading.Thread(target=LifecycleMaster.waitMyShutdown).start()
 

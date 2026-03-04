@@ -300,7 +300,7 @@ class TwoWayConnection:
 
             
         if self.sender:
-            logger.info(f"[TwoWayConnection] the sender is:  {self.sender}")
+            # logger.info(f"[TwoWayConnection] the sender is:  {self.sender}")
             # error = False
             try:
                 # print("right before the sender lock")

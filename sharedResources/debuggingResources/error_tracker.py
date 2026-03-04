@@ -13,7 +13,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 class errorExtruture():
     lifeCycleMaster = None
-    lifeCycleState = None
+    lifecycleState = None
     # stateEnum = None
     # loggerManager = None
     logger = None
@@ -21,14 +21,16 @@ class errorExtruture():
 
     @classmethod
     def set_lifecycle_master(cls, lifecycleMaster, loggerManager):
-        cls.lifeCycleMaster = lifecycleMaster 
-        cls.lifeCycleState = lifecycleMaster.lifecycleState.state
-        # cls.loggerManager = loggerManager
-        cls.logger = loggerManager.get_logger("forensics_error")
+        try:
+            cls.lifeCycleMaster = lifecycleMaster 
+            cls.lifecycleState = lambda :  lifecycleMaster.lifecycleState.state
+            # cls.loggerManager = loggerManager
+            cls.logger = loggerManager.get_logger("forensics_error")
 
-        print("[errorExtruture.set_lifecycle_master] LifecycleMaster ,State e logger configurados no errorExtruture")
-        # cls.stateEnum = lifecycleMaster.stateEnum 
-    
+            print("[errorExtruture.set_lifecycle_master] LifecycleMaster ,State e logger configurados no errorExtruture")
+            # cls.stateEnum = lifecycleMaster.stateEnum 
+        except Exception as e:
+            log_error_forensics_plus(e,extra_message="[errorExtruture.set_lifecycle_master] Erro ao configurar o LifecycleMaster no errorExtruture")
 
 # from sharedResources.pythonLoggerSistem.logger import LoggerManager
 r = reprlib.Repr()
@@ -183,9 +185,12 @@ def log_error_forensics_plus(e: Exception,
     # Traceback do erro (Do ponto da falha para baixo)
     exception_trace = "".join(traceback.format_exception(type(e), e, tb))
     ciclo_de_vida = "undefined"
-    if errorExtruture.lifeCycleState and hasattr(errorExtruture.lifeCycleState, 'lifecycleState'):
-        ciclo_de_vida = errorExtruture.lifeCycleState.lifecycleState 
-    
+    try:
+        ciclo_de_vida = errorExtruture.lifecycleState()
+    except Exception as e:
+        print("[log_error_forensics_plus] Erro ao obter o estado do ciclo de vida e foi: ",str(e))
+        # print("errorExtruture.lifecycleState is None or not callable")
+
     full_message = (
         f"\n{'='*70}\n"
         f"🕵️ INVESTIGAÇÃO PROFUNDA: [{type(e).__name__}]\n"

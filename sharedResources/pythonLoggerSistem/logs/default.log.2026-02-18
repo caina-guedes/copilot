@@ -1,5 +1,0 @@
-2026-02-18 14:40:13,669 [ERROR] [MainThread] new_logger:185 - Erro fatal no teste -> division by zero
-Traceback (most recent call last):
-  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/pythonLoggerSistem/new_logger.py", line 205, in <module>
-    1 / 0
-ZeroDivisionError: division by zero

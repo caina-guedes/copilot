@@ -80,9 +80,8 @@ class AutomationSystem:
                     cls.shutDownIniciated = True
                     # cls.shutDownComplete.clear() # reset the event before shutdown
                     # AutomationSystem.main_instance.stop_observer()
-                    # LoggerManager.stop_listener()
                     # Chamadas assíncronas
-                    LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), name= "umpress_task" , protected = True , state = LifecycleMaster.lifecycleState.state)
+                    GlobalExecutor.umpress_keys()
 
                     if LifecycleMaster.run_async( AutomationSystem.main_instance.not_sent_db.close(),name = "not_sent_db.close", protected = True):
                         pass
@@ -224,10 +223,6 @@ async def main():
                                                   priority = 100,
                                                   name = "AutomationSistem.stop_observer",
                                                   register_in_atexit= True)
-        # LifecycleMaster.register_cleanup_function(LoggerManager.stop_listener,
-        #                                           priority = 99,
-        #                                           name = "LoggerManager.stop_listener",
-        #                                           register_in_atexit= True)
         
         await AutomationSystem.stop_event.wait()  # Aguarda sinal de parada
 
@@ -241,7 +236,7 @@ async def main():
     finally:
         print("entrou no finally da main...")
         try:
-            LifecycleMaster.run_async(GlobalExecutor.umpress_keys(), state = LifecycleMaster.lifecycleState)
+            GlobalExecutor.umpress_keys()
 
             if not LifecycleMaster.byebye.is_set():
                 print("esperando o byebye")
