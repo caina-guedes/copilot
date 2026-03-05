@@ -74,7 +74,7 @@ class OSProcessorClass():
                 if not cls.first_closed_ok_received:# esse erro está vindo no inicio da conexão com o watcher então vou ver se ele ignorando a primeira ve é suficiente
                     
                     cls.first_closed_ok_received = True
-                    asyncio.sleep(0.1)
+                    await asyncio.sleep(0.1)
                     continue
                 if not LifecycleMaster.first_shutdown_event.is_set():
                     LifecycleMaster.first_shutdown_event.set()

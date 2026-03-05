@@ -152,8 +152,6 @@ class LifecycleMaster():
             pass
 
 
-
-
     @classmethod
     def start_runtime(cls, main_coro):
         if cls.running_loop.loop_is_none():
@@ -249,6 +247,7 @@ class LifecycleMaster():
                 wait_event(cls.first_shutdown_event,"LifecycleMaster.first_shutdown_event")
             else:
                 cls.first_shutdown_event.wait()
+            # AtexitObserver.register(cls.cleanup_manager.atexit_register)
             cls.register_log("Shutdown event detected, proceeding with shutdown...","general")
             AtexitObserver.start_watchdog()
             cls.autoShutdown()
@@ -372,7 +371,9 @@ LifecycleMaster.register_cleanup_function(LoggerManager.stop_listener,
                                                   priority = 99,
                                                   name = "LoggerManager.stop_listener",
                                                   register_in_atexit= True)
+print(f"vou setar o get do myLoop no get_loop do atexit e eles são: MyLoop.get={MyLoop.get} , atexit_manager.get_loop = {atexit_manager.get_loop}")
 atexit_manager.get_loop = MyLoop.get
+print(f"agora o atexit_manager.get_loop é: {atexit_manager.get_loop}")
 atexit_manager.log_error_forencis_plus = log_error_forensics_plus
 
 threading.Thread(target=LifecycleMaster.waitMyShutdown).start()

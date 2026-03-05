@@ -1,48 +1,205 @@
-2026-03-03 18:23:42,734 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 18:23:42 SOWatcher Connection Started!
-2026-03-03 18:23:46,942 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 18:23:46 Conexão de controle iniciada!
-2026-03-03 18:23:46,983 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
-2026-03-03 18:23:51,683 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 18:23:51 Conexão encerrada com front_end.
-2026-03-03 18:32:33,652 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
-2026-03-03 18:32:33,660 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
-2026-03-03 18:32:33,715 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
-2026-03-03 18:32:33,719 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
-2026-03-03 18:32:33,722 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 18:32:33 SOWatcher Connection Started!
-2026-03-03 18:32:33,727 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
-2026-03-03 18:32:33,730 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
-2026-03-03 18:32:33,730 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
-2026-03-03 18:32:33,730 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
-2026-03-03 18:32:33,736 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
-2026-03-03 18:32:33,736 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
-2026-03-03 18:32:37,496 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 18:32:37 Conexão de controle iniciada!
-2026-03-03 18:32:37,538 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
-2026-03-03 18:32:43,071 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 18:32:43 Conexão encerrada com front_end.
-2026-03-03 18:34:06,515 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
-2026-03-03 18:34:06,529 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
-2026-03-03 18:34:06,577 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
-2026-03-03 18:34:06,581 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
-2026-03-03 18:34:06,583 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 18:34:06 SOWatcher Connection Started!
-2026-03-03 18:34:06,590 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
-2026-03-03 18:34:06,592 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
-2026-03-03 18:34:06,593 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
-2026-03-03 18:34:06,593 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
-2026-03-03 18:34:06,598 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
-2026-03-03 18:34:06,598 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
-2026-03-03 18:34:10,349 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 18:34:10 Conexão de controle iniciada!
-2026-03-03 18:34:10,390 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
-2026-03-03 18:34:14,065 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 18:34:14 Conexão encerrada com front_end.
-2026-03-03 18:35:35,195 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
-2026-03-03 18:35:35,204 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
-2026-03-03 18:35:35,266 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
-2026-03-03 18:35:35,270 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
-2026-03-03 18:35:35,273 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
-2026-03-03 18:35:35,276 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
-2026-03-03 18:35:35,273 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 18:35:35 SOWatcher Connection Started!
-2026-03-03 18:35:35,276 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
-2026-03-03 18:35:35,276 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
-2026-03-03 18:35:35,284 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
-2026-03-03 18:35:35,284 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
-2026-03-03 18:35:39,037 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 18:35:39 Conexão de controle iniciada!
-2026-03-03 18:35:39,079 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
-2026-03-03 18:35:46,078 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 18:35:46 Conexão encerrada com front_end.
-2026-03-03 18:35:46,081 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
-2026-03-03 18:35:46,081 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-05 12:24:40,693 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 12:24:40 SOWatcher Connection Started!
+2026-03-05 12:24:44,433 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 12:24:44 Conexão de controle iniciada!
+2026-03-05 12:24:44,474 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 12:24:48,370 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 12:24:48 Conexão encerrada com front_end.
+2026-03-05 12:28:49,273 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 12:28:49,291 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 12:28:49,336 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 12:28:49,341 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 12:28:49,344 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 12:28:49 SOWatcher Connection Started!
+2026-03-05 12:28:49,352 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 12:28:49,352 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 12:28:49,352 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 12:28:49,352 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 12:28:49,353 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 12:28:49,353 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 12:28:53,091 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 12:28:53 Conexão de controle iniciada!
+2026-03-05 12:28:53,129 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 12:28:55,123 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 12:28:55 Conexão encerrada com front_end.
+2026-03-05 12:31:59,080 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 12:31:59,091 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 12:31:59,145 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 12:31:59,152 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 12:31:59,155 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 12:31:59,152 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 12:31:59 SOWatcher Connection Started!
+2026-03-05 12:31:59,157 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 12:31:59,158 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 12:31:59,158 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 12:31:59,158 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 12:31:59,158 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 12:32:02,909 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 12:32:02 Conexão de controle iniciada!
+2026-03-05 12:32:02,950 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 12:42:05,257 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 12:42:05 Conexão encerrada com front_end.
+2026-03-05 12:45:18,921 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 12:45:18,930 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 12:45:18,986 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 12:45:18,992 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 12:45:18,994 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 12:45:18,995 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 12:45:18,995 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 12:45:18,994 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 12:45:18 SOWatcher Connection Started!
+2026-03-05 12:45:18,995 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 12:45:18,998 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 12:45:18,998 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 12:45:22,758 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 12:45:22 Conexão de controle iniciada!
+2026-03-05 12:45:22,796 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 12:45:25,773 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 12:45:25 Conexão encerrada com front_end.
+2026-03-05 12:46:42,444 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 12:46:42,455 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 12:46:42,507 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 12:46:42,512 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 12:46:42,515 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 12:46:42,518 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 12:46:42,518 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 12:46:42,515 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 12:46:42 SOWatcher Connection Started!
+2026-03-05 12:46:42,518 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 12:46:42,524 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 12:46:42,524 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 12:46:46,279 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 12:46:46 Conexão de controle iniciada!
+2026-03-05 12:46:46,321 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 12:46:49,219 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-05 12:46:49,228 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 12:46:49 Conexão encerrada com front_end.
+2026-03-05 12:46:49,220 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-05 13:05:26,795 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 13:05:26,804 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 13:05:26,863 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 13:05:26,869 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 13:05:26,872 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 13:05:26 SOWatcher Connection Started!
+2026-03-05 13:05:26,877 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 13:05:26,878 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 13:05:26,878 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 13:05:26,878 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 13:05:26,885 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 13:05:26,885 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 13:05:31,406 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 13:05:31 Conexão de controle iniciada!
+2026-03-05 13:05:31,447 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 13:05:34,503 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 13:05:34 Conexão encerrada com front_end.
+2026-03-05 13:06:48,175 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 13:06:48,183 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 13:06:48,236 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 13:06:48,243 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 13:06:48,247 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 13:06:48 SOWatcher Connection Started!
+2026-03-05 13:06:48,253 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 13:06:48,256 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 13:06:48,256 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 13:06:48,257 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 13:06:48,259 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 13:06:48,259 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 13:06:52,118 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 13:06:52 Conexão de controle iniciada!
+2026-03-05 13:06:52,160 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 13:06:55,178 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-05 13:06:55,188 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 13:06:55 Conexão encerrada com front_end.
+2026-03-05 13:06:55,179 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-05 13:07:40,597 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 13:07:40,604 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 13:07:40,660 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 13:07:40,665 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 13:07:40,673 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 13:07:40,667 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 13:07:40 SOWatcher Connection Started!
+2026-03-05 13:07:40,675 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 13:07:40,675 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 13:07:40,679 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 13:07:40,681 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 13:07:40,681 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 13:07:44,444 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 13:07:44 Conexão de controle iniciada!
+2026-03-05 13:07:44,484 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 13:07:48,971 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 13:07:48 Conexão encerrada com front_end.
+2026-03-05 13:08:49,593 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 13:08:49,601 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 13:08:49,659 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 13:08:49,664 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 13:08:49,667 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 13:08:49,669 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 13:08:49,670 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 13:08:49,666 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 13:08:49 SOWatcher Connection Started!
+2026-03-05 13:08:49,670 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 13:08:49,673 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 13:08:49,673 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 13:08:53,415 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 13:08:53 Conexão de controle iniciada!
+2026-03-05 13:08:53,456 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 13:08:57,287 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 13:08:57 Conexão encerrada com front_end.
+2026-03-05 13:13:27,037 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 13:13:27,052 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 13:13:27,102 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 13:13:27,107 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 13:13:27,110 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 13:13:27,110 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 13:13:27,111 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 13:13:27,109 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 13:13:27 SOWatcher Connection Started!
+2026-03-05 13:13:27,111 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 13:13:27,111 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 13:13:27,111 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 13:13:30,880 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 13:13:30 Conexão de controle iniciada!
+2026-03-05 13:13:30,919 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 13:13:33,702 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 13:13:33 Conexão encerrada com front_end.
+2026-03-05 13:13:33,714 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-05 13:13:33,714 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-05 13:20:14,809 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 13:20:14,818 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 13:20:14,873 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 13:20:14,878 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 13:20:14,881 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 13:20:14,883 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 13:20:14,881 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 13:20:14 SOWatcher Connection Started!
+2026-03-05 13:20:14,884 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 13:20:14,884 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 13:20:14,885 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 13:20:14,886 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 13:20:18,762 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 13:20:18 Conexão de controle iniciada!
+2026-03-05 13:20:18,801 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 13:20:21,881 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 13:20:21 Conexão encerrada com front_end.
+2026-03-05 13:23:50,082 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 13:23:50,097 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 13:23:50,143 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 13:23:50,148 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 13:23:50,156 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 13:23:50,151 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 13:23:50 SOWatcher Connection Started!
+2026-03-05 13:23:50,158 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 13:23:50,159 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 13:23:50,159 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 13:23:50,162 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 13:23:50,162 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 13:23:53,931 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 13:23:53 Conexão de controle iniciada!
+2026-03-05 13:23:53,973 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 13:23:57,831 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-05 13:23:57,831 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-05 13:23:57,858 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 13:23:57 Conexão encerrada com front_end.
+2026-03-05 13:31:02,872 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 13:31:02,880 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 13:31:02,935 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 13:31:02,940 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 13:31:02,948 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 13:31:02,942 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 13:31:02 SOWatcher Connection Started!
+2026-03-05 13:31:02,950 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 13:31:02,951 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 13:31:02,951 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 13:31:02,958 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 13:31:02,958 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 13:31:06,809 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 13:31:06 Conexão de controle iniciada!
+2026-03-05 13:31:06,849 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 13:31:09,708 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 13:31:09 Comando ExecCurrentMacro executado!
+2026-03-05 13:31:13,170 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 13:31:13 Comando ExecCurrentMacro executado!
+2026-03-05 13:31:17,110 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 13:31:17 Comando toggleRecording executado!
+2026-03-05 13:31:18,986 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 13:31:18 Comando toggleRecording executado!
+2026-03-05 13:31:20,815 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 13:31:20 Comando ExecCurrentMacro executado!
+2026-03-05 13:31:27,125 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 13:31:27 Comando ExecCurrentMacro executado!
+2026-03-05 13:31:32,874 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 13:31:32 Conexão encerrada com front_end.
+2026-03-05 13:31:35,757 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-05 13:31:35,764 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-05 13:31:35,823 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-05 13:31:35,828 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-05 13:31:35,836 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-05 13:31:35,831 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 13:31:35 SOWatcher Connection Started!
+2026-03-05 13:31:35,839 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-05 13:31:35,841 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-05 13:31:35,841 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-05 13:31:35,845 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-05 13:31:35,846 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-05 13:31:39,600 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 13:31:39 Conexão de controle iniciada!
+2026-03-05 13:31:39,641 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-05 13:31:41,732 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 13:31:41 Comando ExecCurrentMacro executado!
+2026-03-05 13:31:51,184 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 13:31:51 Comando toggleRecording executado!
+2026-03-05 13:31:55,800 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 13:31:55 Comando toggleRecording executado!
+2026-03-05 13:31:56,781 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 13:31:56 Comando ExecCurrentMacro executado!
+2026-03-05 13:32:01,416 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 13:32:01 Comando ExecCurrentMacro executado!
+2026-03-05 13:32:11,091 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 13:32:11 Conexão encerrada com front_end.

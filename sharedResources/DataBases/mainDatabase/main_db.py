@@ -81,7 +81,6 @@ class MainDatabase:
         self._flush_thread = Thread(target=self._flush_worker, daemon=True)
         self._flush_thread.start()
         self.answer = None
-        # atexit.register(self.close)
         if MainDatabase.main_instance is not None:
             print("[MainDatabase.__init__] Aviso: Tentativa de criar uma nova instância de MainDatabase, mas uma instância já existe. ")
         MainDatabase.main_instance = self
@@ -174,15 +173,16 @@ class MainDatabase:
         if self:
             print("[MainDatabase.close] Fechando o banco de dados principal...")
             if not self._stop_event.is_set():
-                print("[MainDatabase.close] Sinalizando a thread de flush para parar...")
+                # print("[MainDatabase.close] Sinalizando a thread de flush para parar...")
                 self._stop_event.set()
-                print("[MainDatabase.close] Aguardando a thread de flush terminar...")
+                # print("[MainDatabase.close] Aguardando a thread de flush terminar...")
                 self._flush_thread.join(timeout=self.flush_interval + 0.5)
-                print("[MainDatabase.close] Thread de flush finalizada. Realizando o flush final...")
+                # print("[MainDatabase.close] Thread de flush finalizada. Realizando o flush final...")
                 self._flush()
                 print("[MainDatabase.close] Flush finalizado.")
             else:
-                print("[MainDatabase.close] Aviso: O evento de parada já estava sinalizado. Isso pode indicar que o processo de fechamento já foi iniciado anteriormente.")
+                pass
+                # print("[MainDatabase.close] Aviso: O evento de parada já estava sinalizado. Isso pode indicar que o processo de fechamento já foi iniciado anteriormente.")
             
             if self.conn:
                 try:
@@ -190,7 +190,8 @@ class MainDatabase:
                     self.conn.close()   
                     print("[MainDatabase.close] Conexão com o banco de dados fechada com sucesso.")
                 except Exception as e:
-                    print("[MainDatabase.close] Aviso: A conexão com o banco de dados já estava fechada.")
+                    pass
+                    # print("[MainDatabase.close] Aviso: A conexão com o banco de dados já estava fechada.")
                     # print(f"[MainDatabase.close] Detalhes do erro ao fechar a conexão: {str(e)}")
         else:
             print("[MainDatabase.close] Aviso: Tentativa de fechar o banco de dados, mas a instância é None. " \
