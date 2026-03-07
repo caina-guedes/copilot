@@ -104,7 +104,7 @@ class TrackedTask:
             # logger.info("[Shutdown] Cancelling all async tasks...")
             
             all_tasks = []
-            print("o tamanho de tasksMaps durante a shutdown_tasks é:" ,len(cls.tasksMap.get_alive()))
+            # print("o tamanho de tasksMaps durante a shutdown_tasks é:" ,len(cls.tasksMap.get_alive()))
             for name, task_list in cls.tasksMap.get_alive().items():
                 print(f"o nome é:{name}")
                 # print(f"a task_list é: {task_list}")

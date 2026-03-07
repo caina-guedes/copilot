@@ -105,9 +105,10 @@ class AutomationSystem:
             print("Watcher shutdown event is still happening, please wait.")
     
     def __init__(self, not_sent_db):
-        # print(f"inicializando o automationSystem o argumento é: not_sent_db : {not_sent_db}")
+        
+        print(f"inicializando o automationSystem o argumento é: not_sent_db : {not_sent_db}")
         AutomationSystem.main_instance = self
-        self.actions = serverConfig.SOWatcherActions().actionDispatch  # Assuming actionDispatch is a dictionary of actions
+        # self.actions = serverConfig.SOWatcherActions(not_sent_db).actionDispatch  # Assuming actionDispatch is a dictionary of actions
         self.ws_client = WebSocketClient
         self.ExecutingMacro = {"value":False}
         self.controlsToIgnore = set()  # Set of controls to ignore during macro execution
@@ -222,7 +223,7 @@ async def main():
         LifecycleMaster.register_cleanup_function(autoSystem.stop_observer,
                                                   priority = 100,
                                                   name = "AutomationSistem.stop_observer",
-                                                  register_in_atexit= True)
+                                                  register_in_atexit = True)
         
         await AutomationSystem.stop_event.wait()  # Aguarda sinal de parada
 

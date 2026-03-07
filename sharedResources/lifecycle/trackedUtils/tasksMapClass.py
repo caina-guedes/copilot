@@ -143,7 +143,7 @@ class TasksMapClass:
                             cls.alive[name].remove(tracked_item)
                             if not cls.alive[name]:
                                 del cls.alive[name]
-                                print("[remove_tracked_from_alive_map] removi o nome: " , name," do cls.alive")
+                                # print("[remove_tracked_from_alive_map] removi o nome: " , name," do cls.alive")
                     else:
                         print(f"name: {name} is not in cla.alive[name] that is: {cls.alive[name]}")
                 else:

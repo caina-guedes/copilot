@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
+from sharedResources.debuggingResources.unified_monitor import monitor_class
 from sharedResources.generalUtils.aprint import aprint
 """
 preciso criar a função "prepare" que vai receber a variável serverConfig e setar todos os 
@@ -14,7 +15,12 @@ e tambem preciso adaptar a função que de fato vai ser usada la no server pra n
 
 """
 
+@monitor_class
 class macroManager:
+    """
+    essa classe existe atualmente apenas pela função de handle_pending_commands,
+    o resto é suporte pra ela mesmo.
+    """
     serverConf = None
     macroConf  = None
     lock = None
@@ -23,7 +29,7 @@ class macroManager:
 
 
     def __init__(self,serverConf):
-        print("__init__ do macroManager e o serverConfig é: " ,serverConf )
+        # print("__init__ do macroManager e o serverConfig é: " ,serverConf )
         self.__class__.serverConf = serverConf
         self.__class__.macroConf  = serverConf.MacroConfig
         self.__class__.lock = serverConf.MacroConfig._threading_lock
@@ -103,15 +109,15 @@ class macroManager:
                     if doneCommands == len(cls.pendingCommands["current"]):
                         ## aqui é o local certo para disparar o evento de macro completa
                         print("macro completa!")
-                        cls.serverConf.MacroConfig.macroFinishedEvent.set()
-
+                        cls.macroConf.macroFinishedEvent.set()
+                        cls.macroConf.macroFinishedEvent.clear()
 
                     # deletePendingCommand(convenientWatcherInfo,pendingCommands)
                     return True
                 else:
-                    print("não deu match")
-                    print("o comando que não deu match foi: ", convenientWatcherInfo)
-                    print(" e a lista de comandos de macro pendentes ja filtrada de forma conveniente é:", convenientPendingListOfCommands)
+                    # print("não deu match")
+                    # print("o comando que não deu match foi: ", convenientWatcherInfo)
+                    # print(" e a lista de comandos de macro pendentes ja filtrada de forma conveniente é:", convenientPendingListOfCommands)
                     return False
             else:
                 # print("não tem nenhum comando de macro pendente e a lista é:",cls.pendingCommands["current"])

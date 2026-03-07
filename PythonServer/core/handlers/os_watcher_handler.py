@@ -14,7 +14,7 @@ basePath = str(Path(__file__).resolve().parent.parent.parent.parent)
 sys.path.append(basePath)
 
 # Imports do sistema existente
-from PythonServer.serverConfig import connection_types
+from PythonServer.serverConfig import connection_types,serverConfig
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
@@ -24,6 +24,11 @@ from PythonServer.serverReactions import answerMapping
 # Import do Estado Global (Onde guardamos as referências)
 from PythonServer.core import state
 from PythonServer.utils import connections
+
+answerMapping.set_connections(connections)
+
+answerMapping.set_serverConfig(serverConfig)
+serverConfig.set_flag("answerMapping" , answerMapping)
 
 logger = LoggerManager.get_logger(__name__)
 
@@ -47,6 +52,8 @@ class OSProcessorClass():
 
     @classmethod
     async def start_receiver(cls,websocket):
+        print(f"[OSProcessorClass.start_receiver] starting")
+        # print("just set the answermapping to the serverConfig")
         if cls.receiver_conn is None:
             cls.receiver_conn = websocket
             cls. receiver_loop_task = LifecycleMaster.run_async(cls.receiver_loop(websocket), name="loop do receiver do watcher")
@@ -125,40 +132,6 @@ class OSProcessorClass():
                     1/0
                 except Exception as e:
                     log_error_forensics_plus(e)
-            # while True:
-            #     try:
-            #         message = await websocket.recv()
-            #         message_data = json.loads(message)
-                    
-            #         if isinstance(message_data, str):
-            #             message_data = json.loads(message_data)
-                    
-            #         if isinstance(message_data, list):
-            #             for msg in message_data:
-            #                 print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
-            #                 await cls.process_watcher_msg(msg)
-            #         else:
-            #             logger.warning(f"Formato inesperado do SOWatcher: {message_data}")
-            #             # O código original tinha um erro forçado aqui (1.0/0.0), removi por segurança
-            #     except websockets.exceptions.ConnectionClosedOK:
-            #         print("[handle_os_connection] recebi ConnectionClosedOK no sender")
-            #         if not LifecycleMaster.first_shutdown_event.is_set():
-            #             LifecycleMaster.first_shutdown_event.set()
-            #         connections.OS.sender = None
-            #         break
-            #     except websockets.exceptions.ConnectionClosedError:
-            #         logger.warning(f"❌ {get_current_time()} Conexão encerrada com o SOWatcher Sender. this is not for shutdown!!!!!")
-            #         connections.OS.sender = None
-            #         break
-                
-            #     except asyncio.CancelledError:
-            #         logger.info(f"⚠️ {get_current_time()} Loop do SOWatcher Sender cancelado.")
-            #         connections.OS.sender = None
-            #         break
-            #     except Exception as e:
-            #         log_error_forensics_plus(e)
-            #         logger.exception(f"❌ Erro no SOWatcher: {e}")
-            #         await asyncio.sleep(0.3)
         
         # Loop de escuta (Receiver - não deveria receber nada, mas tratamos erros)
         elif connections.OS.receiver == websocket:
@@ -194,7 +167,7 @@ class OSProcessorClass():
     @classmethod
     async def process_watcher_msg(cls,message):
         """Lógica processamento de mensagens vindas do OS Watcher"""
-        # 1. Verifica Macro
+        # 1. Verifica se é comando de  Macro
         if state.macro_manager.handlePendingMacroCommand(message):
             return
 
@@ -222,5 +195,7 @@ class OSProcessorClass():
         state.mainDb.log_background_event(message, isSpecialCommand)
 
         # 4. Reações (Answer Mapping)
-        if state.mainDb.answer is not None:
+        if state.mainDb.answer is not None :
+            print(f"[OSProcessorClass.process_watcher_msg] the Db,answer is: {state.mainDb.answer}",)
             await answerMapping.create(state.mainDb.answer, state.server_config, connections)
+            state.mainDb.clean_answer()

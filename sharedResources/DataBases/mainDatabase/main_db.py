@@ -7,7 +7,6 @@ from threading import Event, Thread, Lock
 import time
 RootDir = str(Path(__file__).resolve().parent.parent.parent.parent)
 print(RootDir)
-from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 
 DBDir = RootDir + '/sharedResources/DataBases/DBs'
 sys.path.append(RootDir)
@@ -22,15 +21,16 @@ diugd
 
 
 from PythonServer.serverConfig import serverConfig
+from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
+from sharedResources.debuggingResources.unified_monitor import sys_monitor , monitor_class
 from sharedResources.generalUtils.aprint import aprint
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.DataBases.utils.BaseSqlDB import BaseDbCommands
-from sharedResources.DataBases.mainDatabase.macro_manager import startRecordingNewMacro_external, stopRecordingMacro_external, GetCurrentMacroFunction_external
+from sharedResources.DataBases.mainDatabase.macro_manager import startRecordingNewMacroOnDb_external, stopRecordingMacroOnDB_external, GetCurrentMacroOnDb_external
 from sharedResources.DataBases.mainDatabase.cache_manager import _cache_codes_external  , get_or_create_code_external
 from sharedResources.DataBases.mainDatabase.event_logger import log_background_event_external
 from sharedResources.DataBases.mainDatabase.flush_worker import _flush_external, _flush_worker_external
-from sharedResources.debuggingResources.unified_monitor import sys_monitor , monitor_class
 from sharedResources.DataBases.mainDatabase.querrys import querrys
 
 @monitor_class
@@ -44,16 +44,20 @@ class MainDatabase:
     _flush_worker = _flush_worker_external
 
     #from macro_manager
-    GetCurrentMacroFunction = GetCurrentMacroFunction_external
-    startNewMacro = startRecordingNewMacro_external
-    stopMacro = stopRecordingMacro_external
+    GetCurrentMacroFunction = GetCurrentMacroOnDb_external
+    startNewMacro = startRecordingNewMacroOnDb_external
+    stopMacro = stopRecordingMacroOnDB_external
 
     # from event_logger
     log_background_event = log_background_event_external
     main_instance = None
 
+    def clean_answer(self):
+        self.answer = None
+
     def __init__(self, serverConfig = serverConfig, db_path = DBDir ,batch_size = 100, flush_interval=5):
-        
+        self.recordingMacroId_is_none_while_recording_counter = 0
+        self.recordingMacroId_is_not_None_while_Not_recording_counter = 0
         self.db_path = db_path + '/main.db'
         self.serverConfig = serverConfig
         self.MacroStarted = False
@@ -85,22 +89,6 @@ class MainDatabase:
             print("[MainDatabase.__init__] Aviso: Tentativa de criar uma nova instância de MainDatabase, mas uma instância já existe. ")
         MainDatabase.main_instance = self
         
-        # from cache_manager
-        # self._cache_codes = _cache_codes.__get__(self)
-        # self._load_cache = _load_cache
-        # self.get_or_create_code = get_or_create_code.__get__(self)
-        
-        #from flush_worker
-        # self._flush = sys_monitor(_flush.__get__(self), scope = "method",group = "MainDatabase")
-        # self._flush_worker = _flush_worker.__get__(self)
-
-        # from macro_manager
-        # self.GetCurrentMacroFunction = GetCurrentMacroFunction.__get__(self)
-        # self.startNewMacro = startNewMacro.__get__(self)
-        # self.stopMacro = stopMacro.__get__(self)
-        
-        # from event_logger
-        # self.log_background_event = log_background_event.__get__(self)
 
     def _initialize_main_bank(self):
         for command in BaseDbCommands:
@@ -139,6 +127,7 @@ class MainDatabase:
         """
         if self.serverConfig.MacroConfig.isRecording:
             if self.recordingMacroId is None :
+
                 self.startNewMacro()
             event_dict['macro_id'] = self.recordingMacroId
             # print("the key beeing recorded is: ",event_dict['key'])
@@ -149,11 +138,11 @@ class MainDatabase:
                 self.stopMacro()
             self.recordingMacroId = None
 
-        if self.serverConfig.MacroConfig.requestToExecuteMacro:
-            self.serverConfig.MacroConfig.currentMacro = self.GetCurrentMacroFunction()
-            # print("logo apos a função GetCurrentMacroFunction do mainDatabase o valor de currentMacro é : ",self.serverConfig.MacroConfig.currentMacro)
-            if self.serverConfig.MacroConfig.currentMacro is not None:
-                self.answer = {"MacroreadyToUse": True}
+        # if self.serverConfig.MacroConfig.requestToExecuteMacro:
+        #     self.serverConfig.MacroConfig.currentMacro = self.GetCurrentMacroFunction()
+            
+        #     if self.serverConfig.MacroConfig.currentMacro is not None:
+        #         self.answer = {"MacroreadyToUse": True}
         ### tenho que adicionar uma flag pra saber que a macro ja terminou de ser executada pra fazer as devidas mudanças
         timeToFlush = False
         

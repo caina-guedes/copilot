@@ -48,12 +48,6 @@ def initialize_server_state():
     # Assumindo que macroManager é um módulo ou classe singleton, vamos guardar a referência
     state.macro_manager = macroManager 
     
-    # 2. Configurações do Watcher
-    watcher_configs = SOWatcherActions()
-    state.watcher_configs = watcher_configs
-    state.commands = watcher_configs.actionDispatch
-    state.conditions_map = watcher_configs.actionConditions
-    
     # 3. Configurações do Servidor
     state.server_config = serverConfig
     
@@ -61,7 +55,14 @@ def initialize_server_state():
     # Instancia e guarda no estado global para os handlers usarem
     state.mainDb = MainDbClass(serverConfig=serverConfig)
     
-    print("✅ Estado do servidor inicializado e injetado em 'core.state'.")
+    # 2. Configurações do Watcher
+    watcher_configs = SOWatcherActions(state.mainDb)
+    state.watcher_configs = watcher_configs
+    state.commands = watcher_configs.actionDispatch
+    state.conditions_map = watcher_configs.actionConditions
+    
+    
+    # print("✅ Estado do servidor inicializado e injetado em 'core.state'.")
 
 # Chama a inicialização imediatamente ao importar/rodar este script
 initialize_server_state()
@@ -162,7 +163,7 @@ class WebSocketServerManager:
                 while not LifecycleMaster.shutdown_event.is_set():
                     await asyncio.sleep(0.05)
                 
-                print("Sinal de shutdown recebido no Server Manager...")
+                # print("Sinal de shutdown recebido no Server Manager...")
                 ws_server.close()
                 await ws_server.wait_closed()
                 print("Servidor WebSocket fechado com sucesso.")
@@ -184,7 +185,7 @@ class WebSocketServerManager:
     
     async def stop_procedure(self):
         """Rotina de limpeza explícita para liberar a porta rápido"""
-        print("🛑 Executando stop_procedure do WebSocket...")
+        # print("🛑 Executando stop_procedure do WebSocket...")
         
         # 1. Cancela a tarefa de check (para não pingar em socket fechando)
         if self.check_conn_task and not self.check_conn_task.done():

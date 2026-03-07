@@ -51,7 +51,7 @@ async def _cancel_all_tasks(cls, timeout = 5):
     tasks = []
     for t in asyncio.all_tasks(loop=cls._current):
         if t is current_task:
-            print("not using this task because is it the  current task")
+            # print("not using this task because is it the  current task")
             continue
         if getattr(t, "protected", False):# não pega tasks protegidas!
             cls._log(f" this task is protected so I wont cancell it : {t}","loop")

@@ -24,7 +24,7 @@ for checkpoint in badCheckpoints:
     AtexitObserver.register_checkpoint(checkpoint,occurrences = 0)
 
 
-@monitor_class
+# @monitor_class
 class GraciousCleanupManager:
     """
     Gerencia funções de limpeza que devem rodar ANTES do shutdown total.
@@ -55,7 +55,7 @@ class GraciousCleanupManager:
                     )
                     return False  # <- importante: sinaliza que não registrou
 
-            cls._log(f"[GraciousCleanupManager] Hook registrado: {hook_name} (Prio: {priority})", "general")
+            # cls._log(f"[GraciousCleanupManager] Hook registrado: {hook_name} (Prio: {priority})", "general")
             # try:
             if register_in_atexit:
                 occurrencies +=1 # Incrementa o número de ocorrências esperadas pois ela tbm é chamada no atexit
@@ -173,7 +173,7 @@ class GraciousCleanupManager:
                         async def run_batch():
                             # return_exceptions=True impede que um erro cancele os outros do mesmo lote
                             functions_list = [[hook for hook in f.values()][0] for f in async_coros]
-                            print(f"[ShutdownManager] the functions list for the gather is: {functions_list}")
+                            # print(f"[ShutdownManager] the functions list for the gather is: {functions_list}")
                             return await asyncio.gather(*functions_list, return_exceptions=True)
 
                         future = asyncio.run_coroutine_threadsafe(run_batch(), cls.LifecycleMaster.running_loop.get())

@@ -35,7 +35,8 @@ class WebSocketClient:
         # print("websocket client prepareClass method running")
         cls.system = system
         cls.comandos = []
-        cls.actions = system.actions  # Assuming actionDispatch is a dictionary of actions
+        #linha abaixo não está sendo usada!
+        # cls.actions = system.actions  # Assuming actionDispatch is a dictionary of actions
 
     @classmethod
     async def handle_not_sent_events(cls):
@@ -188,15 +189,17 @@ class WebSocketClient:
             parsed = json.loads(message)
             action = parsed.get("acao", None)
             args   = parsed.get("args", None) # The value must be a list of args
-            if action and action in cls.actions:
-                logger.info(f"action received is: {action}")
-                result = cls.actions[action](cls.system , args)  # Return the action and value
-                logger.info(f"[CLIENT] 🎯 received action : {action} => result: {result}")
-                # Execute the action based on the received data
+            1/0 # inseri erro na força pq acho que essa função não está nem sendo usada, ou pelo menos não deveria!!!!!
+
+            # if action and action in cls.actions:
+            #     logger.info(f"action received is: {action}")
+            #     result = cls.actions[action](cls.system , args)  # Return the action and value
+            #     logger.info(f"[CLIENT] 🎯 received action : {action} => result: {result}")
+            #     # Execute the action based on the received data
 
 
-            else:
-                logger.info(f"[{__name__}] Generic message : {str(args)}")
+            # else:
+            #     logger.info(f"[{__name__}] Generic message : {str(args)}")
         except json.JSONDecodeError as e:
             log_error_forensics_plus(e)
             # LoggerManager.log_exception_with_context("[CLIENT] ⚠️ Received message is not JSON valid.")

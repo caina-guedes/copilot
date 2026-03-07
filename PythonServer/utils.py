@@ -84,7 +84,7 @@ class connections:
     @classmethod
     def active_clients(cls):
         active = []
-        print(f"[connections.active_clients] init!")
+        # print(f"[connections.active_clients] init!")
         for group_name, group in cls.__dict__.items(): # nome vai ser OS ou front_end ou browser
             # attr = getattr(cls, attr_name)
 
@@ -107,10 +107,11 @@ class connections:
                 else:
                     pass
                     # print(f"[connections.active_clients] {group_name}.{conn_name} is {conn} ")
-        print(f"[connections.active_clients] number of active conns  is:",len(active))
-        if active:
-            for part in active:
-                print(f"[connections.active_clients] con:  " , part)
+        # print(f"[connections.active_clients] number of active conns  is:",len(active))
+        # if active:
+        #     for part in active:
+        #         pass
+                # print(f"[connections.active_clients] con:  " , part)
         return active
 
         

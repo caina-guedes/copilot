@@ -19,7 +19,7 @@ import sys
 get_loop = None # Será setado pelo MyLoop para evitar dependência circular
 # mas a função real de get_loop deve ser definida no MyLoop para garantir que o loop 
 # correto seja retornado 
-log_error_forencis_plus = None # Será setado pelo errorExtruture para evitar dependência circular
+log_error_forensics_plus = None # Será setado pelo errorExtruture para evitar dependência circular
 
 class AtexitShutdownMonitor():
     """
@@ -58,7 +58,7 @@ class AtexitShutdownMonitor():
 
     @classmethod
     def _watchdog_loop(cls):
-        print("[AtexitShutdownMonitor] Watchdog Central rodando...")
+        # print("[AtexitShutdownMonitor] Watchdog Central rodando...")
         while not cls._stop_watchdog : # Continua rodando até o final da finalização do interpretador para garantir que checa as tarefas mesmo durante a finalização
             now = time.perf_counter()
             to_remove = []
@@ -349,7 +349,7 @@ class AtexitShutdownMonitor():
         ela registra automaticamente checkpoints para a função decorada,
         se usada em função que ja foi decorada, ou registrada da erro
         """
-        print("[tracker] init")
+        # print("[tracker] init")
         if not callable(func): #🔒 Garantia: apenas funções
             raise TypeError(
                 f"shutdown_checkpoint só pode ser usado em funções e isso é: {type(func)} com valor {func}"
@@ -363,7 +363,7 @@ class AtexitShutdownMonitor():
             # )
         
         base = f"{func.__module__}.{func.__qualname__}"
-        print("[tracker] the base is:",base)
+        # print("[tracker] the base is:",base)
 
         if getattr(func, "_shutdown_checkpointed", False): 
             if not func.allow_multiple: # Evita dupla decoração
@@ -378,7 +378,7 @@ class AtexitShutdownMonitor():
     
         try:
             # Registro automático dos checkpoints
-            print("!!!! tentando registrar funcao no controle de atexit!!!!")
+            # print("!!!! tentando registrar funcao no controle de atexit!!!!")
             cls._register_function_checkpoints(base, occurrences = occurrences) # Registra os checkpoints para essa função 
         except Exception as e: 
             """ caso tenha entrado a função original mas ja tenha sido registrada antes
@@ -402,8 +402,8 @@ class AtexitShutdownMonitor():
                 else:
                     raise RuntimeError(f"{base} já decorada mas sem referência de wrapper para verificar allow_multiple! Meta: {cls._get_meta_for_functions(base)}")
             else:
-                if log_error_forencis_plus:
-                    log_error_forencis_plus(e, extra_message = f"""[AtexitShutdownMonitor] Erro ao registrar 
+                if log_error_forensics_plus:
+                    log_error_forensics_plus(e, extra_message = f"""[AtexitShutdownMonitor] Erro ao registrar 
                                         checkpoint para {base} e não foi possível determinar se 
                                         múltiplas decorações são permitidas. Meta: {cls._get_meta_for_functions(base)}"""
                                         )
@@ -483,8 +483,8 @@ class AtexitShutdownMonitor():
             if status != "OK" or not cls._report_only_fails:
                 print(result)
         except Exception as e:
-            if log_error_forencis_plus:
-                log_error_forencis_plus(e)
+            if log_error_forensics_plus:
+                log_error_forensics_plus(e)
             else:
                 print("[_print_standalone_checkpoint_report] deu erro e foi: ",str(e))
                 print("name: ",name)
@@ -516,8 +516,8 @@ class AtexitShutdownMonitor():
                 cls.print_log_history()
                 cls._stop_watchdog = True # Para a thread de monitoramento, mas o relatório só é gerado no final do atexit, 
         except Exception as e:
-            if log_error_forencis_plus: 
-                log_error_forencis_plus(e) 
+            if log_error_forensics_plus: 
+                log_error_forensics_plus(e) 
             else:
                 print("deu erro no report e a log_erro_forencis_plus ja se foi então o erro é: ",str(e))   
 
@@ -661,5 +661,5 @@ def atexit_diagnostics():
     # print("the sistem is finalizing: ",sys.is_finalizing())
     print("="*40 + "\n")
 
-AtexitShutdownMonitor.register(AtexitShutdownMonitor.report, only_fails = False) # Registra o relatório de checkpoints do shutdown para rodar no atexit, mostrando apenas os que falharam
+AtexitShutdownMonitor.register(AtexitShutdownMonitor.report, only_fails = True) # Registra o relatório de checkpoints do shutdown para rodar no atexit, mostrando apenas os que falharam
 AtexitShutdownMonitor.register(atexit_diagnostics)

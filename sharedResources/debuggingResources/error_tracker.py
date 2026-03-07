@@ -27,7 +27,7 @@ class errorExtruture():
             # cls.loggerManager = loggerManager
             cls.logger = loggerManager.get_logger("forensics_error")
 
-            print("[errorExtruture.set_lifecycle_master] LifecycleMaster ,State e logger configurados no errorExtruture")
+            # print("[errorExtruture.set_lifecycle_master] LifecycleMaster ,State e logger configurados no errorExtruture")
             # cls.stateEnum = lifecycleMaster.stateEnum 
         except Exception as e:
             log_error_forensics_plus(e,extra_message="[errorExtruture.set_lifecycle_master] Erro ao configurar o LifecycleMaster no errorExtruture")

@@ -156,7 +156,7 @@ class TrackedThread(threading.Thread):
                 cls.threadsMap[name] = [t for t in threads if t.obj.is_alive()]
                 if not cls.threadsMap[name]:
                     del cls.threadsMap[name]
-                print("[Shutdown] got it !")
+                # print("[Shutdown] got it !")
             except Exception as e:
                 print("[Shutdown] deu erro e foi:  ",e)
                 warnings.warn(str(e))

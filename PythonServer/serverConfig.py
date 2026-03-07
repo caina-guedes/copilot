@@ -1,16 +1,35 @@
 import asyncio
+from dataclasses import dataclass, field
 import threading
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 from sharedResources.generalUtils.aprint import aprint
 import time 
 from sharedResources.generalUtils.asyncBridge import AsyncBridge
+from sharedResources.debuggingResources.unified_monitor import monitor_class
+from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 
 class KeyRef:
     def __init__(self, value):
         self.value = value
 
 
+class DebugClassPrinter(type):
+    # @classmethod
+    def __repr__(cls):
+        attrs = {
+            k: v for k, v in cls.__dict__.items()
+            if not k.startswith("__") and not callable(v)
+        }
 
-class serverConfig:
+        lines = [f"{cls.__name__}("]
+
+        for k , v in attrs.items():
+            lines.append(f"  {k} = {v!r}")
+        lines.append(")")
+        return "\n".join(lines)
+    
+@monitor_class
+class serverConfig(metaclass = DebugClassPrinter):
     """Central configuration for the software"""
     _threading_rlock = threading.RLock()
     serverPort = 8765
@@ -26,9 +45,11 @@ class serverConfig:
         "toggleRecording": KeyRef("f1"),
         "stopExecutingMacro": KeyRef("esc"),
     }
-
+    SOWatcherActions = None
+    answerMapping = None
     # Configurações de macro
-    class MacroConfig:
+    # @dataclass
+    class MacroConfig(metaclass = DebugClassPrinter):
         
         # multi-threading lock for safety
         _threading_lock = threading.RLock()
@@ -36,12 +57,14 @@ class serverConfig:
         isRecording: bool            = False
         requestToExecuteMacro: bool  = False
         currentMacro: any            = None
+        # currentPendingCommands: any  = field(default_factory = {'current':None})
         currentPendingCommands: any  = {'current':None}
+        
         macroRecordingId: int | None = None
         macroRunningId: int | None   = None
         stopRunningMacroFlag: bool   = False
-        startMacroTime               = None
-        stopMacroTime                = None
+        startMacroRecordingTime      = None
+        stopMacroRecordingTime       = None
         # Special keys
         execMacroKey                 = None
         stoppingKey                  = None
@@ -53,6 +76,7 @@ class serverConfig:
         def set_flag(cls, name, value):
             with cls._threading_lock:
                 if hasattr(cls, name):
+                    print(f"setando flag {name} no macroConfig")
                     setattr(cls, name, value)
                 else:
                     raise AttributeError(f"{name} não existe em MacroConfig")
@@ -64,8 +88,9 @@ class serverConfig:
                     return getattr(cls, name)
                 else:
                     raise AttributeError(f"{name} não existe em MacroConfig")
+    
     # Configurações de flush/buffer
-    class FlushConfig:
+    class FlushConfig(metaclass = DebugClassPrinter):
         batchSize: int = 100
         flushInterval: int = 2000  # milliseconds
         minimumTimeForEventToBeFlushed: int = 1  # seconds
@@ -106,6 +131,7 @@ class serverConfig:
     def set_flag(cls,name,value):
         with cls._threading_rlock:
             if hasattr(cls,name):
+                print(f'setando flag: {name} no serverConfig')
                 setattr(cls,name,value)
             else:
                 raise AttributeError(f"serverConfig has no attribute named {name}")
@@ -121,7 +147,7 @@ if __name__ == "__main__":
     print("Batch size:", serverConfig.FlushConfig.batchSize)
 
 
-
+@monitor_class
 class SOWatcherActions:
     """Actions for the SOWatcher WebSocket client."""
     # StartWatcher = "StartWatcher"
@@ -138,12 +164,16 @@ class SOWatcherActions:
 
     def ExecCurrentMacroHasCondition(self):
         return True 
+    
     def StopMacroRecordingHasCondition(self):
         return True
+    
     def stopExecutingMacroHasCondition(self):
         return True
+    
     def StartMacroRecordingHasCondition(self):
         return True
+    
     def StopBackgroundRecordingHasCondition(self):
         return True
     
@@ -174,7 +204,7 @@ class SOWatcherActions:
     def toggleRecordingHasCondition(self):
         return True
 
-    def __init__(self):
+    def __init__(self, maindDb_instance):
 
         self.actionConditions = {
         "StartWatcher": self.StartWatcherHasCondition, # has condition
@@ -210,40 +240,58 @@ class SOWatcherActions:
         "set_stopKey": self.set_stopKey,
         "toggleRecording": self.toggleRecording # só para constar essa string na lista de comandos
         
-    }
-    
+    }   
+        self.serverConfig = serverConfig
+        self.mainDb = maindDb_instance
+
     def stopExecutingMacro(self,*args,**kargs):
         if not serverConfig.MacroConfig.get_flag("stopRunningMacroFlag"):
             serverConfig.MacroConfig.set_flag("stopRunningMacroFlag",True)
             
 
     def toggleRecording(self,*args,**Kargs):
+        """
+        usada para iniciar e parar GRAVAÇÃO DE MACRO!
+        """
         try:
             print("comecei a função toggle recording")
             current = serverConfig.MacroConfig.get_flag("isRecording")
             new_state = not current
             serverConfig.MacroConfig.set_flag("isRecording", new_state)
             # serverConfig.MacroConfig.isRecording = not serverConfig.MacroConfig.isRecording
-            # print(args)
+            print(Kargs)
             # print(args[0])
-            macro_time = args[0].get("MacroTime") if args else str(time.time())
-            if serverConfig.MacroConfig.isRecording:
-                serverConfig.MacroConfig.set_flag("startMacroTime" , macro_time)
-                print(f"o valor de startMacroTime é {serverConfig.MacroConfig.startMacroTime} e o tipo é {type(serverConfig.MacroConfig.startMacroTime)}")
+            if Kargs and len(Kargs)>0:
+                print("tentando pegar o macro_time de: ",Kargs)
+                macro_time = Kargs.get("MacroTime",None)
+                print("o macro_time pego no Kargs é: ",macro_time)
             else:
-                serverConfig.MacroConfig.set_flag("stopMacroTime" , macro_time)
-                print(f"o valor de stopMacroTime é {serverConfig.MacroConfig.stopMacroTime} e o tipo é {type(serverConfig.MacroConfig.stopMacroTime)}")
-            print(f'consegui mexer no Isrecording do serverConfig e agora ele é {serverConfig.MacroConfig.isRecording}')
-            if not serverConfig.MacroConfig.isRecording:
+                macro_time = str(time.time())
+                print("como não pegou nada no macro_time peguei o time.time de agora e é: ",macro_time)
+            if serverConfig.MacroConfig.isRecording:
+                serverConfig.MacroConfig.set_flag("startMacroRecordingTime" , macro_time)
+                serverConfig.MacroConfig.set_flag("stopMacroRecordingTime" , None)
+
+                print(f"o valor de startMacroRecordingTime é {serverConfig.MacroConfig.startMacroRecordingTime} e o tipo é {type(serverConfig.MacroConfig.startMacroRecordingTime)}")
+            else:
+                serverConfig.MacroConfig.set_flag("stopMacroRecordingTime" , macro_time)
+                serverConfig.MacroConfig.set_flag("startMacroRecordingTime" , None)
+                serverConfig
+                print(f"o valor de stopMacroRecordingTime é {serverConfig.MacroConfig.stopMacroRecordingTime} e o tipo é {type(serverConfig.MacroConfig.stopMacroRecordingTime)}")
                 serverConfig.FlushConfig.force_flush.set()
+            
+            print(f'consegui mexer no Isrecording do serverConfig e agora ele é {serverConfig.MacroConfig.isRecording}')
 
         except Exception as e:
-            print(f"Error toggling recording: {e}")
+            log_error_forensics_plus(e)
+            # print(f"Error toggling recording: {e}")
     
 
     
     def ExecCurrentMacroFunction(self , *args,**kargs):
-        """Get the current macro."""
+        """
+        USADA PARA EXECUTAR A MACRO ATUAL
+        """
         async def wait_for_macro_execution():
             """
             Wait for the macro execution to finish.
@@ -256,9 +304,29 @@ class SOWatcherActions:
             return wait_for_macro_execution
 
         except Exception as e:
+            log_error_forensics_plus(e)
             print(f"Error getting current macro: {e}")
             return None
-
+        finally:
+            try:
+                print("entrei no finally da ExecCurrentMacroFunction")            
+                if kargs and "front_end_comand" in kargs and kargs["front_end_comand"]:
+                    print(f"entrei no if pq veio um front_end_comand = {kargs['front_end_comand']}")
+                    if serverConfig.MacroConfig.requestToExecuteMacro:
+                        #como referenciar a maindDb daqui? 
+                        # vai no Db buscar a macro atual salva
+                        self.mainDb.GetCurrentMacroFunction()
+                        #como referenciar o answerMapping daqui? ele ja está no config?
+                        serverConfig.answerMapping.answer = self.mainDb.answer
+                        LifecycleMaster.run_async(serverConfig.answerMapping.sendMacroToExecuteInWatcher,name= "sendMacroToWatcher")
+                        
+                        # if serverConfig.MacroConfig.currentMacro is not None:
+                        #     self.mainDb.answer = {"MacroreadyToUse": True}
+                else:
+                    print("não entrei no if pra executar a macro diretamente, o kargs é: ",kargs)
+                    print("o tipo dele é: ",type(kargs))
+            except Exception as e:
+                log_error_forensics_plus(e)
     
     def StartWatcherFunction(self, *args,**kargs):
         """Start the watcher."""
@@ -397,6 +465,7 @@ class SOWatcherActions:
             print(f"Error changing configuration: {e}")
             return False
 
+serverConfig.set_flag( "SOWatcherActions" , SOWatcherActions)
 
 
 connection_types = {

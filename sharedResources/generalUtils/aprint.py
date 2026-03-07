@@ -27,7 +27,7 @@ def _print_worker():
             StopSign, args, kwargs = _print_queue.get(timeout=0.5)
         except queue.Empty:
             if _print_cleanUp_event.is_set():
-                print("stopping aprint because cleanup_event is set!")
+                # print("stopping aprint because cleanup_event is set!")
                 break
             else:
                 continue

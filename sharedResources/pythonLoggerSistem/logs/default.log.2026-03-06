@@ -1,0 +1,1303 @@
+2026-03-06 19:49:14,259 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 19:49:14 SOWatcher Connection Started!
+2026-03-06 19:49:20,732 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 19:49:20 Conexão de controle iniciada!
+2026-03-06 19:49:20,774 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 19:49:24,367 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 19:49:24 Comando ExecCurrentMacro executado!
+2026-03-06 19:49:30,338 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 19:49:30 Comando ExecCurrentMacro executado!
+2026-03-06 19:49:34,437 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 19:49:34 Comando ExecCurrentMacro executado!
+2026-03-06 19:49:38,863 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 19:49:38 Comando toggleRecording executado!
+2026-03-06 19:49:43,192 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 19:49:43 Comando toggleRecording executado!
+2026-03-06 19:49:45,769 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 19:49:45 Comando ExecCurrentMacro executado!
+2026-03-06 19:49:51,511 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 19:49:51 Comando toggleRecording executado!
+2026-03-06 19:49:56,114 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 19:49:56 Comando toggleRecording executado!
+2026-03-06 19:49:58,766 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 19:49:58 Comando ExecCurrentMacro executado!
+2026-03-06 19:50:09,045 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 19:50:09 Comando ExecCurrentMacro executado!
+2026-03-06 19:50:17,142 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 19:50:17 Conexão encerrada com front_end.
+2026-03-06 19:50:49,058 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 19:50:49,067 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 19:50:49,116 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 19:50:49,122 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 19:50:49,125 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 19:50:49 SOWatcher Connection Started!
+2026-03-06 19:50:49,130 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 19:50:49,133 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 19:50:49,133 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 19:50:49,135 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 19:50:49,140 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 19:50:49,140 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 19:50:52,814 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 19:50:52 Conexão de controle iniciada!
+2026-03-06 19:50:52,855 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 19:50:56,471 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 19:50:56 Conexão encerrada com front_end.
+2026-03-06 19:54:34,415 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 19:54:34,424 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 19:54:34,474 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 19:54:34,479 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 19:54:34,482 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 19:54:34,481 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 19:54:34 SOWatcher Connection Started!
+2026-03-06 19:54:34,485 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 19:54:34,488 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 19:54:34,488 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 19:54:34,493 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 19:54:34,493 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 19:54:38,274 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 19:54:38 Conexão de controle iniciada!
+2026-03-06 19:54:38,316 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 19:54:42,482 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 19:54:42 Conexão encerrada com front_end.
+2026-03-06 19:59:11,294 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 19:59:11,303 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 19:59:11,354 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 19:59:11,359 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 19:59:11,367 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 19:59:11,362 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 19:59:11 SOWatcher Connection Started!
+2026-03-06 19:59:11,369 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 19:59:11,370 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 19:59:11,370 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 19:59:11,376 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 19:59:11,376 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 19:59:15,100 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 19:59:15 Conexão de controle iniciada!
+2026-03-06 19:59:15,141 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 19:59:17,652 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 19:59:17 Conexão encerrada com front_end.
+2026-03-06 20:05:15,604 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 20:05:15,622 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 20:05:15,714 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 20:05:15,721 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 20:05:15,731 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 20:05:15,732 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 20:05:15,722 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 20:05:15 SOWatcher Connection Started!
+2026-03-06 20:05:15,732 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 20:05:15,732 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 20:05:15,739 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 20:05:15,739 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 20:05:19,430 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 20:05:19 Conexão de controle iniciada!
+2026-03-06 20:05:19,470 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 20:05:23,756 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 20:05:23,764 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 20:05:23,769 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 20:05:23 Conexão encerrada com front_end.
+2026-03-06 20:10:26,416 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 20:10:26,424 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 20:10:26,475 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 20:10:26,479 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 20:10:26,481 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 20:10:26 SOWatcher Connection Started!
+2026-03-06 20:10:26,487 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 20:10:26,487 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 20:10:26,488 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 20:10:26,488 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 20:10:26,488 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 20:10:26,489 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 20:10:30,249 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 20:10:30 Conexão de controle iniciada!
+2026-03-06 20:10:30,292 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 20:10:34,926 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 20:10:34 Conexão encerrada com front_end.
+2026-03-06 20:16:55,516 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 20:16:55,523 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 20:16:55,574 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 20:16:55,579 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 20:16:55,582 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 20:16:55 SOWatcher Connection Started!
+2026-03-06 20:16:55,587 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 20:16:55,588 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 20:16:55,588 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 20:16:55,588 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 20:16:55,588 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 20:16:55,588 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 20:16:59,358 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 20:16:59 Conexão de controle iniciada!
+2026-03-06 20:16:59,400 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 20:17:02,705 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:17:02 Comando toggleRecording executado!
+2026-03-06 20:17:04,894 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:17:04 Comando toggleRecording executado!
+2026-03-06 20:17:06,309 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:17:06 Comando ExecCurrentMacro executado!
+2026-03-06 20:17:09,760 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 20:17:09,761 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 20:17:09,779 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 20:17:09 Conexão encerrada com front_end.
+2026-03-06 20:21:27,763 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 20:21:27,770 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 20:21:27,823 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 20:21:27,828 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 20:21:27,831 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 20:21:27 SOWatcher Connection Started!
+2026-03-06 20:21:27,836 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 20:21:27,839 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 20:21:27,839 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 20:21:27,839 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 20:21:27,844 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 20:21:27,844 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 20:21:31,557 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 20:21:31 Conexão de controle iniciada!
+2026-03-06 20:21:31,597 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 20:21:34,793 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:21:34 Comando ExecCurrentMacro executado!
+2026-03-06 20:21:39,086 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 20:21:39 Conexão encerrada com front_end.
+2026-03-06 20:22:27,670 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 20:22:27,677 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 20:22:27,729 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 20:22:27,733 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 20:22:27,735 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 20:22:27 SOWatcher Connection Started!
+2026-03-06 20:22:27,742 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 20:22:27,742 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 20:22:27,742 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 20:22:27,743 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 20:22:27,749 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 20:22:27,749 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 20:22:31,468 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 20:22:31 Conexão de controle iniciada!
+2026-03-06 20:22:31,510 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 20:22:35,165 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:22:35 Comando ExecCurrentMacro executado!
+2026-03-06 20:22:39,467 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 20:22:39 Conexão encerrada com front_end.
+2026-03-06 20:22:39,480 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 20:22:39,481 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 20:23:33,312 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 20:23:33,321 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 20:23:33,373 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 20:23:33,377 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 20:23:33,385 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 20:23:33,380 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 20:23:33 SOWatcher Connection Started!
+2026-03-06 20:23:33,387 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 20:23:33,387 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 20:23:33,388 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 20:23:33,392 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 20:23:33,392 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 20:23:37,082 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 20:23:37 Conexão de controle iniciada!
+2026-03-06 20:23:37,124 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 20:23:38,975 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:23:38 Comando ExecCurrentMacro executado!
+2026-03-06 20:23:41,854 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:23:41 Comando toggleRecording executado!
+2026-03-06 20:23:44,514 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:23:44 Comando toggleRecording executado!
+2026-03-06 20:23:45,754 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:23:45 Comando ExecCurrentMacro executado!
+2026-03-06 20:23:50,272 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 20:23:50 Conexão encerrada com front_end.
+2026-03-06 20:27:44,415 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 20:27:44,422 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 20:27:44,476 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 20:27:44,481 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 20:27:44,483 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 20:27:44 SOWatcher Connection Started!
+2026-03-06 20:27:44,490 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 20:27:44,492 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 20:27:44,492 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 20:27:44,492 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 20:27:44,497 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 20:27:44,497 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 20:27:48,225 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 20:27:48 Conexão de controle iniciada!
+2026-03-06 20:27:48,266 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 20:27:52,600 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:27:52 Comando ExecCurrentMacro executado!
+2026-03-06 20:27:55,095 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:27:55 Comando toggleRecording executado!
+2026-03-06 20:27:55,149 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 23
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:27:55.142256 | 🧵 Thread: AsyncioLoopThread  Task: ID: 138489570491488 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    event_dict = {'action': 'press', 'device': 'mouse', 'key': 'Button.left', 'macro_id': None, ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 144, in log_background_event_external
+    _log_mouse(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 75, in _log_mouse
+    self.add_event(event_dict)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:27:55,188 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 23
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:27:55.187643 | 🧵 Thread: AsyncioLoopThread  Task: ID: 138489570491488 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    event_dict = {'action': 'release', 'device': 'mouse', 'key': 'Button.left', 'macro_id': None, ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 144, in log_background_event_external
+    _log_mouse(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 75, in _log_mouse
+    self.add_event(event_dict)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:27:55,996 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 23
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:27:55.995712 | 🧵 Thread: AsyncioLoopThread  Task: ID: 138489570491488 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    event_dict = {'action': 'press', 'details': '{"modifiers": []}', 'device': 'keyboard', 'key': 'Key.alt', ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event_external
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:27:56,026 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 23
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:27:56.025556 | 🧵 Thread: AsyncioLoopThread  Task: ID: 138489570491488 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    event_dict = {'action': 'press', 'details': '{"modifiers": []}', 'device': 'keyboard', 'key': 'Key.tab', ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event_external
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:27:56,232 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 23
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:27:56.231891 | 🧵 Thread: AsyncioLoopThread  Task: ID: 138489570491488 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    event_dict = {'action': 'release', 'details': '{"modifiers": []}', 'device': 'keyboard', 'key': 'Key.tab', ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event_external
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:27:56,246 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 23
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:27:56.245865 | 🧵 Thread: AsyncioLoopThread  Task: ID: 138489570491488 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    event_dict = {'action': 'release', 'details': '{"modifiers": []}', 'device': 'keyboard', 'key': 'Key.alt', ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event_external
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:27:57,647 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 23
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:27:57.646836 | 🧵 Thread: AsyncioLoopThread  Task: ID: 138489570491488 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7df48fdc1720>
+    event_dict = {'action': 'press', 'details': '{"modifiers": []}', 'device': 'keyboard', 'key': 'Key.ctrl', ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event_external
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 23, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:27:57,792 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 20:27:57 Conexão encerrada com front_end.
+2026-03-06 20:37:45,424 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 20:37:45,432 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 20:37:45,482 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 20:37:45,487 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 20:37:45,489 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 20:37:45 SOWatcher Connection Started!
+2026-03-06 20:37:45,495 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 20:37:45,497 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 20:37:45,498 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 20:37:45,498 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 20:37:45,504 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 20:37:45,504 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 20:37:49,252 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 20:37:49 Conexão de controle iniciada!
+2026-03-06 20:37:49,285 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 20:37:51,947 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:37:51 Comando toggleRecording executado!
+2026-03-06 20:37:52,007 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 28
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:37:52.002176 | 🧵 Thread: AsyncioLoopThread  Task: ID: 139315296435504 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7eb4deb986d0>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7eb4deb986d0>
+    event_dict = {'action': 'press', 'device': 'mouse', 'key': 'Button.left', 'macro_id': None, ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 144, in log_background_event_external
+    _log_mouse(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 75, in _log_mouse
+    self.add_event(event_dict)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 33, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:37:52,057 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 28
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:37:52.048603 | 🧵 Thread: AsyncioLoopThread  Task: ID: 139315296435504 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7eb4deb986d0>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7eb4deb986d0>
+    event_dict = {'action': 'release', 'device': 'mouse', 'key': 'Button.left', 'macro_id': None, ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 144, in log_background_event_external
+    _log_mouse(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 75, in _log_mouse
+    self.add_event(event_dict)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 33, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:37:55,900 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 28
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:37:55.899463 | 🧵 Thread: AsyncioLoopThread  Task: ID: 139315296435504 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7eb4deb986d0>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7eb4deb986d0>
+    event_dict = {'action': 'press', 'details': '{"modifiers": []}', 'device': 'keyboard', 'key': 'Key.ctrl', ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event_external
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 33, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:37:56,371 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 28
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:37:56.370250 | 🧵 Thread: AsyncioLoopThread  Task: ID: 139315296435504 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7eb4deb986d0>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7eb4deb986d0>
+    event_dict = {'action': 'release', 'details': '{"modifiers": []}', 'device': 'keyboard', 'key': 'Key.ctrl', ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event_external
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 33, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:37:56,408 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 28
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:37:56.407719 | 🧵 Thread: AsyncioLoopThread  Task: ID: 139315296435504 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7eb4deb986d0>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7eb4deb986d0>
+    event_dict = {'action': 'press', 'details': '{"modifiers": []}', 'device': 'keyboard', 'key': 'Key.ctrl', ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event_external
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 33, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:37:56,755 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 28
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:37:56.753942 | 🧵 Thread: AsyncioLoopThread  Task: ID: 139315296435504 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7eb4deb986d0>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7eb4deb986d0>
+    event_dict = {'action': 'release', 'details': '{"modifiers": []}', 'device': 'keyboard', 'key': 'Key.ctrl', ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 133, in log_background_event_external
+    _log_keyboard(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 100, in _log_keyboard
+    self.add_event(event_dict, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 33, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:37:57,780 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:37:57 Comando toggleRecording executado!
+2026-03-06 20:38:00,442 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 20:38:00 Conexão encerrada com front_end.
+2026-03-06 20:41:31,816 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 20:41:31,827 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 20:41:31,876 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 20:41:31,881 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 20:41:31,889 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 20:41:31,883 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 20:41:31 SOWatcher Connection Started!
+2026-03-06 20:41:31,891 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 20:41:31,893 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 20:41:31,894 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 20:41:31,897 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 20:41:31,897 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 20:41:35,597 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 20:41:35 Conexão de controle iniciada!
+2026-03-06 20:41:35,638 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 20:41:37,420 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:41:37 Comando toggleRecording executado!
+2026-03-06 20:41:37,517 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 28
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:41:37.511585 | 🧵 Thread: AsyncioLoopThread  Task: ID: 132636210855216 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x78a1c636ad40>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x78a1c636ad40>
+    event_dict = {'action': 'press', 'device': 'mouse', 'key': 'Button.left', 'macro_id': None, ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 144, in log_background_event_external
+    _log_mouse(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 75, in _log_mouse
+    self.add_event(event_dict)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 33, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:41:37,558 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 28
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:41:37.545517 | 🧵 Thread: AsyncioLoopThread  Task: ID: 132636210855216 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x78a1c636ad40>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x78a1c636ad40>
+    event_dict = {'action': 'release', 'device': 'mouse', 'key': 'Button.left', 'macro_id': None, ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 144, in log_background_event_external
+    _log_mouse(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 75, in _log_mouse
+    self.add_event(event_dict)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 33, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:41:38,569 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:41:38 Comando toggleRecording executado!
+2026-03-06 20:41:41,682 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 20:41:41 Conexão encerrada com front_end.
+2026-03-06 20:43:16,643 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 20:43:16,654 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 20:43:16,698 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 20:43:16,703 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 20:43:16,706 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 20:43:16 SOWatcher Connection Started!
+2026-03-06 20:43:16,711 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 20:43:16,713 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 20:43:16,714 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 20:43:16,714 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 20:43:16,720 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 20:43:16,721 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 20:43:20,448 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 20:43:20 Conexão de controle iniciada!
+2026-03-06 20:43:20,489 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 20:43:22,656 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:43:22 Comando toggleRecording executado!
+2026-03-06 20:43:22,755 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 28
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:43:22.749882 | 🧵 Thread: AsyncioLoopThread  Task: ID: 138104128503088 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7d9adf80ad40>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7d9adf80ad40>
+    event_dict = {'action': 'press', 'device': 'mouse', 'key': 'Button.left', 'macro_id': None, ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 144, in log_background_event_external
+    _log_mouse(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 75, in _log_mouse
+    self.add_event(event_dict)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 33, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:43:22,796 [WARNING] [AsyncioLoopThread] error_tracker:217 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [IntegrityError]
+📍 No arquivo: /home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py | Linha: 28
+💻 Código: `self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))`
+🕒 Horário: 2026-03-06 20:43:22.773011 | 🧵 Thread: AsyncioLoopThread  Task: ID: 138104128503088 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: NOT NULL constraint failed: macros.start_time
+extra_message = 
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7d9adf80ad40>
+    row = None
+    name = 'Minha Macro'
+    e = IntegrityError('NOT NULL constraint failed: macros.start_time')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - add_event):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x7d9adf80ad40>
+    event_dict = {'action': 'release', 'device': 'mouse', 'key': 'Button.left', 'macro_id': None, ...}
+    isSpecialCommand = False
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/lifecycle/loop/start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 67, in receiver_loop
+    await cls.process_watcher_msg(msg)
+  File "/home/cain/Documentos/automacaoPythonJs/PythonServer/core/handlers/os_watcher_handler.py", line 188, in process_watcher_msg
+    state.mainDb.log_background_event(message, isSpecialCommand)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 144, in log_background_event_external
+    _log_mouse(self,
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/event_logger.py", line 75, in _log_mouse
+    self.add_event(event_dict)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/main_db.py", line 142, in add_event
+    self.startNewMacro()
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 33, in startRecordingNewMacro_external
+    log_error_forensics_plus(e)
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "/home/cain/Documentos/automacaoPythonJs/sharedResources/DataBases/mainDatabase/macro_manager.py", line 28, in startRecordingNewMacro_external
+    self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroTime))
+sqlite3.IntegrityError: NOT NULL constraint failed: macros.start_time
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-06 20:43:25,228 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 20:43:25 Comando toggleRecording executado!
+2026-03-06 20:43:28,708 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 20:43:28 Conexão encerrada com front_end.
+2026-03-06 21:03:28,070 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 21:03:28,076 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 21:03:28,132 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 21:03:28,136 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 21:03:28,139 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 21:03:28 SOWatcher Connection Started!
+2026-03-06 21:03:28,144 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 21:03:28,145 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 21:03:28,145 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 21:03:28,145 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 21:03:28,153 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 21:03:28,153 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 21:03:31,945 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 21:03:31 Conexão de controle iniciada!
+2026-03-06 21:03:31,985 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 21:03:33,679 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:03:33 Comando toggleRecording executado!
+2026-03-06 21:03:36,237 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:03:36 Comando toggleRecording executado!
+2026-03-06 21:03:39,575 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 21:03:39 Conexão encerrada com front_end.
+2026-03-06 21:08:11,223 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 21:08:11,231 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 21:08:11,283 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 21:08:11,289 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 21:08:11,297 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 21:08:11,291 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 21:08:11 SOWatcher Connection Started!
+2026-03-06 21:08:11,299 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 21:08:11,299 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 21:08:11,300 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 21:08:11,302 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 21:08:11,302 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 21:08:14,976 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 21:08:14 Conexão de controle iniciada!
+2026-03-06 21:08:15,019 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 21:08:17,249 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:17 Comando toggleRecording executado!
+2026-03-06 21:08:19,304 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:19 Comando toggleRecording executado!
+2026-03-06 21:08:20,288 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:20 Comando ExecCurrentMacro executado!
+2026-03-06 21:08:22,320 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:22 Comando ExecCurrentMacro executado!
+2026-03-06 21:08:26,136 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 21:08:26 Conexão encerrada com front_end.
+2026-03-06 21:08:26,184 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 21:08:26,191 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 21:08:30,967 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 21:08:30,974 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 21:08:31,029 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 21:08:31,034 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 21:08:31,037 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 21:08:31,038 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 21:08:31,038 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 21:08:31,037 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 21:08:31 SOWatcher Connection Started!
+2026-03-06 21:08:31,038 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 21:08:31,048 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 21:08:31,048 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 21:08:34,753 [INFO] [AsyncioLoopThread] frontend_handler:33 - 🛠️ 21:08:34 Conexão de controle iniciada!
+2026-03-06 21:08:34,793 [WARNING] [AsyncioLoopThread] frontend_handler:93 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 21:08:37,393 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:37 Comando ExecCurrentMacro executado!
+2026-03-06 21:08:39,523 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:39 Comando ExecCurrentMacro executado!
+2026-03-06 21:08:41,761 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:41 Comando ExecCurrentMacro executado!
+2026-03-06 21:08:44,165 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:44 Comando toggleRecording executado!
+2026-03-06 21:08:47,603 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:47 Comando toggleRecording executado!
+2026-03-06 21:08:48,822 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:48 Comando ExecCurrentMacro executado!
+2026-03-06 21:08:52,940 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:52 Comando toggleRecording executado!
+2026-03-06 21:08:55,116 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:55 Comando toggleRecording executado!
+2026-03-06 21:08:56,161 [INFO] [AsyncioLoopThread] frontend_handler:74 - ✅ 21:08:56 Comando ExecCurrentMacro executado!
+2026-03-06 21:09:19,379 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 21:09:19,391 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 21:09:19,454 [WARNING] [AsyncioLoopThread] frontend_handler:104 - ❌ 21:09:19 Conexão encerrada com front_end.
+2026-03-06 21:14:08,167 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 21:14:08,174 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 21:14:08,229 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 21:14:08,233 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 21:14:08,241 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 21:14:08,235 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 21:14:08 SOWatcher Connection Started!
+2026-03-06 21:14:08,243 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 21:14:08,244 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 21:14:08,246 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 21:14:08,251 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 21:14:08,251 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 21:14:11,949 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 21:14:11 Conexão de controle iniciada!
+2026-03-06 21:14:11,989 [WARNING] [AsyncioLoopThread] frontend_handler:98 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 21:14:14,301 [INFO] [AsyncioLoopThread] frontend_handler:79 - ✅ 21:14:14 Comando toggleRecording executado!
+2026-03-06 21:14:17,242 [INFO] [AsyncioLoopThread] frontend_handler:79 - ✅ 21:14:17 Comando toggleRecording executado!
+2026-03-06 21:14:18,296 [INFO] [AsyncioLoopThread] frontend_handler:79 - ✅ 21:14:18 Comando ExecCurrentMacro executado!
+2026-03-06 21:14:27,404 [WARNING] [AsyncioLoopThread] frontend_handler:109 - ❌ 21:14:27 Conexão encerrada com front_end.
+2026-03-06 21:14:27,414 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 21:14:27,425 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 21:16:44,305 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 21:16:44,311 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 21:16:44,366 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 21:16:44,371 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 21:16:44,379 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 21:16:44,373 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 21:16:44 SOWatcher Connection Started!
+2026-03-06 21:16:44,380 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 21:16:44,381 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 21:16:44,381 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 21:16:44,384 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 21:16:44,384 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 21:16:48,154 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 21:16:48 Conexão de controle iniciada!
+2026-03-06 21:16:48,194 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 21:16:50,327 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:16:50 Comando toggleRecording executado!
+2026-03-06 21:16:53,634 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:16:53 Comando toggleRecording executado!
+2026-03-06 21:16:56,480 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 21:16:56 Conexão encerrada com front_end.
+2026-03-06 21:18:18,511 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 21:18:18,522 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 21:18:18,574 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 21:18:18,579 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 21:18:18,581 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 21:18:18 SOWatcher Connection Started!
+2026-03-06 21:18:18,588 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 21:18:18,590 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 21:18:18,593 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 21:18:18,593 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 21:18:18,596 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 21:18:18,596 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 21:18:22,284 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 21:18:22 Conexão de controle iniciada!
+2026-03-06 21:18:22,325 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 21:18:23,979 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:18:23 Comando toggleRecording executado!
+2026-03-06 21:18:26,928 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:18:26 Comando toggleRecording executado!
+2026-03-06 21:18:29,136 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 21:18:29 Conexão encerrada com front_end.
+2026-03-06 21:18:29,109 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 21:18:29,109 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 21:19:12,603 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 21:19:12,618 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 21:19:12,676 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 21:19:12,681 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 21:19:12,684 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 21:19:12,687 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 21:19:12,684 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 21:19:12 SOWatcher Connection Started!
+2026-03-06 21:19:12,687 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 21:19:12,688 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 21:19:12,692 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 21:19:12,692 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 21:19:16,400 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 21:19:16 Conexão de controle iniciada!
+2026-03-06 21:19:16,441 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 21:19:18,420 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:19:18 Comando toggleRecording executado!
+2026-03-06 21:19:20,991 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:19:20 Comando toggleRecording executado!
+2026-03-06 21:19:25,162 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 21:19:25,163 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 21:19:25,194 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 21:19:25 Conexão encerrada com front_end.
+2026-03-06 21:21:13,139 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 21:21:13,146 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 21:21:13,199 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 21:21:13,203 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 21:21:13,205 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 21:21:13 SOWatcher Connection Started!
+2026-03-06 21:21:13,211 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 21:21:13,212 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 21:21:13,212 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 21:21:13,212 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 21:21:13,221 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 21:21:13,221 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 21:21:16,932 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 21:21:16 Conexão de controle iniciada!
+2026-03-06 21:21:16,973 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 21:21:19,954 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:21:19 Comando ExecCurrentMacro executado!
+2026-03-06 21:21:22,669 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:21:22 Comando ExecCurrentMacro executado!
+2026-03-06 21:21:24,987 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:21:24 Comando toggleRecording executado!
+2026-03-06 21:21:26,937 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:21:26 Comando toggleRecording executado!
+2026-03-06 21:21:28,282 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:21:28 Comando ExecCurrentMacro executado!
+2026-03-06 21:21:32,504 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 21:21:32 Conexão encerrada com front_end.
+2026-03-06 21:35:37,774 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 21:35:37,784 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 21:35:37,832 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 21:35:37,836 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 21:35:37,839 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 21:35:37 SOWatcher Connection Started!
+2026-03-06 21:35:37,844 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 21:35:37,847 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 21:35:37,847 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 21:35:37,847 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 21:35:37,854 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 21:35:37,854 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 21:35:41,590 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 21:35:41 Conexão de controle iniciada!
+2026-03-06 21:35:41,628 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 21:35:43,602 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:35:43 Comando ExecCurrentMacro executado!
+2026-03-06 21:35:48,733 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 21:35:48,733 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 21:35:48,742 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 21:35:48 Conexão encerrada com front_end.
+2026-03-06 21:39:24,959 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 21:39:24,966 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 21:39:25,017 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 21:39:25,022 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 21:39:25,024 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 21:39:25,026 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 21:39:25,027 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 21:39:25,024 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 21:39:25 SOWatcher Connection Started!
+2026-03-06 21:39:25,027 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 21:39:25,034 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 21:39:25,034 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 21:39:28,782 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 21:39:28 Conexão de controle iniciada!
+2026-03-06 21:39:28,824 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 21:39:30,623 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:39:30 Comando ExecCurrentMacro executado!
+2026-03-06 21:39:32,708 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:39:32 Comando ExecCurrentMacro executado!
+2026-03-06 21:39:34,584 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:39:34 Comando ExecCurrentMacro executado!
+2026-03-06 21:39:38,339 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:39:38 Comando toggleRecording executado!
+2026-03-06 21:39:40,318 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:39:40 Comando toggleRecording executado!
+2026-03-06 21:39:42,140 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:39:42 Comando ExecCurrentMacro executado!
+2026-03-06 21:39:53,419 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:39:53 Comando ExecCurrentMacro executado!
+2026-03-06 21:40:04,971 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 21:40:04 Conexão encerrada com front_end.
+2026-03-06 21:41:37,077 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 21:41:37,083 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 21:41:37,138 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 21:41:37,143 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 21:41:37,151 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 21:41:37,145 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 21:41:37 SOWatcher Connection Started!
+2026-03-06 21:41:37,152 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 21:41:37,153 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 21:41:37,153 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 21:41:37,157 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 21:41:37,157 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 21:41:40,960 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 21:41:40 Conexão de controle iniciada!
+2026-03-06 21:41:41,000 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 21:41:43,208 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 21:41:43 Comando ExecCurrentMacro executado!
+2026-03-06 21:41:48,361 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 21:41:48 Conexão encerrada com front_end.
+2026-03-06 21:43:43,500 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 21:43:43,510 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 21:43:43,563 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 21:43:43,568 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 21:43:43,571 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 21:43:43,571 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 21:43:43,571 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 21:43:43,570 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 21:43:43 SOWatcher Connection Started!
+2026-03-06 21:43:43,571 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 21:43:43,574 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 21:43:43,574 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 21:43:47,294 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 21:43:47 Conexão de controle iniciada!
+2026-03-06 21:43:47,334 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 21:43:51,754 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 21:43:51,755 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 21:43:51,827 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 21:43:51 Conexão encerrada com front_end.
+2026-03-06 22:19:57,387 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 22:19:57,397 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 22:19:57,459 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 22:19:57,469 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 22:19:57,470 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 22:19:57 SOWatcher Connection Started!
+2026-03-06 22:19:57,482 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 22:19:57,482 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 22:19:57,483 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 22:19:57,483 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 22:19:57,493 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 22:19:57,493 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 22:20:01,391 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 22:20:01 Conexão de controle iniciada!
+2026-03-06 22:20:01,432 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 22:20:05,195 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:20:05 Comando toggleRecording executado!
+2026-03-06 22:20:07,998 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:20:07 Comando toggleRecording executado!
+2026-03-06 22:20:10,198 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 22:20:10 Conexão encerrada com front_end.
+2026-03-06 22:21:46,457 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 22:21:46,466 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 22:21:46,527 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 22:21:46,532 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 22:21:46,535 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 22:21:46 SOWatcher Connection Started!
+2026-03-06 22:21:46,540 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 22:21:46,543 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 22:21:46,546 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 22:21:46,546 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 22:21:46,549 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 22:21:46,549 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 22:21:50,410 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 22:21:50 Conexão de controle iniciada!
+2026-03-06 22:21:50,451 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 22:21:52,568 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:21:52 Comando ExecCurrentMacro executado!
+2026-03-06 22:21:57,206 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 22:21:57 Conexão encerrada com front_end.
+2026-03-06 22:28:25,902 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 22:28:25,908 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 22:28:25,966 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 22:28:25,970 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 22:28:25,978 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 22:28:25,972 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 22:28:25 SOWatcher Connection Started!
+2026-03-06 22:28:25,980 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 22:28:25,980 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 22:28:25,981 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 22:28:25,983 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 22:28:25,984 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 22:28:29,860 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 22:28:29 Conexão de controle iniciada!
+2026-03-06 22:28:29,898 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 22:28:33,450 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:28:33 Comando ExecCurrentMacro executado!
+2026-03-06 22:28:48,023 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 22:28:48 Conexão encerrada com front_end.
+2026-03-06 22:28:48,043 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 22:28:48,044 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 22:29:11,779 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 22:29:11,786 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 22:29:11,839 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 22:29:11,843 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 22:29:11,851 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 22:29:11,846 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 22:29:11 SOWatcher Connection Started!
+2026-03-06 22:29:11,853 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 22:29:11,854 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 22:29:11,854 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 22:29:11,860 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 22:29:11,860 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 22:29:15,722 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 22:29:15 Conexão de controle iniciada!
+2026-03-06 22:29:15,763 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 22:29:18,006 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:29:18 Comando ExecCurrentMacro executado!
+2026-03-06 22:29:24,369 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 22:29:24,369 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 22:29:24,389 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 22:29:24 Conexão encerrada com front_end.
+2026-03-06 22:43:12,952 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 22:43:12,964 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 22:43:13,010 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 22:43:13,015 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 22:43:13,019 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 22:43:13,020 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 22:43:13,020 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 22:43:13,018 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 22:43:13 SOWatcher Connection Started!
+2026-03-06 22:43:13,020 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 22:43:13,027 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 22:43:13,027 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 22:43:16,778 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 22:43:16 Conexão de controle iniciada!
+2026-03-06 22:43:16,819 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 22:43:18,811 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:43:18 Comando ExecCurrentMacro executado!
+2026-03-06 22:43:25,802 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:43:25 Comando toggleRecording executado!
+2026-03-06 22:43:28,006 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:43:28 Comando toggleRecording executado!
+2026-03-06 22:43:29,186 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:43:29 Comando ExecCurrentMacro executado!
+2026-03-06 22:43:32,599 [INFO] [AsyncioLoopThread] connectionObject:293 - [TwoWayConnection] No connections to close, sender or receiver is None
+2026-03-06 22:43:32,606 [INFO] [AsyncioLoopThread] connectionObject:139 - [TwoWayConnection] Stopping receiver task...
+2026-03-06 22:43:32,624 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 22:43:32 Conexão encerrada com front_end.
+2026-03-06 22:43:37,862 [INFO] [AsyncioLoopThread] main:217 - Starting event observer...
+2026-03-06 22:43:37,869 [INFO] [AsyncioLoopThread] WatcherWebSocket:79 - [CLIENT] 🔄 Attempting to connect to the server...
+2026-03-06 22:43:37,924 [INFO] [AsyncioLoopThread] connectionObject:53 - [TwoWayConnection] Setting sender...
+2026-03-06 22:43:37,930 [INFO] [AsyncioLoopThread] connectionObject:58 - [TwoWayConnection] setting receiver function
+2026-03-06 22:43:37,933 [WARNING] [AsyncioLoopThread] os_watcher_handler:109 - 🖥️ 22:43:37 SOWatcher Connection Started!
+2026-03-06 22:43:37,939 [INFO] [AsyncioLoopThread] connectionObject:71 - [TwoWayConnection] Starting receiver loop task...
+2026-03-06 22:43:37,941 [INFO] [AsyncioLoopThread] WatcherWebSocket:138 - [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+2026-03-06 22:43:37,941 [INFO] [AsyncioLoopThread] connectionObject:156 - [TwoWayConnection] receiver_loop function called 
+2026-03-06 22:43:37,942 [INFO] [AsyncioLoopThread] connectionObject:166 - [TwoWayConnection] Receiver loop started.
+2026-03-06 22:43:37,946 [INFO] [AsyncioLoopThread] watcherDatabase:104 - Quantidade de eventos não enviados: 0
+2026-03-06 22:43:37,946 [INFO] [AsyncioLoopThread] main:186 - WebSocket client initialized.
+2026-03-06 22:43:41,638 [INFO] [AsyncioLoopThread] frontend_handler:34 - 🛠️ 22:43:41 Conexão de controle iniciada!
+2026-03-06 22:43:41,678 [WARNING] [AsyncioLoopThread] frontend_handler:102 - ⚠️ Comando desconhecido: Conexão do front-end estabelecida
+2026-03-06 22:43:43,488 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:43:43 Comando ExecCurrentMacro executado!
+2026-03-06 22:43:45,923 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:43:45 Comando ExecCurrentMacro executado!
+2026-03-06 22:43:49,265 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:43:49 Comando ExecCurrentMacro executado!
+2026-03-06 22:43:51,794 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:43:51 Comando toggleRecording executado!
+2026-03-06 22:43:54,051 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:43:54 Comando toggleRecording executado!
+2026-03-06 22:43:56,409 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:43:56 Comando ExecCurrentMacro executado!
+2026-03-06 22:44:02,892 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:44:02 Comando ExecCurrentMacro executado!
+2026-03-06 22:44:05,271 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:44:05 Comando toggleRecording executado!
+2026-03-06 22:44:07,204 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:44:07 Comando toggleRecording executado!
+2026-03-06 22:44:08,590 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:44:08 Comando ExecCurrentMacro executado!
+2026-03-06 22:44:36,750 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:44:36 Comando ExecCurrentMacro executado!
+2026-03-06 22:44:38,850 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:44:38 Comando ExecCurrentMacro executado!
+2026-03-06 22:44:41,259 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:44:41 Comando toggleRecording executado!
+2026-03-06 22:44:43,349 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:44:43 Comando toggleRecording executado!
+2026-03-06 22:44:44,998 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:44:44 Comando ExecCurrentMacro executado!
+2026-03-06 22:44:53,255 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:44:53 Comando ExecCurrentMacro executado!
+2026-03-06 22:45:02,390 [INFO] [AsyncioLoopThread] frontend_handler:83 - ✅ 22:45:02 Comando ExecCurrentMacro executado!
+2026-03-06 22:45:06,505 [WARNING] [AsyncioLoopThread] frontend_handler:113 - ❌ 22:45:06 Conexão encerrada com front_end.

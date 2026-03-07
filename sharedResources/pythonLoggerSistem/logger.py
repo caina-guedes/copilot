@@ -1,7 +1,6 @@
 import logging
 import sys
 import queue
-import atexit
 from pathlib import Path
 from logging.handlers import TimedRotatingFileHandler, QueueHandler, QueueListener
 from sharedResources.debuggingResources.unified_monitor import monitor_class
@@ -14,7 +13,7 @@ except ImportError:
 
 BASE_DIR = Path(__file__).resolve().parent
 
-@monitor_class
+# @monitor_class
 class LoggerManager:
     """
     Gerenciador central de logs assíncronos (Non-blocking I/O).
@@ -186,7 +185,6 @@ class LoggerManager:
         logger.error(f"{msg} -> {str(exc)}", exc_info=True)
 
 # Garante que o stop_listener rode ao fechar o Python (mesmo sem chamar explícito)
-# atexit.register(LoggerManager.stop_listener)
 
 # ==========================================
 # TESTE

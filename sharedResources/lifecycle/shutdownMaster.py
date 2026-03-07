@@ -58,7 +58,7 @@ badCheckpoints = ["autoShutdown_error",
 for checkpoint in badCheckpoints:
     AtexitObserver.register_checkpoint(checkpoint,occurrences = 0)
 
-@monitor_class
+# @monitor_class
 class LifecycleMaster():
     """
         dono do ciclo de vida de tudo que precisa ser controlado 
@@ -96,7 +96,7 @@ class LifecycleMaster():
 
     @classmethod
     def register_log(cls,string,key = "general", emergency = False):
-        print(string)
+        # print(string)
         if not emergency:
             with cls.logsLock:
                 LifecycleMaster.logsMap.setdefault(key,[]).append([time.time(),string])
@@ -166,7 +166,7 @@ class LifecycleMaster():
             res  = cls.running_loop.call_soon(main_coro)
         if cls.lifecycleState.state == State.INIT:
             cls.lifecycleState.state = State.RUNNING
-        print("Main runtime started. the lifecicleState is: ", cls.lifecycleState.state )
+        # print("Main runtime started. the lifecicleState is: ", cls.lifecycleState.state )
         # print("Main coroutine submitted:", res)
     
 
@@ -230,7 +230,8 @@ class LifecycleMaster():
             log_error_forensics_plus(e)
         finally:
             print("vou setar o shutdownComplete")
-            cls.tasksMap.relatorio()
+            ##### esse é  o lugar certo pro relatório quando eu quiser!
+            # cls.tasksMap.relatorio()
             cls.shutDownComplete.set()
             print("setei o shutdownComplete")
             AtexitObserver.check("autoShutdown_finally")
@@ -371,9 +372,9 @@ LifecycleMaster.register_cleanup_function(LoggerManager.stop_listener,
                                                   priority = 99,
                                                   name = "LoggerManager.stop_listener",
                                                   register_in_atexit= True)
-print(f"vou setar o get do myLoop no get_loop do atexit e eles são: MyLoop.get={MyLoop.get} , atexit_manager.get_loop = {atexit_manager.get_loop}")
+# print(f"vou setar o get do myLoop no get_loop do atexit e eles são: MyLoop.get={MyLoop.get} , atexit_manager.get_loop = {atexit_manager.get_loop}")
 atexit_manager.get_loop = MyLoop.get
-print(f"agora o atexit_manager.get_loop é: {atexit_manager.get_loop}")
+# print(f"agora o atexit_manager.get_loop é: {atexit_manager.get_loop}")
 atexit_manager.log_error_forencis_plus = log_error_forensics_plus
 
 threading.Thread(target=LifecycleMaster.waitMyShutdown).start()

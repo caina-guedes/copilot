@@ -1,5 +1,6 @@
 import json
 import asyncio
+import time
 import websockets
 from datetime import datetime
 
@@ -44,9 +45,9 @@ async def handle_frontend(websocket):
             if "payload" in message and "ts" in message["payload"] and message["payload"]["ts"] != 0:
                 payload = message["payload"]
                 click_to_ignore = payload.get("click", None)
-                
+                ts=payload.get("ts",0)
                 prepared_command_toIgnore = {
-                    "ts": payload.get("ts", 0),
+                    "ts": ts,
                     "type": "mouse",
                     "button": click_to_ignore.get("button", "left"),
                     "action": "click",
@@ -59,6 +60,13 @@ async def handle_frontend(websocket):
                     state.server_config.FlushConfig.commandsToNotFlush.append(mouseCmd)
                 else:
                     print("no click to ignore found in the payload")
+                    if ts == 0:
+                        ts = time.time()
+            else:
+                ts = str(time.time())
+            # print("o ts vindo do frontend é: ",ts)
+            ts = float(ts)/1000 # normalização pra comparar com o que vem do OS Watcher
+            # print("depois ele vira: ",ts)
 
             # 2. Execução de Comandos
             command_name = message.get("command", None)
@@ -70,7 +78,11 @@ async def handle_frontend(websocket):
                 print(f"executando o comando: {command_name}")
                 
                 # Executa a função do comando
-                response = state.commands[command_name]()
+                funcao_correta = state.commands[command_name]
+                print("[handle_frontend] a função que vou usar é: ")
+                print(funcao_correta)
+                print(funcao_correta.__name__)
+                response = state.commands[command_name](MacroTime = ts , front_end_comand = True)
                 logger.info(f"✅ {get_current_time()} Comando {command_name} executado!")
                 
                 # Se o retorno for assíncrono (callable/awaitable)
