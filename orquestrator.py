@@ -28,9 +28,9 @@ whatToShow = {
 
     "frontEnd": False and (not onlyErrors),
     "frontEndError" : True,
-    "server"   : True and (not onlyErrors),
+    "server"   : False and (not onlyErrors),
     "serverError"  : True,
-    "watcher"  : False and (not onlyErrors),
+    "watcher"  : True and (not onlyErrors),
     "watcherError" : True
 }
 
@@ -39,6 +39,8 @@ def stream_output(prefix, stream,show = True):
     for line in iter(stream.readline, ''):
         if not line or not show:
             continue
+        line = str(line)
+        line = line.replace("Core.__holder__",f"{color}") if "Core.__holder__" in line else line
 
         msg = f"{color}[{prefix}] {line}\033[0m"
 

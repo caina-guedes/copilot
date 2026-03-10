@@ -114,7 +114,7 @@ async def server_router(websocket):
             await websocket.close()
 
     except websockets.exceptions.ConnectionClosed:
-        print("[server_router] Conexão fechada durante o handshake ou comunicação. Isso é normal se o cliente desconectar rapidamente.")
+        print(" Conexão fechada durante o handshake ou comunicação. Isso é normal se o cliente desconectar rapidamente.")
         pass # Conexão fechada durante o handshake é normal
     # except Exception as e:
         # LoggerManager.log_exception_with_context(e)
@@ -216,7 +216,7 @@ class WebSocketServerManager:
                 # else:
                 #     print(f"[stop_procedure] connection {group_name}.{conn_name} already closed ")
             except Exception as e:
-                print("[stop_procedure] deu erro e foi:  ",str(e))
+                print(" deu erro e foi:  ",str(e))
 
                 # pass
         
@@ -239,7 +239,7 @@ class WebSocketServerManager:
                 LifecycleMaster.register_log("⚠️ Conexão browser timeout", "server")
                 connections.browser.unique = None
             except asyncio.CancelledError:
-                print("[check_connections] cancelled successfully")
+                print("cancelled successfully")
                 break
             except Exception as e:
                 log_error_forensics_plus(e, "Erro no check_connections")

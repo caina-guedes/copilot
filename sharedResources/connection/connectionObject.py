@@ -42,7 +42,7 @@ class TwoWayConnection:
         print("fim do init da TwoWayConnection")
 
     def set_handle_message(self, handle_message_function):
-        # print("[TwoWayConnection] Setting handle_message_function...")
+        # print("  Setting handle_message_function...")
         if callable(handle_message_function):
             self._handle_message_function = handle_message_function
             # print('got it !!!')
@@ -60,11 +60,11 @@ class TwoWayConnection:
         self.controlsToIgnore = controlsToIgnore
         self.ExecutingMacro = ExecutingMacro
         if handle_message_function is not None:
-            # print("[TwoWayConnection] Setting handle_message_function for receiver...")   
+            # print("  Setting handle_message_function for receiver...")   
             self.set_handle_message(handle_message_function)
 
     def start_receiving(self):
-        # print("[TwoWayConnection] called start_receiving function")
+        # print("  called start_receiving function")
         # self.receiver.set_websocket()
         if self.receiver:
             if not self._receiver_task or self._receiver_task.done():
@@ -80,11 +80,11 @@ class TwoWayConnection:
                         # cleanup_event = self._receiver_task_cancel_event,  
                         name = "TwoWayConnectionReceiverLoopTask")
                     LifecycleMaster.run_async(self.close() , name = "TwoWayConnection closing task", protected = True)
-                    print("[TwoWayConnection.start_receiving] the receiver_task is: ",self._receiver_task)
-                    print("[TwoWayConnection.start_receiving] the type is: ",type(self._receiver_task))
+                    print(" the receiver_task is: ",self._receiver_task)
+                    print(" the type is: ",type(self._receiver_task))
                     # print('acho que a função de começar a receber começou')
                 except Exception as e:
-                    print("[TwoWayConnection] Failed to start receiver loop task")
+                    print("   Failed to start receiver loop task")
 
                     self.logger.error(f"Failed to start receiver loop task: {e}")
                     log_error_forensics_plus(e)
@@ -95,7 +95,7 @@ class TwoWayConnection:
             self.logger.warning("Receiver is not set, cannot start receiving loop")
 
     async def is_ws_alive(self, ws):
-        # print("[TwoWayConnection] is_ws_alive function")
+        # print("  is_ws_alive function")
         return True
     
         # try:
@@ -106,7 +106,7 @@ class TwoWayConnection:
         #     return False
 
     async def is_running(self):
-        # LoggerManager.get_logger().info("[TwoWayConnection] is_running function")
+        # LoggerManager.get_logger().info("  is_running function")
         
         # A verificação de 'open' depende da lib (ex: websockets, aiohttp)
         try:
@@ -135,8 +135,8 @@ class TwoWayConnection:
         função para parar esse looop, não precisa do tracked no fim da task
         """
         if self._receiver_task:
-            print("[TwoWayConnection.stop_receiving] function was called!!!")
-            logger.info("[TwoWayConnection] Stopping receiver task...")
+            print(" function was called!!!")
+            logger.info("  Stopping receiver task...")
             self._receiver_task_cancel_event.set()
             # self._receiver_task.cancel()
             
@@ -147,19 +147,19 @@ class TwoWayConnection:
             # except asyncio.CancelledError:
             #     logger.info("[TwoWayConnection] Receiver task cancelled successfully.")
             # except asyncio.TimeoutError:
-            #     print("[TwoWayConnection.stop_receiving] deu timeout esperando o cancelamento do listener ")
+            #     print(" deu timeout esperando o cancelamento do listener ")
             # self._receiver_task = None
         else:
-            logger.info("[TwoWayConnection] No receiver task to cancel.")
+            logger.info("   No receiver task to cancel.")
 
     async def receiver_loop(self):
         LoggerManager.get_logger().info("[TwoWayConnection] receiver_loop function called ")
-        print("[TwoWayConnection] receiver_loop function called ")
+        print("   receiver_loop function called ")
 
         try:
             async with self._receiver_lock:
                 if self.receiver_loop_running:
-                    print("[TwoWayConnection] Receiver loop already running. Exiting new loop.")
+                    print("   Receiver loop already running. Exiting new loop.")
                     logger.warning("[TwoWayConnection] Receiver loop already running. Exiting new loop.")
                     return
                 self.receiver_loop_running = True
@@ -238,14 +238,14 @@ class TwoWayConnection:
             log_error_forensics_plus(e)
             # LoggerManager.log_exception_with_context(f"deu ruim no receiver_loop {e}")
         finally:
-            print("[TwoWayConnection.receiver_loop] entrei no finally da função e vou setar o evento")
+            print(" entrei no finally da função e vou setar o evento")
             self._receiver_task_cancel_complete_event.set()                  
             async with self._receiver_lock:
                 self.receiver_loop_running = False
-            print("[TwoWayConnection] Receiver loop finished, cleaning up...")
+            print("   Receiver loop finished, cleaning up...")
 
     async def _handle_message_from_server(self, message):
-        # print("[TwoWayConnection] _handle_message_from_server function")
+        # print("   _handle_message_from_server function")
         # LoggerManager.get_logger().info("[TwoWayConnection] _handle_message function")
         
         try:
@@ -261,9 +261,9 @@ class TwoWayConnection:
             # LoggerManager.log_exception_with_context(f"deu ruim na _handle_message e foi : {e}")
 
     async def close(self):
-        print("[TwoWayConnection] close function begin")
+        print(" close function begin")
         await self._receiver_task_cancel_complete_event.wait()
-        print("[TwoWayConnection.close] _receiver_task_cancel_complete_event is finally set! proceeding with shuting connections")
+        print(" _receiver_task_cancel_complete_event is finally set! proceeding with shuting connections")
         for con in ([[self.sender,self._sender_lock], [self.receiver,self._receiver_lock]]):
             try:
                 real_connection = con[0]
@@ -271,19 +271,8 @@ class TwoWayConnection:
                 if real_connection:
                     async with lock:
                         await real_connection.close()
-                        print("[TwoWayConnection] connection really closed (must see this message 2 times)")
+                        print("   connection really closed (must see this message 2 times)")
 
-                # if self.sender:
-                #     async with self._sender_lock:
-                #         await self.sender.close()
-                #         logger.info("[TwoWayConnection] Sender connection actually closed")
-                #         self.sender = None
-                # if self.receiver:
-                #     async with self._receiver_lock:
-                #         await self.stop_receiving()
-                #         await self.receiver.close()
-                #         self.receiver = None
-                #         print("[TwoWayConnection] Receiver connection actually closed")
             except Exception as e:
                 log_error_forensics_plus(e)
                 # LoggerManager.log_exception_with_context(e)
@@ -311,22 +300,22 @@ class TwoWayConnection:
                     await self.sender.send(json.dumps(message))
                 # print("CALL STACK:", traceback.format_stack())
 
-                # print(f"[TwoWayConnection] type of Message sent: {type(json.dumps(message))}")
+                # print(f"   type of Message sent: {type(json.dumps(message))}")
                 # traceback.print_stack(limit=6)
                 # print(f"Message sent: {json.dumps(message)}")
                 # print(f"[TwoWayConnection {time.time()}] Message sent: {json.dumps(message)}")
                 return True
 
             except ConnectionRefusedError:
-                print("[TwoWayConnection] Connection refused, retrying...")
+                print("   Connection refused, retrying...")
                 raise
 
             except asyncio.TimeoutError:
-                print("[TwoWayConnection] Timeout while sending message, retrying...")
+                print("   Timeout while sending message, retrying...")
                 raise
 
             except json.JSONDecodeError as e:
-                print(f"[TwoWayConnection] JSON decode error: {e}")
+                print(f"   JSON decode error: {e}")
                 raise
 
             except Exception as e:
@@ -337,7 +326,7 @@ class TwoWayConnection:
             # return False
 
         else:
-            print("[TwoWayConnection] No sender connection available, cannot send message")
+            print("   No sender connection available, cannot send message")
             # raise  
             # LoggerManager.log_exception_with_context("tried to send message with no sender connection ")
             return False

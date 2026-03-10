@@ -1,0 +1,11 @@
+aiosqlite==0.22.1
+colorama==0.4.4
+psutil==7.1.3
+pynput==1.8.1
+pywinauto==0.6.9
+rich==14.3.3
+win32gui==221.6
+
+
+# só pra saber qual versão instalar
+Python 3.10.12

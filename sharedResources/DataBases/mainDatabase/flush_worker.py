@@ -24,8 +24,16 @@ def _build_insert_query(table, data: dict):
     placeholders = ", ".join(["?"] * len(data))
 
     sql = f"INSERT INTO {table} ({keys}) VALUES ({placeholders})"
+    if table == "window_events":
+        sql = """ ON CONFLICT(app, class_name, pid, win_id, title)
+        DO UPDATE SET
+        occurrences = occurrences + 1,
+        timestamp = excluded.timestamp,
+        details   = excluded.details"""
+
     if sql not in querrys_ja_existentes:
         querrys_ja_existentes.add(sql)
+
     return sql, tuple(data.values())
 
 def is_duplicate_click(ev,debug = True):

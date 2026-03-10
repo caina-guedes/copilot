@@ -12,7 +12,7 @@ logger = LoggerManager.get_logger(__name__)
 @monitor_error
 async def default_callback(event,father):
     """this function check for changes in the current window and sends the event"""
-    # print("[default_callback] Event captured:", event)
+    # print(" Event captured:", event)
     inicio = time.perf_counter()
     try:
         

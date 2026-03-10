@@ -118,8 +118,8 @@ def exec_mouse_or_kb(message, macroExecutor,frozen_controls_to_ignore = None ):
     controlsToIgnore = frozen_controls_to_ignore or macroExecutor._controlsToIgnore
         # controlsToIgnore = frozen_controls_to_ignore or macroExecutor._controlsToIgnore
     if controlsToIgnore is None :
-        print("[default_receiving_function] controlsToIgnore to ignore is none inside ")
-        print(f"[default_receiving_function] the message received here is: {message}")
+        print(" controlsToIgnore to ignore is none inside ")
+        print(f" the message received here is: {message}")
     if message is None:
         print("Received None message, ignoring but maybe the connection has ended")
         return InternalResponse(0,0)
@@ -202,8 +202,8 @@ async def default_receiving_function(message, macroExecutor,frozen_controls_to_i
         return exec_mouse_or_kb(message, macroExecutor,frozen_controls_to_ignore)
         
     except Exception as e:
-        print("[default_receiving_function] a exceção é: ",e)
-        print("[default_receiving_function] a mensagem recebida na função é: ",message)
+        print(" a exceção é: ",e)
+        print(" a mensagem recebida na função é: ",message)
         log_error_forensics_plus(e)
         # LoggerManager.log_exception_with_context(f"[WATCHER] ❌ Error in default receiving function: {str(e)}")
     
@@ -215,8 +215,8 @@ async def default_receiving_function(message, macroExecutor,frozen_controls_to_i
 #     """
 #     controlsToIgnore = frozen_controls_to_ignore or macroExecutor._controlsToIgnore
 #     if controlsToIgnore is None :
-#         print("[default_receiving_function] controlsToIgnore to ignore is none inside ")
-#         print(f"[default_receiving_function] the message received here is: {message}")
+#         print(" controlsToIgnore to ignore is none inside ")
+#         print(f" the message received here is: {message}")
 #     ExecutingMacro   = macroExecutor._ExecutingMacro
 #     if message is None:
 #         print("Received None message, ignoring but maybe the connection has ended")

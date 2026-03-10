@@ -33,7 +33,7 @@ from sharedResources.DataBases.mainDatabase.event_logger import log_background_e
 from sharedResources.DataBases.mainDatabase.flush_worker import _flush_external, _flush_worker_external
 from sharedResources.DataBases.mainDatabase.querrys import querrys
 
-@monitor_class
+# @monitor_class
 class MainDatabase:
         # from cache_manager
     _cache_codes = _cache_codes_external
@@ -108,9 +108,18 @@ class MainDatabase:
                 print("[MainDatabase._configure_connection] deu erro configurando conexão do main db e foi: ", str(e))
 
 
-    def exec(self,querry, fetchOne = False, ):
-        self.cursor.execute(querry)
-        return self.cursor.fetchall()
+    def exec(self,querry, fetchOne = False,argsTuple=None ):
+        try:
+            if argsTuple is None:
+                self.cursor.execute(querry)
+            else:
+                self.cursor.execute(querry,argsTuple)
+            return self.cursor.fetchall()
+        except Exception as e:
+            print("the error querry is: ",querry)
+            print('the argsTuple is: ' ,argsTuple )
+            raise 
+    
     ### Event Buffering and Insertion ###
     def add_event(self, event_dict,isSpecialCommand = False):
         """
@@ -214,32 +223,36 @@ if __name__ == "__main__":
     print("valores da tabela macros:")
     db.cursor.execute("select * from macros")
     a=db.cursor.fetchall()
-    # querry_traduzida = """SELECT 
-    # e.id,
-    # e.ts,
-    # e.session_id,
-    # t.name      AS type_name,
-    # k.name      AS key_name,
-    # a.name      AS action_name,
-    # s.name      AS source_name,
-    # d.name      AS device_name,
-    # m.name      AS macro_name,
-    # e.x,
-    # e.y,
-    # e.value,
-    # e.details_json,
-    # e.window_event_id
-    # FROM events e
-    # LEFT JOIN type_codes   t ON e.type_id   = t.id
-    # LEFT JOIN key_codes    k ON e.key_id    = k.id
-    # LEFT JOIN action_codes a ON e.action_id = a.id
-    # LEFT JOIN source_codes s ON e.source_id = s.id
-    # LEFT JOIN device_codes d ON e.device_id = d.id
-    # LEFT JOIN macros       m ON e.macro_id  = m.id
-    # where macro_id = (?)
-    # ORDER BY e.ts ASC;
-    # """
-    
+    # import sqlite3
+
+    def quant_registros_tabelas():
+
+        # pegar todas as tabelas
+        tables= db.exec("""
+        SELECT name
+        FROM sqlite_master
+        WHERE type='table'
+        AND name NOT LIKE 'sqlite_%'
+        """)
+
+
+        print(f"{'Tabela':30} | Registros")
+        print("-"*45)
+
+        for (table,) in tables:
+            count = db.exec(f"SELECT COUNT(*) FROM {table}")
+            print(f"{table:30} | {count}")
+
+    def tamanho_KBs_tabelas():
+        result=db.exec("""SELECT
+        name,
+        SUM(pgsize)/1024 as size_kb
+        FROM dbstat
+        GROUP BY name
+        ORDER BY size_kb DESC;""")
+
+        for x in result:
+            print(x)
 
     b=db.exec(querrys["selectEventosComMudançaDeJanela"])
     c = winChange()
@@ -254,23 +267,93 @@ if __name__ == "__main__":
             print(comando)
     #for ev in b:
     #           print(ev)
-    
+    quant_registros_tabelas()
+    tamanho_KBs_tabelas()
     # a=db.exec("select * from events where window_event_id is not null")
-    events = db.exec("select * from events")
+    # events = db.exec("select * from events")
+    # import sqlite3
 
-#     """
-#     SERVER] the command to be sent is :  {'action': 'startMacro'}
-# [SERVER] the command to be sent is :  {'deltaTime': 0.0, 'equipment': 'mouse', 'button': 'Button.left', 'action': 'press', 'x': 274, 'y': 218, 'details': None, 'window_event': {'app': 'automation-ui-tauri', 'class_name': 'automation-ui-tauri', 'pid': 139627, 'win_id': '0x05600003', 'title': 'automation-ui-tauri', 'details': '{"titles_history": ["automation-ui-tauri"], "first_seen": 1767912658.7493122, "last_seen": 1767912658.7493176, "confidence_score": 1.0, "priority_fields": {}}', 'ts': 1767912658755}}
-# [SERVER] the command to be sent is :  {'deltaTime': 0.091, 'equipment': 'mouse', 'button': 'Button.left', 'action': 'release', 'x': 274, 'y': 218, 'details': None}
-# [SERVER] the command to be sent is :  {'deltaTime': 1.649, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'press', 'modifiers': '{"modifiers": []}'}
-# [SERVER] the command to be sent is :  {'deltaTime': 0.106, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'press', 'modifiers': '{"modifiers": []}'}
-# [SERVER] the command to be sent is :  {'deltaTime': 0.099, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'release', 'modifiers': '{"modifiers": []}'}
-# [SERVER] the command to be sent is :  {'deltaTime': 0.136, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'release', 'modifiers': '{"modifiers": []}', 'window_event': {'app': 'gnome-terminal-server', 'class_name': 'gnome-terminal-server', 'pid': 36904, 'win_id': '0x03e0000a', 'title': 'cain@cain-Aspire-F5-573: ~/Documentos/automacaoPythonJs', 'details': '{"titles_history": ["cain@cain-Aspire-F5-573: ~/Documentos/automacaoPythonJs"], "first_seen": 1767912660.808087, "last_seen": 1767912660.808092, "confidence_score": 1.0, "priority_fields": {}}', 'ts': 1767912660836}}
-# [SERVER] the command to be sent is :  {'deltaTime': 0.429, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'press', 'modifiers': '{"modifiers": []}'}
-# [SERVER] the command to be sent is :  {'deltaTime': 0.059, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'press', 'modifiers': '{"modifiers": []}'}
-# [SERVER] the command to be sent is :  {'deltaTime': 0.163, 'equipment': 'keyboard', 'key': 'Key.tab', 'action': 'release', 'modifiers': '{"modifiers": []}', 'window_event': {'app': 'automation-ui-tauri', 'class_name': 'automation-ui-tauri', 'pid': 139627, 'win_id': '0x05600003', 'title': 'automation-ui-tauri', 'details': '{"titles_history": ["automation-ui-tauri"], "first_seen": 1767912661.4821124, "last_seen": 1767912661.4821193, "confidence_score": 1.0, "priority_fields": {}}', 'ts': 1767912661487}}
-# [SERVER] the command to be sent is :  {'deltaTime': 0.104, 'equipment': 'keyboard', 'key': 'Key.alt', 'action': 'release', 'modifiers': '{"modifiers": []}'}
-# [SERVER] the command to be sent is :  {'action': 'endMacro'}
+    # conn = sqlite3.connect("database.db")
+    # cur = conn.cursor()
 
-#     """
+    # # 1️⃣ Adiciona a coluna occurrences se ainda não existir
+    # try:
+    #     cur.execute("ALTER TABLE window_events ADD COLUMN occurrences INTEGER DEFAULT 1")
+    # except sqlite3.OperationalError:
+    #     pass  # já existe
+
+    # 2️⃣ Agrupar duplicados e somar ocorrências
+    duplicates = db.exec("""
+SELECT app, class_name, pid, win_id, title,
+       MIN(id) as first_id, COUNT(*) as cnt
+FROM window_events
+GROUP BY app, class_name, pid, win_id, title 
+HAVING cnt > 1
+""")
+
+
+    print(f"Encontrados {len(duplicates)} grupos duplicados.")
+
+    # 3️⃣ Para cada grupo duplicado:
+    total_duplicate_registers = 0
+    for row in duplicates:
+        app, class_name, pid, win_id, title, min_id, cnt = row
+
+        # soma as ocorrências existentes (aqui cada duplicado vale 1)
+        total_occurrences = cnt
+        total_duplicate_registers += total_occurrences - 1
+        # print(total_occurrences)
+        continue ### só pra ver as ocorrencias agora mesmo !
+        # deleta os registros antigos do grupo
+        db.cursor.execute("""
+            DELETE FROM window_events
+            WHERE timestamp=? AND app=? AND class_name=? AND pid=? AND win_id=? AND title=? AND details=? 
+                    AND id != ?
+        """, (app, class_name, pid, win_id, title, details,min_id))
+
+        db.cursor.execute("""
+        UPDATE window_events
+        SET occurrences = ?
+        WHERE id = ?
+    """, (total_occurrences, min_id))
+        # # insere 1 registro com occurrences = total_occurrences
+        # cur.execute("""
+        #     INSERT INTO window_events (timestamp, app, class_name, pid, win_id, title, details, occurrences)
+        #     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        # """, (timestamp, app, class_name, pid, win_id, title, details, total_occurrences))
+
+        db.conn.commit()
+        # db.conn.close()
+    print("o total de registros duplicados é: ",total_duplicate_registers)
+    print("Tabela limpa e pronta para criar UNIQUE index.")
+    quant_registros_tabelas()
+    tamanho_KBs_tabelas()
+    
+
+
+    # 1️⃣ Pega todos os grupos de eventos únicos
+    groups = db.exec("""
+    SELECT app, class_name, pid, win_id, title, MIN(id) as kept_id
+    FROM window_events
+    GROUP BY app, class_name, pid, win_id, title
+    """)
+
+    for group in groups:
+        app, class_name, pid, win_id, title, kept_id = group
+
+        # 2️⃣ Pega todos os ids antigos que correspondem a esse evento
         
+        old_ids = [row[0] for row in db.exec("""
+        SELECT id FROM window_events
+        WHERE app=? AND class_name=? AND pid=? AND win_id=? AND title=? AND id != ?
+        """, argsTuple = (app, class_name, pid, win_id, title, kept_id))]
+
+        if old_ids:
+            # 3️⃣ Atualiza a tabela events para apontar para o kept_id
+            db.exec(f"""
+            UPDATE events 
+            SET window_event_id = ?
+            WHERE window_event_id IN ({','.join('?'*len(old_ids))})
+            """, argsTuple = [kept_id] + old_ids)
+    
+    

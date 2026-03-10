@@ -41,7 +41,7 @@ async def handle_browser_extension(websocket, initial_data):
             message = await websocket.recv()
             logger.info(f"📩 {get_current_time()} Do navegador: {message}")
         except websockets.exceptions.ConnectionClosedOK:
-            print("[handle_browser_extension] recebi ConnectionClosedOK ")
+            print(" recebi ConnectionClosedOK ")
             if not LifecycleMaster.first_shutdown_event.is_set():
                 LifecycleMaster.first_shutdown_event.set()
             break

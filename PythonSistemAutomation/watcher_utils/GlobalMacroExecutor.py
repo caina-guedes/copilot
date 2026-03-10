@@ -87,7 +87,7 @@ class GlobalExecutor:
         cls._ExecutingMacro['value'] = False
         cls.umpress_keys(cls._controlsToIgnore)
         cls._controlsToIgnore.clear()
-        print("[GlobalExecutor] Macro state reset.")
+        print(" Macro state reset.")
 
     @classmethod
     async def _clear_queue(cls):
@@ -123,7 +123,7 @@ class GlobalExecutor:
             return
 
         await cls._queue.put([command,time.perf_counter()])
-        print(f"[GlobalExecutor] Enqueued: {command}")
+        print(f"  Enqueued: {command}")
 
         # Auto-start se ainda não estiver rodando
         if not cls._running:
@@ -144,7 +144,7 @@ class GlobalExecutor:
                                               )
         # cls._task = asyncio.create_task(cls._executor_loop(),name = "GlobalExecutorLoopTask")
         print("created task and the name is: ",cls._task.get_name())
-        print("[GlobalExecutor] Started (auto-start).")
+        print("  Started (auto-start).")
 
     @classmethod
     def stop(cls, tracked = None):
@@ -166,16 +166,16 @@ class GlobalExecutor:
             # except asyncio.CancelledError:
             #     pass
             # except Exception as e:
-            #     print(f"[GlobalExecutor] Error stopping executor: {e}")
+            #     print(f"  Error stopping executor: {e}")
             #     log_error_forensics_plus(e)
-            #     LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error stopping executor: {e}",e)
+            #     LoggerManager.log_exception_with_context(f"  Error stopping executor: {e}",e)
         # cls._reset_macro_state()
-        print("[GlobalExecutor] Stopped.")
+        print("  Stopped.")
 
     @classmethod
     async def _executor_loop(cls):
         """Loop global que consome comandos da fila."""
-        print("[GlobalExecutor] Executor loop running.")
+        print("  Executor loop running.")
         # start_time = time.perf_counter()  # Marca o início do loop
         # last_command_time = start_time
         macroAcumulatedInteractionWithSOTime = 0.0
@@ -191,7 +191,7 @@ class GlobalExecutor:
                 except asyncio.TimeoutError:
                     continue
                 except asyncio.CancelledError:
-                    print("[GlobalExecutor._executor_loop] tarefa do loop da macro cancelada, encerrando")
+                    print(" tarefa do loop da macro cancelada, encerrando")
                     cls._reset_macro_state()
                     break
                 if cls._stop_running_macro_flag.get_value():
@@ -223,7 +223,7 @@ class GlobalExecutor:
                     if waitForServer == "killmacro":
                         # Detectar killMacro
                         # cls.umpress_keys()
-                        print("[Executor] KillMacro recebido. Limpando fila até EndMacro...")
+                        print("   KillMacro recebido. Limpando fila até EndMacro...")
 
                         # Limpar FIFO até achar EndMacro ou limpar a queue
                         while True:
@@ -236,14 +236,14 @@ class GlobalExecutor:
                             try:
                                 next_cmd_data = json.loads(next_cmd)
                                 if next_cmd_data.get("type") == "EndMacro":
-                                    print("[Executor] EndMacro encontrado. Macro finalizada.")
+                                    print("   EndMacro encontrado. Macro finalizada.")
                                     break
                             except Exception as e:
                                 # comando quebrado? ignora e continua
                                 log_error_forensics_plus(e)
                                 continue
                         
-                        print("[Executor] Macro cancelada com sucesso.")
+                        print("   Macro cancelada com sucesso.")
                         cls._queue.task_done()   # dá task_done no comando KillMacro
                         continue  # volta ao topo sem executar nada
 
@@ -272,7 +272,7 @@ class GlobalExecutor:
                     internalTimeOfEachCommand.append([internalBefore,internalAfter])
                     macroAcumulatedInteractionWithSOTime += (after - before)
                     startingTimeOfEachCommand[-1].append(" took " + str(after - before) + " seconds with the SO")
-                    # print(f"[GlobalExecutor] Command executed. Initial time {before} and final time: {after} , it took {after - before} seconds to execute the command" )
+                    # print(f"  Command executed. Initial time {before} and final time: {after} , it took {after - before} seconds to execute the command" )
                 else:
                     startingTimeOfEachCommand.pop()  # Remove se não houve interação
 
@@ -288,24 +288,24 @@ class GlobalExecutor:
                         
                         except Exception as e:
                             log_error_forensics_plus(e)
-                            # LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error calculating macro times: {e}",e)
+                            # LoggerManager.log_exception_with_context(f"  Error calculating macro times: {e}",e)
                         
                         time_it_should_take = 0.0
                         macroAcumulatedInteractionWithSOTime = 0.0
                         cls._reset_macro_state()
                     else:
                         warnings.warn(f"[GlobalExecutor] endMacro received without a matching startMacro.")
-                        # LoggerManager.log_exception_with_context(f"[GlobalExecutor] endMacro received without a matching startMacro.")
+                        # LoggerManager.log_exception_with_context(f"  endMacro received without a matching startMacro.")
                 cls._queue.task_done()
             except asyncio.CancelledError:
                 warnings.warn(" GlobalExecutorLoopTask task cancelled!")
                 cls._reset_macro_state()
                 break
             except Exception as e:
-                print(f"[GlobalExecutor] Error executing command: {e}")
+                print(f"  Error executing command: {e}")
                 cls.umpress_keys()
                 log_error_forensics_plus(e)
-                # LoggerManager.log_exception_with_context(f"[GlobalExecutor] Error executing command: {e}",e)
+                # LoggerManager.log_exception_with_context(f"  Error executing command: {e}",e)
 
     @classmethod
     async def _execute_command(cls, command: dict, frozen_controls_to_ignore = None):

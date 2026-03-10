@@ -122,7 +122,7 @@ class EventObserver:
         O único trabalhador: processa a fila um por um.
         Primeiro loop
         """
-        print("[EventObserver] Consumer Task iniciada.")
+        print(" Consumer Task iniciada.")
         self.thread_do_consumer = threading.current_thread().name
         while self.listeners_running:
             try:
@@ -176,7 +176,7 @@ class EventObserver:
                     # print(f"of that {(time_to_verify_window/total_time)*100} % is just to verify window")
                 self.event_queue.task_done()
             except asyncio.CancelledError:
-                print("[EventObserver._event_consumer] primeiro loop cancelado")
+                print(" primeiro loop cancelado")
                 break
             except Exception as e:
                 log_error_forensics_plus(e)
@@ -316,7 +316,7 @@ class EventObserver:
         """
         Segundo estágio: Agrupa eventos da 'send_queue' e despacha em lotes.
         """
-        print("[EventObserver.buffer_loop] tarefa iniciada!")
+        print(" tarefa iniciada!")
         MAX_BATCH_SIZE = 50
         buffer = deque(maxlen=1000) 
         # buffer = []
@@ -361,7 +361,7 @@ class EventObserver:
                         for _ in range(len(buffer)):
                             if buffer: buffer.popleft()
             except asyncio.CancelledError:
-                print("[EventObserver.buffer_loop] segundo loop cancelado")
+                print(" segundo loop cancelado")
             except Exception as e:
                 print(f"Erro no loop de rede: {e}")
                 log_error_forensics_plus(e)
@@ -378,7 +378,7 @@ class EventObserver:
             self.listeners_running = True
             self.listener_mouse.start()
             self.listener_keyboard.start()
-            print("[EventObserver.start] called start!")
+            print(" called start!")
             self.buffer_task = LifecycleMaster.run_async(self.buffer_loop(),name = "loop do buffer do observer- segundo loop")
 
             self.on_event_consumer_task = LifecycleMaster.run_async(self._event_consumer(),name = "on_event_consumer - primeiro loop")
@@ -388,7 +388,7 @@ class EventObserver:
             self.thread_do_start = threading.current_thread().name
     
     def stop(self): # para os listeners e atualmente imprime um relatório
-        print("[EventObserver]stop called ")
+        print(" stop called ")
         self.listener_mouse.stop()
         self.listener_keyboard.stop()
         self.listeners_running = False

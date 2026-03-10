@@ -79,7 +79,7 @@ async def handle_frontend(websocket):
                 
                 # Executa a função do comando
                 funcao_correta = state.commands[command_name]
-                print("[handle_frontend] a função que vou usar é: ")
+                print(" a função que vou usar é: ")
                 print(funcao_correta)
                 print(funcao_correta.__name__)
                 response = state.commands[command_name](MacroTime = ts , front_end_comand = True)
@@ -107,12 +107,12 @@ async def handle_frontend(websocket):
             error = False
 
         except websockets.exceptions.ConnectionClosedOK:
-            print("[handle_frontend] recebi ConnectionClosedOK ")
+            print(" recebi ConnectionClosedOK ")
             if not LifecycleMaster.first_shutdown_event.is_set():
                 LifecycleMaster.first_shutdown_event.set()
             break
         except websockets.exceptions.ConnectionClosedError:
-            print("[handle_frontend] recebi ConnectionClosedError ")
+            print(" recebi ConnectionClosedError ")
             logger.warning(f"❌ {get_current_time()} Conexão encerrada com {tipo}.")
             if websocket in [connections.front_end.unique]:
                 connections.front_end.unique = None

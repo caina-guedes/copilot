@@ -142,7 +142,7 @@ class OSProcessorClass():
                     # LoggerManager.log_exception_with_context(f"Receiver mandou msg inesperada: {message}")
                 
                 except websockets.exceptions.ConnectionClosedOK:
-                    print("[handle_os_connection] recebi ConnectionClosedOK no receiver")
+                    print(" recebi ConnectionClosedOK no receiver")
                     connections.OS.receiver = None
                     if not LifecycleMaster.first_shutdown_event.is_set():
                         LifecycleMaster.first_shutdown_event.set()

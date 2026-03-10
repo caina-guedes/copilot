@@ -41,16 +41,19 @@ CREATE TABLE IF NOT EXISTS device_codes (
     name TEXT UNIQUE NOT NULL  -- opcional: 'touchpad','mouse','keyboard','browser-ext'
 );"""
             ,
+   
 """CREATE TABLE IF NOT EXISTS window_events (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     timestamp INTEGER NOT NULL,
     app TEXT NULL,
-    class_name TEXT NULL ,
-    pid INTEGER NULL ,
-    win_id INTEGER NULL ,
+    class_name TEXT NULL,
+    pid INTEGER NULL,
+    win_id INTEGER NULL,
     title TEXT NULL,
-    details TEXT NULL
-);"""       
+    details TEXT NULL,
+    occurrences INTEGER NOT NULL DEFAULT 1,
+    UNIQUE(app, class_name, pid, win_id, title)  -- define duplicados
+);"""  
 ,
 
             """

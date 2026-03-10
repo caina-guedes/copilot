@@ -21,7 +21,7 @@ class answerMapping():
     
     @classmethod
     def set_serverConfig(cls,serverConfig):
-        # print("[answerMapping] a variável que veio como serverConfig é: ",serverConfig)
+        # print(" a variável que veio como serverConfig é: ",serverConfig)
         if cls.serverConfig is None:
             cls.serverConfig = serverConfig
 

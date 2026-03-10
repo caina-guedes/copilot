@@ -28,6 +28,7 @@ from sharedResources.debuggingResources.unified_monitor import sys_monitor, moni
 from sharedResources.debuggingResources.exec_monitor import CallRegistry
 from sharedResources.lifecycle.stateManager import State, StateManager
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
+from sharedResources.generalUtils.print_interceptor import PrintInterceptor
 # Setup básico de logging
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
 logger = logging.getLogger("LifecycleTracker")
@@ -70,6 +71,9 @@ class LifecycleMaster():
     lifecycleState = StateManager #  
     stateEnum = State
 
+    #flag para interceptar o print
+    print_intercept = True
+    print_interceptor = None
     #flag para modo de testes
     testing = False
 
@@ -156,6 +160,11 @@ class LifecycleMaster():
     def start_runtime(cls, main_coro):
         if cls.running_loop.loop_is_none():
             cls.running_loop.start_loop()
+        if cls.print_intercept:
+            cls.print_interceptor = PrintInterceptor()
+            cls.print_interceptor.install()
+            cls.print_interceptor.enable()
+
         # print("Main loop started:", cls.running_loop.get())
         # print("Submitting main to the loop...")
         if asyncio.iscoroutine(main_coro) or asyncio.iscoroutinefunction(main_coro):
