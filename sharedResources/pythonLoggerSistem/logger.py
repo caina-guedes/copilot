@@ -36,7 +36,7 @@ class LoggerManager:
     
     # Configurações Padrão
     _logs_path = BASE_DIR / "logs"
-    _logs_path_complement = None
+    # _logs_path_complement = None
     _general_level = logging.INFO
     _general_filename = "default.log"
     
@@ -58,12 +58,12 @@ class LoggerManager:
             cls._logs_path = Path(path)
             cls._logs_path.mkdir(parents=True, exist_ok=True)
     
-    @classmethod
-    def complement_logs_path(cls, complement):
-        "feita para ser usada uma vez para cada processo para diferenciar os caminhos base dos arquivos de log!"
-        if cls._logs_path_complement is None:
-            cls._logs_path = cls._logs_path / Path(complement)
-            cls._logs_path_complement = Path(complement)
+    # @classmethod
+    # def complement_logs_path(cls, complement):
+    #     "feita para ser usada uma vez para cada processo para diferenciar os caminhos base dos arquivos de log!"
+    #     if cls._logs_path_complement is None:
+    #         cls._logs_path = cls._logs_path / Path(complement)
+    #         cls._logs_path_complement = Path(complement)
 
     @classmethod
     def set_general_level(cls, level):
@@ -114,8 +114,8 @@ class LoggerManager:
         Automaticamente gerencia os handlers de arquivo e reinicia o listener se necessário.
         """
         # 1. Garante diretório
-        if cls._logs_path_complement is None:
-            raise RuntimeError("get_logger used before _logs_path_complement is set!")
+        # if cls._logs_path_complement is None:
+        #     raise RuntimeError("get_logger used before _logs_path_complement is set!")
         
         if not cls._logs_path.exists():
             cls._logs_path.mkdir(parents=True, exist_ok=True)

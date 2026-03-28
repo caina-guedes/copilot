@@ -1,5 +1,7 @@
+import inspect
 import json
 import asyncio
+import queue
 import time
 import websockets
 from datetime import datetime
@@ -18,6 +20,7 @@ from PythonServer.serverConfig import connection_types,serverConfig
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
+from sharedResources.generalUtils.wait_for_data import wait_for_data
 from PythonServer.utils import handleSpecialCommand
 from PythonServer.serverReactions import answerMapping
 
@@ -46,23 +49,33 @@ class OSProcessorClass():
     vindos do watcher do SO
     """
     receiver_loop_task = None
-    receiver_conn = None
+    receiver_conn_or_queue = None
     sender_conn = None
     first_closed_ok_received = False
 
     @classmethod
-    async def start_receiver(cls,websocket):
+    async def start_receiver(cls,websocket_or_queue):
         print(f"[OSProcessorClass.start_receiver] starting")
         # print("just set the answermapping to the serverConfig")
-        if cls.receiver_conn is None:
-            cls.receiver_conn = websocket
-            cls. receiver_loop_task = LifecycleMaster.run_async(cls.receiver_loop(websocket), name="loop do receiver do watcher")
+        if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
+            # websocket = websocket_or_queue
+            print("starting receiver loop with websocket")
+        elif isinstance(websocket_or_queue, asyncio.Queue):
+            print("starting receiver loop with queue")
+            # queue = websocket_or_queue
+        if cls.receiver_conn_or_queue is None:
+            cls.receiver_conn_or_queue = websocket_or_queue
+            cls. receiver_loop_task = LifecycleMaster.run_async(cls.receiver_loop(websocket_or_queue), name="loop do receiver do watcher")
             # await websocket.wait_closed()
     @classmethod
-    async def receiver_loop(cls,websocket):
+    async def receiver_loop(cls,websocket_or_queue):
         while True:
             try:
-                message = await websocket.recv()
+                try:
+                    message = await wait_for_data(websocket_or_queue, timeout=0.5)
+                except asyncio.TimeoutError:
+                    continue
+                # except 
                 message_data = json.loads(message)
                 
                 if isinstance(message_data, str):
@@ -124,7 +137,7 @@ class OSProcessorClass():
             log_error_forensics_plus(e)
         # Loop de escuta (Apenas para o Sender)
         if connections.OS.sender == websocket:
-            if cls.receiver_conn is None and cls.receiver_loop_task is None:
+            if cls.receiver_conn_or_queue is None and cls.receiver_loop_task is None:
                 await cls.start_receiver(websocket)
             else:
                 print("tentaram iniciar o receiver loop do watcher indevidamente!!!")

@@ -12,7 +12,7 @@ sys.path.append(str(basePath))
 from sharedResources.lifecycle.trackedUtils.trackedItem import TrackedItem, TaskFinishRecord
 from sharedResources.lifecycle.shutdownTaskUtils import TrackedTask
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
-from sharedResources.lifecycle.stateManager import State
+from sharedResources.lifecycle.stateManager import StateManager , State
 def call_soon(cls, fn, *args):
 
     if not cls._can_interact():
@@ -57,11 +57,11 @@ def submit(
 
     if not inspect.iscoroutine(coro):
         cls._log(
-            f"submit received non-coroutine: {type(coro)} -> {coro} , 'state' : {state}",
+            f"submit received non-coroutine: {type(coro)} -> {coro} , 'state' : {StateManager.state}",
             "loop"
         )
         # print()
-        if state in (State.INIT, State.SHUTTING_DOWN):
+        if StateManager.state in (State.INIT, State.SHUTTING_DOWN):
             return None # coloquei isso aqui pq durante  o shutdown estou tentando usar funções que ja foram fechadas, é mais pra se eu fizer alguma merda e isso mudar ai avisar
         
         else:
@@ -75,12 +75,14 @@ def submit(
         # ===========================
         # CASO 1: já estamos no loop
         # ===========================
+        print(f"executing submit function for {coro} and state = {StateManager.state}")
         if threading.current_thread() is cls._thread:
             # print("estamos na mesma thread, tentando retornar o o asyncio.create_task")
+            print('estou na mesma thread do loop, criando a task diretamente')
             task = asyncio.create_task(coro, name=name)
+            print(f"creating task in loop thread: {task}", "loop")
             setattr(task, "protected", protected)
             task.add_done_callback(cls.tasksMap._on_task_finish)
-            print(f"creating task in loop thread: {task}", "loop")
             cls.tasksMap.register_task(
                 task=task,
                 name=name,
@@ -92,6 +94,7 @@ def submit(
             # cls._log(f"task registered: {name}", "loop")
 
             return task
+        print("não estou na mesma thread do loop, criando a task via call_soon_threadsafe")
 
         # ==================================
         # CASO 2: estamos fora da thread
@@ -101,9 +104,9 @@ def submit(
         def _create_task_in_loop():
             try:
                 task = asyncio.create_task(coro, name=name)
+                print(f"creating task in loop thread: {task}", "loop")
                 task.add_done_callback(cls.tasksMap._on_task_finish)
                 setattr(task, "protected", protected)
-                print(f"creating task in loop thread: {task}", "loop")
                 cls.tasksMap.register_task(
                     task          =  task,
                     name          =  name,
@@ -116,9 +119,9 @@ def submit(
                 fut.set_result(task)
 
             except Exception as e:
+                log_error_forensics_plus(e)
                 cls._log("o erro dentro da _create_Task_in_loop foi: ",e)
                 fut.set_exception(e)
-                log_error_forensics_plus(e)
                 # raise e
 
         cls._current.call_soon_threadsafe(_create_task_in_loop)

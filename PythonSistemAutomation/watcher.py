@@ -33,11 +33,12 @@ class EventObserver:
     # definition_thread = threading.current_thread().name
     
     # # @sys_monitor
-    def __init__(self, system):
+    def __init__(self, system, sendingQueue = None):
         if self.__class__.already_init:
             warnings.warn("iniciando o eventObserver quando ja foi iniciado!")
             return
         already_init = True
+        self.sendingQueue = sendingQueue
         self.show_macro_event = True
         self.init_thread = threading.current_thread().name
         self.system = system
@@ -103,7 +104,6 @@ class EventObserver:
                         
                         self.counter["send_macro_events"] += 1
                         return True
-                        # await self._on_event_callback(event, self.system)
 
                     except:
                         ### é nesse ponto aqui que vem os acos da macro certinnho!!!!
@@ -114,7 +114,6 @@ class EventObserver:
             
             self.counter["send_to_process_events"] +=1
             return True
-            # self._on_event_callback(event, self.system)
 
         except Exception as e:
             log_error_forensics_plus(e)
@@ -134,8 +133,11 @@ class EventObserver:
         while self.listeners_running:
             try:
                 # Espera o próximo evento sem bloquear o loop
-                event  = await self.event_queue.get()
-                
+                try:
+                    event = await asyncio.wait_for(self.event_queue.get(), timeout=0.5)
+                    # event  = await self.event_queue.get()
+                except asyncio.TimeoutError:
+                    continue
                 chegou_da_queue = time.perf_counter()
                 # event['timestamp'] = event['timestamp']
                 # print(f"thread da definição da classe é: {self.__class__.definition_thread}")
@@ -168,7 +170,6 @@ class EventObserver:
                         self.send_queue.put_nowait, 
                         event
                         )
-                    # await self._on_event_callback(event, self.system)
                     # depois_de_enviar = time.perf_counter()
                     # total_time = depois_de_enviar -event["timestamp"]
                     # time_to_verify_window = logo_depois_de_verificar_janela - logo_antes_de_verificar_janela 
@@ -391,7 +392,7 @@ class EventObserver:
                 # 4. Envia o Lote (Aqui você pode dar await sem medo)
                 if buffer:
                     # print(f"Enviando lote de {len(buffer)} eventos...")
-                    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system)
+                    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)
                     for _ in range(len(buffer)):
                         self.send_queue.task_done()
                     if confirmation:
@@ -406,9 +407,7 @@ class EventObserver:
                 warnings.warn(e)
 
     def start(self): # inicia os listeners
-        # if self._on_event_callback is None:
-        #     self.set_event_callback(default_callback)
-
+        
         if self.listeners_running:# pra previnir reentrada!
             warnings.warn("tentando iniciar os listeners no observer quando eles ja foram iniciados!")
             return
@@ -443,21 +442,4 @@ class EventObserver:
         #     print(ev)
 
 
-    # def add_event(self, event):
-    #     if self._current_macro is None:
-    #         self._current_macro = copy([])
-    #     if isinstance(event, dict):
-    #         self._current_macro.append(event)
-    #     else:
-    #         logger.info("Event must be a dict and is : ",type(event), " and the value is : ", event)
-
-    # def get_current_macro(self):
-    #     return self._current_macro if self._current_macro is not None else copy([])
     
-    # def clear_current_macro(self):
-    #     self._current_macro = None
-
-        # def set_event_callback(self,callback):
-    #     """Defines the function that will be called for each captured event."""
-    #     logger.info(f"Setting event callback: {callback}")
-    #     self._on_event_callback = callback

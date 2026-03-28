@@ -211,7 +211,9 @@ class WebSocketClient:
 
     @classmethod
     async def close(cls):
-        logger.info("função close do websocket foi chamada !")
+        striing = "função close do websocket foi chamada !"
+        print(striing)
+        logger.info(striing)
         if cls.connection:
             try:
                 await cls.connection.close()
@@ -245,10 +247,10 @@ class WebSocketClient:
             logger.error(f"error stopping receiver loop: {str(e)}")
 
 
-LifecycleMaster.register_cleanup_function(WebSocketClient.close, 
-                                          priority=80, 
-                                          name = "WebSocketClient.close",
-                                          register_in_atexit = False)
+# LifecycleMaster.register_cleanup_function(WebSocketClient.close, 
+#                                           priority=80, 
+#                                           name = "WebSocketClient.close",
+#                                           register_in_atexit = False)
 # Isolated usage example (for testing purposes only)):
 if __name__ == "__main__":
     client = WebSocketClient

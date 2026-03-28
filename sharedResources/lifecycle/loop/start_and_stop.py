@@ -16,8 +16,13 @@ def start_loop(cls):
         cls._log("loop already started or starting")
         return False
     loop_ready  = threading.Event()
+    if not hasattr(cls,"_loop_starting"):
+        cls._loop_starting = False
     def _run():
         try:
+            if cls._loop_starting:
+                return
+            cls._loop_starting = True
             cls._thread = threading.current_thread()
             cls._current = asyncio.new_event_loop()
             asyncio.set_event_loop(cls._current)
@@ -41,7 +46,9 @@ def start_loop(cls):
     t.start()
     if not loop_ready.wait(timeout=5):  # wait until the loop is ready
         cls._log("loop failed to start within timeout","loop")
+        cls._loop_starting = False
         return False
+    cls._loop_starting = False
     return True
 
 async def _cancel_all_tasks(cls, timeout = 5):

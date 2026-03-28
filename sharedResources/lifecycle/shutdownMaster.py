@@ -98,6 +98,7 @@ class LifecycleMaster:
     testing = False
 
     # ------- events -------
+    start_run_time_finished_event = threading.Event()
     first_shutdown_event = threading.Event()
     shutdown_event = (
         threading.Event()
@@ -111,6 +112,7 @@ class LifecycleMaster:
         threading.Lock()
     )  # para o uso externo acontecer apenas uma vez
     logsLock = threading.Lock()  # para não haver concorrência no registro de logs
+    start_lock = threading.Lock()
     # ---------------------
     # -------- maps -------
     threadsMap = {}
@@ -282,15 +284,22 @@ class LifecycleMaster:
     
     @classmethod
     def prepare_for_start_runtime(cls,main_coro):
-        cls.current_main_corro.append(main_coro)
-        if cls.software_thread is None:
-            cls.pluga_sinal_de_parada()
-            cls.software_thread = threading.Thread(target = cls.start_runtime)
-            cls.software_thread.start()
-        else:
-            print("preciso implementar o que acontece quando uso a prepare_for_start_runtime pela segunda vez! ")
-            1/0
-            pass 
+        with cls.start_lock:
+            cls.current_main_corro.append(main_coro)
+
+            if cls.running_loop.loop_is_none() and len(cls.current_main_corro)  == 1 :  
+                print("trying to run start_loop")
+                cls.running_loop.start_loop()
+            if cls.software_thread is None:
+                cls.pluga_sinal_de_parada()
+                cls.software_thread = threading.Thread(target = cls.start_runtime)
+                cls.software_thread.start()
+                cls.start_run_time_finished_event.wait()
+                cls.start_run_time_finished_event.clear()
+
+            else:
+                # print("preciso implementar o que acontece quando uso a prepare_for_start_runtime pela segunda vez! ")
+                cls.start_runtime()
 
 
     @classmethod
@@ -298,28 +307,23 @@ class LifecycleMaster:
         print('[start_runtime] init')
         if main_coro is None:
             main_coro = cls.current_main_corro[-1]
-        if cls.running_loop.loop_is_none():
-            cls.running_loop.start_loop()
-        # if cls.print_intercept:
-        #     cls.print_interceptor = PrintInterceptor()
-        #     cls.print_interceptor.install()
-        #     cls.print_interceptor.enable()
+        
+        else:
+            print(f"""not trying to run start_loop because 
+                  cls.running_loop.loop_is_none() returned: {cls.running_loop.loop_is_none()} 
+                  and/or the len(cls.current_main_corro) is {len(cls.current_main_corro)} and should be equal 1""")
+        
         quanto_de_corro = len(cls.current_main_corro)
         correct_name = 'main' + str(quanto_de_corro) if quanto_de_corro > 1 else 'main'
-        # print("Main loop started:", cls.running_loop.get())
-        # print("Submitting main to the loop...")
         if inspect.iscoroutine(main_coro) or inspect.iscoroutinefunction(main_coro):
-            # print("Main coroutine is a coroutine or coroutine function.")
             res = cls.running_loop.submit(main_coro, protected=True, name = correct_name)
         else:
-            # print("Main coroutine is a regular function, scheduling it.")
             res = cls.running_loop.call_soon(main_coro)
         if cls.lifecycleState.state == State.INIT:
             cls.lifecycleState.state = State.RUNNING
+        cls.start_run_time_finished_event.set()
         
-        # print("Main runtime started. the lifecicleState is: ", cls.lifecycleState.state )
-        # print("Main coroutine submitted:", res)
-
+        
     @classmethod
     def autoShutdown(cls):
         """Função para iniciar o shutdown automático de threads e tasks"""
@@ -348,10 +352,30 @@ class LifecycleMaster:
                     cls.register_log("finished cleanup before shutdown", "general")
                     cls.shutdown_event.set()
                     cls.register_log("iniciating tasks shutdown", "general")
+                    print(f"o resultado do cls.running_loop.get() é: {cls.running_loop.get()}")
+                    print(f"cls.running_loop.get().is_running() é: {cls.running_loop.get().is_running()}")
+                    # if asyncio.get_running_loop() == cls.running_loop.get():
+                    #     print("estou na mesma thread do loop!")
+
+                    # cls.running_loop.submit( cls.task_shutdown_function())
+                    # else:
+                    print("estou em outra thread em relação ao loop!")
                     res = asyncio.run_coroutine_threadsafe(
                         cls.task_shutdown_function(), cls.running_loop.get()
                     )
-                    res.result(timeout=10)
+                    try:
+                        res.result(timeout=10)
+                    except Exception as e:
+                        for suspect_task in asyncio.all_tasks(loop=cls.running_loop.get()):
+                            print("task suspeita: ", suspect_task)
+                            print(" nome: ", suspect_task.get_name())
+                            print(" estado: ", suspect_task._state)
+                            print("is_current_task = ",asyncio.current_task(loop=cls.running_loop.get()) == suspect_task)
+                        print("current_task in the loop is:= ",asyncio.current_task(loop=cls.running_loop.get()))
+                            
+                            # suspect_task.print_stack()
+                        raise
+                        cls.register_log(f"[autoShutdown] erro ao esperar o task_shutdown_function: {e}", "general")
                     cls.register_log(
                         f"[autoShutdown]esperei o task_shutdown_function e o resultado foi:{res} "
                     )
@@ -500,24 +524,7 @@ class LifecycleMaster:
 
         return MyLoop.submit(_inner())
 
-    # -------------------------------
-    # Wrappers de callbacks síncronos
-    # -------------------------------
-
-    # @staticmethod
-    # def schedule(fn, *args):
-    #     """Agenda uma função sync no loop (thread-safe)"""
-    #     return MyLoop.call_soon(fn, *args)
-
-    # -------------------------------
-    # Wrappers de controle do loop
-    # -------------------------------
-
-    # @staticmethod
-    # def shutdown_loop(graceful=True):
-    #     """Encerra o loop de forma segura"""
-    #     return MyLoop.stop(graceful=graceful)
-
+    
     @classmethod
     def prepare_dependencies(cls):
         # preparando as dependências para o lifecycle master

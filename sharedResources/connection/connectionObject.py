@@ -260,7 +260,7 @@ class TwoWayConnection:
     async def close(self):
 
         print(" close function begin")
-        await self._receiver_task_cancel_complete_event.wait()
+        # await self._receiver_task_cancel_complete_event.wait()
         print(" _receiver_task_cancel_complete_event is finally set! proceeding with shuting connections")
         for con in ([[self.sender,self._sender_lock], [self.receiver,self._receiver_lock]]):
             try:

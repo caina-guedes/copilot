@@ -1,3 +1,4 @@
+import queue
 import warnings
 
 
@@ -12,9 +13,7 @@ if STRICT_MODE:
     )
 
 
-import signal 
 import json
-import logging
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
@@ -23,7 +22,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 # from sharedResources.generalUtils.aprint import aprint  # my assyncronous print function
 # builtins.print = aprint # Override the built-in print with asynchronous print
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
-LoggerManager.complement_logs_path("PythonSistemAutomation")
+# LoggerManager.complement_logs_path("PythonSistemAutomation")
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 
 from sharedResources.debuggingResources.exec_monitor import CallRegistry
@@ -109,22 +108,44 @@ class AutomationSystem:
         else:
             print("Watcher shutdown event is still happening, please wait.")
     
-    def __init__(self, not_sent_db):
+    def __init__(self, not_sent_db, sendingQueue = None,receivingQueue = None):
         
         print(f"inicializando o automationSystem o argumento é: not_sent_db : {not_sent_db}")
         AutomationSystem.main_instance = self
+        self.sendingQueue = sendingQueue
+        self.receivingQueue = receivingQueue
         # self.actions = serverConfig.SOWatcherActions(not_sent_db).actionDispatch  # Assuming actionDispatch is a dictionary of actions
-        self.ws_client = WebSocketClient
         self.ExecutingMacro = {"value":False}
         self.controlsToIgnore = set()  # Set of controls to ignore during macro execution
         # print("logo antes de mexer com o websocket!")
-        self.ws_client.prepareClass(self)
+        if receivingQueue is not None:
+            print("vou iniciar o listener da receivingQueue")
+            self.start_listening_receivingQueue()
+            print("iniciei o listener da receivingQueue")
+        else :
+            self.ws_client = WebSocketClient
+            self.ws_client.prepareClass(self)
+            print("preparei o websocket do watcher pois não recebi queues")
+
         print("logo antes do observer!")
-        self.observer = EventObserver(self)
+        self.observer = EventObserver(self,sendingQueue = sendingQueue)
         print("logo depois do observer")
         self.not_sent_db = not_sent_db  # Initialize the database for not sent events
         self._not_sent_db_is_empty_last_check = True  # Flag to check if the database is empty
         
+    def start_listening_receivingQueue(self):
+        async def receivingQueue_worker():
+            while not self.__class__.watcher_shutdown_event.is_set() :
+                # item = q.get(
+                try:
+                    msg = self.receivingQueue.get(timeout=0.5)
+                    
+                except queue.Empty:
+                    continue
+                GlobalExecutor.enqueue(msg,self.controlsToIgnore,self,self.ExecutingMacro)
+
+        LifecycleMaster.run_async(receivingQueue_worker, name = "watcher_receivingQueue_worker")
+
     async def is_not_sent_db_empty(self):
         """
         Checks if the not sent events database is empty.
@@ -182,16 +203,20 @@ class AutomationSystem:
             # LoggerManager.log_exception_with_context(f"Error deleting event from database: {e}")
             # logger.info(f"Error deleting event from database: {e}")    
 
-    async def initializeWebsocket(self):
+    async def initializeWebsocket(self, internalQueue = None):
         """
         Initializes the WebSocket client connection.
         """
         try:
-            # print("estou no inicializeWebsocket")
-            await self.ws_client.connect()
-            logger.info("WebSocket client initialized.")
+            if internalQueue is not None:
+                self.internalQueue = internalQueue
+                print('internal queue detected! no websocket needed!')
+            else:
+                # print("estou no inicializeWebsocket")
+                await self.ws_client.connect()
+                logger.info("WebSocket client initialized.")
         except Exception as e:
-
+            log_error_forensics_plus(e)
             # LoggerManager.log_exception_with_context(f"Error initializing WebSocket client: {e}")
             # logger.error(f"Error initializing WebSocket client: {e}")
             raise 
@@ -210,7 +235,7 @@ class AutomationSystem:
         self.observer.stop()
 
 
-async def main():
+async def main(sendinQueue = None,receivingQueue = None):
     # loop = asyncio.get_running_loop()
     # LifecycleMaster.set_loop(loop)
     
@@ -218,13 +243,16 @@ async def main():
     try:
         not_sent_db = await WatcherNotsentEventsDatabase.create()  # Initialize the not sent events database
         print("inicializei o not_sent_db")
-        autoSystem = AutomationSystem(not_sent_db)
+        autoSystem = AutomationSystem(not_sent_db, sendinQueue, receivingQueue)
         print("inicializei o automationSystem")
         logger.info("Starting event observer...")
         autoSystem.start_observer()
         print("comecei o start_observer")
-        await autoSystem.initializeWebsocket()
-        print("comecei o websocket")
+        if not sendinQueue or not receivingQueue:
+            await autoSystem.initializeWebsocket()
+            print("comecei o websocket")
+        else:
+            print("não usarei o websocket pois recebi as queues para comunicação interna")
         LifecycleMaster.register_cleanup_function(autoSystem.stop_observer,
                                                   priority = 100,
                                                   name = "AutomationSistem.stop_observer",
@@ -232,9 +260,7 @@ async def main():
         
         await AutomationSystem.stop_event.wait()  # Aguarda sinal de parada
 
-    # except KeyboardInterrupt:
-    #     print("KeyboardInterrupt received, shutting down...")
-    #     AutomationSystem.shutdown(loop)
+    
     except Exception as e:
         log_error_forensics_plus( e , extra_message = "Error in main watcher function")
         # print(f"Error in main: {e}")
@@ -262,11 +288,6 @@ async def main():
 
 if __name__ == "__main__":
     try:
-    # Captura Ctrl+C ou sinal de término
-        # for sig in (signal.SIGINT, signal.SIGTERM):
-        #     # print(f"pondo o sinal {AutomationSystem.shutdown} no {sig}")
-        #     signal.signal(sig, AutomationSystem.shutdown)
-        # print("consegui por os sinais")
     
         LifecycleMaster.prepare_for_start_runtime(main)
         LifecycleMaster.espera_pelo_tchau()
@@ -276,27 +297,26 @@ if __name__ == "__main__":
         warnings.warn(str(e))
 
 
-print("byebye de vez!")
+    print("byebye de vez!")
 
 
-import sys
-import threading
-import traceback
+    import threading
+    # import traceback
 
-print("Threads ativas:")
-for thread in threading.enumerate():
-    # print(f"\nThread: {thread.name}")
-    if thread is threading.current_thread():
-        print(str(thread)+"(self)", "daemon:", thread.daemon)        
-    else:print(thread, "daemon:", thread.daemon)
-    # try:
-    #     stack = sys._current_frames().get(thread.ident)
+    print("Threads ativas:")
+    for thread in threading.enumerate():
+        # print(f"\nThread: {thread.name}")
+        if thread is threading.current_thread():
+            print(str(thread)+"(self)", "daemon:", thread.daemon)        
+        else:print(thread, "daemon:", thread.daemon)
+        # try:
+        #     stack = sys._current_frames().get(thread.ident)
 
-    #     if stack:
-    #         traceback.print_stack(stack)
-    # except Exception as e:
-    #     print(f"deu erro na parte do print_stack e foi:{str(e)}")
-# for t in threading.enumerate():
-#     if t is threading.current_thread():
-#         print(str(t)+"(self)", "daemon:", t.daemon)        
-#     print(t, "daemon:", t.daemon)
+        #     if stack:
+        #         traceback.print_stack(stack)
+        # except Exception as e:
+        #     print(f"deu erro na parte do print_stack e foi:{str(e)}")
+    # for t in threading.enumerate():
+    #     if t is threading.current_thread():
+    #         print(str(t)+"(self)", "daemon:", t.daemon)        
+    #     print(t, "daemon:", t.daemon)

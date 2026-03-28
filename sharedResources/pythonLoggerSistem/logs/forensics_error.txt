@@ -1,124 +1,339 @@
-2026-03-24 13:01:20,708 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+2026-03-28 13:38:25,769 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [ConnectionClosedOK]
-📍 No arquivo: C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\asyncio\connection.py | Linha: 957
-💻 Código: `raise self.protocol.close_exc from original_exc`
-🕒 Horário: 2026-03-24 13:01:20.693087 | 🧵 Thread: AsyncioLoopThread  Task: ID: 1858055919120 | Nome: loop do buffer do observer- segundo loop | Coro: buffer_loop | Protected: False | Total Tasks Vivas: 3
- 💬 Mensagem: received 1000 (OK) Server Shutdown; then sent 1000 (OK) Server Shutdown
+🕵️ INVESTIGAÇÃO PROFUNDA: [AssertionError]
+📍 No arquivo: C:\Python314\Lib\asyncio\windows_events.py | Linha: 319
+💻 Código: `assert self._self_reading_future is None`
+🕒 Horário: 2026-03-28 13:38:25.764603 | 🧵 Thread: AsyncioLoopThread  Task: Fora de um Event Loop
+ 💬 Mensagem: 
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
 printar : True
 retornar : False
 
-Estado do ciclo de vida: SHUTTING_DOWN
+Estado do ciclo de vida: RUNNING
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <websockets.asyncio.client.ClientConnection object at 0x000001B09D8DFB60>
-    expected_state = <State.OPEN: 1>
-    wait_for_close = True
-    raise_close_exc = True
-    original_exc = None
+    self = <ProactorEventLoop running=True closed=False debug=False>
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
-    Nenhum frame disponível
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - run_forever):
+    self = <ProactorEventLoop running=True closed=False debug=False>
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 33, in _run
+    log_error_forensics_plus(e)
   File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
     cls._current.run_forever()
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 394, in buffer_loop
-    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system)
-  File "D:\copilot\sharedResources\debuggingResources\error_tracker.py", line 47, in async_wrapper
-    return await func(*args, **kwargs)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_callback.py", line 25, in default_callback
-    await father.ws_client.connection.send(event, True)
-  File "D:\copilot\sharedResources\connection\connectionObject.py", line 323, in send
-    log_error_forensics_plus(e)
-  File "D:\copilot\sharedResources\connection\connectionObject.py", line 299, in send
-    await self.sender.send(json.dumps(message))
-  File "C:\Python314\Lib\contextlib.py", line 214, in __aenter__
-    return await anext(self.gen)
-           ^^^^^^^^^^^^^^^^^^^^^
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\sharedResources\connection\connectionObject.py", line 299, in send
-    await self.sender.send(json.dumps(message))
-  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\asyncio\connection.py", line 476, in send
-    async with self.send_context():
-               ~~~~~~~~~~~~~~~~~^^
-  File "C:\Python314\Lib\contextlib.py", line 214, in __aenter__
-    return await anext(self.gen)
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\asyncio\connection.py", line 957, in send_context
-    raise self.protocol.close_exc from original_exc
-websockets.exceptions.ConnectionClosedOK: received 1000 (OK) Server Shutdown; then sent 1000 (OK) Server Shutdown
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
+    cls._current.run_forever()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\asyncio\base_events.py", line 674, in run_forever
+    self._run_forever_setup()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\asyncio\windows_events.py", line 319, in _run_forever_setup
+    assert self._self_reading_future is None
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-24 13:54:46,460 [WARNING] [Thread-8] error_tracker:229 - 
+2026-03-28 13:39:17,739 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [NameError]
-📍 No arquivo: D:\copilot\PythonSistemAutomation\main.py | Linha: 288
-💻 Código: `print(str(thread)+"(self)", "daemon:", t.daemon)`
-🕒 Horário: 2026-03-24 13:54:46.454374 | 🧵 Thread: Thread-8  Task: Fora de um Event Loop
- 💬 Mensagem: name 't' is not defined
+🕵️ INVESTIGAÇÃO PROFUNDA: [AssertionError]
+📍 No arquivo: C:\Python314\Lib\asyncio\windows_events.py | Linha: 319
+💻 Código: `assert self._self_reading_future is None`
+🕒 Horário: 2026-03-28 13:39:17.735476 | 🧵 Thread: AsyncioLoopThread  Task: Fora de um Event Loop
+ 💬 Mensagem: 
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <ProactorEventLoop running=True closed=False debug=False>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - run_forever):
+    self = <ProactorEventLoop running=True closed=False debug=False>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 33, in _run
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
+    cls._current.run_forever()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
+    cls._current.run_forever()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\asyncio\base_events.py", line 674, in run_forever
+    self._run_forever_setup()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\asyncio\windows_events.py", line 319, in _run_forever_setup
+    assert self._self_reading_future is None
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-28 13:52:28,555 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [AssertionError]
+📍 No arquivo: C:\Python314\Lib\asyncio\windows_events.py | Linha: 319
+💻 Código: `assert self._self_reading_future is None`
+🕒 Horário: 2026-03-28 13:52:28.551594 | 🧵 Thread: AsyncioLoopThread  Task: Fora de um Event Loop
+ 💬 Mensagem: 
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <ProactorEventLoop running=True closed=False debug=False>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - run_forever):
+    self = <ProactorEventLoop running=True closed=False debug=False>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 33, in _run
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
+    cls._current.run_forever()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
+    cls._current.run_forever()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\asyncio\base_events.py", line 674, in run_forever
+    self._run_forever_setup()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\asyncio\windows_events.py", line 319, in _run_forever_setup
+    assert self._self_reading_future is None
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-28 14:10:21,460 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ZeroDivisionError]
+📍 No arquivo: D:\copilot\sharedResources\lifecycle\loop\threadsafe.py | Linha: 69
+💻 Código: `1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra`
+🕒 Horário: 2026-03-28 14:10:21.456692 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2180278697520 | Nome: main2 | Coro: main | Protected: True | Total Tasks Vivas: 1
+ 💬 Mensagem: division by zero
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    cls = <class 'sharedResources.lifecycle.loop.loop_class.MyLoop'>
+    fn_or_coro = <function AutomationSystem.start_listening_recei...als>.receivingQueue_worker at 0x000001FBA39EF5E0>
+    name = 'watcher_receivingQueue_worker'
+    created_from = 'unknown'
+    protected = False
+    cleanup_event = None
+    cleanup_function = None
+    state = None
+    e = ZeroDivisionError('division by zero')
+    coro = <function AutomationSystem.start_listening_recei...als>.receivingQueue_worker at 0x000001FBA39EF5E0>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - start_listening_receivingQueue):
+    self = <PythonSistemAutomation.main.AutomationSystem object at 0x000001FBA39D4EC0>
+    receivingQueue_worker = <function AutomationSystem.start_listening_recei...als>.receivingQueue_worker at 0x000001FBA39EF5E0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 36, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonSistemAutomation\main.py", line 239, in main
+    autoSystem = AutomationSystem(not_sent_db, sendinQueue, receivingQueue)
+  File "D:\copilot\PythonSistemAutomation\main.py", line 122, in __init__
+    self.start_listening_receivingQueue()
+  File "D:\copilot\PythonSistemAutomation\main.py", line 140, in start_listening_receivingQueue
+    LifecycleMaster.run_async(receivingQueue_worker,name= "watcher_receivingQueue_worker")
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 482, in run_async
+    return MyLoop.submit(coro, *args, **kargs)
+  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 72, in submit
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 69, in submit
+    1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
+    ~^~
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 69, in submit
+    1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
+    ~^~
+ZeroDivisionError: division by zero
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-28 14:41:47,306 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
+📍 No arquivo: D:\copilot\PythonServer\server.py | Linha: 140
+💻 Código: `self.senderQueue = threading.Queue()`
+🕒 Horário: 2026-03-28 14:41:47.305043 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: module 'threading' has no attribute 'Queue'
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
 printar : True
 retornar : True
 
-Estado do ciclo de vida: RUNNING
+Estado do ciclo de vida: INIT
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    warnings = <module 'warnings' from 'C:\\Python314\\Lib\\warnings.py'>
-    STRICT_MODE = True
-    signal = <module 'signal' from 'C:\\Python314\\Lib\\signal.py'>
+    self = <__main__.WebSocketServerManager object at 0x0000015EB2ED4980>
+    watcher_is_internal = True
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - <module>):
+    asyncio = <module 'asyncio' from 'C:\\Python314\\Lib\\asyncio\\__init__.py'>
+    websockets = <module 'websockets' from 'C:\\Users\\cainã\\App...thon314\\site-packages\\websockets\\__init__.py'>
+    threading = <module 'threading' from 'C:\\Python314\\Lib\\threading.py'>
     json = <module 'json' from 'C:\\Python314\\Lib\\json\\__init__.py'>
-    logging = <module 'logging' from 'C:\\Python314\\Lib\\logging\\__init__.py'>
     sys = <module 'sys' (built-in)>
     Path = <class 'pathlib.Path'>
-    LifecycleMaster = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
-    CallRegistry = <class 'sharedResources.debuggingResources.exec_monitor.CallRegistry'>
-    GlobalExecutor = <class 'PythonSistemAutomation.watcher_utils.GlobalMacroExecutor.GlobalExecutor'>
-    EventObserverConfig = <class 'PythonSistemAutomation.sistem_utils.Watcher_config.EventObserverConfig'>
-    EventObserver = <class 'PythonSistemAutomation.watcher.EventObserver'>
+    datetime = <class 'datetime.datetime'>
     LoggerManager = <class 'sharedResources.pythonLoggerSistem.logger.LoggerManager'>
-    WebSocketClient = <class 'PythonSistemAutomation.watcher_utils.WatcherWebSocket.WebSocketClient'>
-    serverConfig = <module 'PythonServer.serverConfig' from 'D:\\copilot\\PythonServer\\serverConfig.py'>
-    WatcherNotsentEventsDatabase = <class 'sharedResources.DataBases.watcherDatabase.WatcherNotsentEventsDatabase'>
-    asyncio = <module 'asyncio' from 'C:\\Python314\\Lib\\asyncio\\__init__.py'>
-    TrackedThread = <class 'sharedResources.lifecycle.shutdownThreadUtils.TrackedThread'>
-    log_error_forensics_plus = <function log_error_forensics_plus at 0x000002524F27B480>
-    sys_monitor = <function sys_monitor at 0x000002524F27B530>
-    monitor_class = <function monitor_class at 0x000002524F27B740>
-    print_thread_status = <function print_thread_status at 0x000002524F42C5C0>
-    print_async_tasks_status = <function print_async_tasks_status at 0x000002524F42DBC0>
-    logger = <Logger PythonSistemAutomation.main (INFO)>
-    shutDownNotComplete = True
-    AutomationSystem = <class 'PythonSistemAutomation.main.AutomationSystem'>
-    main = <function main at 0x00000252507B1850>
-    threading = <module 'threading' from 'C:\\Python314\\Lib\\threading.py'>
-    traceback = <module 'traceback' from 'C:\\Python314\\Lib\\traceback.py'>
-    thread = <Listener(Thread-8, started daemon 11776)>
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _call_with_frames_removed):
-    f = <built-in function exec>
-    args = (<code object <module> at 0x000002524D590840, fil...\copilot\PythonSistemAutomation\main.py", line 1>, {'AutomationSystem': <class 'PythonSistemAutomation.main.AutomationSystem'>, 'CallRegistry': <class 'sharedResources.debuggingResources.exec_monitor.CallRegistry'>, 'EventObserver': <class 'PythonSistemAutomation.watcher.EventObserver'>, 'EventObserverConfig': <class 'PythonSistemAutomation.sistem_utils.Watcher_config.EventObserverConfig'>, ...})
-    kwds = {}
+    LifecycleMaster = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
+    log_error_forensics_plus = <function log_error_forensics_plus at 0x0000015EB1CEB060>
+    aprint = <function aprint at 0x0000015EB21624B0>
+    serverConfig = serverConfig(
+  _threading_rlock = <unlocked _th... serverConfig.set_flag at 0x0000015EB2163AB0>)>
+)
+    connection_types = {'OSwatcherReceiver': 'Operating System Watcher Receiver', 'OSwatcherSender': 'Operating System Watcher Sender', 'extension': 'Browser Extension', 'front_end': 'front_end', ...}
+    SOWatcherActions = <class 'PythonServer.serverConfig.SOWatcherActions'>
+    MainDbClass = <class 'sharedResources.DataBases.mainDatabase.main_db.MainDatabase'>
+    macroManager = <class 'PythonServer.macroManager.macroManager.macroManager'>
+    state = <module 'PythonServer.core.state' from 'D:\\copilot\\PythonServer\\core\\state.py'>
+    os_watcher_handler = <module 'PythonServer.core.handlers.os_watcher_h...onServer\\core\\handlers\\os_watcher_handler.py'>
+    browser_handler = <module 'PythonServer.core.handlers.browser_hand...ythonServer\\core\\handlers\\browser_handler.py'>
+    frontend_handler = <module 'PythonServer.core.handlers.frontend_han...thonServer\\core\\handlers\\frontend_handler.py'>
+    connections = <class 'PythonServer.utils.connections'>
+    sys_monitor = <function sys_monitor at 0x0000015EB1CEB270>
+    monitor_class = <function monitor_class at 0x0000015EB1CEB480>
+    watcher_main_function = <function main at 0x0000015EB218B7F0>
+    logger = <Logger __main__ (INFO)>
+    initialize_server_state = <function initialize_server_state at 0x0000015EB2EED4E0>
+    get_current_time = <function get_current_time at 0x0000015EB2EEDFE0>
+    server_router = <function server_router at 0x0000015EB2EEE2A0>
+    WebSocketServerManager = <class '__main__.WebSocketServerManager'>
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 293, in _on_press
-    from PythonSistemAutomation.main import AutomationSystem
-  File "D:\copilot\PythonSistemAutomation\main.py", line 288, in <module>
-    print(str(thread)+"(self)", "daemon:", t.daemon)
-                                           ^
+  File "D:\copilot\PythonServer\server.py", line 292, in <module>
+    manager = WebSocketServerManager(watcher_is_internal = True)
+  File "D:\copilot\PythonServer\server.py", line 140, in __init__
+    self.senderQueue = threading.Queue()
+                       ^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
   File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
     return func(*args, **kwargs)
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 293, in _on_press
-    from PythonSistemAutomation.main import AutomationSystem
-  File "D:\copilot\PythonSistemAutomation\main.py", line 288, in <module>
-    print(str(thread)+"(self)", "daemon:", t.daemon)
-                                           ^
-NameError: name 't' is not defined
+  File "D:\copilot\PythonServer\server.py", line 140, in __init__
+    self.senderQueue = threading.Queue()
+                       ^^^^^^^^^^^^^^^
+AttributeError: module 'threading' has no attribute 'Queue'
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-28 16:13:36,545 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [UnboundLocalError]
+📍 No arquivo: D:\copilot\sharedResources\lifecycle\loop\threadsafe.py | Linha: 104
+💻 Código: `print(f"creating task in loop thread: {task}", "loop")`
+🕒 Horário: 2026-03-28 16:13:36.542576 | 🧵 Thread: AsyncioLoopThread  Task: Nenhuma Task (Código Síncrono/Thread Pura)
+ 💬 Mensagem: cannot access local variable 'task' where it is not associated with a value
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    e = UnboundLocalError("cannot access local variable 'task' where it is not associated with a value")
+    cleanup_event = None
+    cleanup_function = None
+    cls = <class 'sharedResources.lifecycle.loop.loop_class.MyLoop'>
+    coro = <coroutine object WebSocketServerManager.start at 0x00000175E7E96700>
+    created_from = 'unknown'
+    fut = <Future at 0x175e8a08c20 state=finished raised UnboundLocalError>
+    name = 'main'
+    protected = True
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _run):
+    self = <_ThreadSafeHandle submit.<locals>._create_task_...sharedResources\lifecycle\loop\threadsafe.py:102>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
+    cls._current.run_forever()
+  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 122, in _create_task_in_loop
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 104, in _create_task_in_loop
+    print(f"creating task in loop thread: {task}", "loop")
+                                           ^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 104, in _create_task_in_loop
+    print(f"creating task in loop thread: {task}", "loop")
+                                           ^^^^
+UnboundLocalError: cannot access local variable 'task' where it is not associated with a value
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-28 16:14:57,890 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [UnboundLocalError]
+📍 No arquivo: D:\copilot\sharedResources\lifecycle\loop\threadsafe.py | Linha: 81
+💻 Código: `print(f"creating task in loop thread: {task}", "loop")`
+🕒 Horário: 2026-03-28 16:14:57.885143 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2112152681968 | Nome: main2 | Coro: main | Protected: True | Total Tasks Vivas: 3
+ 💬 Mensagem: cannot access local variable 'task' where it is not associated with a value
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    cls = <class 'sharedResources.lifecycle.loop.loop_class.MyLoop'>
+    fn_or_coro = <function AutomationSystem.start_listening_recei...als>.receivingQueue_worker at 0x000001EBC7233110>
+    name = 'watcher_receivingQueue_worker'
+    created_from = 'unknown'
+    protected = False
+    cleanup_event = None
+    cleanup_function = None
+    state = None
+    e = UnboundLocalError("cannot access local variable 'task' where it is not associated with a value")
+    coro = <coroutine object AutomationSystem.start_listeni...als>.receivingQueue_worker at 0x000001EBC7248310>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - start_listening_receivingQueue):
+    self = <PythonSistemAutomation.main.AutomationSystem object at 0x000001EBC72406E0>
+    receivingQueue_worker = <function AutomationSystem.start_listening_recei...als>.receivingQueue_worker at 0x000001EBC7233110>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonSistemAutomation\main.py", line 240, in main
+    autoSystem = AutomationSystem(not_sent_db, sendinQueue, receivingQueue)
+  File "D:\copilot\PythonSistemAutomation\main.py", line 122, in __init__
+    self.start_listening_receivingQueue()
+  File "D:\copilot\PythonSistemAutomation\main.py", line 141, in start_listening_receivingQueue
+    LifecycleMaster.run_async(receivingQueue_worker,name= "watcher_receivingQueue_worker")
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 504, in run_async
+    return MyLoop.submit(coro, *args, **kargs)
+  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 135, in submit
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 81, in submit
+    print(f"creating task in loop thread: {task}", "loop")
+                                           ^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 81, in submit
+    print(f"creating task in loop thread: {task}", "loop")
+                                           ^^^^
+UnboundLocalError: cannot access local variable 'task' where it is not associated with a value
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

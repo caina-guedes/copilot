@@ -1,4 +1,5 @@
 import asyncio
+import queue
 import websockets
 import threading
 import json
@@ -13,7 +14,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 # Imports Utilitários e Debug
 # from PythonServer.port_handler import free_port
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
-LoggerManager.complement_logs_path("Server")
+# LoggerManager.complement_logs_path("Server")
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 ### o lifecycleMaster tem que ser o primeiro a ser importado por causa do print interceptor!!!!!
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
@@ -30,6 +31,7 @@ from PythonServer.core import state  # Onde guardamos as variáveis globais
 from PythonServer.core.handlers import os_watcher_handler, browser_handler, frontend_handler
 from PythonServer.utils import connections # Ainda precisamos disso para o check_connections antigo
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
+from PythonSistemAutomation.main import main as watcher_main_function
 
 # Logger Setup
 logger = LoggerManager.get_logger(__name__)
@@ -131,10 +133,16 @@ async def server_router(websocket):
 class WebSocketServerManager:
     
 
-    def __init__(self):
+    def __init__(self, watcher_is_internal = False):
         self.server_task = None
         self.check_conn_task = None
         self.ws_server = None
+        if watcher_is_internal == True:
+            self.senderQueue = asyncio.Queue()
+            self.receiverQueue = asyncio.Queue()
+        else:
+            self.senderQueue = None
+            self.receiverQueue = None
 
     async def start(self):
         """Método principal que o LifecycleMaster vai submeter"""
@@ -282,10 +290,14 @@ if __name__ == "__main__":
     # for sig in (signal.SIGINT, signal.SIGTERM):
     #     signal.signal(sig, WebSocketServerManager.shutdown)
     try:    
-        manager = WebSocketServerManager()
+        manager = WebSocketServerManager(watcher_is_internal = True)
         
         # Inicia o runtime via LifecycleMaster
         LifecycleMaster.prepare_for_start_runtime(manager.start())
+        # def execute_watcher():
+        #     return 
+
+        LifecycleMaster.prepare_for_start_runtime(watcher_main_function(manager.senderQueue,manager.receiverQueue))
         # LifecycleMaster.start_runtime(manager.start())
         
         # Bloqueia thread principal

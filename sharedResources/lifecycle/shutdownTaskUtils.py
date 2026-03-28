@@ -100,6 +100,7 @@ class TrackedTask:
     @classmethod
     async def shutdown_tasks(cls):
         try:
+            print("[shutdown_tasks] init")
             cls.register_log("[Shutdown] Cancelling all async tasks...","tasks")
             # logger.info("[Shutdown] Cancelling all async tasks...")
             
