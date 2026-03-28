@@ -9,6 +9,7 @@ from datetime import datetime
 # Adiciona o caminho base ao path (mantido do original)
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
+
 # Imports Utilitários e Debug
 # from PythonServer.port_handler import free_port
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
