@@ -52,7 +52,7 @@ class TrackedThread(threading.Thread):
     @classmethod
     def safe_join(cls, thread_obj, timeout=2):
         cls.register_log(f"[Shutdown] Waiting thread {thread_obj.name} to exit...","threads")
-                    
+        result = None      
         try:
             thread_obj.join(timeout)
         except Exception as e:
@@ -62,11 +62,12 @@ class TrackedThread(threading.Thread):
             if thread_obj.is_alive():
                 cls.register_log(f"[Shutdown] Thread {thread_obj.name} ainda viva após timeout", "threads")
 
-                return False
+                result =  False
             else:
                 cls.register_log(f"[Shutdown] Thread {thread_obj.name} finalizada", "threads")
-                return True
-
+                result =  True
+        return result
+    
     def __init__(self, target, name, created_from,daemon = False,cleanup_event = None ,cleanup_function = None, *args, **kwargs):
         """created_from é um campo pra que eu consiga humanamente entender onde ela foi criada por exemplo:
             "EventBuffer.start" 
@@ -139,12 +140,19 @@ class TrackedThread(threading.Thread):
             cls.register_log("threadsMap está vazia no shutdown")
         else:
             print("o tamanho do threadsMap é: ",len(cls.threadsMap))
+        current_thread = threading.current_thread()
+        main_thread = threading.main_thread()
 
         for name, threads in list(cls.threadsMap.items()):
             for tracked in threads:
                 thread_obj, clean_event, use_flag , clean_function = tracked.obj, tracked.cleanup_event, tracked.cleanup_enabled, tracked.cleanup_function
                 personalized_worked = cls.personalized_stop(clean_event,clean_function)
-
+                if thread_obj is current_thread:
+                    print("not cancelling current thread")
+                    continue
+                if thread_obj is main_thread:
+                    print("not canceling main thread")
+                    continue
                 if thread_obj.is_alive(): # is still active
                     if not  cls.safe_join(thread_obj):
                         cls.problematicThreads.append([name,tracked])
@@ -164,7 +172,12 @@ class TrackedThread(threading.Thread):
         if len(cls.problematicThreads)>0:
             print("tem thread dando problema e é:")
             for uncooperativeThread in cls.problematicThreads:
-                print("o nome da thread problemática é: " ,uncooperativeThread[0], "e ela é: " , uncooperativeThread[1])
+                if uncooperativeThread[1] == current_thread:
+                    print(" essa é a current thread, ta tranquilo")
+                elif uncooperativeThread[1] == main_thread:
+                    print(" essa é a main thread, ta tranquilo")
+                else:
+                    print("o nome da thread problemática é: " ,uncooperativeThread[0], "e ela é: " , uncooperativeThread[1])
         else:
             print("todas as threads cooperaram direitinho!")                
         # logger.info("[Shutdown] All threads signaled.")

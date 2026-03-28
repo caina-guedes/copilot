@@ -1,0 +1,548 @@
+2026-03-22 10:03:47,029 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-22 10:03:46.980106 | 🧵 Thread: stdout_thread  Task: ID: 2280272099472 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-22 10:03:48,325 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-22 10:03:48.320230 | 🧵 Thread: stdout_thread  Task: ID: 1613634922896 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-22 10:07:26,436 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-22 10:07:26.431917 | 🧵 Thread: stdout_thread  Task: ID: 1936167992400 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-22 10:07:27,820 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-22 10:07:27.815843 | 🧵 Thread: stdout_thread  Task: ID: 1770070733552 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-22 11:36:16,714 [WARNING] [Thread-2 (waitMyShutdown)] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [RuntimeError]
+📍 No arquivo: D:\copilot\sharedResources\lifecycle\stateManager.py | Linha: 89
+💻 Código: `raise RuntimeError( f"⛔ [LIFECYCLE] Transição de Estado Ilegal: [{current.name}] -> [{new_state.name}] " f"(Permitidos: {[s.name for s in _ALLOWED_TRANSITIONS[current]]})"`
+🕒 Horário: 2026-03-22 11:36:16.699630 | 🧵 Thread: Thread-2 (waitMyShutdown)  Task: Fora de um Event Loop
+ 💬 Mensagem: ⛔ [LIFECYCLE] Transição de Estado Ilegal: [INIT] -> [SHUTTING_DOWN] (Permitidos: ['EMERGENCY', 'RUNNING'])
+extra_message = [waitMyShutdown] ocorreu um erro inesperado durante o waitMyShutdown
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    cls = <class 'sharedResources.lifecycle.stateManager.StateManager'>
+    new_state = <State.SHUTTING_DOWN: 'SHUTTING_DOWN'>
+    current = <State.INIT: 'INIT'>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - autoShutdown):
+    cls = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 393, in waitMyShutdown
+    log_error_forensics_plus(
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 387, in waitMyShutdown
+    cls.autoShutdown()
+    ~~~~~~~~~~~~~~~~^^
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 303, in autoShutdown
+    cls.lifecycleState.state = State.SHUTTING_DOWN
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\lifecycle\stateManager.py", line 89, in state
+    raise RuntimeError( f"⛔ [LIFECYCLE] Transição de Estado Ilegal: [{current.name}] -> [{new_state.name}] " f"(Permitidos: {[s.name for s in _ALLOWED_TRANSITIONS[current]]})"
+    )
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 387, in waitMyShutdown
+    cls.autoShutdown()
+    ~~~~~~~~~~~~~~~~^^
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 303, in autoShutdown
+    cls.lifecycleState.state = State.SHUTTING_DOWN
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\lifecycle\stateManager.py", line 89, in state
+    raise RuntimeError( f"⛔ [LIFECYCLE] Transição de Estado Ilegal: [{current.name}] -> [{new_state.name}] " f"(Permitidos: {[s.name for s in _ALLOWED_TRANSITIONS[current]]})"
+    )
+RuntimeError: ⛔ [LIFECYCLE] Transição de Estado Ilegal: [INIT] -> [SHUTTING_DOWN] (Permitidos: ['EMERGENCY', 'RUNNING'])
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-22 11:36:44,149 [WARNING] [Thread-2 (waitMyShutdown)] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [RuntimeError]
+📍 No arquivo: D:\copilot\sharedResources\lifecycle\stateManager.py | Linha: 89
+💻 Código: `raise RuntimeError( f"⛔ [LIFECYCLE] Transição de Estado Ilegal: [{current.name}] -> [{new_state.name}] " f"(Permitidos: {[s.name for s in _ALLOWED_TRANSITIONS[current]]})"`
+🕒 Horário: 2026-03-22 11:36:44.131299 | 🧵 Thread: Thread-2 (waitMyShutdown)  Task: Fora de um Event Loop
+ 💬 Mensagem: ⛔ [LIFECYCLE] Transição de Estado Ilegal: [INIT] -> [SHUTTING_DOWN] (Permitidos: ['EMERGENCY', 'RUNNING'])
+extra_message = [waitMyShutdown] ocorreu um erro inesperado durante o waitMyShutdown
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    cls = <class 'sharedResources.lifecycle.stateManager.StateManager'>
+    new_state = <State.SHUTTING_DOWN: 'SHUTTING_DOWN'>
+    current = <State.INIT: 'INIT'>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - autoShutdown):
+    cls = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 393, in waitMyShutdown
+    log_error_forensics_plus(
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 387, in waitMyShutdown
+    cls.autoShutdown()
+    ~~~~~~~~~~~~~~~~^^
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 303, in autoShutdown
+    cls.lifecycleState.state = State.SHUTTING_DOWN
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\lifecycle\stateManager.py", line 89, in state
+    raise RuntimeError( f"⛔ [LIFECYCLE] Transição de Estado Ilegal: [{current.name}] -> [{new_state.name}] " f"(Permitidos: {[s.name for s in _ALLOWED_TRANSITIONS[current]]})"
+    )
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 387, in waitMyShutdown
+    cls.autoShutdown()
+    ~~~~~~~~~~~~~~~~^^
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 303, in autoShutdown
+    cls.lifecycleState.state = State.SHUTTING_DOWN
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\lifecycle\stateManager.py", line 89, in state
+    raise RuntimeError( f"⛔ [LIFECYCLE] Transição de Estado Ilegal: [{current.name}] -> [{new_state.name}] " f"(Permitidos: {[s.name for s in _ALLOWED_TRANSITIONS[current]]})"
+    )
+RuntimeError: ⛔ [LIFECYCLE] Transição de Estado Ilegal: [INIT] -> [SHUTTING_DOWN] (Permitidos: ['EMERGENCY', 'RUNNING'])
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-22 11:43:15,325 [WARNING] [Thread-2 (waitMyShutdown)] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [RuntimeError]
+📍 No arquivo: D:\copilot\sharedResources\lifecycle\stateManager.py | Linha: 89
+💻 Código: `raise RuntimeError( f"⛔ [LIFECYCLE] Transição de Estado Ilegal: [{current.name}] -> [{new_state.name}] " f"(Permitidos: {[s.name for s in _ALLOWED_TRANSITIONS[current]]})"`
+🕒 Horário: 2026-03-22 11:43:15.316162 | 🧵 Thread: Thread-2 (waitMyShutdown)  Task: Fora de um Event Loop
+ 💬 Mensagem: ⛔ [LIFECYCLE] Transição de Estado Ilegal: [INIT] -> [SHUTTING_DOWN] (Permitidos: ['EMERGENCY', 'RUNNING'])
+extra_message = [waitMyShutdown] ocorreu um erro inesperado durante o waitMyShutdown
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    cls = <class 'sharedResources.lifecycle.stateManager.StateManager'>
+    new_state = <State.SHUTTING_DOWN: 'SHUTTING_DOWN'>
+    current = <State.INIT: 'INIT'>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - autoShutdown):
+    cls = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 394, in waitMyShutdown
+    log_error_forensics_plus(
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 388, in waitMyShutdown
+    cls.autoShutdown()
+    ~~~~~~~~~~~~~~~~^^
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 304, in autoShutdown
+    cls.lifecycleState.state = State.SHUTTING_DOWN
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\lifecycle\stateManager.py", line 89, in state
+    raise RuntimeError( f"⛔ [LIFECYCLE] Transição de Estado Ilegal: [{current.name}] -> [{new_state.name}] " f"(Permitidos: {[s.name for s in _ALLOWED_TRANSITIONS[current]]})"
+    )
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 388, in waitMyShutdown
+    cls.autoShutdown()
+    ~~~~~~~~~~~~~~~~^^
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 304, in autoShutdown
+    cls.lifecycleState.state = State.SHUTTING_DOWN
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\lifecycle\stateManager.py", line 89, in state
+    raise RuntimeError( f"⛔ [LIFECYCLE] Transição de Estado Ilegal: [{current.name}] -> [{new_state.name}] " f"(Permitidos: {[s.name for s in _ALLOWED_TRANSITIONS[current]]})"
+    )
+RuntimeError: ⛔ [LIFECYCLE] Transição de Estado Ilegal: [INIT] -> [SHUTTING_DOWN] (Permitidos: ['EMERGENCY', 'RUNNING'])
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-22 11:52:04,621 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
+📍 No arquivo: D:\copilot\PythonServer\server.py | Linha: 222
+💻 Código: `ainda_ativas = list(self.ws_server.websockets)`
+🕒 Horário: 2026-03-22 11:52:04.603943 | 🧵 Thread: AsyncioLoopThread  Task: ID: 1814793021680 | Nome: Task-6 | Coro: stop_procedure | Protected: N/A | Total Tasks Vivas: 5
+ 💬 Mensagem: 'Server' object has no attribute 'websockets'
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: SHUTTING_DOWN
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <__main__.WebSocketServerManager object at 0x000001A68A0A1BE0>
+    active_clients = []
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonServer\server.py", line 222, in stop_procedure
+    ainda_ativas = list(self.ws_server.websockets)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\PythonServer\server.py", line 222, in stop_procedure
+    ainda_ativas = list(self.ws_server.websockets)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Server' object has no attribute 'websockets'. Did you mean: 'sockets'?
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-22 11:57:26,215 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
+📍 No arquivo: D:\copilot\PythonServer\server.py | Linha: 223
+💻 Código: `ainda_ativas = list(self.ws_server.websockets)`
+🕒 Horário: 2026-03-22 11:57:26.206617 | 🧵 Thread: AsyncioLoopThread  Task: ID: 1869700868336 | Nome: Task-6 | Coro: stop_procedure | Protected: N/A | Total Tasks Vivas: 5
+ 💬 Mensagem: 'Server' object has no attribute 'websockets'
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: SHUTTING_DOWN
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <__main__.WebSocketServerManager object at 0x000001B352C81A90>
+    active_clients = []
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonServer\server.py", line 223, in stop_procedure
+    ainda_ativas = list(self.ws_server.websockets)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\PythonServer\server.py", line 223, in stop_procedure
+    ainda_ativas = list(self.ws_server.websockets)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Server' object has no attribute 'websockets'. Did you mean: 'sockets'?
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-22 11:58:44,678 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
+📍 No arquivo: D:\copilot\PythonServer\server.py | Linha: 224
+💻 Código: `ainda_ativas = list(self.ws_server.websockets)`
+🕒 Horário: 2026-03-22 11:58:44.669292 | 🧵 Thread: AsyncioLoopThread  Task: ID: 1972554901744 | Nome: Task-6 | Coro: stop_procedure | Protected: N/A | Total Tasks Vivas: 5
+ 💬 Mensagem: 'Server' object has no attribute 'websockets'
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: SHUTTING_DOWN
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <__main__.WebSocketServerManager object at 0x000001CB45611A90>
+    active_clients = []
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonServer\server.py", line 224, in stop_procedure
+    ainda_ativas = list(self.ws_server.websockets)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\PythonServer\server.py", line 224, in stop_procedure
+    ainda_ativas = list(self.ws_server.websockets)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Server' object has no attribute 'websockets'. Did you mean: 'sockets'?
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-22 12:02:53,418 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
+📍 No arquivo: D:\copilot\PythonServer\server.py | Linha: 228
+💻 Código: `ainda_ativas = list(self.ws_server.websockets)`
+🕒 Horário: 2026-03-22 12:02:53.402712 | 🧵 Thread: AsyncioLoopThread  Task: ID: 1633823828208 | Nome: Task-6 | Coro: stop_procedure | Protected: N/A | Total Tasks Vivas: 5
+ 💬 Mensagem: 'Server' object has no attribute 'websockets'
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: SHUTTING_DOWN
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <__main__.WebSocketServerManager object at 0x0000017C676F5A90>
+    active_clients = []
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonServer\server.py", line 228, in stop_procedure
+    ainda_ativas = list(self.ws_server.websockets)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\PythonServer\server.py", line 228, in stop_procedure
+    ainda_ativas = list(self.ws_server.websockets)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Server' object has no attribute 'websockets'. Did you mean: 'sockets'?
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-22 12:05:52,869 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
+📍 No arquivo: D:\copilot\PythonServer\server.py | Linha: 230
+💻 Código: `ainda_ativas = list(self.ws_server.websockets)`
+🕒 Horário: 2026-03-22 12:05:52.863797 | 🧵 Thread: AsyncioLoopThread  Task: ID: 1505207442736 | Nome: Task-12 | Coro: stop_procedure | Protected: N/A | Total Tasks Vivas: 6
+ 💬 Mensagem: 'Server' object has no attribute 'websockets'
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: SHUTTING_DOWN
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <__main__.WebSocketServerManager object at 0x0000015E75465A90>
+    active_clients = [['OS', 'sender', <websockets.asyncio.server.ServerConnection object at 0x0000015E755C3380>]]
+    client_register = ['OS', 'sender', <websockets.asyncio.server.ServerConnection object at 0x0000015E755C3380>]
+    group_name = 'OS'
+    conn_name = 'sender'
+    conn = <websockets.asyncio.server.ServerConnection object at 0x0000015E755C3380>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonServer\server.py", line 230, in stop_procedure
+    ainda_ativas = list(self.ws_server.websockets)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\PythonServer\server.py", line 230, in stop_procedure
+    ainda_ativas = list(self.ws_server.websockets)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Server' object has no attribute 'websockets'. Did you mean: 'sockets'?
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-22 12:07:05,470 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
+📍 No arquivo: D:\copilot\PythonServer\server.py | Linha: 230
+💻 Código: `ainda_ativas = list(self.ws_server.websockets)`
+🕒 Horário: 2026-03-22 12:07:05.455717 | 🧵 Thread: AsyncioLoopThread  Task: ID: 1709299719472 | Nome: Task-12 | Coro: stop_procedure | Protected: N/A | Total Tasks Vivas: 6
+ 💬 Mensagem: 'Server' object has no attribute 'websockets'
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: SHUTTING_DOWN
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <__main__.WebSocketServerManager object at 0x0000018DFA1F5A90>
+    active_clients = [['OS', 'sender', <websockets.asyncio.server.ServerConnection object at 0x0000018DFA353380>], ['OS', 'receiver', <websockets.asyncio.server.ServerConnection object at 0x0000018DFA71A0D0>]]
+    client_register = ['OS', 'receiver', <websockets.asyncio.server.ServerConnection object at 0x0000018DFA71A0D0>]
+    group_name = 'OS'
+    conn_name = 'receiver'
+    conn = <websockets.asyncio.server.ServerConnection object at 0x0000018DFA71A0D0>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonServer\server.py", line 230, in stop_procedure
+    ainda_ativas = list(self.ws_server.websockets)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\PythonServer\server.py", line 230, in stop_procedure
+    ainda_ativas = list(self.ws_server.websockets)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Server' object has no attribute 'websockets'. Did you mean: 'sockets'?
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

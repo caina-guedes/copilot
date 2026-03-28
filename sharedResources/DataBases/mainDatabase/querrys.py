@@ -2,7 +2,9 @@
 
 table_repr = "__table__"
 def put_table_in_querry(querry, table):
-    return querry.replace(table_repr, table)
+    new_querry = querry.replace(table_repr, table)
+    # print(new_querry) 
+    return new_querry
 
 querrys = {
     "selectMacroAtiva": "select id from macros where end_time is null",
@@ -25,6 +27,10 @@ querrys = {
          "PRAGMA busy_timeout = 10000;",  # evita 'database is locked'
          "PRAGMA mmap_size = 268435456;",  # ativa mmap até 256MB, melhora leitura
     ],
+    "insertEvent": '''
+                INSERT INTO events (ts, type_id, key_id,macro_id, action_id, device_id, source_id, details_id, details_table, x, y, value, details_json,window_event_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
+            ''',
 
     "querry_traduzida" : """SELECT 
     e.id,

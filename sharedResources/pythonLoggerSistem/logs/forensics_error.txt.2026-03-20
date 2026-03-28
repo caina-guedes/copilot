@@ -1,0 +1,1773 @@
+2026-03-20 17:23:15,800 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ZeroDivisionError]
+📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py | Linha: 23
+💻 Código: `1/0`
+🕒 Horário: 2026-03-20 17:23:15.794289 | 🧵 Thread: AsyncioLoopThread  Task: ID: 1745535233488 | Nome: GlobalExecutorLoopTask | Coro: _executor_loop | Protected: False | Total Tasks Vivas: 8
+ 💬 Mensagem: division by zero
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    message = {'action': 'release', 'button': 'Button.left', 'deltaTime': 0, 'details': None, ...}
+    action = 'release'
+    controlsToIgnore = set()
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - exec_mouse_or_kb):
+    message = {'action': 'release', 'button': 'Button.left', 'deltaTime': 0, 'details': None, ...}
+    macroExecutor = <class 'PythonSistemAutomation.watcher_utils.GlobalMacroExecutor.GlobalExecutor'>
+    frozen_controls_to_ignore = None
+    controlsToIgnore = set()
+    action = 'release'
+    ExecutingMacro = {'value': True}
+    equipment = 'mouse'
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\GlobalMacroExecutor.py", line 259, in _executor_loop
+    response  = await cls._execute_command(command)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\GlobalMacroExecutor.py", line 351, in _execute_command
+    resp = await default_receiving_function(command, cls)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 204, in default_receiving_function
+    return exec_mouse_or_kb(message, macroExecutor,frozen_controls_to_ignore)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 166, in exec_mouse_or_kb
+    before,after = mouseExecCommand(message, action, controlsToIgnore)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 23, in mouseExecCommand
+    1/0
+    ~^~
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 23, in mouseExecCommand
+    1/0
+    ~^~
+ZeroDivisionError: division by zero
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 18:04:01,447 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ConnectionClosedError]
+📍 No arquivo: C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\asyncio\connection.py | Linha: 957
+💻 Código: `raise self.protocol.close_exc from original_exc`
+🕒 Horário: 2026-03-20 18:04:01.425570 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2255789145648 | Nome: loop do buffer do observer- segundo loop | Coro: buffer_loop | Protected: False | Total Tasks Vivas: 5
+ 💬 Mensagem: no close frame received or sent
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <websockets.asyncio.client.ClientConnection object at 0x0000020D386CFA10>
+    expected_state = <State.OPEN: 1>
+    wait_for_close = True
+    raise_close_exc = True
+    original_exc = None
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 394, in buffer_loop
+    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system)
+  File "D:\copilot\sharedResources\debuggingResources\error_tracker.py", line 47, in async_wrapper
+    return await func(*args, **kwargs)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_callback.py", line 25, in default_callback
+    await father.ws_client.connection.send(event, True)
+  File "D:\copilot\sharedResources\connection\connectionObject.py", line 322, in send
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\connection\connectionObject.py", line 298, in send
+    await self.sender.send(json.dumps(message))
+  File "C:\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\connection\connectionObject.py", line 298, in send
+    await self.sender.send(json.dumps(message))
+  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\asyncio\connection.py", line 476, in send
+    async with self.send_context():
+               ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\asyncio\connection.py", line 957, in send_context
+    raise self.protocol.close_exc from original_exc
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 18:18:14,585 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ConnectionClosedError]
+📍 No arquivo: C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\asyncio\connection.py | Linha: 957
+💻 Código: `raise self.protocol.close_exc from original_exc`
+🕒 Horário: 2026-03-20 18:18:14.567591 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2369163214384 | Nome: loop do buffer do observer- segundo loop | Coro: buffer_loop | Protected: False | Total Tasks Vivas: 5
+ 💬 Mensagem: no close frame received or sent
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <websockets.asyncio.client.ClientConnection object at 0x000002279E06F8C0>
+    expected_state = <State.OPEN: 1>
+    wait_for_close = True
+    raise_close_exc = True
+    original_exc = None
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 30, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 394, in buffer_loop
+    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system)
+  File "D:\copilot\sharedResources\debuggingResources\error_tracker.py", line 47, in async_wrapper
+    return await func(*args, **kwargs)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_callback.py", line 25, in default_callback
+    await father.ws_client.connection.send(event, True)
+  File "D:\copilot\sharedResources\connection\connectionObject.py", line 323, in send
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\connection\connectionObject.py", line 299, in send
+    await self.sender.send(json.dumps(message))
+  File "C:\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\connection\connectionObject.py", line 299, in send
+    await self.sender.send(json.dumps(message))
+  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\asyncio\connection.py", line 476, in send
+    async with self.send_context():
+               ~~~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\contextlib.py", line 214, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\asyncio\connection.py", line 957, in send_context
+    raise self.protocol.close_exc from original_exc
+websockets.exceptions.ConnectionClosedError: no close frame received or sent
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 18:50:48,609 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
+📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 216
+💻 Código: `cls.original_stdout.buffer.write(header + text)`
+🕒 Horário: 2026-03-20 18:50:48.594411 | 🧵 Thread: stdout_thread  Task: Fora de um Event Loop
+ 💬 Mensagem: [Errno 22] Invalid argument
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = b'the message to be sent is: '
+    is_error = False
+    header = b'\xaaU\x1b\x00\x00\x00'
+    e = OSError(22, 'Invalid argument')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = 'the message to be sent is: '
+    is_error = False
+    lock_certo = <locked _thread.lock object at 0x00000114F88FC350>
+    right_new_line = True
+    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+    quebra_de_linha = '\r\n'
+    prefix = ''
+    resposta = 'the message to be sent is: '
+    dados_bytes = b'the message to be sent is: '
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 106, in worker
+    cls.realWriter(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 260, in realWriter
+    cls.sendAndHandshake(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 227, in sendAndHandshake
+    cls.log_error(e)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 293, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 216, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 216, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 18:56:26,861 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
+📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 216
+💻 Código: `cls.original_stdout.buffer.write(header + text)`
+🕒 Horário: 2026-03-20 18:56:26.849656 | 🧵 Thread: stdout_thread  Task: Fora de um Event Loop
+ 💬 Mensagem: [Errno 22] Invalid argument
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = b'the message to be sent is: '
+    is_error = False
+    header = b'\xaaU\x1b\x00\x00\x00'
+    e = OSError(22, 'Invalid argument')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = 'the message to be sent is: '
+    is_error = False
+    lock_certo = <locked _thread.lock object at 0x0000028023E6C350>
+    right_new_line = True
+    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+    quebra_de_linha = '\r\n'
+    prefix = ''
+    resposta = 'the message to be sent is: '
+    dados_bytes = b'the message to be sent is: '
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 106, in worker
+    cls.realWriter(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 260, in realWriter
+    cls.sendAndHandshake(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 227, in sendAndHandshake
+    cls.log_error(e)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 293, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 216, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 216, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:09:05,247 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ValueError]
+📍 No arquivo: C:\Python314\Lib\signal.py | Linha: 58
+💻 Código: `handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))`
+🕒 Horário: 2026-03-20 19:09:05.245117 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: invalid signal value
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    signalnum = <Signals.CTRL_BREAK_EVENT: 1>
+    handler = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x000002083FEAC670>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - pluga_sinal_de_parada):
+    cls = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
+    signal = <module 'signal' from 'C:\\Python314\\Lib\\signal.py'>
+    platform = <module 'platform' from 'C:\\Python314\\Lib\\platform.py'>
+    e = ValueError('invalid signal value')
+    set_inicial_shutdown_event = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x000002083FEAC670>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\PythonServer\server.py", line 276, in <module>
+    LifecycleMaster.start_runtime(manager.start())
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 272, in start_runtime
+    cls.pluga_sinal_de_parada()
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 218, in pluga_sinal_de_parada
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 177, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 177, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+ValueError: invalid signal value
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:09:06,749 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ValueError]
+📍 No arquivo: C:\Python314\Lib\signal.py | Linha: 58
+💻 Código: `handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))`
+🕒 Horário: 2026-03-20 19:09:06.745764 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: invalid signal value
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    signalnum = <Signals.CTRL_BREAK_EVENT: 1>
+    handler = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x000001661E2FFED0>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - pluga_sinal_de_parada):
+    cls = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
+    signal = <module 'signal' from 'C:\\Python314\\Lib\\signal.py'>
+    platform = <module 'platform' from 'C:\\Python314\\Lib\\platform.py'>
+    e = ValueError('invalid signal value')
+    set_inicial_shutdown_event = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x000001661E2FFED0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\PythonSistemAutomation\main.py", line 268, in <module>
+    LifecycleMaster.start_runtime(main)
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 272, in start_runtime
+    cls.pluga_sinal_de_parada()
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 218, in pluga_sinal_de_parada
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 177, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 177, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+ValueError: invalid signal value
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:10:45,064 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ValueError]
+📍 No arquivo: C:\Python314\Lib\signal.py | Linha: 58
+💻 Código: `handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))`
+🕒 Horário: 2026-03-20 19:10:45.062359 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: invalid signal value
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    signalnum = <Signals.CTRL_BREAK_EVENT: 1>
+    handler = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x000001AD41C185C0>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - pluga_sinal_de_parada):
+    cls = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
+    signal = <module 'signal' from 'C:\\Python314\\Lib\\signal.py'>
+    platform = <module 'platform' from 'C:\\Python314\\Lib\\platform.py'>
+    e = ValueError('invalid signal value')
+    set_inicial_shutdown_event = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x000001AD41C185C0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\PythonServer\server.py", line 276, in <module>
+    LifecycleMaster.start_runtime(manager.start())
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 272, in start_runtime
+    cls.pluga_sinal_de_parada()
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 218, in pluga_sinal_de_parada
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 177, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 177, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+ValueError: invalid signal value
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:10:46,546 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ValueError]
+📍 No arquivo: C:\Python314\Lib\signal.py | Linha: 58
+💻 Código: `handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))`
+🕒 Horário: 2026-03-20 19:10:46.543280 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: invalid signal value
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    signalnum = <Signals.CTRL_BREAK_EVENT: 1>
+    handler = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x000001B20B0EFED0>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - pluga_sinal_de_parada):
+    cls = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
+    signal = <module 'signal' from 'C:\\Python314\\Lib\\signal.py'>
+    platform = <module 'platform' from 'C:\\Python314\\Lib\\platform.py'>
+    e = ValueError('invalid signal value')
+    set_inicial_shutdown_event = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x000001B20B0EFED0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\PythonSistemAutomation\main.py", line 268, in <module>
+    LifecycleMaster.start_runtime(main)
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 272, in start_runtime
+    cls.pluga_sinal_de_parada()
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 218, in pluga_sinal_de_parada
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 177, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 177, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+ValueError: invalid signal value
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:12:13,055 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ValueError]
+📍 No arquivo: C:\Python314\Lib\signal.py | Linha: 58
+💻 Código: `handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))`
+🕒 Horário: 2026-03-20 19:12:13.053729 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: invalid signal value
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    signalnum = <Signals.CTRL_BREAK_EVENT: 1>
+    handler = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x00000132ABAF85C0>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - pluga_sinal_de_parada):
+    cls = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
+    signal = <module 'signal' from 'C:\\Python314\\Lib\\signal.py'>
+    platform = <module 'platform' from 'C:\\Python314\\Lib\\platform.py'>
+    e = ValueError('invalid signal value')
+    set_inicial_shutdown_event = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x00000132ABAF85C0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\PythonServer\server.py", line 276, in <module>
+    LifecycleMaster.start_runtime(manager.start())
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 272, in start_runtime
+    cls.pluga_sinal_de_parada()
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 218, in pluga_sinal_de_parada
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 177, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 177, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+ValueError: invalid signal value
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:12:14,613 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ValueError]
+📍 No arquivo: C:\Python314\Lib\signal.py | Linha: 58
+💻 Código: `handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))`
+🕒 Horário: 2026-03-20 19:12:14.610089 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: invalid signal value
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    signalnum = <Signals.CTRL_BREAK_EVENT: 1>
+    handler = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x00000292FCFCFED0>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - pluga_sinal_de_parada):
+    cls = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
+    signal = <module 'signal' from 'C:\\Python314\\Lib\\signal.py'>
+    platform = <module 'platform' from 'C:\\Python314\\Lib\\platform.py'>
+    e = ValueError('invalid signal value')
+    set_inicial_shutdown_event = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x00000292FCFCFED0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\PythonSistemAutomation\main.py", line 268, in <module>
+    LifecycleMaster.start_runtime(main)
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 272, in start_runtime
+    cls.pluga_sinal_de_parada()
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 218, in pluga_sinal_de_parada
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 177, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 177, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+ValueError: invalid signal value
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:28:44,677 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:28:44.673336 | 🧵 Thread: stdout_thread  Task: ID: 1928403285680 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:28:46,049 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:28:46.045010 | 🧵 Thread: stdout_thread  Task: ID: 1909580097936 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:30:10,871 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:30:10.866803 | 🧵 Thread: stdout_thread  Task: ID: 2446764145744 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:30:12,312 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:30:12.307693 | 🧵 Thread: stdout_thread  Task: ID: 1678890822032 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:31:55,639 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:31:55.635730 | 🧵 Thread: stdout_thread  Task: ID: 2927791438928 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:31:57,050 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:31:57.045109 | 🧵 Thread: stdout_thread  Task: ID: 2989392128400 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:33:46,375 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:33:46.371223 | 🧵 Thread: stdout_thread  Task: ID: 2651555297424 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:33:47,795 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:33:47.789456 | 🧵 Thread: stdout_thread  Task: ID: 3266533782256 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:35:53,174 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [ValueError]
+📍 No arquivo: C:\Python314\Lib\signal.py | Linha: 58
+💻 Código: `handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))`
+🕒 Horário: 2026-03-20 19:35:53.172627 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: invalid signal value
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    signalnum = <Signals.CTRL_BREAK_EVENT: 1>
+    handler = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x000002DFC6E7CA90>
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - pluga_sinal_de_parada):
+    cls = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
+    signal = <module 'signal' from 'C:\\Python314\\Lib\\signal.py'>
+    platform = <module 'platform' from 'C:\\Python314\\Lib\\platform.py'>
+    e = ValueError('invalid signal value')
+    set_inicial_shutdown_event = <function LifecycleMaster.pluga_sinal_de_parada....set_inicial_shutdown_event at 0x000002DFC6E7CA90>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\PythonServer\server.py", line 276, in <module>
+    LifecycleMaster.start_runtime(manager.start())
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 272, in start_runtime
+    cls.pluga_sinal_de_parada()
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 218, in pluga_sinal_de_parada
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 179, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 179, in pluga_sinal_de_parada
+    signal.signal(signal.CTRL_BREAK_EVENT,set_inicial_shutdown_event)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\signal.py", line 58, in signal
+    handler = _signal.signal(_enum_to_int(signalnum), _enum_to_int(handler))
+ValueError: invalid signal value
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:40:20,831 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:40:20.827660 | 🧵 Thread: stdout_thread  Task: ID: 2306193750160 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:40:22,155 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:40:22.150734 | 🧵 Thread: stdout_thread  Task: ID: 2938911781616 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:42:03,187 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:42:03.183279 | 🧵 Thread: stdout_thread  Task: ID: 2178845112464 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:42:04,589 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:42:04.584334 | 🧵 Thread: stdout_thread  Task: ID: 2510253713808 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:47:15,123 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:47:15.119301 | 🧵 Thread: stdout_thread  Task: ID: 2497308130384 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:47:16,497 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:47:16.490946 | 🧵 Thread: stdout_thread  Task: ID: 1844101376400 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:48:21,866 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:48:21.862349 | 🧵 Thread: stdout_thread  Task: ID: 2222866562128 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:48:23,254 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:48:23.249604 | 🧵 Thread: stdout_thread  Task: ID: 2518838274448 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:51:25,697 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:51:25.693245 | 🧵 Thread: stdout_thread  Task: ID: 2063385294992 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:51:27,083 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:51:27.079449 | 🧵 Thread: stdout_thread  Task: ID: 1621583063440 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:53:01,998 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:53:01.994595 | 🧵 Thread: stdout_thread  Task: ID: 1801010542736 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 19:53:03,368 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 19:53:03.363945 | 🧵 Thread: stdout_thread  Task: ID: 1452121584368 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 20:00:34,926 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 20:00:34.920854 | 🧵 Thread: stdout_thread  Task: ID: 1811229244496 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 20:00:36,295 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 20:00:36.290381 | 🧵 Thread: stdout_thread  Task: ID: 2279846900464 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 20:02:10,027 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 20:02:10.023825 | 🧵 Thread: stdout_thread  Task: ID: 1678549645456 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 20:02:11,368 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 20:02:11.363824 | 🧵 Thread: stdout_thread  Task: ID: 2024205120240 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 20:05:49,703 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 20:05:49.699364 | 🧵 Thread: stdout_thread  Task: ID: 2784845822096 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 20:05:51,097 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 20:05:51.093191 | 🧵 Thread: stdout_thread  Task: ID: 1716575138544 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 20:11:01,767 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 20:11:01.762992 | 🧵 Thread: stdout_thread  Task: ID: 1700247500944 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-20 20:11:03,228 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-03-20 20:11:03.223710 | 🧵 Thread: stdout_thread  Task: ID: 2412512471440 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

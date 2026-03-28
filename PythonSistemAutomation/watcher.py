@@ -2,9 +2,8 @@ from collections import deque
 import threading
 import asyncio
 import warnings
-from copy import copy
-from datetime import datetime, timezone
-from time import time
+# from copy import copy
+import time
 from PythonServer import serverConfig
 from PythonSistemAutomation.watcher_utils.default_callback import default_callback, treat_key_as_string
 from pynput import mouse, keyboard
@@ -13,12 +12,15 @@ from PythonSistemAutomation.watcher_utils.windowWatcher.windowManager import Win
 from PythonSistemAutomation.watcher_utils.GlobalMacroExecutor import  GlobalExecutor
 from PythonSistemAutomation.watcher_utils.pressed_key_tracker import SafePressedTracker
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
-from sharedResources.generalUtils.aprint import aprint
+# from sharedResources.generalUtils.aprint import aprint
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 logger = LoggerManager.get_logger(__name__)
 window = WindowManager()
+
+import platform
+OS_name = platform.system().lower()
 
 ##### tive que comentar esse monitor pq não está funcionando.
 @monitor_class 
@@ -28,7 +30,7 @@ class EventObserver:
     Supports macro recording and background mode.
     """
     already_init = False
-    definition_thread = threading.current_thread().name
+    # definition_thread = threading.current_thread().name
     
     # # @sys_monitor
     def __init__(self, system):
@@ -36,6 +38,7 @@ class EventObserver:
             warnings.warn("iniciando o eventObserver quando ja foi iniciado!")
             return
         already_init = True
+        self.show_macro_event = True
         self.init_thread = threading.current_thread().name
         self.system = system
         self._on_event_callback = default_callback
@@ -47,11 +50,12 @@ class EventObserver:
         # self._pressed_keys = SafePressedTracker()
         # self._pressed_buttons = SafePressedTracker()
         GlobalExecutor.set_pressed(self._pressed,self._pressed)
-        self.last_movement = time()
+        self.last_movement = time.perf_counter()
         self._callback_lock = asyncio.Semaphore(20) 
         self.listeners_running = False
         self.event_queue = asyncio.Queue() # para liberar o listener e organizar o processamento inicial
         self.send_queue = asyncio.Queue() # para acumular os eventos ja preparados e enviar em bloco
+        self.macro_commands_counter = 0
 
         ###### tenho que implementar esse dicionário e printar no lugar certo!
         self.counter        = {
@@ -72,6 +76,8 @@ class EventObserver:
     def should_process_event(self, event):
         # print(f"[_process_event] event: {event}")
         # async with self._callback_lock:
+        if not event:
+            return False
         try:
             self.counter["total_events"] += 1
 
@@ -111,10 +117,11 @@ class EventObserver:
             # self._on_event_callback(event, self.system)
 
         except Exception as e:
-            warnings.warn(f"[shoul_process_event] deu erro e foi{e}")
-            logger.warning(f"Erro ao processar evento: {e}")
-            logger.debug("Finished processing one event")
-            warnings.warn(e)
+            log_error_forensics_plus(e)
+            # warnings.warn(f"[shoul_process_event] deu erro e foi{e}")
+            # logger.warning(f"Erro ao processar evento: {e}")
+            # logger.debug("Finished processing one event")
+            # warnings.warn(e)
 
     # @sys_monitor
     async def _event_consumer(self): # primeiro loop
@@ -129,8 +136,8 @@ class EventObserver:
                 # Espera o próximo evento sem bloquear o loop
                 event  = await self.event_queue.get()
                 
-                chegou_da_queue = time()
-                event['timestamp'] = event['timestamp']
+                chegou_da_queue = time.perf_counter()
+                # event['timestamp'] = event['timestamp']
                 # print(f"thread da definição da classe é: {self.__class__.definition_thread}")
                 # print(f"thread do init da classe é: {self.init_thread}")
                 # print(f"thread do start: {self.thread_do_start}")
@@ -139,11 +146,11 @@ class EventObserver:
 
 
                 if self.should_process_event(event):
-                    logo_antes_de_verificar_janela = time()
+                    logo_antes_de_verificar_janela = time.perf_counter()
 
                     try:
                         currentWindow, changed , os_call= window.get_active_window(event,self._pressed)
-                        logo_depois_de_verificar_janela = time()
+                        logo_depois_de_verificar_janela = time.perf_counter()
                         if changed:
                             # print("houve atualização de janela!!!")
                             event["windowChange"] = True
@@ -155,17 +162,17 @@ class EventObserver:
                         log_error_forensics_plus(e)
                         logo_depois_de_verificar_janela = logo_antes_de_verificar_janela
                     
-                    logo_antes_de_enviar = time()
+                    logo_antes_de_enviar = time.perf_counter()
 
                     LifecycleMaster.call_soon(
                         self.send_queue.put_nowait, 
                         event
                         )
                     # await self._on_event_callback(event, self.system)
-                    depois_de_enviar = time()
-                    total_time = depois_de_enviar -event["timestamp"]
-                    time_to_verify_window = logo_depois_de_verificar_janela - logo_antes_de_verificar_janela 
-                    time_to_send = depois_de_enviar - logo_antes_de_enviar
+                    # depois_de_enviar = time.perf_counter()
+                    # total_time = depois_de_enviar -event["timestamp"]
+                    # time_to_verify_window = logo_depois_de_verificar_janela - logo_antes_de_verificar_janela 
+                    # time_to_send = depois_de_enviar - logo_antes_de_enviar
                     # print(f"event {event} ")
                     # print(f"took {chegou_da_queue - inicio} in the queue")
                     # print(f"took  {logo_antes_de_verificar_janela - chegou_da_queue} to decide to send it")
@@ -191,7 +198,7 @@ class EventObserver:
         if self.thread_do_evento is None:
             self.thread_do_evento = threading.current_thread().name
     
-        # resp = (event,time())
+        # resp = (event,time.perf_counter())
         LifecycleMaster.call_soon(
             self.event_queue.put_nowait, 
             event
@@ -201,11 +208,17 @@ class EventObserver:
     # @sys_monitor
     def _on_move(self, x, y, injected):
         if injected:
-            # print(f"move enviado por software!({x}, {y})   ignorando")
-            return
+            # print(f"move enviado por software!({x}, {y}) ")
+            if OS_name != "windows":
+                return
+            else:
+                # self.macro_commands_counter +=1
+                if self.show_macro_event:
+                    print(f"macro event detected  move {x},{y}")
+                GlobalExecutor.increase_executed_macro_commands()
         
         from PythonSistemAutomation.main import AutomationSystem
-        now = time()
+        now = time.perf_counter()
         if (now - self.last_movement ) < serverConfig.mouseMovementMinimumDelay or not AutomationSystem.config.send_position:
             return
         self.last_movement = now
@@ -221,8 +234,14 @@ class EventObserver:
     # @sys_monitor
     def _on_click(self, x, y, button, pressed, injected):
         if injected:
-            # print(f"click enviado por software!({x}, {y}) ignorando!")
-            return
+            # print(f"click enviado por software!({x}, {y}) ")
+            if OS_name != "windows":
+                return
+            else:
+                # self.macro_commands_counter +=1
+                if self.show_macro_event:
+                    print(f"macro event detected x= {x}, y= {y}, pressed = {pressed}")
+                GlobalExecutor.increase_executed_macro_commands()
         if pressed:
             event_type = 'press'
             self._pressed.add(str(button))
@@ -230,7 +249,7 @@ class EventObserver:
             self._pressed.remove(str(button))
             event_type = 'release'
         event = {
-            'timestamp' : time(),
+            'timestamp' : time.perf_counter(),
             'type'  : "mouse",
             'action': event_type,   
              'x'    : x, 
@@ -242,11 +261,17 @@ class EventObserver:
     # @sys_monitor
     def _on_scroll(self, x, y, dx, dy,injected):
         if injected:
-            # print(f"scroll enviado por software!({x} ,{y}, {dx}, {dy}) ignorando...")
-            return
+            # print(f"scroll enviado por software!({x} ,{y}, {dx}, {dy}) ")
+            if OS_name != "windows":
+                return
+            else:
+                # self.macro_commands_counter +=1
+                if self.show_macro_event:
+                    print(f"macro event detected scroll x= {x}, y={y}, dx={dx}, dy={dy}")
+                GlobalExecutor.increase_executed_macro_commands()
         event = {
             # 'timestamp':datetime.now(timezone.utc).isoformat(),
-            'timestamp':time(),
+            'timestamp':time.perf_counter(),
             'type': 'mouse',
             'action': 'scroll',
             'position': {'x': x, 'y': y},
@@ -257,13 +282,19 @@ class EventObserver:
     # @sys_monitor
     def _on_press(self, key,injected):
         if injected:
-            # print(f"press enviado por software( {key}), ignorando")
-            return 
+            # print(f"press enviado por software( {key})")
+            if OS_name != "windows":
+                return 
+            else:
+                # self.macro_commands_counter +=1
+                if self.show_macro_event:
+                    print(f"macro event detected press key = {key}")
+                GlobalExecutor.increase_executed_macro_commands()
         from PythonSistemAutomation.main import AutomationSystem
         key = treat_key_as_string(key)
         event = {
             # 'timestamp':datetime.now(timezone.utc).isoformat(),
-            'timestamp':time(),
+            'timestamp':time.perf_counter(),
             'type': 'keyboard',
             'action': 'press',
             'key': key
@@ -277,7 +308,7 @@ class EventObserver:
         if key == AutomationSystem.config.toggleRecordKey:
             print("toggleRecording")
             # event["action"] = "toggleRecording"
-            event['details'] = {"MacroTime": int(time()* 1000)}
+            event['details'] = {"MacroTime": int(time.perf_counter()* 1000)}
         if key == AutomationSystem.config.ExecutaMacroKey:
             # print("ExecuteMacro")
             # event["action"] = "ExecCurrentMacro"
@@ -293,12 +324,19 @@ class EventObserver:
     # @sys_monitor
     def _on_release(self, key,injected):
         if injected:
-            # print(f"release enviado por software!({key}) ignorando")
-            return
+            # print(f"release enviado por software!({key})")
+            if OS_name != "windows":
+                return
+            else:
+                # self.macro_commands_counter +=1
+                if self.show_macro_event:
+                    print(f"macro event detected release key = {key}")
+
+                GlobalExecutor.increase_executed_macro_commands()
         key = treat_key_as_string(key)
         event = {
             # 'timestamp':datetime.now(timezone.utc).isoformat(),
-            'timestamp':time(),
+            'timestamp':time.perf_counter(),
             'type': 'keyboard',
             'action': 'release',
             'key': key

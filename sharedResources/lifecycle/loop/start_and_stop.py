@@ -18,7 +18,6 @@ def start_loop(cls):
     loop_ready  = threading.Event()
     def _run():
         try:
-
             cls._thread = threading.current_thread()
             cls._current = asyncio.new_event_loop()
             asyncio.set_event_loop(cls._current)

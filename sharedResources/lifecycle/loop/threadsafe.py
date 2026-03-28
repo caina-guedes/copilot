@@ -2,6 +2,7 @@ import asyncio
 import warnings
 import threading
 import concurrent.futures
+import inspect
 import sys
 from pathlib import Path
 basePath = Path(__file__).resolve().parent.parent.parent.parent
@@ -49,12 +50,12 @@ def submit(
         return None
 
     # normaliza para coroutine
-    if asyncio.iscoroutinefunction(fn_or_coro):
+    if inspect.iscoroutinefunction(fn_or_coro):
         coro = fn_or_coro()
     else:
         coro = fn_or_coro
 
-    if not asyncio.iscoroutine(coro):
+    if not inspect.iscoroutine(coro):
         cls._log(
             f"submit received non-coroutine: {type(coro)} -> {coro} , 'state' : {state}",
             "loop"
@@ -79,7 +80,7 @@ def submit(
             task = asyncio.create_task(coro, name=name)
             setattr(task, "protected", protected)
             task.add_done_callback(cls.tasksMap._on_task_finish)
-            cls._log(f"creating task in loop thread: {task}", "loop")
+            print(f"creating task in loop thread: {task}", "loop")
             cls.tasksMap.register_task(
                 task=task,
                 name=name,
@@ -102,7 +103,7 @@ def submit(
                 task = asyncio.create_task(coro, name=name)
                 task.add_done_callback(cls.tasksMap._on_task_finish)
                 setattr(task, "protected", protected)
-                cls._log(f"creating task in loop thread: {task}", "loop")
+                print(f"creating task in loop thread: {task}", "loop")
                 cls.tasksMap.register_task(
                     task          =  task,
                     name          =  name,
@@ -146,12 +147,12 @@ def gather(cls, *coros, return_exceptions=False):
 # def submit(cls, fn_or_coro, protected = False):
 #     if not cls._can_interact():
 #         return None
-#     if asyncio.iscoroutinefunction(fn_or_coro):
+#     if inspect.iscoroutinefunction(fn_or_coro):
 #         coro = fn_or_coro()
 #     else:
 #         coro = fn_or_coro
 
-#     if not asyncio.iscoroutine(coro):
+#     if not inspect.iscoroutine(coro):
 #         cls._log(f"submit received non-coroutine, it is:{type(coro)} and it is:{coro}","loop")
         
 #         return None
@@ -199,12 +200,12 @@ def gather(cls, *coros, return_exceptions=False):
 #         return None
 
 #     # Transforma função em coroutine
-#     if asyncio.iscoroutinefunction(fn_or_coro):
+#     if inspect.iscoroutinefunction(fn_or_coro):
 #         coro = fn_or_coro()
 #     else:
 #         coro = fn_or_coro
 
-#     if not asyncio.iscoroutine(coro):
+#     if not inspect.iscoroutine(coro):
 #         cls._log(f"submit received non-coroutine, it is: {type(coro)} and value: {coro}", "loop")
 #         return None
 

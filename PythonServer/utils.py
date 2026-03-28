@@ -115,12 +115,3 @@ class connections:
         return active
 
         
-    
-    
-# async def run_command(fn, *args):
-#     if asyncio.iscoroutinefunction(fn):
-#         return await fn(*args)
-#     else:
-#         loop = asyncio.get_running_loop()
-#         return await loop.run_in_executor(None, lambda: fn(*args))
-

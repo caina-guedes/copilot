@@ -7,11 +7,19 @@ from sharedResources.debuggingResources.unified_monitor import monitor_class
 # Tenta usar rich para console se disponível, senão fallback para padrão
 try:
     from rich.logging import RichHandler
+    from rich.console import Console
     HAS_RICH = True
 except ImportError:
     HAS_RICH = False
 
 BASE_DIR = Path(__file__).resolve().parent
+
+class NameFilter(logging.Filter):
+    def __init__(self, name):
+        self.name = name
+    def filter(self, record):
+        # Só deixa passar se o log for deste logger específico
+        return record.name == self.name
 
 # @monitor_class
 class LoggerManager:
@@ -28,6 +36,7 @@ class LoggerManager:
     
     # Configurações Padrão
     _logs_path = BASE_DIR / "logs"
+    _logs_path_complement = None
     _general_level = logging.INFO
     _general_filename = "default.log"
     
@@ -48,6 +57,13 @@ class LoggerManager:
         if path:
             cls._logs_path = Path(path)
             cls._logs_path.mkdir(parents=True, exist_ok=True)
+    
+    @classmethod
+    def complement_logs_path(cls, complement):
+        "feita para ser usada uma vez para cada processo para diferenciar os caminhos base dos arquivos de log!"
+        if cls._logs_path_complement is None:
+            cls._logs_path = cls._logs_path / Path(complement)
+            cls._logs_path_complement = Path(complement)
 
     @classmethod
     def set_general_level(cls, level):
@@ -61,15 +77,6 @@ class LoggerManager:
     def _get_console_handler(cls):
         """Retorna o handler de console (Singleton), com Rich se possível."""
         if cls._console_handler is None:
-            if HAS_RICH:
-                # RichHandler já formata bonito, não precisa de setFormatter complexo
-                cls._console_handler = RichHandler(
-                    rich_tracebacks=True, 
-                    markup=True,
-                    show_time=True,
-                    omit_repeated_times=False
-                )
-            else:
                 cls._console_handler = logging.StreamHandler(sys.stdout)
                 formatter = logging.Formatter(
                     "[%(levelname)s] %(asctime)s | %(module)s:%(lineno)d | %(message)s",
@@ -77,7 +84,7 @@ class LoggerManager:
                 )
                 cls._console_handler.setFormatter(formatter)
             
-            cls._console_handler.setLevel(cls._general_level)
+                cls._console_handler.setLevel(cls._general_level)
         
         return cls._console_handler
 
@@ -107,6 +114,9 @@ class LoggerManager:
         Automaticamente gerencia os handlers de arquivo e reinicia o listener se necessário.
         """
         # 1. Garante diretório
+        if cls._logs_path_complement is None:
+            raise RuntimeError("get_logger used before _logs_path_complement is set!")
+        
         if not cls._logs_path.exists():
             cls._logs_path.mkdir(parents=True, exist_ok=True)
 
@@ -114,6 +124,7 @@ class LoggerManager:
         target_level = level if level is not None else cls._general_level
         target_filename = filename if filename else cls._general_filename
         file_path = cls._logs_path / target_filename
+        
         
         # 3. Gerencia o Handler de Arquivo (Singleton por caminho)
         str_path = str(file_path.absolute())
@@ -131,6 +142,9 @@ class LoggerManager:
                 "%(asctime)s [%(levelname)s] [%(threadName)s] %(module)s:%(lineno)d - %(message)s"
             )
             file_handler.setFormatter(formatter)
+            
+            file_filter = NameFilter(name)
+            file_handler.addFilter(file_filter)
             
             cls._active_file_handlers[str_path] = file_handler
             handler_was_created = True

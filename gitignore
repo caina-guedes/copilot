@@ -4,17 +4,13 @@
 node_modules/
 venv/
 .venv/
-.env/
 .env
 .env.*
-
+ENV/
 # ==========================================
 # PYTHON (Compilados, Cache e Distribuição)
 # ==========================================
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+
 *.pdb
 *.egg-info/
 *.egg
@@ -37,7 +33,7 @@ pnpm-debug.log*
 # ==========================================
 *.log
 logs/
-
+logs/**
 # ==========================================
 # BANCO DE DADOS (SQLite e outros)
 # ==========================================
@@ -50,5 +46,58 @@ not_sent_events.db
 # SISTEMA OPERACIONAL & EDITOR (IDE)
 # ==========================================
 .DS_Store
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+sdist/
+.installed.cfg
+
+# Ambientes Virtuais
+
+
+
+# Windows
 Thumbs.db
-.vscode/
+desktop.ini
+$RECYCLE.BIN/
+
+# Rust / Tauri (Se o código Rust estiver na mesma árvore)
+src-tauri/target/
+
+
+# temporários 
+
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# Persistência local fallback
+*.sqlite3
+*.db-journal
+
+# Eventos temporários
+events_backup/
+failed_events/
+
+# outros
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+.cache/
+.next/

@@ -13,8 +13,8 @@ from sharedResources.DataBases.mainDatabase.querrys import querrys
 def startRecordingNewMacroOnDb_external(self):
     with self.serverConfig.MacroConfig._threading_lock:
         try:
-            self.cursor.execute(querrys["selectMacroAtiva"])
-            row = self.cursor.fetchone()
+            row = self.exec(querrys["selectMacroAtiva"],fetch = "one")
+            # row = self.cursor.fetchone()
             if row:
                 print(f"Macro em andamento com ID: {row[0]} setarei esse id como o atual")
                 self.recordingMacroId = row[0]
@@ -25,7 +25,11 @@ def startRecordingNewMacroOnDb_external(self):
                 # if not self.serverConfig.MacroConfig.startMacroRecordingTime:
                 #     self.serverConfig.MacroConfig.startMacroRecordingTime = time.time()
 
-                self.cursor.execute(querrys["registroInicialMacro"], (name, self.serverConfig.MacroConfig.startMacroRecordingTime))
+                self.recordingMacroId  = self.exec(querrys["registroInicialMacro"], 
+                          (name, self.serverConfig.MacroConfig.startMacroRecordingTime),
+                          fetch = "lastrowid",
+                          )
+                
                 self.recordingMacroId = self.cursor.lastrowid
                 self.conn.commit()
                 print(f"Nova macro iniciada com ID: {self.recordingMacroId}")
@@ -39,14 +43,14 @@ def stopRecordingMacroOnDB_external(self):
             #seta a configuração na memória antes de mexer no DB
             self.recordingMacroId = None 
         
-        self.cursor.execute(querrys["selectMacroAtiva"])
-        row = self.cursor.fetchone()
+        row = self.exec(querrys["selectMacroAtiva"],fetch = "one")
+        # row = self.cursor.fetchone()
         if not row:
             print(f"nenhuma macro em andamento, isso não deveria ter sido executado!!")
             1/0 # forçando erro para ver o relatório da forensics
         else:
             print("macro em andamento no DB.isso é bom. vou registrar a parada nele")
-            self.cursor.execute(querrys["registroFimDeMacro"], (self.serverConfig.MacroConfig.stopMacroRecordingTime,))                
+            self.exec(querrys["registroFimDeMacro"], (self.serverConfig.MacroConfig.stopMacroRecordingTime,),fetch = None, commit = True)                
             self.conn.commit()
     
     except Exception as e:

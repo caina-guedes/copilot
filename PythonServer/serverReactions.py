@@ -182,7 +182,7 @@ class answerMapping():
                 if index > 0:
                     timegap = filteredCommand["deltaTime"] - cls.currentMacro[index-1][1]
                 # print("o calculo da diferençe de tempo é: ", command[1], " - ", cls.currentMacro[index-1][1], " = ", timegap)
-                filteredCommand["deltaTime"] = timegap/1000  ### convertendo para segundos
+                filteredCommand["deltaTime"] = timegap  ### convertendo para segundos
                 if destiny is not None:
                     # print("o destino é : ", destiny, " e o comando é : ", filteredCommand)
                     # print("o atributo achado pelo 'getattr(cls.connections, destiny' é: ",getattr(cls.connections, destiny))

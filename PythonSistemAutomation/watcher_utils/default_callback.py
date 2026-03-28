@@ -1,21 +1,26 @@
 import sys
 from pathlib import Path
+
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
-from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
+from sharedResources.debuggingResources.error_tracker import (
+    monitor_error,
+    log_error_forensics_plus,
+)
 
 import time
 
 logger = LoggerManager.get_logger(__name__)
 
+
 @monitor_error
-async def default_callback(event,father):
+async def default_callback(event, father):
     """this function check for changes in the current window and sends the event"""
     # print(" Event captured:", event)
     inicio = time.perf_counter()
     try:
-        
+
         try:
             await father.ws_client.connection.send(event, True)
             return True, time.perf_counter() - inicio
@@ -39,8 +44,8 @@ async def default_callback(event,father):
         # LoggerManager.log_exception_with_context(f"Error in default callback: {e}")
         logger.info(f"Error in default callback: {e}")
 
-        
+
 def treat_key_as_string(key):
-    if hasattr(key, 'char'):
-        return key.char    
+    if hasattr(key, "char"):
+        return key.char
     return str(key)

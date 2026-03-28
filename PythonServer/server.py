@@ -1,5 +1,4 @@
 import asyncio
-import signal
 import websockets
 import threading
 import json
@@ -12,11 +11,13 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 # Imports Utilitários e Debug
 # from PythonServer.port_handler import free_port
+from sharedResources.pythonLoggerSistem.logger import LoggerManager
+LoggerManager.complement_logs_path("Server")
+from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
+### o lifecycleMaster tem que ser o primeiro a ser importado por causa do print interceptor!!!!!
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 
 from sharedResources.generalUtils.aprint import aprint
-from sharedResources.pythonLoggerSistem.logger import LoggerManager
-from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 
 # Imports de Configuração e Banco
 from PythonServer.serverConfig import serverConfig, connection_types, SOWatcherActions
@@ -164,8 +165,6 @@ class WebSocketServerManager:
                     await asyncio.sleep(0.05)
                 
                 # print("Sinal de shutdown recebido no Server Manager...")
-                ws_server.close()
-                await ws_server.wait_closed()
                 print("Servidor WebSocket fechado com sucesso.")
                 
         except Exception as e:
@@ -191,22 +190,19 @@ class WebSocketServerManager:
         if self.check_conn_task and not self.check_conn_task.done():
             self.check_conn_task.cancel()
             try:
+                print("cancelando a check_conn_task")
                 await self.check_conn_task
             except asyncio.CancelledError:
+                print("cancelei  a check_conn_task")
                 pass
-        
+        else:
+            print("não precisei cancelar a check_conn_task pq ja não existe ou ja está como done.")
         # 2. Desconecta clientes ativos na força (Isso evita o TIME_WAIT)
         # Importamos as conexões do core.utils ou state
         # from PythonServer.utils import connections 
         
         active_clients = connections.active_clients()
-        # [
-        #     connections.browser.unique,
-        #     connections.OS.sender,
-        #     connections.OS.receiver,
-        #     connections.front_end.unique
-        # ] 
-        # print("the active_clients return value is: ",active_clients)
+        
         for client_register in active_clients:
             group_name, conn_name , conn = client_register
             try:
@@ -222,9 +218,37 @@ class WebSocketServerManager:
         
         # 3. Fecha o servidor
         if self.ws_server:
+            try:
+                print("printando atributos do ws_server")
+                print([attr for attr in dir(self.ws_server) if not attr.startswith("_")])
+                print(type(self.ws_server.connections))
+                    
+                print(len(self.ws_server.connections))
+                if len(self.ws_server.connections)>0:
+                    for conn in self.ws_server.connections:
+                        print(type(conn))
+                ainda_ativas = list(self.ws_server.connections) 
+                ###'Server' object has no attribute 'websockets'## está acusando essa linha aqui !!!!
+                
+                if len(ainda_ativas)>0:
+                    print(f"numero de conexões ainda ativas depois do .close() é:",len(ainda_ativas))
+                    for ws in ainda_ativas:
+                        print(f"conexão ainda ativa depois de eu ter dado .close() nas do active clients e é: {ws}")
+                        try:
+                            await ws.close()
+                        except:
+                            pass
+                else:
+                    print("conexões fecharam direitinho! 0 ativas no momento!")
+            except:
+                pass
+
             self.ws_server.close()
             await self.ws_server.wait_closed()
-            print("✅ Socket do servidor fechado e liberado.")
+            self.ws_server = None
+            print("socket do servidor fechado e liberado.")
+        else:
+            print("servidor ja foi fechado!")
 
 
     async def check_connections(self, period=10):
@@ -254,16 +278,25 @@ class WebSocketServerManager:
             print("ja mandei o sinal de fechamento antes!")
 if __name__ == "__main__":
     # Configura sinais de SO
-    for sig in (signal.SIGINT, signal.SIGTERM):
-        signal.signal(sig, WebSocketServerManager.shutdown)
+    # for sig in (signal.SIGINT, signal.SIGTERM):
+    #     signal.signal(sig, WebSocketServerManager.shutdown)
+    try:    
+        manager = WebSocketServerManager()
         
-    manager = WebSocketServerManager()
-    
-    # Inicia o runtime via LifecycleMaster
-    LifecycleMaster.start_runtime(manager.start())
-    
-    # Bloqueia thread principal
-    LifecycleMaster.byebye.wait()
+        # Inicia o runtime via LifecycleMaster
+        LifecycleMaster.prepare_for_start_runtime(manager.start())
+        # LifecycleMaster.start_runtime(manager.start())
+        
+        # Bloqueia thread principal
+        LifecycleMaster.espera_pelo_tchau()
+        # try:
+        #     LifecycleMaster.byebye.wait()
 
-    print("Aplicação encerrada. Bye bye!")
-    # free_port(8765)
+        #     print("Aplicação encerrada. Bye bye!")
+        # except:
+        #     LifecycleMaster.cls.first_shutdown_event.set()
+        # free_port(8765)
+    except Exception as e:
+        print("deu erro fora da main e foi:",str(e))
+
+print("byebye de vez!")

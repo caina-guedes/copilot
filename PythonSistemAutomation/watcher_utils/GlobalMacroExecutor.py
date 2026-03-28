@@ -1,7 +1,7 @@
-import copy
-from asyncio import QueueEmpty 
 import warnings 
+import asyncio 
 import asyncio
+import copy
 import time
 import json
 
@@ -10,7 +10,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 
-from sharedResources.generalUtils.aprint import aprint
+# from sharedResources.generalUtils.aprint import aprint
 from PythonSistemAutomation.watcher_utils.default_receiving_function import default_receiving_function, exec_mouse_or_kb
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
@@ -39,6 +39,34 @@ class GlobalExecutor:
     _stop_running_macro_flag = Flag(False)
     _pressed_keys = None
     _pressed_buttons  = None
+    #for macro control internal only
+    _executed_commands_counter ={"current": 0}
+    _current_macro_size = 0
+    _enable_counting_macro_commands = False
+    
+    @classmethod
+    def increase_executed_macro_commands(cls):
+        """ essa função só está implementada para windows, o linux se comporta diferente ai é foda!"""
+        if cls._current_macro_size >0:
+            cls._executed_commands_counter["current"] +=1
+            if cls._executed_commands_counter["current"] < cls._current_macro_size:
+                pass
+                # print(f"executei {cls._executed_commands_counter["current"]}/{cls._current_macro_size} comandos da macro")
+
+            elif cls._executed_commands_counter["current"] == cls._current_macro_size :
+                if not cls._enable_counting_macro_commands:
+                    print("executei o ultimo comando da macro!")
+                    cls._executed_commands_counter["current"] = 0
+                    cls._current_macro_size = 0
+                else:
+                    pass
+                    # print(f"executei {cls._executed_commands_counter["current"]}/{cls._current_macro_size} comandos da macro mas ela ainda não acabou")
+            else:
+                print(f"deu ruim o cls._executed_commands_counter['current']({cls._executed_commands_counter["current"]}) é maior que o cls._current_macro_size({cls._current_macro_size})")
+        else:
+            pass
+            # print(f" macro com _current_macro_size == {cls._current_macro_size}")
+    
     @classmethod
     def set_pressed(cls,pressed_keys, pressed_buttons):
         if cls._pressed_keys is None:
@@ -46,15 +74,16 @@ class GlobalExecutor:
             cls._pressed_keys = pressed_keys
         if cls._pressed_buttons is None:
             cls._pressed_buttons = pressed_buttons
-
     
     @classmethod
-    def umpress_keys(cls, controls_to_ignore = None):
+    def umpress_keys(cls, controls_to_ignore = None, delay = 0):
         frozen_controls_to_ignore = copy.deepcopy(controls_to_ignore) 
-        
+        if delay > 0:
+            time.sleep(delay)
         # if len(cls._pressed_keys)> 0:
         #     print("printing umpressed_keys")
         if cls._pressed_keys is not None and len(cls._pressed_keys)>0:
+            print(f"umpressing {len(cls._pressed_keys)} keys  ")
             for original_key in list(cls._pressed_keys):# formata e tenta desapertar o botão
                 print("the original_key is: ",original_key)
                 command = {
@@ -105,7 +134,6 @@ class GlobalExecutor:
         print(f"cancelei {counter} comandos")
         print(f"a lista de comandos é: {canceledCommands}")
     
-  
 
     @classmethod
     async def enqueue(cls, command: dict,controlsToIgnore, ExecutingMacro):
@@ -122,8 +150,19 @@ class GlobalExecutor:
             print("kill macro executed successfully")
             return
 
+        
+
+        if command == '{"action": "endMacro"}':
+            cls._enable_counting_macro_commands = False
+
+        if cls._enable_counting_macro_commands:
+            cls._current_macro_size +=1
+        
+        if command  == '{"action": "startMacro"}':
+            cls._enable_counting_macro_commands = True
+        
         await cls._queue.put([command,time.perf_counter()])
-        print(f"  Enqueued: {command}")
+        print(f"  Enqueued: {command} it's type is: {type(command)}")
 
         # Auto-start se ainda não estiver rodando
         if not cls._running:
@@ -280,7 +319,7 @@ class GlobalExecutor:
                     cls.umpress_keys()
                     cls._internalStartMacroTime = time.perf_counter()
                 elif command_data.get("action") == "endMacro":
-                    cls.umpress_keys()
+                    cls.umpress_keys(delay= 0.1)
                     cls._internalStopMacroTime = time.perf_counter()
                     if cls._internalStartMacroTime is not None:
                         try:

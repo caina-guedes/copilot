@@ -4,7 +4,6 @@ from PythonSistemAutomation.watcher_utils.default_callback import treat_key_as_s
 from pynput import mouse, keyboard
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
-import warnings 
 # logger = LoggerManager.get_logger(__name__,filename = __name__+'.log')
 logger = LoggerManager.get_logger(__name__)
 """
@@ -15,6 +14,10 @@ class EventObserverConfig:
     def __init__(self, is_macro_recording = True, bgRecording = True):
         self.is_macro_recording = is_macro_recording
         self.bgRecording = bgRecording
+        """
+        preciso resolver essa stopKey aqui! ta ahrdcoded e precisa vir das 
+        configurações do server, alem disso preciso poder mudar essas opções no futuro
+        """
         self.stopKey = treat_key_as_string(keyboard.Key.esc)
         self.toggleRecordKey = "Key.f1"
         self.repetition = True  # Default value, can be changed later

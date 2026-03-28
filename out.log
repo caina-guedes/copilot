@@ -1,0 +1,129 @@
+Windows
+[OK] Porta 8765 está livre
+[orchestrator] Iniciando server...
+pro server o whatToShow["server"] é: False
+pro serverError o whatToShow["serverError"] é: True
+[SERVER_ERR] [INFO] server listening on 127.0.0.1:8765
+ [INFO] server listening on [::1]:8765
+[orchestrator] Porta 8765 disponível
+[orchestrator] Iniciando watcher...
+ [ERROR] opening handshake failed
+ Traceback (most recent call last):
+   File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\http11.py", line 138, in parse
+     request_line = yield from parse_line(read_line)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\http11.py", line 309, in parse_line
+     line = yield from read_line(MAX_LINE_LENGTH)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\streams.py", line 46, in read_line
+     raise EOFError(f"stream ends after {p} bytes, before end of line")
+ EOFError: stream ends after 0 bytes, before end of line
+ 
+ The above exception was the direct cause of the following exception:
+ 
+ Traceback (most recent call last):
+   File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\server.py", line 545, in parse
+     request = yield from Request.parse(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+         self.reader.read_line,
+         ^^^^^^^^^^^^^^^^^^^^^^
+     )
+     ^
+   File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\http11.py", line 140, in parse
+     raise EOFError("connection closed while reading HTTP request line") from exc
+ EOFError: connection closed while reading HTTP request line
+ 
+ The above exception was the direct cause of the following exception:
+ 
+ Traceback (most recent call last):
+   File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\asyncio\server.py", line 356, in conn_handler
+     await connection.handshake(
+     ...<3 lines>...
+     )
+   File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\asyncio\server.py", line 207, in handshake
+     raise self.protocol.handshake_exc
+ websockets.exceptions.InvalidMessage: did not receive a valid HTTP request
+[orchestrator] Iniciei o watcher...
+[orchestrator] Iniciando frontend...
+[orchestrator] Sistema em execução
+[WATCHER] começando o watcher!!!!
+ Waiting for shutdown to begin...[Thread Created] AprintThread
+ 
+ [Thread Started] AprintThread
+ setando flag execMacroKey no macroConfig para : <PythonServer.serverConfig.KeyRef object at 0x0000029BADC93380>
+ setando flag stoppingKey no macroConfig para : <PythonServer.serverConfig.KeyRef object at 0x0000029BADD78F50>
+ setando flag: SOWatcherActions no serverConfig
+ the basePath is:  D:\copilot
+ [MyLoop - State: EMPTY] the current loop is None
+ [MyLoop - State: EMPTY] [LoopState] Changing state from LoopState.EMPTY to LoopState.RUNNING
+ loop started in its own thread
+ PrintInterceptor installed!(shutdownMaster:pluga_sinal_de_parada:159) init
+ registered the  set_inicial_shutdown_event function on  atexit
+ registered the signal.SIGINT
+ registered the signal.SIGBREAK on windows 
+ registered on windows handler PHANDLER_ROUTINE(console_handler) 
+ Sucesso ao registrar o handler de fechamento do terminal.
+ (stateManager:state:92) 🔄 [LIFECYCLE] Mudança de Estado:  INIT   ➡️   RUNNING     
+ (main: - :266) esperando byebye na thread principal!
+ (threadsafe:_create_task_in_loop:106) creating task in loop thread: <Task pending name='main' coro=<main() running at D:\copilot\PythonSistemAutomation\main.py:208> cb=[TasksMapClass._on_task_finish() at D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py:293]> loop
+ (watcherDatabase:initialize_not_sent_events:45) Database connection established.
+ (main:main:215) inicializei o not_sent_db
+ (main:__init__:109) inicializando o automationSystem o argumento é: not_sent_db : <sharedResources.DataBases.watcherDatabase.WatcherNotsentEventsDatabase object at 0x0000029BADDBFB60>
+ logo antes do observer!
+ logo depois do observer
+ (main:main:217) inicializei o automationSystem
+ [INFO] 2026-03-17 12:51:55 | main:218 | Starting event observer...
+ (watcher:start:419)  called start!
+ (threadsafe:submit:83) creating task in loop thread: <Task pending name='loop do buffer do observer- segundo loop' coro=<EventObserver.buffer_loop() running at D:\copilot\sharedResources\debuggingResources\unified_monitor.py:69> cb=[TasksMapClass._on_task_finish() at D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py:293]> loop
+ creating task in loop thread: <Task pending name='on_event_consumer - primeiro loop' coro=<EventObserver._event_consumer() running at D:\copilot\sharedResources\debuggingResources\unified_monitor.py:69> cb=[TasksMapClass._on_task_finish() at D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py:293]> loop
+ (watcher:start:424) o tipo do self.on_event_consumer_task é: <class '_asyncio.Task'>
+  e o self.on_event_consumer_task em si é: <Task pending name='on_event_consumer - primeiro loop' coro=<EventObserver._event_consumer() running at D:\copilot\sharedResources\debuggingResources\unified_monitor.py:69> cb=[TasksMapClass._on_task_finish() at D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py:293]>
+ (main:main:220) comecei o start_observer
+ (connectionObject:__init__:22) dentro do init da TwoWayConnection
+ fim do init da TwoWayConnection
+ (WatcherWebSocket:connectDoubleConnection:79) [CLIENT] 🔄 Attempting to connect to the server...
+ [INFO] 2026-03-17 12:51:55 | WatcherWebSocket:80 | [CLIENT] 🔄 Attempting to connect to the server...
+ (watcher:buffer_loop:357)  tarefa iniciada!
+ (watcher:_event_consumer:132)  Consumer Task iniciada.
+[SERVER_ERR] [INFO] connection open
+[WATCHER] (threatHandShake:threatHandShake:19) vou enviar ao server isso aqui: {"tipo": "Operating System Watcher Sender"}[INFO] 2026-03-17 12:51:55 | connectionObject:50 | [TwoWayConnection] Setting sender...
+ 
+ [PythonSistemAutomation.watcher_utils.websocket_utils.threatHandShake] 🖥️ Operating System Watcher Sender Connection Started!
+[SERVER_ERR] [INFO] connection open
+[WATCHER] vou enviar ao server isso aqui: {"tipo": "Operating System Watcher Receiver"}[INFO] 2026-03-17 12:51:55 | connectionObject:55 | [TwoWayConnection] setting receiver function
+ 
+ [PythonSistemAutomation.watcher_utils.websocket_utils.threatHandShake] 🖥️ Operating System Watcher Receiver Connection Started!
+ (threadsafe:submit:83) creating task in loop thread: <Task pending name='TwoWayConnectionReceiverLoopTask' coro=<TwoWayConnection.receiver_loop() running at D:\copilot\sharedResources\debuggingResources\unified_monitor.py:69> cb=[TasksMapClass._on_task_finish() at D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py:293]>[INFO] 2026-03-17 12:51:55 | connectionObject:68 | [TwoWayConnection] Starting receiver loop task...
+  loop
+ creating task in loop thread: <Task pending name='TwoWayConnection closing task' coro=<TwoWayConnection.close() running at D:\copilot\sharedResources\debuggingResources\unified_monitor.py:69> cb=[TasksMapClass._on_task_finish() at D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py:293]> loop
+ (connectionObject:start_receiving:80)  the receiver_task is:  <Task pending name='TwoWayConnectionReceiverLoopTask' coro=<TwoWayConnection.receiver_loop() running at D:\copilot\sharedResources\debuggingResources\unified_monitor.py:69> cb=[TasksMapClass._on_task_finish() at D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py:293]>
+  the type is:  <class '_asyncio.Task'>
+ [INFO] 2026-03-17 12:51:55 | WatcherWebSocket:139 | [PythonSistemAutomation.watcher_utils.WatcherWebSocket] ✅ Conected to the server.
+ (connectionObject:receiver_loop:154)    receiver_loop function called 
+ (connectionObject:close:261)  close function begin[INFO] 2026-03-17 12:51:55 | connectionObject:153 | [TwoWayConnection] receiver_loop function called 
+ 
+ [INFO] 2026-03-17 12:51:55 | connectionObject:163 | [TwoWayConnection] Receiver loop started.
+ (main:main:222) comecei o websocket[INFO] 2026-03-17 12:51:55 | watcherDatabase:104 | Quantidade de eventos não enviados: 0
+ 
+ [INFO] 2026-03-17 12:51:55 | main:187 | WebSocket client initialized.
+[FRONTEND_ERR]      Running BeforeDevCommand (`npm run dev`)
+ failed to load config from D:\copilot\automation-ui-tauri\vite.config.js
+ error when starting dev server:
+ Error: ENOSPC: no space left on device, write
+     at async write (node:internal/fs/promises:742:8)
+     at async writeFileHandle (node:internal/fs/promises:499:7)
+     at async loadConfigFromBundledFile (file:///D:/copilot/automation-ui-tauri/node_modules/vite/dist/node/chunks/config.js:35899:3)
+     at async bundleAndLoadConfigFile (file:///D:/copilot/automation-ui-tauri/node_modules/vite/dist/node/chunks/config.js:35789:17)
+     at async loadConfigFromFile (file:///D:/copilot/automation-ui-tauri/node_modules/vite/dist/node/chunks/config.js:35756:42)
+     at async resolveConfig (file:///D:/copilot/automation-ui-tauri/node_modules/vite/dist/node/chunks/config.js:35405:22)
+     at async _createServer (file:///D:/copilot/automation-ui-tauri/node_modules/vite/dist/node/chunks/config.js:25352:67)
+     at async CAC.<anonymous> (file:///D:/copilot/automation-ui-tauri/node_modules/vite/dist/node/cli.js:572:18)
+        Error The "beforeDevCommand" terminated with a non-zero status code.
+[orchestrator] Encerrando processos...
+enviando sinal educado de parada pro processo
+processo parou como devia
+enviando sinal educado de parada pro processo
+enviando sinal educado de parada pro processo
+[orchestrator] Finalizado
+[WARN] Porta 8765 em uso por PID=7164 (python.exe)
+[OK] Processo 7164 finalizado, porta liberada

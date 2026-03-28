@@ -153,7 +153,7 @@ class GraciousCleanupManager:
                         kwargs = hook['kwargs']
                         name = hook['name']
 
-                        if asyncio.iscoroutinefunction(func):
+                        if inspect.iscoroutinefunction(func):
                             # Se for async, preparamos para o gather
                             async_coros.append({name: func(*args, **kwargs)})
                         else:
@@ -173,7 +173,7 @@ class GraciousCleanupManager:
                         async def run_batch():
                             # return_exceptions=True impede que um erro cancele os outros do mesmo lote
                             functions_list = [[hook for hook in f.values()][0] for f in async_coros]
-                            # print(f"[ShutdownManager] the functions list for the gather is: {functions_list}")
+                            print(f"[ShutdownManager] the functions list for the gather is: {functions_list}")
                             return await asyncio.gather(*functions_list, return_exceptions=True)
 
                         future = asyncio.run_coroutine_threadsafe(run_batch(), cls.LifecycleMaster.running_loop.get())

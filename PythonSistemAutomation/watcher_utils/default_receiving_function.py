@@ -129,6 +129,7 @@ def exec_mouse_or_kb(message, macroExecutor,frozen_controls_to_ignore = None ):
 
     if action == "endMacro":
         ExecutingMacro["value"] = False
+        # como colocar a função umpress aqui? 
         print("Macro execution ended.")
         return InternalResponse(0,0)
 
@@ -189,8 +190,8 @@ async def default_receiving_function(message, macroExecutor,frozen_controls_to_i
             # pass
         if "deltaTime" in message:
             timeToWait = message['deltaTime']
-            loop_time = asyncio.get_running_loop().time()
-            # print(f"[{loop_time:.3f}] Aguardando {timeToWait}s")
+            # loop_time = asyncio.get_running_loop().time()
+            # print(f" Aguardando {timeToWait}s")
             await asyncio.sleep(timeToWait)
             # print("o valor da flag na iminência da execução do comando é: ",macroExecutor._stop_running_macro_flag.get_value())
         

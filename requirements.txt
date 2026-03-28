@@ -7,5 +7,3 @@ rich==14.3.3
 win32gui==221.6
 
 
-# só pra saber qual versão instalar
-Python 3.10.12

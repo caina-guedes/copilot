@@ -195,7 +195,9 @@ class OSProcessorClass():
         state.mainDb.log_background_event(message, isSpecialCommand)
 
         # 4. Reações (Answer Mapping)
-        if state.mainDb.answer is not None :
-            print(f"[OSProcessorClass.process_watcher_msg] the Db,answer is: {state.mainDb.answer}",)
+        if state.mainDb.answer is not None  and state.mainDb.answer["MacroreadyToUse"]:
+            # por enquanto a unica resposta que o Main DB dá é se a macro está pronta pra usar! depois, se houver outra coisa eu melhoro isso aqui
+            
+            # print(f"[OSProcessorClass.process_watcher_msg] the Db,answer is: {state.mainDb.answer}",)
             await answerMapping.create(state.mainDb.answer, state.server_config, connections)
             state.mainDb.clean_answer()

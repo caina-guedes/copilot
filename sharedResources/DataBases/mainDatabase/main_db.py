@@ -1,4 +1,5 @@
 import atexit
+import re
 import sqlite3
 
 from pathlib import Path
@@ -11,13 +12,6 @@ print(RootDir)
 DBDir = RootDir + '/sharedResources/DataBases/DBs'
 sys.path.append(RootDir)
 print(f'RootDir set to: {RootDir}')
-
-"""
-doiufdoiufdoiufdddffggdfgdfgdfgdrfdrf
-diugd
-
-"""
-
 
 
 from PythonServer.serverConfig import serverConfig
@@ -33,7 +27,8 @@ from sharedResources.DataBases.mainDatabase.event_logger import log_background_e
 from sharedResources.DataBases.mainDatabase.flush_worker import _flush_external, _flush_worker_external
 from sharedResources.DataBases.mainDatabase.querrys import querrys
 
-# @monitor_class
+print("logo antes de definir a MainDatabase class ")
+@monitor_class
 class MainDatabase:
         # from cache_manager
     _cache_codes = _cache_codes_external
@@ -108,18 +103,176 @@ class MainDatabase:
                 print("[MainDatabase._configure_connection] deu erro configurando conexão do main db e foi: ", str(e))
 
 
-    def exec(self,querry, fetchOne = False,argsTuple=None ):
+
+    def exec(self, query, args=None, fetch="all", many=False, commit = False):
+        """
+        Executa queries de forma robusta.
+        :param query: A string SQL.
+        :param args: Pode ser uma tupla (para execute) ou uma lista de tuplas (para many).
+        :param fetch: 'all', 'one', 'lastrowid' ou None.
+        :param many: Booleano para ativar executemany.
+        """
+
         try:
-            if argsTuple is None:
-                self.cursor.execute(querry)
+            if args and any(x == 'None' for x in args):
+                print("""fiz burradaaaa !!! meti um str(valor) onde não devia e agora ta vindo 'None' como argumento pra querry!!!""")
+
+            if many:
+                # No caso de executemany, args DEVE ser uma lista de tuplas/dicionários
+                self.cursor.executemany(query, args)
             else:
-                self.cursor.execute(querry,argsTuple)
-            return self.cursor.fetchall()
+                if args is None:
+                    self.cursor.execute(query)
+                else:
+                    self.cursor.execute(query, args)
+            # Trata o retorno
+            result = None
+            if fetch == "all":
+                result = self.cursor.fetchall()
+            elif fetch == "one":
+                result = self.cursor.fetchone()
+            elif fetch == "lastrowid":
+                result = self.cursor.lastrowid
+            
+            if commit:
+                self.conn.commit()
+            
+            return result
+
         except Exception as e:
-            print("the error querry is: ",querry)
-            print('the argsTuple is: ' ,argsTuple )
-            raise 
-    
+            # DENTRO DO SEU EXCEPT, se many for True:
+            self.error_value = None
+            if many:
+                print("Iniciando Modo Perícia: testando registros um por um...")
+                achou = False
+                for i, row in enumerate(args):
+                    try: 
+                        # Cria um cursor temporário ou usa o atual para testar a linha isolada
+                        self.cursor.execute(query, row)
+                    except Exception as row_error:
+                        print(f"❌ Erro encontrado na LINHA {i}")
+                        print(f"Dados da linha: {row}")
+                        print(f"Causa provável: {row_error}")
+                        self.error_value = row
+                        self._integrity_scanner(query, args[i], many)
+                        achou = True
+                        break # Para no primeiro erro encontrado
+                if not achou:
+                    print("função quando executada linha a linha não da erro mas com o many da erro!")
+
+                # if "integrity" in str(e).lower():
+            else:
+                self._integrity_scanner(query, args, many)
+            
+
+            self._diagnose_error(e, query, args, many)
+            raise # Re-levanta a exceção para o código principal saber que parou
+
+    def _diagnose_error(self, error, query, args, many):
+        """Função interna para dissecar o erro de integridade."""
+        print("\n" + "="*60)
+        print("🚨 DATABASE ERROR DETECTED")
+        print(f"Query: {query}")
+        print(f"Error Type: {type(error).__name__}")
+        print(f"Error Message: {error}")
+        print("-" * 60)
+
+        if many and isinstance(args, list):
+            print(f"Total de registros no lote: {len(args)}")
+            # Como o executemany falha no lote, vamos tentar identificar o culpado
+            # Imprimimos os primeiros e últimos para inspeção visual rápida
+            if len(args) > 0:
+                print(f"Exemplo do primeiro registro: {args[0]}")
+                
+            # Dica: Se o banco for SQLite ou Postgres, o erro às vezes indica o índice.
+            # Caso contrário, você pode precisar de um laço de debug (veja abaixo).
+        else:
+            print(f"Arguments: {args}")
+        
+        print("="*60 + "\n")
+
+        # Se você quiser ser EXTREMAMENTE agressivo no debug:
+        # Você poderia rodar um loop aqui testando um por um até falhar, 
+        # mas isso é lento, melhor deixar apenas para logs de erro.
+    @staticmethod
+    def query_debug(query, params):
+        def escape(v):
+            if v is None:
+                return "NULL"
+            if isinstance(v, str):
+                return "'" + v.replace("'", "''") + "'"
+            return str(v)
+
+        parts = query.split("?")
+        result = ""
+        for i, part in enumerate(parts):
+            result += part
+            if params and i < len(params):
+                result += escape(params[i])
+        return result
+    def _integrity_scanner(self, query, args, many):
+        print("\n🔍 --- INICIANDO SCANNER DE INTEGRIDADE ---")
+        # Se for many, pegamos o primeiro registro (já que o erro foi no lote)
+        # ou o registro que o modo perícia indicar.
+        if self.error_value:
+            print("peguei o error value do loop anterior")
+            sample_data = self.error_value
+        else:
+            print('não tinha error value do loop anterior')
+            sample_data = args[0] if many and isinstance(args, list) else args
+
+        print("\n a querry envolvida é: ",self.query_debug(query,sample_data))
+
+        # 1. Tentar extrair o nome da tabela da Query (Regex simples)
+        table_match = re.search(r"into\s+(\w+)", query.lower())
+        if not table_match:
+            print("❌ Não foi possível identificar a tabela na query.")
+            return
+        
+        table_name = table_match.group(1)
+        
+        # 2. Pegar informações das colunas da tabela no Banco
+        # Isso funciona no SQLite. Se usar outro banco, o comando muda.
+        self.cursor.execute(f"PRAGMA foreign_key_list({table_name})")
+        fks = self.cursor.fetchall() 
+        # Estrutura do FK list no SQLite: (id, seq, table, from, to, on_update, on_delete, match)
+        
+        if not fks:
+            print(f"ℹ️ Nenhuma chave estrangeira formal encontrada para a tabela '{table_name}'.")
+            print("Provavelmente o erro é um NOT NULL ou UNIQUE constraint.")
+            return
+
+        # 3. Mapear as colunas da Query para os valores do args
+        # Precisamos saber qual valor no args corresponde a qual coluna
+        col_match = re.search(r"\((.*?)\)", query)
+        if not col_match:
+            print("❌ Não foi possível mapear as colunas.")
+            return
+        
+        columns_in_query = [c.strip() for c in col_match.group(1).split(",")]
+
+        # 4. Testar cada Chave Estrangeira
+        for fk in fks:
+            fk_from = fk[3]  # Coluna na tabela atual
+            fk_table_to = fk[2] # Tabela pai
+            fk_col_to = fk[4] # Coluna na tabela pai
+
+            if fk_from in columns_in_query:
+                index = columns_in_query.index(fk_from)
+                valor_testado = sample_data[index]
+
+                # Query de teste: existe esse ID na tabela pai?
+                test_query = f"SELECT 1 FROM {fk_table_to} WHERE {fk_col_to} = ?"
+                self.cursor.execute(test_query, (valor_testado,))
+                
+                if not self.cursor.fetchone():
+                    print(f"🚨 CULPADA ENCONTRADA: Coluna '{fk_from}'")
+                    print(f"   - O valor '{valor_testado}' NÃO EXISTE na tabela pai '{fk_table_to}'({fk_col_to}).")
+                else:
+                    print(f"✅ Coluna '{fk_from}': valor '{valor_testado}' validado com sucesso.")
+
+        print("--- FIM DO SCANNER ---\n")
+
     ### Event Buffering and Insertion ###
     def add_event(self, event_dict,isSpecialCommand = False):
         """
@@ -205,7 +358,9 @@ LifecycleMaster.register_cleanup_function(MainDatabase.close,
 
 # prioridade 10 para garantir que seja chamado depois de outras funções de limpeza 
 # que possam depender do main database ainda estar aberto
+# print("logo antes do if ")
 if __name__ == "__main__":
+    print("entrei no if __name__ == '__main__'")
     db = MainDatabase(batch_size=10, flush_interval=3)
 
     def limpaMacros(todas = False):
@@ -223,6 +378,8 @@ if __name__ == "__main__":
     print("valores da tabela macros:")
     db.cursor.execute("select * from macros")
     a=db.cursor.fetchall()
+    for x in a:
+        print(x)
     # import sqlite3
 
     def quant_registros_tabelas():
@@ -356,4 +513,6 @@ HAVING cnt > 1
             WHERE window_event_id IN ({','.join('?'*len(old_ids))})
             """, argsTuple = [kept_id] + old_ids)
     
+# else:
+#     print("não entrei no if ")
     

@@ -25,11 +25,12 @@ def _build_insert_query(table, data: dict):
 
     sql = f"INSERT INTO {table} ({keys}) VALUES ({placeholders})"
     if table == "window_events":
-        sql = """ ON CONFLICT(app, class_name, pid, win_id, title)
+        sql += """ ON CONFLICT(app, class_name, pid, win_id, title)
         DO UPDATE SET
         occurrences = occurrences + 1,
         timestamp = excluded.timestamp,
-        details   = excluded.details"""
+        details   = excluded.details
+        RETURNING id"""
 
     if sql not in querrys_ja_existentes:
         querrys_ja_existentes.add(sql)
@@ -133,8 +134,8 @@ def _flush_windowChange(self,windowEvent,ts):
 
     preparedQuerry , values = _build_insert_query("window_events",internalWindowEvent)
     try:
-        self.cursor.execute(preparedQuerry, values)
-        windowgeratedId = self.cursor.lastrowid
+        windowgeratedId = self.exec(preparedQuerry, values, fetch = "one")[0]
+        # windowgeratedId = self.cursor.lastrowid
         # print("o id gerado pra mudança de janela foi:",windowgeratedId )
         return windowgeratedId
     except Exception as e:
@@ -145,6 +146,7 @@ def _flush_windowChange(self,windowEvent,ts):
 
 
 def _prepareEventToFlush(self, ev):
+    # print("init")
     ts = ev.get('ts')
     type_id = self.get_or_create_code( 'type_codes', self.type_cache, ev.get('type'))
     key_id = None
@@ -155,6 +157,7 @@ def _prepareEventToFlush(self, ev):
     action_id = self.get_or_create_code( 'action_codes', self.action_cache, ev.get('action'))
     device_id = self.get_or_create_code( 'device_codes', self.device_cache, ev.get('device'))
     source_id = self.get_or_create_code( 'source_codes', self.source_cache, ev.get('source'))
+    # print("post todos os get_or_create_code")
     details_json = ev.get('details', None)
     # Campos extras
     x = ev.get('x')
@@ -185,6 +188,7 @@ def _prepareEventToFlush(self, ev):
     prepared_event_to_flush = (ts, type_id, key_id,macro_id, action_id, device_id, source_id, None, details_table, x,y,value,details_json, windowChangeId)
     # print("o evento depois de ser preparado para o flush é: ",prepared_event_to_flush) 
     # print("time since event ts: ", (int(str(time.time()*1000).split(".")[0]) - ts)/1000)
+    # print("o windowChangeId é: ",windowChangeId)
     return prepared_event_to_flush
 
 
@@ -249,12 +253,16 @@ def _flush_external(self, final_flush=False):
     # print(f"tentando inserir {len(events_to_insert)} eventos no banco de dados.")
     for attempt in range(max_retries):
         try:
+            
             print(f"about to flush the events that happend between {timePassed(events_to_insert[0][0])} and {timePassed(events_to_insert[-1][0])}!!!!!")
-            self.cursor.executemany('''
-                INSERT INTO events (ts, type_id, key_id,macro_id, action_id, device_id, source_id, details_id, details_table, x, y, value, details_json,window_event_id)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
-            ''', events_to_insert)
-            self.conn.commit()
+            self.exec(querrys["insertEvent"], 
+                                events_to_insert,
+                                fetch = None, 
+                                many = True, 
+                                commit = True)
+                                
+            # self.cursor.executemany(querrys["insertEvent"], events_to_insert)
+            # self.conn.commit()
             # print("flush de eventos realizado com sucesso.")
             sucess = True
             self._last_flush = time.time()
@@ -271,6 +279,8 @@ def _flush_external(self, final_flush=False):
                 break
         except sqlite3.IntegrityError as e:
             print("Evento problemático:", events_to_insert)
+            print("querry que deu erro: ",querrys["insertEvent"])
+            print("events_to_insert que deu erro :" , events_to_insert)
             raise e
         except Exception as e:
             print(f"[ERROR] Falha ao gravar eventos: {e}")

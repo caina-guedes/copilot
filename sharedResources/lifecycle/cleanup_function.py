@@ -21,7 +21,7 @@ def execute_cleanup_function(
     try:
         result = cleanup_function()
         # se for coroutine, agenda no loop
-        if asyncio.iscoroutine(result):
+        if inspect.iscoroutine(result):
             if loop.get() is not None:
                     if loop._loop_is_ok():
                         asyncio.run_coroutine_threadsafe(result, loop)

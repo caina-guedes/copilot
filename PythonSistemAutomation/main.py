@@ -22,26 +22,31 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 # import builtins
 # from sharedResources.generalUtils.aprint import aprint  # my assyncronous print function
 # builtins.print = aprint # Override the built-in print with asynchronous print
+from sharedResources.pythonLoggerSistem.logger import LoggerManager
+LoggerManager.complement_logs_path("PythonSistemAutomation")
+from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
+
+from sharedResources.debuggingResources.exec_monitor import CallRegistry
+# o lifecycleMaster tem que ser o primeiro aser improtado por causa do print_interceptor!!!!! 
 from PythonSistemAutomation.watcher_utils.GlobalMacroExecutor import GlobalExecutor
 
 from PythonSistemAutomation.sistem_utils.Watcher_config import EventObserverConfig
 from PythonSistemAutomation.watcher import EventObserver
 # from PythonSistemAutomation.watcher_utils.concurrencySafeObjects import ThreadAsyncSafeWrapper
 # from PythonSistemAutomation.watcher_utils.event_utils import Event
-from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from PythonSistemAutomation.watcher_utils.WatcherWebSocket import WebSocketClient
 import PythonServer.serverConfig as serverConfig
 from sharedResources.DataBases.watcherDatabase import WatcherNotsentEventsDatabase
 import asyncio 
 
-from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 from sharedResources.lifecycle.shutdownThreadUtils  import TrackedThread 
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 
 from sharedResources.lifecycle.printUtils import print_thread_status, print_async_tasks_status
 # from sharedResources.debuggingResources.task_monitor import task_monitor
-
+print("começando o watcher!!!!")
+        
 logger = LoggerManager.get_logger(__name__)
 
 shutDownNotComplete = True
@@ -95,7 +100,7 @@ class AutomationSystem:
                     # Wait for all threads and async tasks to finish
                     print("Waiting for all threads and tasks to finish...")
                     cls.shutDownComplete.wait()
-                    # CallRegistry.report()
+                    CallRegistry.report()
                     print("AutomationSystem shutdown complete.")
             except Exception as e:
                 print("deu erro no shutDown do automation system e foi: ",e)
@@ -237,6 +242,7 @@ async def main():
     finally:
         print("entrou no finally da main...")
         try:
+            print()
             GlobalExecutor.umpress_keys()
 
             if not LifecycleMaster.byebye.is_set():
@@ -257,19 +263,40 @@ async def main():
 if __name__ == "__main__":
     try:
     # Captura Ctrl+C ou sinal de término
-        for sig in (signal.SIGINT, signal.SIGTERM):
-            # print(f"pondo o sinal {AutomationSystem.shutdown} no {sig}")
-            signal.signal(sig, AutomationSystem.shutdown)
+        # for sig in (signal.SIGINT, signal.SIGTERM):
+        #     # print(f"pondo o sinal {AutomationSystem.shutdown} no {sig}")
+        #     signal.signal(sig, AutomationSystem.shutdown)
         # print("consegui por os sinais")
     
-        LifecycleMaster.start_runtime(main)
-        print("esperando byebye na thread principal!")
-        LifecycleMaster.byebye.wait()
-        print("byebye setado na thread principal")
-        # LifecycleMaster.tasksMap.relatorio()
-    
+        LifecycleMaster.prepare_for_start_runtime(main)
+        LifecycleMaster.espera_pelo_tchau()
+        
     except Exception as e:
         print(f"deu erro fora da main e foi: {e}")
         warnings.warn(str(e))
 
 
+print("byebye de vez!")
+
+
+import sys
+import threading
+import traceback
+
+print("Threads ativas:")
+for thread in threading.enumerate():
+    # print(f"\nThread: {thread.name}")
+    if thread is threading.current_thread():
+        print(str(thread)+"(self)", "daemon:", thread.daemon)        
+    else:print(thread, "daemon:", thread.daemon)
+    # try:
+    #     stack = sys._current_frames().get(thread.ident)
+
+    #     if stack:
+    #         traceback.print_stack(stack)
+    # except Exception as e:
+    #     print(f"deu erro na parte do print_stack e foi:{str(e)}")
+# for t in threading.enumerate():
+#     if t is threading.current_thread():
+#         print(str(t)+"(self)", "daemon:", t.daemon)        
+#     print(t, "daemon:", t.daemon)

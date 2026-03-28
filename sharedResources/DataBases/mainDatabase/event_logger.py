@@ -212,7 +212,7 @@ def log_background_event_external(self, event, isSpecialCommand):
             # print('the windowEvent["newCurrentWindow"] is ',windowEvent["newCurrentWindow"])
 
         if type_.find('keyboard') != -1:
-            # print("keyboard event came to the event logger to be aved in the main db")
+            # print("keyboard event came to the event logger to be saved in the main db")
             _log_keyboard(self,
                 timestamp = event.get("timestamp"),
                 key=event.get('key'),

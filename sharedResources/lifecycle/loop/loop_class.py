@@ -15,7 +15,7 @@ from sharedResources.lifecycle.loop.threadsafe import call_soon, submit, gather
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 # from sharedResources.debuggingResources.exec_monitor import  count_methods
 
-# @monitor_class
+@monitor_class
 class MyLoop():
     """ 
         em breve mudarei o loop pra ser uma classe com o 

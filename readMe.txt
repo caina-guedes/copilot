@@ -18,3 +18,6 @@ na função pra personalizar a min task com o nome correto, elas ja vão ser pro
 apenas o run_async mas eu estou querendo ser cauteloso.
 
 
+meu ultimo comando antes de reiniciar
+dism /online /cleanup-image /revertpendingactions
+

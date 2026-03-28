@@ -76,7 +76,7 @@ class serverConfig(metaclass = DebugClassPrinter):
         def set_flag(cls, name, value):
             with cls._threading_lock:
                 if hasattr(cls, name):
-                    print(f"setando flag {name} no macroConfig")
+                    print(f"setando flag {name} no macroConfig para :",value)
                     setattr(cls, name, value)
                 else:
                     raise AttributeError(f"{name} não existe em MacroConfig")
@@ -355,7 +355,7 @@ class SOWatcherActions:
         """Get the stop key for the watcher."""
         try:
             print("Retrieving stop key...")
-            return self.get_stopKey
+            return serverConfig.specialCommands["stopExecutingMacro"]
         except Exception as e:
             print(f"Error getting stop key: {e}")
             return None

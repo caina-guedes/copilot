@@ -1,10 +1,7 @@
 import json
-import time, traceback
-import warnings
+import time
 import asyncio
 import inspect
-import threading
-# from websockets import ConnectionClosedError
 import websockets
 from websockets.exceptions import ConnectionClosedError
 
@@ -14,8 +11,8 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
-from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
-from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
+from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
+from sharedResources.debuggingResources.unified_monitor import monitor_class
 from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 logger = LoggerManager.get_logger(__name__)
 
@@ -261,6 +258,7 @@ class TwoWayConnection:
             # LoggerManager.log_exception_with_context(f"deu ruim na _handle_message e foi : {e}")
 
     async def close(self):
+
         print(" close function begin")
         await self._receiver_task_cancel_complete_event.wait()
         print(" _receiver_task_cancel_complete_event is finally set! proceeding with shuting connections")
@@ -297,6 +295,7 @@ class TwoWayConnection:
                     # print("right after the sender lock")
                     if show_message:
                         print("the message to be sent is: ", message)
+                        
                     await self.sender.send(json.dumps(message))
                 # print("CALL STACK:", traceback.format_stack())
 

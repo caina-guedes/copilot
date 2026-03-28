@@ -1,130 +1,190 @@
-import psutil
 import time
-from pathlib import Path
+import psutil
+import win32gui
+import win32process
+import win32con
+from typing import Optional
+
 import sys
-# pip install pywinauto psutil pywin32 quando estiver no windows
+from pathlib import Path
+basePath = Path(__file__).resolve().parent.parent.parent.parent.parent.parent
+# # print("the basePath is: ",basePath)
+sys.path.append(str(basePath))
 
-sys.path.append(str(Path(__file__).resolve().parent.parent))
-from abstractClassBase import BaseWindowBackend
+second_base_path = Path(__file__).resolve().parent.parent
+sys.path.append(str(second_base_path))
+from PythonSistemAutomation.watcher_utils.windowWatcher.utils.abstractClassBase import BaseWindowBackend
+from PythonSistemAutomation.watcher_utils.windowWatcher.utils.windowFingerPrint import WindowFingerPrint
 
+# Mantendo exatamente a mesma herança e decorators que você usa
+# from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
+# from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
 
+# @monitor_class
 class WindowsWindowBackend(BaseWindowBackend):
-    try:
-        from pywinauto import Desktop, Application
-        Desktop = Desktop
-        Application = Application
-    except:
-        pass
     def __init__(self):
         super().__init__()
-        self.desktop = self.__class__.Desktop(backend="uia")
+        # Mesma estrutura de cache do seu arquivo Linux
+        self.last_active_windows = []
+        self.last_active_windows_last_update = None
+        self.last_active_window_ip = None
+        self.last_active_window_ip_last_update = None
 
-    def enrich_with_process(self, windows):
-        for w in windows:
-            try:
-                proc = psutil.Process(int(w["pid"]))
-                w["app"] = proc.name()
-            except Exception:
-                w["app"] = None
-        return windows
+        self.update_interval = 0.1 
+        self.os_call_counter = 0
+        self.last_os_request_time = None
+
+    def _increment_call(self):
+        self.os_call_counter += 1
+        self.last_os_request_time = time.perf_counter()
+
+    def _normalize_id(self, win_id: str):
+        """No Windows, win_id é o HWND em hex string."""
+        if not win_id:
+            return None
+        win_id = win_id.lower().strip()
+        if win_id.startswith("0x"):
+            # Mantemos o zfill(8) para consistência com sua lógica Linux
+            return "0x" + win_id[2:].zfill(8)
+        return win_id
+
+    def get_active_window_id(self):
+        """Sempre chama o SO, mas respeita o intervalo de atualização."""
+        if self.last_active_window_ip_last_update is not None:
+            time_passed = time.perf_counter() - self.last_active_window_ip_last_update
+            if time_passed < self.update_interval:
+                return self.last_active_window_ip
+
+        try:
+            self._increment_call()
+            hwnd = win32gui.GetForegroundWindow()
+            if hwnd == 0:
+                return None
+            
+            active_id = self._normalize_id(hex(hwnd))
+            self.last_active_window_ip = active_id
+            self.last_active_window_ip_last_update = time.perf_counter()
+            return active_id
+        except Exception as e:
+            # log_error_forensics_plus(e)
+            return None
 
     def list_windows(self, printar=False):
+        """Versão Windows equivalente ao wmctrl -l -p"""
+        if self.last_active_windows_last_update is not None:
+            time_passed = time.perf_counter() - self.last_active_windows_last_update
+            if time_passed < self.update_interval:
+                return self.last_active_windows
+
         windows = []
-        try:
-            for win in self.desktop.windows():
-                try:
-                    hwnd = win.handle
-                    pid = win.process_id()
-                    title = win.window_text()
+        
+        def enum_handler(hwnd, _):
+            # Filtro básico: apenas janelas visíveis e com título (como o wmctrl faz)
+            if win32gui.IsWindowVisible(hwnd):
+                title = win32gui.GetWindowText(hwnd)
+                if not title: return
 
-                    if not title.strip():
-                        continue
+                win_id = self._normalize_id(hex(hwnd))
+                
+                # Verifica se já conhecemos a janela no cache para economizar processamento
+                already_known = False
+                if self.last_active_windows:
+                    for old_fp in self.last_active_windows:
+                        if old_fp.win_id == win_id:
+                            windows.append(old_fp)
+                            already_known = True
+                            break
+                
+                if not already_known:
+                    self._increment_call()
+                    _, pid = win32process.GetWindowThreadProcessId(hwnd)
+                    
+                    try:
+                        proc = psutil.Process(pid)
+                        # Aplicando a normalização que discutimos (lower e sem .exe)
+                        app_name = proc.name().lower().replace(".exe", "")
+                    except:
+                        app_name = None
 
-                    windows.append({
-                        "id": hex(hwnd),
-                        "pid": str(pid),
-                        "title": title,
-                    })
-                except:
-                    pass
+                    # O ClassName do Windows é o equivalente ao WM_CLASS
+                    class_name = win32gui.GetClassName(hwnd)
 
-            windows = self.enrich_with_process(windows)
+                    fp = WindowFingerPrint(
+                        os_name="windows",
+                        win_id=win_id,
+                        pid=pid,
+                        app=app_name,
+                    )
+                    fp.update_title(title)
+                    fp.class_name = class_name
+                    windows.append(fp)
 
-            if printar:
-                for w in windows:
-                    print(w)
-            return windows
+        win32gui.EnumWindows(enum_handler, None)
+        
+        self.last_active_windows = windows
+        self.last_active_windows_last_update = time.perf_counter()
+        return windows
 
-        except Exception as e:
-            self.log.error(f"Error listing windows: {e}")
-            return []
-
-    def _get_active_window_id(self):
-        try:
-            import win32gui  # lazy import to avoid issues if not installed
-            hwnd = win32gui.GetForegroundWindow()
-            return hex(hwnd) if hwnd else None
-        except Exception as e:
-            self.log.error(f"Error getting active window: {e}")
-            return None
-
-    def get_active_window(self):
-        active_id = self._get_active_window_id()
+    def get_active_window(self) -> Optional[WindowFingerPrint]:
+        active_id = self.get_active_window_id()
         if not active_id:
             return None
+        
+        current_windows = self.list_windows()
+        for window in current_windows:
+            if window.win_id.lower() == active_id.lower():
+                return window
+        return None
 
-        for w in self.list_windows():
-            if w["id"].lower() == active_id.lower():
-                return w
+    def get_window_by_id(self, Id) -> Optional[WindowFingerPrint]:
+        """Exatamente a mesma lógica de busca que você tinha no Linux."""
+        if Id is None:
+            return None
+        
+        Id = self._normalize_id(str(Id))
 
-        return {"id": active_id, "pid": None, "title": None, "app": None}
+        try:
+            # 1. Tenta no cache atual
+            for window in self.last_active_windows:
+                if window.win_id.lower() == Id.lower():
+                    return window
+            
+            # 2. Se não achou, atualiza a lista e tenta de novo
+            for window in self.list_windows():
+                if window.win_id.lower() == Id.lower():
+                    return window
+        except Exception as e:
+            if hasattr(self, 'log_error_forensics_plus'):
+                log_error_forensics_plus(e)
+        
+        return None
 
-    def focus_window(self, win_id, verify=True, timeout=1.0, frequency=0.05):
+    def focus_window(self, win_id, verify=True, timeout=1.2, frequency=0.05):
+        win_id = self._normalize_id(win_id)
+        if not win_id: return False
+
+        def is_active():
+            active = self.get_active_window_id()
+            return active is not None and active.lower() == win_id.lower()
+
         try:
             hwnd = int(win_id, 16)
-        except ValueError:
-            self.log.error(f"Invalid window id format: {win_id}")
-            return False
+            self._increment_call()
 
-        try:
-            import win32gui
-            import win32con
-            import win32com.client
-
-            shell = win32com.client.Dispatch("WScript.Shell")
-            shell.SendKeys('%')  # this helps bypass some UAC focus issues
-
-            win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
+            # No Windows, se a janela estiver minimizada, SetForegroundWindow falha.
+            # Precisamos restaurar primeiro.
+            if win32gui.IsIconic(hwnd):
+                win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
+            
             win32gui.SetForegroundWindow(hwnd)
 
-            if not verify:
-                return True
-
-            deadline = time.time() + timeout
-            while time.time() < deadline:
-                active = self._get_active_window_id()
-                if active and active.lower() == win_id.lower():
-                    return True
-                time.sleep(frequency)
-
+            if verify:
+                deadline = time.perf_counter() + timeout
+                while time.perf_counter() < deadline:
+                    if is_active():
+                        return True
+                    time.sleep(frequency)
+                return is_active()
+            return True
+        except Exception:
             return False
-
-        except Exception as e:
-            self.log.error(f"Error focusing window: {e}")
-            return False
-
-
-if __name__ == "__main__":
-    manager = WindowsWindowBackend()
-
-    print("✅ Windows detectadas:")
-    windows = manager.list_windows(printar=True)
-
-    print("\n✅ Ativa agora:")
-    active = manager.get_active_window()
-    print(active)
-
-    if len(windows) > 1:
-        print("\n➡️ Mudando foco para a segunda janela...")
-        manager.focus_window(windows[1]["id"])
-        time.sleep(2)

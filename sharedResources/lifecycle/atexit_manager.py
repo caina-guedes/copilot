@@ -82,9 +82,10 @@ class AtexitShutdownMonitor():
 
     @classmethod
     def is_finalizing(cls):
-        # if not cls._is_already_finalizing and sys.is_finalizing():
-        #     print("detectei o is_finalizing")
-        #     cls._is_already_finalizing = True
+        if sys.is_finalizing():
+            # if not cls._is_already_finalizing and sys.is_finalizing():
+            print("detectei o is_finalizing")
+            cls._is_already_finalizing = True
         return cls._is_already_finalizing
     
     @classmethod
@@ -126,6 +127,10 @@ class AtexitShutdownMonitor():
         @functools.wraps(func)
         def wrapper():
             cls._is_already_finalizing = True
+            try:
+                print(f"atexit function pre-init of {func.__name__}")
+            except:
+                print(f"atexit function pre-init")
             return func(*args,**kwargs)
         
         atexit.register(wrapper)
@@ -513,6 +518,7 @@ class AtexitShutdownMonitor():
                     # print("tentando printar relatório de função")
                     cls._print_function_report(base = name, data = data)
             if cls._imprevisto_ocorreu:
+                return
                 cls.print_log_history()
                 cls._stop_watchdog = True # Para a thread de monitoramento, mas o relatório só é gerado no final do atexit, 
         except Exception as e:
