@@ -168,6 +168,10 @@ class WebSocketServerManager:
                     name="ServerConnectionCheck"
                 )
 
+                if self.senderQueue and self.receiverQueue:
+                    self.os_internal_communication_task = LifecycleMaster.run_async(
+                        os_watcher_handler.OSProcessorClass.handle_internal_os_connection(self.senderQueue, "sender"),
+                        name="OSWatcherInternalQueueListener")
                 # Loop de espera do Shutdown
                 LifecycleMaster.shutdown_event.clear()
                 while not LifecycleMaster.shutdown_event.is_set():
@@ -228,11 +232,11 @@ class WebSocketServerManager:
         # 3. Fecha o servidor
         if self.ws_server:
             try:
-                print("printando atributos do ws_server")
-                print([attr for attr in dir(self.ws_server) if not attr.startswith("_")])
-                print(type(self.ws_server.connections))
+                # print("printando atributos do ws_server")
+                # print([attr for attr in dir(self.ws_server) if not attr.startswith("_")])
+                # print(type(self.ws_server.connections))
                     
-                print(len(self.ws_server.connections))
+                # print(len(self.ws_server.connections))
                 if len(self.ws_server.connections)>0:
                     for conn in self.ws_server.connections:
                         print(type(conn))
@@ -313,3 +317,21 @@ if __name__ == "__main__":
         print("deu erro fora da main e foi:",str(e))
 
 print("byebye de vez!")
+
+# import threading
+# import sys
+# import traceback    
+#     # import traceback
+
+# print("Threads ativas:")
+# for thread in threading.enumerate():
+#     # print(f"\nThread: {thread.name}")
+#     if thread is threading.current_thread():
+#         print(str(thread)+"(self)", "daemon:", thread.daemon)        
+#     else:
+#         print(thread, "daemon:", thread.daemon)
+
+
+# for thread_id, frame in sys._current_frames().items():
+#     print("\nTHREAD ID:", thread_id)
+#     traceback.print_stack(frame)

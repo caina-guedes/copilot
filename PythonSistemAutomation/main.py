@@ -3,6 +3,7 @@ import warnings
 
 
 
+
 STRICT_MODE = True
 if STRICT_MODE:
     warnings.simplefilter("error")
@@ -18,6 +19,8 @@ import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
+# wait_for_data is just a helper function for waiting for data in a queue with a timeout
+from sharedResources.generalUtils.wait_for_data import wait_for_data, WaitTimeoutError
 # import builtins
 # from sharedResources.generalUtils.aprint import aprint  # my assyncronous print function
 # builtins.print = aprint # Override the built-in print with asynchronous print
@@ -134,16 +137,24 @@ class AutomationSystem:
         self._not_sent_db_is_empty_last_check = True  # Flag to check if the database is empty
         
     def start_listening_receivingQueue(self):
+        # this task is intended to be cancelled normally by standard procedure using asyncio.CancelledError.
+
         async def receivingQueue_worker():
             while not self.__class__.watcher_shutdown_event.is_set() :
                 # item = q.get(
                 try:
-                    msg = self.receivingQueue.get(timeout=0.5)
+                    try:
+                        msg = await wait_for_data(self.receivingQueue, timeout=0.2)
+                        # msg = self.receivingQueue.get(timeout=0.5)
+                    except WaitTimeoutError:
+                        continue
+                    except asyncio.CancelledError:
+                        print("receivingQueue_worker was cancelled.")
+                        break
+                    GlobalExecutor.enqueue(msg,self.controlsToIgnore,self,self.ExecutingMacro)
+                except Exception as e:
+                    log_error_forensics_plus(e, extra_message=f"Error in receivingQueue_worker")
                     
-                except queue.Empty:
-                    continue
-                GlobalExecutor.enqueue(msg,self.controlsToIgnore,self,self.ExecutingMacro)
-
         LifecycleMaster.run_async(receivingQueue_worker, name = "watcher_receivingQueue_worker")
 
     async def is_not_sent_db_empty(self):
@@ -300,15 +311,15 @@ if __name__ == "__main__":
     print("byebye de vez!")
 
 
-    import threading
-    # import traceback
+    # import threading
+    # # import traceback
 
-    print("Threads ativas:")
-    for thread in threading.enumerate():
-        # print(f"\nThread: {thread.name}")
-        if thread is threading.current_thread():
-            print(str(thread)+"(self)", "daemon:", thread.daemon)        
-        else:print(thread, "daemon:", thread.daemon)
+    # print("Threads ativas:")
+    # for thread in threading.enumerate():
+    #     # print(f"\nThread: {thread.name}")
+    #     if thread is threading.current_thread():
+    #         print(str(thread)+"(self)", "daemon:", thread.daemon)        
+    #     else:print(thread, "daemon:", thread.daemon)
         # try:
         #     stack = sys._current_frames().get(thread.ident)
 

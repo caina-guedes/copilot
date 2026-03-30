@@ -16,7 +16,7 @@ print("the path is:",caminho)
 sys.path.append(caminho)
 
 from sharedResources.debuggingResources.unified_monitor import monitor_class
-
+# from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
 MAGIC_NUMBER = b'\xaa\x55'
 
 def _get_real_function(func):
@@ -380,5 +380,4 @@ class PrintInterceptor:
 a = PrintInterceptor()
 a.install()
 
-import atexit
-atexit.register(PrintInterceptor.close)
+

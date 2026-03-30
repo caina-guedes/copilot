@@ -569,6 +569,13 @@ atexit_manager.log_error_forencis_plus = log_error_forensics_plus
 
 threading.Thread(target=LifecycleMaster.waitMyShutdown).start()
 
+
+LifecycleMaster.register_cleanup_function(
+    PrintInterceptor.close,
+    priority= 50,
+    name = "PrintInterceptor.close",
+    register_in_atexit = False
+    )
 # atexit_manager.shutdown_function = LifecycleMaster.autoShutdown
 
 

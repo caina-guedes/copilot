@@ -1,251 +1,216 @@
-2026-03-28 13:38:25,769 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [AssertionError]
-📍 No arquivo: C:\Python314\Lib\asyncio\windows_events.py | Linha: 319
-💻 Código: `assert self._self_reading_future is None`
-🕒 Horário: 2026-03-28 13:38:25.764603 | 🧵 Thread: AsyncioLoopThread  Task: Fora de um Event Loop
- 💬 Mensagem: 
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : True
-retornar : False
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <ProactorEventLoop running=True closed=False debug=False>
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - run_forever):
-    self = <ProactorEventLoop running=True closed=False debug=False>
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 33, in _run
-    log_error_forensics_plus(e)
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
-    cls._current.run_forever()
-    ~~~~~~~~~~~~~~~~~~~~~~~~^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
-    cls._current.run_forever()
-    ~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Python314\Lib\asyncio\base_events.py", line 674, in run_forever
-    self._run_forever_setup()
-    ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Python314\Lib\asyncio\windows_events.py", line 319, in _run_forever_setup
-    assert self._self_reading_future is None
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AssertionError
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-28 13:39:17,739 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [AssertionError]
-📍 No arquivo: C:\Python314\Lib\asyncio\windows_events.py | Linha: 319
-💻 Código: `assert self._self_reading_future is None`
-🕒 Horário: 2026-03-28 13:39:17.735476 | 🧵 Thread: AsyncioLoopThread  Task: Fora de um Event Loop
- 💬 Mensagem: 
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : True
-retornar : False
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <ProactorEventLoop running=True closed=False debug=False>
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - run_forever):
-    self = <ProactorEventLoop running=True closed=False debug=False>
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 33, in _run
-    log_error_forensics_plus(e)
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
-    cls._current.run_forever()
-    ~~~~~~~~~~~~~~~~~~~~~~~~^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
-    cls._current.run_forever()
-    ~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Python314\Lib\asyncio\base_events.py", line 674, in run_forever
-    self._run_forever_setup()
-    ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Python314\Lib\asyncio\windows_events.py", line 319, in _run_forever_setup
-    assert self._self_reading_future is None
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AssertionError
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-28 13:52:28,555 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [AssertionError]
-📍 No arquivo: C:\Python314\Lib\asyncio\windows_events.py | Linha: 319
-💻 Código: `assert self._self_reading_future is None`
-🕒 Horário: 2026-03-28 13:52:28.551594 | 🧵 Thread: AsyncioLoopThread  Task: Fora de um Event Loop
- 💬 Mensagem: 
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : True
-retornar : False
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <ProactorEventLoop running=True closed=False debug=False>
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - run_forever):
-    self = <ProactorEventLoop running=True closed=False debug=False>
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 33, in _run
-    log_error_forensics_plus(e)
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
-    cls._current.run_forever()
-    ~~~~~~~~~~~~~~~~~~~~~~~~^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 29, in _run
-    cls._current.run_forever()
-    ~~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Python314\Lib\asyncio\base_events.py", line 674, in run_forever
-    self._run_forever_setup()
-    ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Python314\Lib\asyncio\windows_events.py", line 319, in _run_forever_setup
-    assert self._self_reading_future is None
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AssertionError
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-28 14:10:21,460 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [ZeroDivisionError]
-📍 No arquivo: D:\copilot\sharedResources\lifecycle\loop\threadsafe.py | Linha: 69
-💻 Código: `1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra`
-🕒 Horário: 2026-03-28 14:10:21.456692 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2180278697520 | Nome: main2 | Coro: main | Protected: True | Total Tasks Vivas: 1
- 💬 Mensagem: division by zero
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : True
-retornar : False
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.lifecycle.loop.loop_class.MyLoop'>
-    fn_or_coro = <function AutomationSystem.start_listening_recei...als>.receivingQueue_worker at 0x000001FBA39EF5E0>
-    name = 'watcher_receivingQueue_worker'
-    created_from = 'unknown'
-    protected = False
-    cleanup_event = None
-    cleanup_function = None
-    state = None
-    e = ZeroDivisionError('division by zero')
-    coro = <function AutomationSystem.start_listening_recei...als>.receivingQueue_worker at 0x000001FBA39EF5E0>
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - start_listening_receivingQueue):
-    self = <PythonSistemAutomation.main.AutomationSystem object at 0x000001FBA39D4EC0>
-    receivingQueue_worker = <function AutomationSystem.start_listening_recei...als>.receivingQueue_worker at 0x000001FBA39EF5E0>
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 36, in _run
-    cls._current.run_forever()
-  File "D:\copilot\PythonSistemAutomation\main.py", line 239, in main
-    autoSystem = AutomationSystem(not_sent_db, sendinQueue, receivingQueue)
-  File "D:\copilot\PythonSistemAutomation\main.py", line 122, in __init__
-    self.start_listening_receivingQueue()
-  File "D:\copilot\PythonSistemAutomation\main.py", line 140, in start_listening_receivingQueue
-    LifecycleMaster.run_async(receivingQueue_worker,name= "watcher_receivingQueue_worker")
-  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 482, in run_async
-    return MyLoop.submit(coro, *args, **kargs)
-  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 72, in submit
-    log_error_forensics_plus(e)
-  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 69, in submit
-    1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
-    ~^~
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 69, in submit
-    1/0 # aqui eu injeto um erro de propósito pro meu sistema de monitoramento me mostrar o traceback caso isso ocorra
-    ~^~
-ZeroDivisionError: division by zero
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-28 14:41:47,306 [WARNING] [MainThread] error_tracker:229 - 
+2026-03-30 12:38:58,986 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
 ======================================================================
 🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
-📍 No arquivo: D:\copilot\PythonServer\server.py | Linha: 140
-💻 Código: `self.senderQueue = threading.Queue()`
-🕒 Horário: 2026-03-28 14:41:47.305043 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
- 💬 Mensagem: module 'threading' has no attribute 'Queue'
+📍 No arquivo: D:\copilot\PythonServer\server.py | Linha: 173
+💻 Código: `os_watcher_handler.OSProcessorClass.handle_os_internal_communication(self.senderQueue, "sender"),`
+🕒 Horário: 2026-03-30 12:38:58.968588 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2503331151952 | Nome: main | Coro: start | Protected: True | Total Tasks Vivas: 5
+ 💬 Mensagem: type object 'OSProcessorClass' has no attribute 'handle_os_internal_communication'
+extra_message = Falha na inicialização do Servidor
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <__main__.WebSocketServerManager object at 0x00000246DA27C980>
+    ws_server = <websockets.asyncio.server.Server object at 0x00000246DA27F620>
+    e = AttributeError("type object 'OSProcessorClass' has no attribute 'handle_os_internal_communication'")
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _run):
+    self = <Handle Task.task_wakeup()>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonServer\server.py", line 184, in start
+    log_error_forensics_plus(e, "Falha na inicialização do Servidor")
+  File "D:\copilot\PythonServer\server.py", line 173, in start
+    os_watcher_handler.OSProcessorClass.handle_os_internal_communication(self.senderQueue, "sender"),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\server.py", line 173, in start
+    os_watcher_handler.OSProcessorClass.handle_os_internal_communication(self.senderQueue, "sender"),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'OSProcessorClass' has no attribute 'handle_os_internal_communication'
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-30 12:40:39,641 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [DeprecationWarning]
+📍 No arquivo: C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\imports.py | Linha: 86
+💻 Código: `warnings.warn(`
+🕒 Horário: 2026-03-30 12:40:39.638396 | 🧵 Thread: AsyncioLoopThread  Task: ID: 1429561401632 | Nome: OSWatcherInternalQueueListener | Coro: handle_internal_os_connection | Protected: False | Total Tasks Vivas: 8
+ 💬 Mensagem: websockets.WebSocketServerProtocol is deprecated
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
 printar : True
 retornar : True
 
-Estado do ciclo de vida: INIT
+Estado do ciclo de vida: RUNNING
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <__main__.WebSocketServerManager object at 0x0000015EB2ED4980>
-    watcher_is_internal = True
+    name = 'WebSocketServerProtocol'
+    source = '.legacy.server'
+    aliases = {'ClientConnection': '.asyncio.client', 'ClientProtocol': '.client', 'Close': '.frames', 'CloseCode': '.frames', ...}
+    deprecated_aliases = {'AbortHandshake': '.legacy.exceptions', 'BasicAuthWebSocketServerProtocol': '.legacy.auth', 'InvalidStatusCode': '.legacy.exceptions', 'RedirectHandshake': '.legacy.exceptions', ...}
+    namespace = {'TYPE_CHECKING': False, '__all__': ['connect', 'unix_connect', 'ClientConnection', 'route', 'unix_route', 'Router', ...], '__builtins__': {'ArithmeticError': <class 'ArithmeticError'>, 'AssertionError': <class 'AssertionError'>, 'AttributeError': <class 'AttributeError'>, 'BaseException': <class 'BaseException'>, ...}, '__cached__': 'C:\\Users\\cainã\\AppData\\Roaming\\Python\\Pyt...ebsockets\\__pycache__\\__init__.cpython-314.pyc', ...}
+    package = 'websockets'
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - <module>):
-    asyncio = <module 'asyncio' from 'C:\\Python314\\Lib\\asyncio\\__init__.py'>
-    websockets = <module 'websockets' from 'C:\\Users\\cainã\\App...thon314\\site-packages\\websockets\\__init__.py'>
-    threading = <module 'threading' from 'C:\\Python314\\Lib\\threading.py'>
-    json = <module 'json' from 'C:\\Python314\\Lib\\json\\__init__.py'>
-    sys = <module 'sys' (built-in)>
-    Path = <class 'pathlib.Path'>
-    datetime = <class 'datetime.datetime'>
-    LoggerManager = <class 'sharedResources.pythonLoggerSistem.logger.LoggerManager'>
-    LifecycleMaster = <class 'sharedResources.lifecycle.shutdownMaster.LifecycleMaster'>
-    log_error_forensics_plus = <function log_error_forensics_plus at 0x0000015EB1CEB060>
-    aprint = <function aprint at 0x0000015EB21624B0>
-    serverConfig = serverConfig(
-  _threading_rlock = <unlocked _th... serverConfig.set_flag at 0x0000015EB2163AB0>)>
-)
-    connection_types = {'OSwatcherReceiver': 'Operating System Watcher Receiver', 'OSwatcherSender': 'Operating System Watcher Sender', 'extension': 'Browser Extension', 'front_end': 'front_end', ...}
-    SOWatcherActions = <class 'PythonServer.serverConfig.SOWatcherActions'>
-    MainDbClass = <class 'sharedResources.DataBases.mainDatabase.main_db.MainDatabase'>
-    macroManager = <class 'PythonServer.macroManager.macroManager.macroManager'>
-    state = <module 'PythonServer.core.state' from 'D:\\copilot\\PythonServer\\core\\state.py'>
-    os_watcher_handler = <module 'PythonServer.core.handlers.os_watcher_h...onServer\\core\\handlers\\os_watcher_handler.py'>
-    browser_handler = <module 'PythonServer.core.handlers.browser_hand...ythonServer\\core\\handlers\\browser_handler.py'>
-    frontend_handler = <module 'PythonServer.core.handlers.frontend_han...thonServer\\core\\handlers\\frontend_handler.py'>
-    connections = <class 'PythonServer.utils.connections'>
-    sys_monitor = <function sys_monitor at 0x0000015EB1CEB270>
-    monitor_class = <function monitor_class at 0x0000015EB1CEB480>
-    watcher_main_function = <function main at 0x0000015EB218B7F0>
-    logger = <Logger __main__ (INFO)>
-    initialize_server_state = <function initialize_server_state at 0x0000015EB2EED4E0>
-    get_current_time = <function get_current_time at 0x0000015EB2EEDFE0>
-    server_router = <function server_router at 0x0000015EB2EEE2A0>
-    WebSocketServerManager = <class '__main__.WebSocketServerManager'>
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - start_receiver):
+    cls = <class 'PythonServer.core.handlers.os_watcher_handler.OSProcessorClass'>
+    websocket_or_queue = <Queue at 0x14cd7856850 maxsize=0>
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\PythonServer\server.py", line 292, in <module>
-    manager = WebSocketServerManager(watcher_is_internal = True)
-  File "D:\copilot\PythonServer\server.py", line 140, in __init__
-    self.senderQueue = threading.Queue()
-                       ^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 122, in handle_internal_os_connection
+    await cls.start_receiver(queue)
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 60, in start_receiver
+    if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
-    return func(*args, **kwargs)
-  File "D:\copilot\PythonServer\server.py", line 140, in __init__
-    self.senderQueue = threading.Queue()
-                       ^^^^^^^^^^^^^^^
-AttributeError: module 'threading' has no attribute 'Queue'
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 60, in start_receiver
+    if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\imports.py", line 86, in __getattr__
+    warnings.warn(
+    ~~~~~~~~~~~~~^
+        f"{package}.{name} is deprecated",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        DeprecationWarning,
+        ^^^^^^^^^^^^^^^^^^^
+        stacklevel=2,
+        ^^^^^^^^^^^^^
+    )
+    ^
+DeprecationWarning: websockets.WebSocketServerProtocol is deprecated
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-28 16:13:36,545 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+2026-03-30 12:45:02,968 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [UnboundLocalError]
-📍 No arquivo: D:\copilot\sharedResources\lifecycle\loop\threadsafe.py | Linha: 104
-💻 Código: `print(f"creating task in loop thread: {task}", "loop")`
-🕒 Horário: 2026-03-28 16:13:36.542576 | 🧵 Thread: AsyncioLoopThread  Task: Nenhuma Task (Código Síncrono/Thread Pura)
- 💬 Mensagem: cannot access local variable 'task' where it is not associated with a value
+🕵️ INVESTIGAÇÃO PROFUNDA: [DeprecationWarning]
+📍 No arquivo: C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\imports.py | Linha: 86
+💻 Código: `warnings.warn(`
+🕒 Horário: 2026-03-30 12:45:02.965299 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2788822213296 | Nome: OSWatcherInternalQueueListener | Coro: handle_internal_os_connection | Protected: False | Total Tasks Vivas: 8
+ 💬 Mensagem: websockets.WebSocketServerProtocol is deprecated
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    name = 'WebSocketServerProtocol'
+    source = '.legacy.server'
+    aliases = {'ClientConnection': '.asyncio.client', 'ClientProtocol': '.client', 'Close': '.frames', 'CloseCode': '.frames', ...}
+    deprecated_aliases = {'AbortHandshake': '.legacy.exceptions', 'BasicAuthWebSocketServerProtocol': '.legacy.auth', 'InvalidStatusCode': '.legacy.exceptions', 'RedirectHandshake': '.legacy.exceptions', ...}
+    namespace = {'TYPE_CHECKING': False, '__all__': ['connect', 'unix_connect', 'ClientConnection', 'route', 'unix_route', 'Router', ...], '__builtins__': {'ArithmeticError': <class 'ArithmeticError'>, 'AssertionError': <class 'AssertionError'>, 'AttributeError': <class 'AttributeError'>, 'BaseException': <class 'BaseException'>, ...}, '__cached__': 'C:\\Users\\cainã\\AppData\\Roaming\\Python\\Pyt...ebsockets\\__pycache__\\__init__.cpython-314.pyc', ...}
+    package = 'websockets'
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - start_receiver):
+    cls = <class 'PythonServer.core.handlers.os_watcher_handler.OSProcessorClass'>
+    websocket_or_queue = <Queue at 0x28951c76850 maxsize=0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 122, in handle_internal_os_connection
+    await cls.start_receiver(queue)
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 60, in start_receiver
+    if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 60, in start_receiver
+    if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\imports.py", line 86, in __getattr__
+    warnings.warn(
+    ~~~~~~~~~~~~~^
+        f"{package}.{name} is deprecated",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        DeprecationWarning,
+        ^^^^^^^^^^^^^^^^^^^
+        stacklevel=2,
+        ^^^^^^^^^^^^^
+    )
+    ^
+DeprecationWarning: websockets.WebSocketServerProtocol is deprecated
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-30 12:46:43,043 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [DeprecationWarning]
+📍 No arquivo: C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\imports.py | Linha: 86
+💻 Código: `warnings.warn(`
+🕒 Horário: 2026-03-30 12:46:43.038970 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2694206579376 | Nome: OSWatcherInternalQueueListener | Coro: handle_internal_os_connection | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: websockets.WebSocketServerProtocol is deprecated
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    name = 'WebSocketServerProtocol'
+    source = '.legacy.server'
+    aliases = {'ClientConnection': '.asyncio.client', 'ClientProtocol': '.client', 'Close': '.frames', 'CloseCode': '.frames', ...}
+    deprecated_aliases = {'AbortHandshake': '.legacy.exceptions', 'BasicAuthWebSocketServerProtocol': '.legacy.auth', 'InvalidStatusCode': '.legacy.exceptions', 'RedirectHandshake': '.legacy.exceptions', ...}
+    namespace = {'TYPE_CHECKING': False, '__all__': ['connect', 'unix_connect', 'ClientConnection', 'route', 'unix_route', 'Router', ...], '__builtins__': {'ArithmeticError': <class 'ArithmeticError'>, 'AssertionError': <class 'AssertionError'>, 'AttributeError': <class 'AttributeError'>, 'BaseException': <class 'BaseException'>, ...}, '__cached__': 'C:\\Users\\cainã\\AppData\\Roaming\\Python\\Pyt...ebsockets\\__pycache__\\__init__.cpython-314.pyc', ...}
+    package = 'websockets'
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - start_receiver):
+    cls = <class 'PythonServer.core.handlers.os_watcher_handler.OSProcessorClass'>
+    websocket_or_queue = <Queue at 0x2734a496850 maxsize=0>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 122, in handle_internal_os_connection
+    await cls.start_receiver(queue)
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 60, in start_receiver
+    if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 60, in start_receiver
+    if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\imports.py", line 86, in __getattr__
+    warnings.warn(
+    ~~~~~~~~~~~~~^
+        f"{package}.{name} is deprecated",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        DeprecationWarning,
+        ^^^^^^^^^^^^^^^^^^^
+        stacklevel=2,
+        ^^^^^^^^^^^^^
+    )
+    ^
+DeprecationWarning: websockets.WebSocketServerProtocol is deprecated
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-30 12:51:56,146 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher.py | Linha: 395
+💻 Código: `confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)`
+🕒 Horário: 2026-03-30 12:51:56.124219 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2029098270800 | Nome: loop do buffer do observer- segundo loop | Coro: buffer_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: cannot unpack non-iterable NoneType object
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
@@ -255,41 +220,41 @@ retornar : False
 Estado do ciclo de vida: RUNNING
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    e = UnboundLocalError("cannot access local variable 'task' where it is not associated with a value")
-    cleanup_event = None
-    cleanup_function = None
-    cls = <class 'sharedResources.lifecycle.loop.loop_class.MyLoop'>
-    coro = <coroutine object WebSocketServerManager.start at 0x00000175E7E96700>
-    created_from = 'unknown'
-    fut = <Future at 0x175e8a08c20 state=finished raised UnboundLocalError>
-    name = 'main'
-    protected = True
+    self = <PythonSistemAutomation.watcher.EventObserver object at 0x000001D86FACC6E0>
+    MAX_BATCH_SIZE = 50
+    buffer = deque([{'action': 'press', 'button': 'Button.left', 'newCurrentWindow': {'app': 'cmd', 'class_name': 'ConsoleWindowClass', 'details': {'confidence_score': 1.0, 'first_seen': 1774885915.9086063, 'last_seen': 1774885915.9086294, 'priority_fields': {}, ...}, 'os_name': 'windows', ...}, 'timestamp': 272201.9134152, ...}])
+    MAX_WAIT_TIME = 0.2
+    event = {'action': 'press', 'button': 'Button.left', 'newCurrentWindow': {'app': 'cmd', 'class_name': 'ConsoleWindowClass', 'details': {'confidence_score': 1.0, 'first_seen': 1774885915.9086063, 'last_seen': 1774885915.9086294, 'priority_fields': {}, ...}, 'os_name': 'windows', ...}, 'timestamp': 272201.9134152, ...}
+    start_time = 272201.9203962
+    time_already_passed = 4.00003045797348e-06
+    remaining_time = 0.19999599996954204
+    e = TypeError('cannot unpack non-iterable NoneType object')
 ------------------------------
 🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _run):
-    self = <_ThreadSafeHandle submit.<locals>._create_task_...sharedResources\lifecycle\loop\threadsafe.py:102>
+    self = <Handle Task.task_wakeup()>
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
   File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
     cls._current.run_forever()
-  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 122, in _create_task_in_loop
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 406, in buffer_loop
     log_error_forensics_plus(e)
-  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 104, in _create_task_in_loop
-    print(f"creating task in loop thread: {task}", "loop")
-                                           ^^^^
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 395, in buffer_loop
+    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)
+    ^^^^^^^^^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 104, in _create_task_in_loop
-    print(f"creating task in loop thread: {task}", "loop")
-                                           ^^^^
-UnboundLocalError: cannot access local variable 'task' where it is not associated with a value
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 395, in buffer_loop
+    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)
+    ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: cannot unpack non-iterable NoneType object
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-28 16:14:57,890 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+2026-03-30 13:36:07,393 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [UnboundLocalError]
-📍 No arquivo: D:\copilot\sharedResources\lifecycle\loop\threadsafe.py | Linha: 81
-💻 Código: `print(f"creating task in loop thread: {task}", "loop")`
-🕒 Horário: 2026-03-28 16:14:57.885143 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2112152681968 | Nome: main2 | Coro: main | Protected: True | Total Tasks Vivas: 3
- 💬 Mensagem: cannot access local variable 'task' where it is not associated with a value
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher.py | Linha: 395
+💻 Código: `confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)`
+🕒 Horário: 2026-03-30 13:36:07.376677 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2428431073360 | Nome: loop do buffer do observer- segundo loop | Coro: buffer_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: cannot unpack non-iterable NoneType object
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
@@ -299,41 +264,81 @@ retornar : False
 Estado do ciclo de vida: RUNNING
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.lifecycle.loop.loop_class.MyLoop'>
-    fn_or_coro = <function AutomationSystem.start_listening_recei...als>.receivingQueue_worker at 0x000001EBC7233110>
-    name = 'watcher_receivingQueue_worker'
-    created_from = 'unknown'
-    protected = False
-    cleanup_event = None
-    cleanup_function = None
-    state = None
-    e = UnboundLocalError("cannot access local variable 'task' where it is not associated with a value")
-    coro = <coroutine object AutomationSystem.start_listeni...als>.receivingQueue_worker at 0x000001EBC7248310>
+    self = <PythonSistemAutomation.watcher.EventObserver object at 0x0000023569C20AD0>
+    MAX_BATCH_SIZE = 50
+    buffer = deque([{'action': 'press', 'button': 'Button.left', 'newCurrentWindow': {'app': 'cmd', 'class_name': 'ConsoleWindowClass', 'details': {'confidence_score': 1.0, 'first_seen': 1774888565.8154702, 'last_seen': 1774888565.815503, 'priority_fields': {}, ...}, 'os_name': 'windows', ...}, 'timestamp': 274851.8196977, ...}, {'action': 'release', 'button': 'Button.left', 'timestamp': 274852.0267828, 'type': 'mouse', ...}])
+    MAX_WAIT_TIME = 0.2
+    event = {'action': 'release', 'button': 'Button.left', 'timestamp': 274852.0267828, 'type': 'mouse', ...}
+    start_time = 274851.828882
+    time_already_passed = 0.1997069999924861
+    remaining_time = 0.00029300000751392163
+    e = TypeError('cannot unpack non-iterable NoneType object')
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - start_listening_receivingQueue):
-    self = <PythonSistemAutomation.main.AutomationSystem object at 0x000001EBC72406E0>
-    receivingQueue_worker = <function AutomationSystem.start_listening_recei...als>.receivingQueue_worker at 0x000001EBC7233110>
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _run):
+    self = <Handle Task.task_wakeup()>
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
   File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
     cls._current.run_forever()
-  File "D:\copilot\PythonSistemAutomation\main.py", line 240, in main
-    autoSystem = AutomationSystem(not_sent_db, sendinQueue, receivingQueue)
-  File "D:\copilot\PythonSistemAutomation\main.py", line 122, in __init__
-    self.start_listening_receivingQueue()
-  File "D:\copilot\PythonSistemAutomation\main.py", line 141, in start_listening_receivingQueue
-    LifecycleMaster.run_async(receivingQueue_worker,name= "watcher_receivingQueue_worker")
-  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 504, in run_async
-    return MyLoop.submit(coro, *args, **kargs)
-  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 135, in submit
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 406, in buffer_loop
     log_error_forensics_plus(e)
-  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 81, in submit
-    print(f"creating task in loop thread: {task}", "loop")
-                                           ^^^^
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 395, in buffer_loop
+    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)
+    ^^^^^^^^^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\sharedResources\lifecycle\loop\threadsafe.py", line 81, in submit
-    print(f"creating task in loop thread: {task}", "loop")
-                                           ^^^^
-UnboundLocalError: cannot access local variable 'task' where it is not associated with a value
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 395, in buffer_loop
+    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)
+    ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: cannot unpack non-iterable NoneType object
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-03-30 13:43:32,230 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\json\__init__.py | Linha: 345
+💻 Código: `raise TypeError(f'the JSON object must be str, bytes or bytearray, '`
+🕒 Horário: 2026-03-30 13:43:32.224610 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2741035123536 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: the JSON object must be str, bytes or bytearray, not list
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    s = [{'action': 'press', 'key': 'd', 'timestamp': 275298.0237396, 'type': 'keyboard', ...}, {'action': 'release', 'key': 'd', 'timestamp': 275298.0674186, 'type': 'keyboard', ...}]
+    cls = None
+    object_hook = None
+    parse_float = None
+    parse_int = None
+    parse_constant = None
+    object_pairs_hook = None
+    kw = {}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - receiver_loop):
+    cls = <class 'PythonServer.core.handlers.os_watcher_handler.OSProcessorClass'>
+    websocket_or_queue = <Queue at 0x27e316b6850 maxsize=0 tasks=1>
+    message = [{'action': 'press', 'key': 'd', 'timestamp': 275298.0237396, 'type': 'keyboard', ...}, {'action': 'release', 'key': 'd', 'timestamp': 275298.0674186, 'type': 'keyboard', ...}]
+    e = TypeError('the JSON object must be str, bytes or bytearray, not list')
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 114, in receiver_loop
+    log_error_forensics_plus(e)
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 80, in receiver_loop
+    message_data = json.loads(message)
+  File "C:\Python314\Lib\json\__init__.py", line 345, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+                    f'not {s.__class__.__name__}')
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 80, in receiver_loop
+    message_data = json.loads(message)
+  File "C:\Python314\Lib\json\__init__.py", line 345, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+                    f'not {s.__class__.__name__}')
+TypeError: the JSON object must be str, bytes or bytearray, not list
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

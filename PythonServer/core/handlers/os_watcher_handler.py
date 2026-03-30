@@ -20,7 +20,7 @@ from PythonServer.serverConfig import connection_types,serverConfig
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
-from sharedResources.generalUtils.wait_for_data import wait_for_data
+from sharedResources.generalUtils.wait_for_data import wait_for_data, WaitTimeoutError
 from PythonServer.utils import handleSpecialCommand
 from PythonServer.serverReactions import answerMapping
 
@@ -49,15 +49,16 @@ class OSProcessorClass():
     vindos do watcher do SO
     """
     receiver_loop_task = None
+    sender_conn_or_queue = None
     receiver_conn_or_queue = None
-    sender_conn = None
     first_closed_ok_received = False
 
     @classmethod
     async def start_receiver(cls,websocket_or_queue):
         print(f"[OSProcessorClass.start_receiver] starting")
         # print("just set the answermapping to the serverConfig")
-        if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
+        # if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
+        if hasattr(websocket_or_queue, "recv") and hasattr(websocket_or_queue, "send"):
             # websocket = websocket_or_queue
             print("starting receiver loop with websocket")
         elif isinstance(websocket_or_queue, asyncio.Queue):
@@ -69,15 +70,19 @@ class OSProcessorClass():
             # await websocket.wait_closed()
     @classmethod
     async def receiver_loop(cls,websocket_or_queue):
+        #loop intended to be cancelled by standard procedure of the lifecycle master or , if it is a websocket by closing it first
         while True:
             try:
                 try:
                     message = await wait_for_data(websocket_or_queue, timeout=0.5)
-                except asyncio.TimeoutError:
+                except WaitTimeoutError:
                     continue
                 # except 
-                message_data = json.loads(message)
-                
+                try:
+                    message_data = json.loads(message)
+                except :
+                    message_data = message
+
                 if isinstance(message_data, str):
                     message_data = json.loads(message_data)
                 
@@ -107,6 +112,8 @@ class OSProcessorClass():
             
             except asyncio.CancelledError:
                 logger.info(f"⚠️ {get_current_time()} Loop do SOWatcher Sender cancelado.")
+                if hasattr(websocket_or_queue, 'close'):
+                    await websocket_or_queue.close()
                 connections.OS.sender = None
                 break
             except Exception as e:
@@ -114,6 +121,27 @@ class OSProcessorClass():
                 logger.exception(f"❌ Erro no SOWatcher: {e}")
                 await asyncio.sleep(0.3)
         
+    @classmethod
+    async def handle_internal_os_connection(cls,queue,tipo):
+        """gerencia a conexão interna com o watcher, usando queues ao invés de websockets"""
+        if tipo == "sender":
+            if cls.receiver_conn_or_queue is None and cls.receiver_loop_task is None:
+                await cls.start_receiver(queue)
+            else:
+                print("tentaram iniciar o receiver loop do watcher indevidamente!!!")
+                try:
+                    1/0
+                except Exception as e:
+                    log_error_forensics_plus(e)
+        else:
+            if cls.sender_conn_or_queue is None:
+                cls.sender_conn_or_queue = queue
+            else:
+                print("tentaram colocar uma queue como o sender_conn_or_queue dessa classe mas ja existe um aqui !!")
+                try:
+                    1/0
+                except Exception as e:
+                    log_error_forensics_plus(e)
     @classmethod
     async def handle_os_connection(cls,websocket, tipo):
 
@@ -148,8 +176,8 @@ class OSProcessorClass():
         
         # Loop de escuta (Receiver - não deveria receber nada, mas tratamos erros)
         elif connections.OS.receiver == websocket:
-            if cls.sender_conn is None:
-                cls.sender_conn = websocket
+            if cls.sender_conn_or_queue is None:
+                cls.sender_conn_or_queue = websocket
                 try:    
                     message = await websocket.recv()
                     # LoggerManager.log_exception_with_context(f"Receiver mandou msg inesperada: {message}")
@@ -172,7 +200,7 @@ class OSProcessorClass():
                     log_error_forensics_plus(e)
                     connections.OS.receiver = None
             else:
-                print("tentaram colocar um websocket como o sender_conn dessa classe mas ja existe um aqui !!")
+                print("tentaram colocar um websocket como o receiver_conn_or_queue dessa classe mas ja existe um aqui !!")
                 try:
                     1/0
                 except Exception as e:

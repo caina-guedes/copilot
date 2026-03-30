@@ -5,14 +5,19 @@ import json
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.generalUtils.aprint import aprint
+from sharedResources.lifecycle.shutdownMaster import LifecycleMaster
+from sharedResources.debuggingResources.unified_monitor import monitor_class
 logger = LoggerManager.get_logger(__name__, filename=__name__ + '.log')
 
 
+@monitor_class
 class WatcherNotsentEventsDatabase:
+    main_reference = None
     def __init__(self):
         self.lock = asyncio.Lock()
         # self.initialize_not_sent_events()
         self.conn = None
+        self.__class__.main_reference = self
 
     @classmethod
     async def create(cls):
@@ -20,13 +25,14 @@ class WatcherNotsentEventsDatabase:
         await self.initialize_not_sent_events()
         return self
     
-    async def close(self):
-        
+    @classmethod
+    async def close(cls):
+        self = cls.main_reference
         async with self.lock:
             if self.conn:
                 await self.conn.close()
                 self.conn = None
-                logger.info("Database connection closed safely.")
+                print("Database connection closed safely.")
 
     async def ensure_connection(self):
         if self.conn is None:
@@ -125,3 +131,11 @@ class WatcherNotsentEventsDatabase:
             except aiosqlite.Error as e:
                 logger.error(f"Error deleting event with ID {event_id}: {e}")
             return success
+
+
+LifecycleMaster.register_cleanup_function(
+    WatcherNotsentEventsDatabase.close,
+    priority = 50,
+    name = "WatcherNotsentEventsDatabase.close", 
+    register_in_atexit = False
+    )

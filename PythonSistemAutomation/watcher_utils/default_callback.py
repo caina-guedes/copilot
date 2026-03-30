@@ -21,8 +21,8 @@ async def default_callback(event, father, sendingQueue = None):
     inicio = time.perf_counter()
     try:
         if sendingQueue is not None:
-            sendingQueue.put(event)
-            return 
+            await sendingQueue.put(event)
+            return True, time.perf_counter() - inicio
         else:
             try:
                 

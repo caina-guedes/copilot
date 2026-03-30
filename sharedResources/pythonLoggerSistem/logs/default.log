@@ -1,8 +1,24 @@
-2026-03-22 10:05:11,213 [WARNING] [AsyncioLoopThread] os_watcher_handler:91 - ❌ 10:05:11 Conexão encerrada com o SOWatcher Sender. this is not for shutdown!!!!!
-2026-03-22 10:05:11,215 [WARNING] [AsyncioLoopThread] os_watcher_handler:151 - ❌ 10:05:11 Conexão encerrada com o SOWatcher Sender. this is not for shutdown!!!!!
-2026-03-22 10:07:28,076 [WARNING] [AsyncioLoopThread] os_watcher_handler:116 - 🖥️ 10:07:28 SOWatcher Connection Started!
-2026-03-22 10:12:39,406 [WARNING] [AsyncioLoopThread] os_watcher_handler:151 - ❌ 10:12:39 Conexão encerrada com o SOWatcher Sender. this is not for shutdown!!!!!
-2026-03-22 10:12:39,407 [WARNING] [AsyncioLoopThread] os_watcher_handler:91 - ❌ 10:12:39 Conexão encerrada com o SOWatcher Sender. this is not for shutdown!!!!!
-2026-03-22 12:05:38,250 [WARNING] [AsyncioLoopThread] os_watcher_handler:116 - 🖥️ 12:05:38 SOWatcher Connection Started!
-2026-03-22 12:07:02,050 [WARNING] [AsyncioLoopThread] os_watcher_handler:116 - 🖥️ 12:07:02 SOWatcher Connection Started!
-2026-03-22 12:35:37,310 [WARNING] [AsyncioLoopThread] os_watcher_handler:116 - 🖥️ 12:35:37 SOWatcher Connection Started!
+2026-03-30 13:36:07,397 [ERROR] [AsyncioLoopThread] os_watcher_handler:115 - ❌ Erro no SOWatcher: the JSON object must be str, bytes or bytearray, not list
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 80, in receiver_loop
+    message_data = json.loads(message)
+  File "C:\Python314\Lib\json\__init__.py", line 345, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+                    f'not {s.__class__.__name__}')
+TypeError: the JSON object must be str, bytes or bytearray, not list
+2026-03-30 13:43:32,236 [ERROR] [AsyncioLoopThread] os_watcher_handler:115 - ❌ Erro no SOWatcher: the JSON object must be str, bytes or bytearray, not list
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 80, in receiver_loop
+    message_data = json.loads(message)
+  File "C:\Python314\Lib\json\__init__.py", line 345, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+                    f'not {s.__class__.__name__}')
+TypeError: the JSON object must be str, bytes or bytearray, not list
+2026-03-30 13:43:33,691 [ERROR] [AsyncioLoopThread] os_watcher_handler:115 - ❌ Erro no SOWatcher: the JSON object must be str, bytes or bytearray, not list
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 80, in receiver_loop
+    message_data = json.loads(message)
+  File "C:\Python314\Lib\json\__init__.py", line 345, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+                    f'not {s.__class__.__name__}')
+TypeError: the JSON object must be str, bytes or bytearray, not list

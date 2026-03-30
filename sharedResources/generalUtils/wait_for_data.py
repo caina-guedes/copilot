@@ -2,8 +2,12 @@ import asyncio
 import inspect
 import queue
 
+class WaitTimeoutError(Exception):
+    def __init__(self, source):
+        super().__init__(f"Timeout esperando dados de {type(source).__name__}")
+        self.source = source
 
-async def wait_for_data(source,timeout):
+async def wait_for_data(source,timeout = 0.2):
     """
     Espera por dados de diferentes tipos de fontes:
     - asyncio.Queue
@@ -16,7 +20,7 @@ async def wait_for_data(source,timeout):
         try:
             return await asyncio.wait_for(source.get(), timeout)
         except asyncio.TimeoutError:
-            raise 
+            raise WaitTimeoutError(source)
             # return None
 
     # 🔹 queue.Queue (thread-safe)
@@ -25,7 +29,7 @@ async def wait_for_data(source,timeout):
             # roda o get em thread pra não bloquear o loop
             return await asyncio.to_thread(source.get, True, timeout)
         except queue.Empty:
-            raise
+            raise WaitTimeoutError(source)
             # return None
         
 
@@ -34,7 +38,7 @@ async def wait_for_data(source,timeout):
         try:
             return await asyncio.wait_for(source.recv(), timeout)
         except asyncio.TimeoutError:
-            raise
+            raise WaitTimeoutError(source)
             # return None
 
     # 🔹 fallback genérico (callable async)
@@ -42,7 +46,7 @@ async def wait_for_data(source,timeout):
         try:
             return await asyncio.wait_for(source(), timeout)
         except asyncio.TimeoutError:
-            raise
+            raise WaitTimeoutError(source)
             # return None
 
     else:
