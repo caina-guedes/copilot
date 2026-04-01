@@ -70,8 +70,8 @@ class AutomationSystem:
     shutDownComplete = LifecycleMaster.shutDownComplete
     shutDownIniciated = False
     main_instance = None
-
-
+    lifeCycleMaster = LifecycleMaster
+    receivingQueue_task = None
     @staticmethod
     def shutdown(a,b):
         AutomationSystem.myShutdown()
@@ -122,8 +122,9 @@ class AutomationSystem:
         self.controlsToIgnore = set()  # Set of controls to ignore during macro execution
         # print("logo antes de mexer com o websocket!")
         if receivingQueue is not None:
-            print("vou iniciar o listener da receivingQueue")
-            self.start_listening_receivingQueue()
+            if self.__class__.receivingQueue_task is None:
+                print("vou iniciar o listener da receivingQueue")
+                self.start_listening_receivingQueue()
             print("iniciei o listener da receivingQueue")
         else :
             self.ws_client = WebSocketClient
@@ -140,21 +141,31 @@ class AutomationSystem:
         # this task is intended to be cancelled normally by standard procedure using asyncio.CancelledError.
 
         async def receivingQueue_worker():
-            while not self.__class__.watcher_shutdown_event.is_set() :
-                # item = q.get(
-                try:
+            if self.__class__.receivingQueue_task is None:
+                print("Starting receivingQueue_worker task.")
+                self.__class__.receivingQueue_task = asyncio.current_task()
+            else:
+                return # se já tiver um worker rodando, não inicia outro (isso pode acontecer porque o start_listening_receivingQueue é chamado no init e no main, mas só quero que ele inicie o worker na primeira vez que for chamado, ou seja, no init)
+            
+            try:
+                while not self.__class__.watcher_shutdown_event.is_set() :
+                    # item = q.get(
                     try:
-                        msg = await wait_for_data(self.receivingQueue, timeout=0.2)
-                        # msg = self.receivingQueue.get(timeout=0.5)
-                    except WaitTimeoutError:
-                        continue
-                    except asyncio.CancelledError:
-                        print("receivingQueue_worker was cancelled.")
-                        break
-                    GlobalExecutor.enqueue(msg,self.controlsToIgnore,self,self.ExecutingMacro)
-                except Exception as e:
-                    log_error_forensics_plus(e, extra_message=f"Error in receivingQueue_worker")
-                    
+                        try:
+                            msg = await wait_for_data(self.receivingQueue, timeout=0.2)
+                            # msg = self.receivingQueue.get(timeout=0.5)
+                        except WaitTimeoutError:
+                            continue
+                        except asyncio.CancelledError:
+                            print("receivingQueue_worker was cancelled.")
+                            break
+                        GlobalExecutor.enqueue(msg,self.controlsToIgnore,self,self.ExecutingMacro)
+                    except Exception as e:
+                        log_error_forensics_plus(e, extra_message=f"Error in receivingQueue_worker")
+            finally:
+                self.__class__.receivingQueue_task = None
+                print("receivingQueue_worker has been stopped.")   
+
         LifecycleMaster.run_async(receivingQueue_worker, name = "watcher_receivingQueue_worker")
 
     async def is_not_sent_db_empty(self):

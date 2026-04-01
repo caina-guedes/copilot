@@ -1,11 +1,297 @@
-2026-03-30 12:38:58,986 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+2026-04-01 13:50:22,652 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [InadequateMessage]
+📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py | Linha: 84
+💻 Código: `raise InadequateMessage(str(message) + " - key keyword not found this message", "kbPressOrRelease")`
+🕒 Horário: 2026-04-01 13:50:22.649775 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: Mensagem inadequada (a - key keyword not found this message) para a função kbPressOrRelease
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    message = 'a'
+    action = 'press'
+    controlsToIgnore = set()
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - <module>):
+    asyncio = <module 'asyncio' from 'C:\\Users\\cainã\\AppDat...\\pythoncore-3.14-64\\Lib\\asyncio\\__init__.py'>
+    json = <module 'json' from 'C:\\Users\\cainã\\AppData\\...hon\\pythoncore-3.14-64\\Lib\\json\\__init__.py'>
+    time = <module 'time' (built-in)>
+    pynput = <module 'pynput' from 'C:\\Users\\cainã\\AppData...\\Python314\\site-packages\\pynput\\__init__.py'>
+    Key = <enum 'Key'>
+    KeyboardController = <class 'pynput.keyboard._win32.Controller'>
+    Button = <enum 'Button'>
+    MouseController = <class 'pynput.mouse._win32.Controller'>
+    warnings = <module 'warnings' from 'C:\\Users\\cainã\\AppDa...l\\Python\\pythoncore-3.14-64\\Lib\\warnings.py'>
+    sys = <module 'sys' (built-in)>
+    Path = <class 'pathlib.Path'>
+    aprint = <function aprint at 0x000002076F10E2A0>
+    monitor_error = <function monitor_error at 0x000002076EBF3480>
+    log_error_forensics_plus = <function log_error_forensics_plus at 0x000002076EBF3690>
+    sys_monitor = <function sys_monitor at 0x000002076EBF3740>
+    LoggerManager = <class 'sharedResources.pythonLoggerSistem.logger.LoggerManager'>
+    keyboard = <pynput.keyboard._win32.Controller object at 0x000002076F0B9550>
+    mouse = <pynput.mouse._win32.Controller object at 0x000002076F0B96A0>
+    InadequateMessage = <class '__main__.InadequateMessage'>
+    mouseExecCommand = <function mouseExecCommand at 0x000002076F10E560>
+    kbPressOrRelease = <function kbPressOrRelease at 0x000002076F10E6C0>
+    InternalResponse = <class '__main__.InternalResponse'>
+    exec_mouse_or_kb = <function exec_mouse_or_kb at 0x000002076F10E8D0>
+    default_receiving_function = <function default_receiving_function at 0x000002076F10EA30>
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "<string>", line 1, in <module>
+    __import__('idlelib.run').run.main(True)
+  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
+    ret = method(*args, **kwargs)
+  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
+    exec(code, self.locals)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 246, in <module>
+    kbPressOrRelease("a","press",set())
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 84, in kbPressOrRelease
+    raise InadequateMessage(str(message) + " - key keyword not found this message", "kbPressOrRelease")
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 84, in kbPressOrRelease
+    raise InadequateMessage(str(message) + " - key keyword not found this message", "kbPressOrRelease")
+InadequateMessage: Mensagem inadequada (a - key keyword not found this message) para a função kbPressOrRelease
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-04-01 13:59:46,651 [WARNING] [MainThread] error_tracker:229 - 
 ======================================================================
 🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
-📍 No arquivo: D:\copilot\PythonServer\server.py | Linha: 173
-💻 Código: `os_watcher_handler.OSProcessorClass.handle_os_internal_communication(self.senderQueue, "sender"),`
-🕒 Horário: 2026-03-30 12:38:58.968588 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2503331151952 | Nome: main | Coro: start | Protected: True | Total Tasks Vivas: 5
- 💬 Mensagem: type object 'OSProcessorClass' has no attribute 'handle_os_internal_communication'
-extra_message = Falha na inicialização do Servidor
+📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py | Linha: 86
+💻 Código: `key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']`
+🕒 Horário: 2026-04-01 13:59:46.648581 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: 'int' object has no attribute 'lower'
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 1}
+    action = 'release'
+    controlsToIgnore = set()
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - exec_mouse_or_kb):
+    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 1}
+    macroExecutor = <class '__main__.MockMacroExecutor'>
+    frozen_controls_to_ignore = set()
+    controlsToIgnore = set()
+    action = 'release'
+    ExecutingMacro = {'value': False}
+    equipment = 'keyboard'
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "<string>", line 1, in <module>
+    __import__('idlelib.run').run.main(True)
+  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
+    ret = method(*args, **kwargs)
+  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
+    exec(code, self.locals)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 268, in <module>
+    exec_mouse_or_kb(command,MockMacroExecutor,frozen_controls_to_ignore)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 180, in exec_mouse_or_kb
+    before,after = kbPressOrRelease(message, action, controlsToIgnore)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 86, in kbPressOrRelease
+    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
+                                               ^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 86, in kbPressOrRelease
+    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
+                                               ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'int' object has no attribute 'lower'
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-04-01 14:00:12,518 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
+📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py | Linha: 86
+💻 Código: `key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']`
+🕒 Horário: 2026-04-01 14:00:12.515986 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: 'int' object has no attribute 'lower'
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 1}
+    action = 'release'
+    controlsToIgnore = set()
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - exec_mouse_or_kb):
+    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 1}
+    macroExecutor = <class '__main__.MockMacroExecutor'>
+    frozen_controls_to_ignore = set()
+    controlsToIgnore = set()
+    action = 'release'
+    ExecutingMacro = {'value': False}
+    equipment = 'keyboard'
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "<string>", line 1, in <module>
+    __import__('idlelib.run').run.main(True)
+  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
+    ret = method(*args, **kwargs)
+  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
+    exec(code, self.locals)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 268, in <module>
+    exec_mouse_or_kb(command,MockMacroExecutor,frozen_controls_to_ignore)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 180, in exec_mouse_or_kb
+    before,after = kbPressOrRelease(message, action, controlsToIgnore)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 86, in kbPressOrRelease
+    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
+                                               ^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 86, in kbPressOrRelease
+    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
+                                               ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'int' object has no attribute 'lower'
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-04-01 14:05:24,036 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
+📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py | Linha: 86
+💻 Código: `key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']`
+🕒 Horário: 2026-04-01 14:05:24.033050 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: 'int' object has no attribute 'lower'
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 1}
+    action = 'release'
+    controlsToIgnore = {('keyboard', 'left', 'release'), ('keyboard', 'v', 'release')}
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - exec_mouse_or_kb):
+    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 1}
+    macroExecutor = <class '__main__.MockMacroExecutor'>
+    frozen_controls_to_ignore = set()
+    controlsToIgnore = {('keyboard', 'left', 'release'), ('keyboard', 'v', 'release')}
+    action = 'release'
+    ExecutingMacro = {'value': False}
+    equipment = 'keyboard'
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "<string>", line 1, in <module>
+    __import__('idlelib.run').run.main(True)
+  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
+    ret = method(*args, **kwargs)
+  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
+    exec(code, self.locals)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 268, in <module>
+    exec_mouse_or_kb(command,MockMacroExecutor,frozen_controls_to_ignore)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 180, in exec_mouse_or_kb
+    before,after = kbPressOrRelease(message, action, controlsToIgnore)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 86, in kbPressOrRelease
+    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
+                                               ^^^^^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 86, in kbPressOrRelease
+    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
+                                               ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'int' object has no attribute 'lower'
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-04-01 14:07:32,030 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [InadequateMessage]
+📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py | Linha: 125
+💻 Código: `raise InadequateMessage(str(message) + str(e),"kbPressOrRelease")`
+🕒 Horário: 2026-04-01 14:07:32.027536 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: Mensagem inadequada ({'key': 'cain', 'action': 'release', 'equipment': 'keyboard', 'deltaTime': 0}cain) para a função kbPressOrRelease
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 'cain'}
+    action = 'release'
+    controlsToIgnore = {('keyboard', '1', 'release'), ('keyboard', 'cain', 'release'), ('keyboard', 'ctrl', 'release'), ('keyboard', 'v', 'release')}
+    key_name = 'cain'
+    key = 'cain'
+    before = 87254.8732071
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - exec_mouse_or_kb):
+    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 'cain'}
+    macroExecutor = <class '__main__.MockMacroExecutor'>
+    frozen_controls_to_ignore = set()
+    controlsToIgnore = {('keyboard', '1', 'release'), ('keyboard', 'cain', 'release'), ('keyboard', 'ctrl', 'release'), ('keyboard', 'v', 'release')}
+    action = 'release'
+    ExecutingMacro = {'value': False}
+    equipment = 'keyboard'
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "<string>", line 1, in <module>
+    __import__('idlelib.run').run.main(True)
+  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
+    ret = method(*args, **kwargs)
+  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
+    exec(code, self.locals)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 268, in <module>
+    exec_mouse_or_kb(command,MockMacroExecutor,frozen_controls_to_ignore)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 180, in exec_mouse_or_kb
+    before,after = kbPressOrRelease(message, action, controlsToIgnore)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 125, in kbPressOrRelease
+    raise InadequateMessage(str(message) + str(e),"kbPressOrRelease")
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 114, in kbPressOrRelease
+    keyboard.release(key)
+    ~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\pynput\keyboard\_base.py", line 418, in release
+    resolved = self._resolve(key)
+  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\pynput\keyboard\_base.py", line 583, in _resolve
+    raise ValueError(key)
+ValueError: cain
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 125, in kbPressOrRelease
+    raise InadequateMessage(str(message) + str(e),"kbPressOrRelease")
+InadequateMessage: Mensagem inadequada ({'key': 'cain', 'action': 'release', 'equipment': 'keyboard', 'deltaTime': 0}cain) para a função kbPressOrRelease
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-04-01 16:07:15,822 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
+📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher.py | Linha: 170
+💻 Código: `currentWindow, changed , os_call= window.get_active_window(event,self._pressed)`
+🕒 Horário: 2026-04-01 16:07:15.808578 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2493509377712 | Nome: on_event_consumer - primeiro loop | Coro: _event_consumer | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: 'EventObserver' object has no attribute '_pressed'
+extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
 printar : True
@@ -14,9 +300,11 @@ retornar : False
 Estado do ciclo de vida: RUNNING
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <__main__.WebSocketServerManager object at 0x00000246DA27C980>
-    ws_server = <websockets.asyncio.server.Server object at 0x00000246DA27F620>
-    e = AttributeError("type object 'OSProcessorClass' has no attribute 'handle_os_internal_communication'")
+    self = <PythonSistemAutomation.watcher.EventObserver object at 0x0000024491008980>
+    event = {'action': 'press', 'key': 's', 'timestamp': 94438.6519143, 'type': 'keyboard', ...}
+    chegou_da_queue = 94438.6531564
+    logo_antes_de_verificar_janela = 94438.6532058
+    e = AttributeError("'EventObserver' object has no attribute '_pressed'")
 ------------------------------
 🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _run):
     self = <Handle Task.task_wakeup()>
@@ -24,193 +312,25 @@ Estado do ciclo de vida: RUNNING
 📜 RASTRO COMPLETO (Call Stack + Error):
   File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
     cls._current.run_forever()
-  File "D:\copilot\PythonServer\server.py", line 184, in start
-    log_error_forensics_plus(e, "Falha na inicialização do Servidor")
-  File "D:\copilot\PythonServer\server.py", line 173, in start
-    os_watcher_handler.OSProcessorClass.handle_os_internal_communication(self.senderQueue, "sender"),
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 180, in _event_consumer
+    log_error_forensics_plus(e)
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 170, in _event_consumer
+    currentWindow, changed , os_call= window.get_active_window(event,self._pressed)
+                                                                     ^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\PythonServer\server.py", line 173, in start
-    os_watcher_handler.OSProcessorClass.handle_os_internal_communication(self.senderQueue, "sender"),
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: type object 'OSProcessorClass' has no attribute 'handle_os_internal_communication'
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 170, in _event_consumer
+    currentWindow, changed , os_call= window.get_active_window(event,self._pressed)
+                                                                     ^^^^^^^^^^^^^
+AttributeError: 'EventObserver' object has no attribute '_pressed'
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-30 12:40:39,641 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [DeprecationWarning]
-📍 No arquivo: C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\imports.py | Linha: 86
-💻 Código: `warnings.warn(`
-🕒 Horário: 2026-03-30 12:40:39.638396 | 🧵 Thread: AsyncioLoopThread  Task: ID: 1429561401632 | Nome: OSWatcherInternalQueueListener | Coro: handle_internal_os_connection | Protected: False | Total Tasks Vivas: 8
- 💬 Mensagem: websockets.WebSocketServerProtocol is deprecated
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : True
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    name = 'WebSocketServerProtocol'
-    source = '.legacy.server'
-    aliases = {'ClientConnection': '.asyncio.client', 'ClientProtocol': '.client', 'Close': '.frames', 'CloseCode': '.frames', ...}
-    deprecated_aliases = {'AbortHandshake': '.legacy.exceptions', 'BasicAuthWebSocketServerProtocol': '.legacy.auth', 'InvalidStatusCode': '.legacy.exceptions', 'RedirectHandshake': '.legacy.exceptions', ...}
-    namespace = {'TYPE_CHECKING': False, '__all__': ['connect', 'unix_connect', 'ClientConnection', 'route', 'unix_route', 'Router', ...], '__builtins__': {'ArithmeticError': <class 'ArithmeticError'>, 'AssertionError': <class 'AssertionError'>, 'AttributeError': <class 'AttributeError'>, 'BaseException': <class 'BaseException'>, ...}, '__cached__': 'C:\\Users\\cainã\\AppData\\Roaming\\Python\\Pyt...ebsockets\\__pycache__\\__init__.cpython-314.pyc', ...}
-    package = 'websockets'
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - start_receiver):
-    cls = <class 'PythonServer.core.handlers.os_watcher_handler.OSProcessorClass'>
-    websocket_or_queue = <Queue at 0x14cd7856850 maxsize=0>
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
-    cls._current.run_forever()
-  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 122, in handle_internal_os_connection
-    await cls.start_receiver(queue)
-  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 60, in start_receiver
-    if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
-                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
-    return await func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 60, in start_receiver
-    if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
-                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\imports.py", line 86, in __getattr__
-    warnings.warn(
-    ~~~~~~~~~~~~~^
-        f"{package}.{name} is deprecated",
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        DeprecationWarning,
-        ^^^^^^^^^^^^^^^^^^^
-        stacklevel=2,
-        ^^^^^^^^^^^^^
-    )
-    ^
-DeprecationWarning: websockets.WebSocketServerProtocol is deprecated
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-30 12:45:02,968 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [DeprecationWarning]
-📍 No arquivo: C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\imports.py | Linha: 86
-💻 Código: `warnings.warn(`
-🕒 Horário: 2026-03-30 12:45:02.965299 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2788822213296 | Nome: OSWatcherInternalQueueListener | Coro: handle_internal_os_connection | Protected: False | Total Tasks Vivas: 8
- 💬 Mensagem: websockets.WebSocketServerProtocol is deprecated
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : True
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    name = 'WebSocketServerProtocol'
-    source = '.legacy.server'
-    aliases = {'ClientConnection': '.asyncio.client', 'ClientProtocol': '.client', 'Close': '.frames', 'CloseCode': '.frames', ...}
-    deprecated_aliases = {'AbortHandshake': '.legacy.exceptions', 'BasicAuthWebSocketServerProtocol': '.legacy.auth', 'InvalidStatusCode': '.legacy.exceptions', 'RedirectHandshake': '.legacy.exceptions', ...}
-    namespace = {'TYPE_CHECKING': False, '__all__': ['connect', 'unix_connect', 'ClientConnection', 'route', 'unix_route', 'Router', ...], '__builtins__': {'ArithmeticError': <class 'ArithmeticError'>, 'AssertionError': <class 'AssertionError'>, 'AttributeError': <class 'AttributeError'>, 'BaseException': <class 'BaseException'>, ...}, '__cached__': 'C:\\Users\\cainã\\AppData\\Roaming\\Python\\Pyt...ebsockets\\__pycache__\\__init__.cpython-314.pyc', ...}
-    package = 'websockets'
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - start_receiver):
-    cls = <class 'PythonServer.core.handlers.os_watcher_handler.OSProcessorClass'>
-    websocket_or_queue = <Queue at 0x28951c76850 maxsize=0>
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
-    cls._current.run_forever()
-  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 122, in handle_internal_os_connection
-    await cls.start_receiver(queue)
-  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 60, in start_receiver
-    if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
-                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
-    return await func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 60, in start_receiver
-    if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
-                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\imports.py", line 86, in __getattr__
-    warnings.warn(
-    ~~~~~~~~~~~~~^
-        f"{package}.{name} is deprecated",
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        DeprecationWarning,
-        ^^^^^^^^^^^^^^^^^^^
-        stacklevel=2,
-        ^^^^^^^^^^^^^
-    )
-    ^
-DeprecationWarning: websockets.WebSocketServerProtocol is deprecated
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-30 12:46:43,043 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [DeprecationWarning]
-📍 No arquivo: C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\imports.py | Linha: 86
-💻 Código: `warnings.warn(`
-🕒 Horário: 2026-03-30 12:46:43.038970 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2694206579376 | Nome: OSWatcherInternalQueueListener | Coro: handle_internal_os_connection | Protected: False | Total Tasks Vivas: 9
- 💬 Mensagem: websockets.WebSocketServerProtocol is deprecated
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : True
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    name = 'WebSocketServerProtocol'
-    source = '.legacy.server'
-    aliases = {'ClientConnection': '.asyncio.client', 'ClientProtocol': '.client', 'Close': '.frames', 'CloseCode': '.frames', ...}
-    deprecated_aliases = {'AbortHandshake': '.legacy.exceptions', 'BasicAuthWebSocketServerProtocol': '.legacy.auth', 'InvalidStatusCode': '.legacy.exceptions', 'RedirectHandshake': '.legacy.exceptions', ...}
-    namespace = {'TYPE_CHECKING': False, '__all__': ['connect', 'unix_connect', 'ClientConnection', 'route', 'unix_route', 'Router', ...], '__builtins__': {'ArithmeticError': <class 'ArithmeticError'>, 'AssertionError': <class 'AssertionError'>, 'AttributeError': <class 'AttributeError'>, 'BaseException': <class 'BaseException'>, ...}, '__cached__': 'C:\\Users\\cainã\\AppData\\Roaming\\Python\\Pyt...ebsockets\\__pycache__\\__init__.cpython-314.pyc', ...}
-    package = 'websockets'
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - start_receiver):
-    cls = <class 'PythonServer.core.handlers.os_watcher_handler.OSProcessorClass'>
-    websocket_or_queue = <Queue at 0x2734a496850 maxsize=0>
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
-    cls._current.run_forever()
-  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 122, in handle_internal_os_connection
-    await cls.start_receiver(queue)
-  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 60, in start_receiver
-    if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
-                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
-    return await func(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 60, in start_receiver
-    if isinstance(websocket_or_queue, websockets.WebSocketServerProtocol):
-                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\websockets\imports.py", line 86, in __getattr__
-    warnings.warn(
-    ~~~~~~~~~~~~~^
-        f"{package}.{name} is deprecated",
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        DeprecationWarning,
-        ^^^^^^^^^^^^^^^^^^^
-        stacklevel=2,
-        ^^^^^^^^^^^^^
-    )
-    ^
-DeprecationWarning: websockets.WebSocketServerProtocol is deprecated
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-30 12:51:56,146 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+2026-04-01 16:10:09,828 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
 ======================================================================
 🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
-📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher.py | Linha: 395
-💻 Código: `confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)`
-🕒 Horário: 2026-03-30 12:51:56.124219 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2029098270800 | Nome: loop do buffer do observer- segundo loop | Coro: buffer_loop | Protected: False | Total Tasks Vivas: 9
- 💬 Mensagem: cannot unpack non-iterable NoneType object
+📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher.py | Linha: 170
+💻 Código: `currentWindow, changed , os_call= window.get_active_window(event,self._pressed_keys + self._pressed_buttons)`
+🕒 Horário: 2026-04-01 16:10:09.814960 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2227726295568 | Nome: on_event_consumer - primeiro loop | Coro: _event_consumer | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: unsupported operand type(s) for +: 'SafePressedTracker' and 'SafePressedTracker'
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
@@ -220,15 +340,11 @@ retornar : False
 Estado do ciclo de vida: RUNNING
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <PythonSistemAutomation.watcher.EventObserver object at 0x000001D86FACC6E0>
-    MAX_BATCH_SIZE = 50
-    buffer = deque([{'action': 'press', 'button': 'Button.left', 'newCurrentWindow': {'app': 'cmd', 'class_name': 'ConsoleWindowClass', 'details': {'confidence_score': 1.0, 'first_seen': 1774885915.9086063, 'last_seen': 1774885915.9086294, 'priority_fields': {}, ...}, 'os_name': 'windows', ...}, 'timestamp': 272201.9134152, ...}])
-    MAX_WAIT_TIME = 0.2
-    event = {'action': 'press', 'button': 'Button.left', 'newCurrentWindow': {'app': 'cmd', 'class_name': 'ConsoleWindowClass', 'details': {'confidence_score': 1.0, 'first_seen': 1774885915.9086063, 'last_seen': 1774885915.9086294, 'priority_fields': {}, ...}, 'os_name': 'windows', ...}, 'timestamp': 272201.9134152, ...}
-    start_time = 272201.9203962
-    time_already_passed = 4.00003045797348e-06
-    remaining_time = 0.19999599996954204
-    e = TypeError('cannot unpack non-iterable NoneType object')
+    self = <PythonSistemAutomation.watcher.EventObserver object at 0x00000206AF1A4C20>
+    event = {'action': 'press', 'key': 's', 'timestamp': 94612.658112, 'type': 'keyboard', ...}
+    chegou_da_queue = 94612.6595489
+    logo_antes_de_verificar_janela = 94612.6596016
+    e = TypeError("unsupported operand type(s) for +: 'SafePressedTracker' and 'SafePressedTracker'")
 ------------------------------
 🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _run):
     self = <Handle Task.task_wakeup()>
@@ -236,109 +352,107 @@ Estado do ciclo de vida: RUNNING
 📜 RASTRO COMPLETO (Call Stack + Error):
   File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
     cls._current.run_forever()
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 406, in buffer_loop
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 180, in _event_consumer
     log_error_forensics_plus(e)
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 395, in buffer_loop
-    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)
-    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 170, in _event_consumer
+    currentWindow, changed , os_call= window.get_active_window(event,self._pressed_keys + self._pressed_buttons)
+                                                                     ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 395, in buffer_loop
-    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)
-    ^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: cannot unpack non-iterable NoneType object
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 170, in _event_consumer
+    currentWindow, changed , os_call= window.get_active_window(event,self._pressed_keys + self._pressed_buttons)
+                                                                     ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for +: 'SafePressedTracker' and 'SafePressedTracker'
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-30 13:36:07,393 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+2026-04-01 16:47:25,408 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
 ======================================================================
 🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
-📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher.py | Linha: 395
-💻 Código: `confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)`
-🕒 Horário: 2026-03-30 13:36:07.376677 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2428431073360 | Nome: loop do buffer do observer- segundo loop | Coro: buffer_loop | Protected: False | Total Tasks Vivas: 9
- 💬 Mensagem: cannot unpack non-iterable NoneType object
+📍 No arquivo: D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py | Linha: 308
+💻 Código: `warnings.warn("task que acabou de acabar não consta na lista das tasks vivas! task é: ",task)`
+🕒 Horário: 2026-04-01 16:47:25.387980 | 🧵 Thread: AsyncioLoopThread  Task: Nenhuma Task (Código Síncrono/Thread Pura)
+ 💬 Mensagem: category must be a Warning subclass, not '_asyncio.Task'
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
 printar : True
 retornar : False
 
-Estado do ciclo de vida: RUNNING
+Estado do ciclo de vida: SHUTTING_DOWN
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <PythonSistemAutomation.watcher.EventObserver object at 0x0000023569C20AD0>
-    MAX_BATCH_SIZE = 50
-    buffer = deque([{'action': 'press', 'button': 'Button.left', 'newCurrentWindow': {'app': 'cmd', 'class_name': 'ConsoleWindowClass', 'details': {'confidence_score': 1.0, 'first_seen': 1774888565.8154702, 'last_seen': 1774888565.815503, 'priority_fields': {}, ...}, 'os_name': 'windows', ...}, 'timestamp': 274851.8196977, ...}, {'action': 'release', 'button': 'Button.left', 'timestamp': 274852.0267828, 'type': 'mouse', ...}])
-    MAX_WAIT_TIME = 0.2
-    event = {'action': 'release', 'button': 'Button.left', 'timestamp': 274852.0267828, 'type': 'mouse', ...}
-    start_time = 274851.828882
-    time_already_passed = 0.1997069999924861
-    remaining_time = 0.00029300000751392163
-    e = TypeError('cannot unpack non-iterable NoneType object')
+    task = <Task finished name='on_event_consumer - primeir...gingResources\unified_monitor.py:69> result=None>
+    tracked = None
+    e = TypeError("category must be a Warning subclass, not '_asyncio.Task'")
 ------------------------------
 🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _run):
-    self = <Handle Task.task_wakeup()>
+    self = <Handle TasksMapClass._on_task_finish() at D:\co...rces\lifecycle\trackedUtils\tasksMapClass.py:302>
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
   File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
     cls._current.run_forever()
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 406, in buffer_loop
+  File "D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py", line 326, in _on_task_finish
     log_error_forensics_plus(e)
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 395, in buffer_loop
-    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)
-    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py", line 308, in _on_task_finish
+    warnings.warn("task que acabou de acabar não consta na lista das tasks vivas! task é: ",task)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 395, in buffer_loop
-    confirmation,time_taken = await self._on_event_callback(list(buffer), self.system, self.sendingQueue)
-    ^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: cannot unpack non-iterable NoneType object
+  File "D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py", line 308, in _on_task_finish
+    warnings.warn("task que acabou de acabar não consta na lista das tasks vivas! task é: ",task)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: category must be a Warning subclass, not '_asyncio.Task'
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-03-30 13:43:32,230 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+2026-04-01 17:16:45,760 [WARNING] [Thread-2 (waitMyShutdown)] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
-📍 No arquivo: C:\Python314\Lib\json\__init__.py | Linha: 345
-💻 Código: `raise TypeError(f'the JSON object must be str, bytes or bytearray, '`
-🕒 Horário: 2026-03-30 13:43:32.224610 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2741035123536 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
- 💬 Mensagem: the JSON object must be str, bytes or bytearray, not list
+🕵️ INVESTIGAÇÃO PROFUNDA: [RuntimeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\base_events.py | Linha: 631
+💻 Código: `raise RuntimeError('This event loop is already running')`
+🕒 Horário: 2026-04-01 17:16:45.741833 | 🧵 Thread: Thread-2 (waitMyShutdown)  Task: Fora de um Event Loop
+ 💬 Mensagem: This event loop is already running
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
 printar : True
-retornar : False
+retornar : True
 
-Estado do ciclo de vida: RUNNING
+Estado do ciclo de vida: SHUTTING_DOWN
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    s = [{'action': 'press', 'key': 'd', 'timestamp': 275298.0237396, 'type': 'keyboard', ...}, {'action': 'release', 'key': 'd', 'timestamp': 275298.0674186, 'type': 'keyboard', ...}]
-    cls = None
-    object_hook = None
-    parse_float = None
-    parse_int = None
-    parse_constant = None
-    object_pairs_hook = None
-    kw = {}
+    self = <ProactorEventLoop running=True closed=False debug=False>
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - receiver_loop):
-    cls = <class 'PythonServer.core.handlers.os_watcher_handler.OSProcessorClass'>
-    websocket_or_queue = <Queue at 0x27e316b6850 maxsize=0 tasks=1>
-    message = [{'action': 'press', 'key': 'd', 'timestamp': 275298.0237396, 'type': 'keyboard', ...}, {'action': 'release', 'key': 'd', 'timestamp': 275298.0674186, 'type': 'keyboard', ...}]
-    e = TypeError('the JSON object must be str, bytes or bytearray, not list')
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - run_until_complete):
+    self = <ProactorEventLoop running=True closed=False debug=False>
+    future = <Task finished name='on_event_consumer - primeir...gingResources\unified_monitor.py:69> result=None>
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
-    cls._current.run_forever()
-  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 114, in receiver_loop
-    log_error_forensics_plus(e)
-  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 80, in receiver_loop
-    message_data = json.loads(message)
-  File "C:\Python314\Lib\json\__init__.py", line 345, in loads
-    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
-                    f'not {s.__class__.__name__}')
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 440, in waitMyShutdown
+    cls.autoShutdown()
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 351, in autoShutdown
+    cls.cleanup_manager.execute_hooks()
+  File "D:\copilot\sharedResources\lifecycle\gracious_cleanup_manager.py", line 163, in execute_hooks
+    func(*args, **kwargs)
+  File "D:\copilot\PythonSistemAutomation\main.py", line 246, in stop_observer
+    self.observer.stop()
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 470, in stop
+    LifecycleMaster.cancel_tracked_task_(self.on_event_consumer_task)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 536, in cancel_tracked_task_
+    cls.running_loop.get().run_until_complete(task)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 80, in receiver_loop
-    message_data = json.loads(message)
-  File "C:\Python314\Lib\json\__init__.py", line 345, in loads
-    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
-                    f'not {s.__class__.__name__}')
-TypeError: the JSON object must be str, bytes or bytearray, not list
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
+    return func(*args, **kwargs)
+  File "D:\copilot\PythonSistemAutomation\watcher.py", line 470, in stop
+    LifecycleMaster.cancel_tracked_task_(self.on_event_consumer_task)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 536, in cancel_tracked_task_
+    cls.running_loop.get().run_until_complete(task)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Python314\Lib\asyncio\base_events.py", line 695, in run_until_complete
+    self._check_running()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Python314\Lib\asyncio\base_events.py", line 631, in _check_running
+    raise RuntimeError('This event loop is already running')
+RuntimeError: This event loop is already running
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

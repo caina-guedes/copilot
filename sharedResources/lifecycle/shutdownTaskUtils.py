@@ -49,54 +49,6 @@ class TrackedTask:
             print("[TrackedTask] tasks_map already set!")
     
 
-    # @classmethod
-    # def register_task(
-    #     cls,
-    #     task : asyncio.Task,
-    #     name : str | None,
-    #     created_from : str ,
-    #     *                   ,
-    #     cleanup_event = None,
-    #     cleanup_function = None , 
-    #     protected : bool = False,
-    #     ):
-    #     """ Registra uma asyncio.Task como TrackedItem
-
-    #         created_from é um campo pra que eu consiga humanamente entender onde ela foi criada por exemplo:
-    #         "EventBuffer.start" 
-    #         ou algo parecido.
-    #         vai ser uma string capaz de me fazer entender o contexto e onde localizar no codigo
-        
-    #     """
-
-
-    #     task_name = name or task.get_name()
-
-    #     selfCleanUpEvent    = cleanup_event or TrackedTask.default_cleanup_event   # pensado para fazer operações internas de limpeza
-    #     if selfCleanUpEvent is not TrackedTask.default_cleanup_event:
-    #         selfCleanUpEventUse = True  # flag para  a task usar o evento de self cleanup
-    #     else:
-    #         selfCleanUpEventUse = False
-        
-    #     current_task_item     = TrackedItem(
-    #         obj = task,
-    #         cleanup_event = selfCleanUpEvent, 
-    #         cleanup_enabled = selfCleanUpEventUse,
-    #         name = task_name, 
-    #         kind = "task",
-    #         created_from = created_from,
-    #         cleanup_function = cleanup_function,
-    #         protected = protected)
-        
-    #     ######################## setando a task no mapa de tasks ########################
-    #     cls.tasksMap.get_alive().setdefault(task_name, []).append(current_task_item)
-
-    #     cls.register_log(
-    #         f"[TrackedTask] registered {task_name} (protected={protected}) from {created_from}",
-    #         "tasks",
-    #         )
-        
-
     @classmethod
     async def shutdown_tasks(cls):
         try:
@@ -165,60 +117,4 @@ class TrackedTask:
             log_error_forensics_plus(e)
 
 
-    # -------------------- Async Task wrapper --------------------
-    # @classmethod
-    # def create(
-    #     cls,
-    #     coro, 
-    #     name, 
-    #     created_from, 
-    #     cleanup_event = None,
-    #     cleanup_function = None , 
-    #     protected = False):
-    #     """
-    #     Cria uma async task com logging
-        
-    #     created_from é um campo pra que eu consiga humanamente entender onde ela foi criada por exemplo:
-    #     "EventBuffer.start" 
-    #     ou algo parecido.
-    #     vai ser uma string capaz de me fazer entender o contexto e onde localizar no codigo
-    #     """
-    #     task_name = name or str(asyncio.current_task())
-        
-    #     async def wrapper():
-    #         cls.register_log(f"[Async Task Started] {task_name}","tasks")
-    #         # logger.info(f"[Async Task Started] {task_name}")
-    #         try:
-    #             return await coro
-    #         except asyncio.CancelledError:
-    #             cls.register_log(f"[Async Task Cancelled] {task_name}","tasks")
-    #             # logger.info(f"[Async Task Cancelled] {task_name}")
-    #             raise
-    #         finally:
-    #             cls.register_log(f"[Async Task Exited] {task_name}","tasks")
-    #             # logger.info(f"[Async Task Exited] {task_name}")
-    #     ######### criando elementos do trackedItem #########
-    #     fut = MyLoop.submit(wrapper(),protected)
-    #     task = asyncio.create_task(wrapper(),name = task_name) # cria a task async
-    #     selfCleanUpEvent    = cleanup_event or TrackedTask.default_cleanup_event   # pensado para fazer operações internas de limpeza
-    #     selfCleanUpEventUse = False                      # flag para  a task usar o evento de self cleanup
-    #     ######### creating the tracked item #########
-    #     currentTaskItem     = TrackedItem(
-    #         task,
-    #         selfCleanUpEvent, 
-    #         selfCleanUpEventUse,
-    #         name = name, 
-    #         kind = "task",
-    #         created_from = created_from,
-    #         cleanup_function = None)
-    #     ######################## setando a task no mapa de tasks ########################
-    #     if name:
-    #         cls.tasksMap.setdefault(task_name, []).append(currentTaskItem) # cria a lista se não existir e seta a task
-    #     else:
-    #         cls.tasksMap["unnamedTasks"].append(currentTaskItem)
-        
-    #     cls.register_log(f"[Async Task Created] {task_name}","tasks")
-    #     # logger.info(f"[Async Task Created] {task_name}")
-        
-        
-    #     return task
+    

@@ -62,7 +62,8 @@ class OSProcessorClass():
             # websocket = websocket_or_queue
             print("starting receiver loop with websocket")
         elif isinstance(websocket_or_queue, asyncio.Queue):
-            print("starting receiver loop with queue")
+            pass
+            # print("starting receiver loop with queue")
             # queue = websocket_or_queue
         if cls.receiver_conn_or_queue is None:
             cls.receiver_conn_or_queue = websocket_or_queue
@@ -124,7 +125,7 @@ class OSProcessorClass():
     @classmethod
     async def handle_internal_os_connection(cls,queue,tipo):
         """gerencia a conexão interna com o watcher, usando queues ao invés de websockets"""
-        if tipo == "sender":
+        if tipo == "receiver":
             if cls.receiver_conn_or_queue is None and cls.receiver_loop_task is None:
                 await cls.start_receiver(queue)
             else:

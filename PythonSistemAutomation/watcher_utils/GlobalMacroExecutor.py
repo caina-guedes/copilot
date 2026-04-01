@@ -11,7 +11,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 
 # from sharedResources.generalUtils.aprint import aprint
-from PythonSistemAutomation.watcher_utils.default_receiving_function import default_receiving_function, exec_mouse_or_kb
+from PythonSistemAutomation.watcher_utils.default_receiving_function import InadequateMessage, default_receiving_function, exec_mouse_or_kb
 from sharedResources.pythonLoggerSistem.logger import LoggerManager
 from sharedResources.debuggingResources.error_tracker import monitor_error, log_error_forensics_plus
 from sharedResources.debuggingResources.unified_monitor import sys_monitor, monitor_class
@@ -37,8 +37,9 @@ class GlobalExecutor:
     _internalStopMacroTime = None
     _wait_for_server = False
     _stop_running_macro_flag = Flag(False)
+    # _pressed = None
     _pressed_keys = None
-    _pressed_buttons  = None
+    _pressed_buttons = None
     #for macro control internal only
     _executed_commands_counter ={"current": 0}
     _current_macro_size = 0
@@ -70,43 +71,61 @@ class GlobalExecutor:
     @classmethod
     def set_pressed(cls,pressed_keys, pressed_buttons):
         if cls._pressed_keys is None:
-            # print("seeting _pressed_keys to: ",pressed_keys)
+            # print("seeting _pressed to: ",pressed_keys)
             cls._pressed_keys = pressed_keys
         if cls._pressed_buttons is None:
             cls._pressed_buttons = pressed_buttons
+
+        # if cls._pressed_buttons is None:
+        #     cls._pressed_buttons = pressed_keys
     
     @classmethod
     def umpress_keys(cls, controls_to_ignore = None, delay = 0):
         frozen_controls_to_ignore = copy.deepcopy(controls_to_ignore) 
         if delay > 0:
             time.sleep(delay)
-        # if len(cls._pressed_keys)> 0:
+        # if len(cls._pressed)> 0:
         #     print("printing umpressed_keys")
+
         if cls._pressed_keys is not None and len(cls._pressed_keys)>0:
             print(f"umpressing {len(cls._pressed_keys)} keys  ")
-            for original_key in list(cls._pressed_keys):# formata e tenta desapertar o botão
+            for original_key in list(cls._pressed_keys):# formata e tenta desapertar
                 print("the original_key is: ",original_key)
                 command = {
                     "key" : original_key, 
                     "action" : "release", 
                     "equipment" : "keyboard",
                     "deltaTime": 0}
-                exec_mouse_or_kb(command,cls,frozen_controls_to_ignore)                
-                cls._pressed_keys.discard(original_key)
                 
-        # if len(cls._pressed_buttons)>0:
-        #     print("umpressing buttons")
+                try:
+                    exec_mouse_or_kb(command,cls,frozen_controls_to_ignore) 
+                except InadequateMessage as im:
+                    print("peguei o inadequate message e a mensagem é: ",im.msg)
+                    raise im    
+                except Exception as e:
+                    log_error_forensics_plus(e, extra_message=f"error trying to umpress the key {original_key} with the command {command} and the exception is: {e}")
+                 
+                cls._pressed_keys.discard(original_key)
+        
         if cls._pressed_buttons is not None and len(cls._pressed_buttons)>0:
-            for original_button in list(cls._pressed_buttons): # tenta apertar
-                print("the button is originaly: ",original_button)
-                command = {
-                    "button" : original_button, 
+            print(f"umpressing {len(cls._pressed_buttons)} buttons  ")
+            for original_button in list(cls._pressed_buttons): # tenta desapertar
+                print("the original_button is: ",original_button)
+                command_for_mouse = {
+                    "button" : original_key, 
                     "action" : "release", 
                     "equipment" : "mouse",
                     "deltaTime": 0}
-                exec_mouse_or_kb(command,cls,frozen_controls_to_ignore)
+                try:
+                    exec_mouse_or_kb(command_for_mouse,cls,frozen_controls_to_ignore)
+                except InadequateMessage as im:
+                    print("peguei o inadequate message e a mensagem é: ",im.msg)
+                    raise im
+                except Exception as e:
+                    log_error_forensics_plus(e, extra_message = f"error trying to umpress the button {original_key} with the command {command_for_mouse} and the exception is: {e}")
                 cls._pressed_buttons.discard(original_button)
-                
+ 
+        
     @classmethod
     def _reset_macro_state(cls):
         cls._stop_running_macro_flag.set_value(False)

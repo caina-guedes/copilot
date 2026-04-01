@@ -34,6 +34,16 @@ def _generate_table(title, data_dict):
 
     # Preparar lista
     rows = []
+    vale_continuar = False
+    for name,stats in data_dict.items():
+        if stats["calls"] == 0 and stats["active"] == 0:
+            continue
+        else:
+            vale_continuar = True
+            break
+    if not vale_continuar:
+        title_row = f"\n {title+ " NÃO UTILIZADA!":<97}║\n"
+        return title_row 
     for name, stats in data_dict.items():
         # Se nunca foi chamado e não está ativo, ignora
         # if stats["calls"] == 0 and stats["active"] == 0:

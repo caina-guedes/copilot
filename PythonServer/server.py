@@ -170,8 +170,8 @@ class WebSocketServerManager:
 
                 if self.senderQueue and self.receiverQueue:
                     self.os_internal_communication_task = LifecycleMaster.run_async(
-                        os_watcher_handler.OSProcessorClass.handle_internal_os_connection(self.senderQueue, "sender"),
-                        name="OSWatcherInternalQueueListener")
+                        os_watcher_handler.OSProcessorClass.handle_internal_os_connection(self.receiverQueue, "receiver"),
+                        name = "OSWatcherInternalQueueListener")
                 # Loop de espera do Shutdown
                 LifecycleMaster.shutdown_event.clear()
                 while not LifecycleMaster.shutdown_event.is_set():
@@ -298,10 +298,9 @@ if __name__ == "__main__":
         
         # Inicia o runtime via LifecycleMaster
         LifecycleMaster.prepare_for_start_runtime(manager.start())
-        # def execute_watcher():
-        #     return 
 
-        LifecycleMaster.prepare_for_start_runtime(watcher_main_function(manager.senderQueue,manager.receiverQueue))
+
+        LifecycleMaster.prepare_for_start_runtime(watcher_main_function(senderQueue = manager.receiverQueue , receiverQueue = manager.senderQueue))
         # LifecycleMaster.start_runtime(manager.start())
         
         # Bloqueia thread principal
@@ -317,7 +316,11 @@ if __name__ == "__main__":
         print("deu erro fora da main e foi:",str(e))
 
 print("byebye de vez!")
+threads_ativas= threading.enumerate()
+for thread in threads_ativas:
+    if thread is not threading.current_thread() and thread.daemon == False: 
 
+        print(f"Thread potencialmente problemática: {thread.name} (daemon: {thread.daemon})")
 # import threading
 # import sys
 # import traceback    

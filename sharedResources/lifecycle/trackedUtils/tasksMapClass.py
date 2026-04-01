@@ -26,6 +26,7 @@ class TasksMapClass:
     # ========================
     
     alive: dict[str, list[TrackedItem]] = defaultdict(list)
+    removed_while_running: list[TrackedItem] = []  # para casos de tarefas finalizadas antes do cancelamento comum do shutdown
     lock = threading.RLock()  # para threadsafe
     # lock = asyncio.Lock()
     register_log = None
@@ -155,6 +156,19 @@ class TasksMapClass:
             log_error_forensics_plus(e)
             return False
 
+    @classmethod
+    def remove_task_while_running(cls, task: asyncio.Task):
+        """Remove uma task do mapa de vivas de forma segura, sem cancelar a task (para casos de tarefas que se auto-limpam)"""
+        tracked = cls.get_alive_tracked_from_task(task)
+        if tracked:
+            result = cls.remove_tracked_from_alive_map(tracked)
+            if result:
+                cls.removed_while_running.append(tracked)
+            return result
+        else:
+            print("task não encontrada para remoção segura: ", task)
+            return False
+        
     @staticmethod
     def build_record(tracked: TrackedItem):
         task = tracked.obj
@@ -290,14 +304,29 @@ class TasksMapClass:
             return list(cls.by_status.get(status, []))
 
 
+    # @classmethod
+    # def cancel_during_execution(cls,task: asyncio.Task):
+    #     """Cancela todas as tasks vivas de forma segura, aguardando sua finalização e limpando o mapa de vivas"""
+    #     tracked = cls.get_alive_tracked_from_task(task)
+    #     cls.remove_tracked_from_alive_map(tracked)
+    #     if not  task.done():
+    #         task.cancel()
+    #         # print("task cancelada: ", task)
+
     @staticmethod
     def _on_task_finish(task: asyncio.Task):
         try:
 
             tracked = TasksMapClass.get_alive_tracked_from_task(task)
             if not tracked:
-                warnings.warn("task que acabou de acabar não consta na lista das tasks vivas! task é: ",task)
-                return 
+                for tracked_already_finished in TasksMapClass.removed_while_running:
+                    if tracked_already_finished.obj is task:
+                        print("task encontrada na removed_while_running: ", task)
+                        tracked = tracked_already_finished
+                        return 
+                if not tracked:
+                    warnings.warn(f"task que acabou de acabar não consta na lista das tasks vivas! task é: {task}")
+                    return 
 
             record = TasksMapClass.build_record(tracked)
 

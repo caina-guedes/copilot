@@ -5,13 +5,34 @@ from collections import deque
 history_size = 10
 
 class SafePressedTracker:
+    active_instances = set()  # Para monitorar todas as instâncias ativas, se necessário
+    all_pressed = set()  # Set global para rastrear todas as teclas pressionadas em todas as instâncias
+    all_history = deque(maxlen=history_size)  # Histórico global para rastrear eventos recentes
+    
+    @classmethod
+    def get_global_pressed(cls):
+        """Retorna uma cópia do set global de teclas pressionadas."""
+        with threading.Lock():  # Lock global para acessar o set global
+            global_instance= SafePressedTracker()
+            for key in cls.all_pressed:
+                global_instance.add(key)
+            return global_instance
+        
     def __init__(self):
         self._lock = threading.Lock()
         self._pressed = set()
             # Guarda os últimos X eventos para análise de rastro (trace)
-        self._history = deque(maxlen=history_size)
+        self.__class__.active_instances.add(self)
 
-    
+    def __add__(self, other):
+        new = SafePressedTracker()
+        for key in self.get_all_pressed():
+            new.add(key)
+        for key in other.get_all_pressed():
+            new.add(key)
+        return new
+
+
     def _normalize(self, key_or_button):
         """
         Limpa a string internamente para garantir consistência.
@@ -28,8 +49,10 @@ class SafePressedTracker:
                 return False  # É um eco ou repetição automática do SO
             
             self._pressed.add(key)
-            self._history.append({"key": key, "action": "press", "time": time.time()})
+            self.__class__.all_history.append({"key": key, "action": "press", "time": time.time()})
+            self.__class__.all_pressed.add(key)  # Adiciona ao set global
             return True
+        return False  # Se por algum motivo não conseguiu adicionar (deve ser raro, só se tiver um erro de concorrência)
 
     
     def remove(self, key):
@@ -39,14 +62,16 @@ class SafePressedTracker:
                 return False  # Tentativa de soltar algo que já está solto
             
             self._pressed.remove(key)
-            self._history.append({"key": key, "action": "release", "time": time.time()})
+            # self.__class__.all_pressed.remove(key)  # Remove do set global
+            self.__class__.all_history.append({"key": key, "action": "release", "time": time.time()})
+            self.__class__.all_pressed.discard(key)  # Remove do set global
             return True
-
+        return False  # Se por algum motivo não conseguiu remover (deve ser raro, só se tiver um erro de concorrência)
     
     def is_pressed(self,key):
         key = self._normalize(key)
         with self._lock:
-            return key in self._pressed
+            return key in self.__class__.all_pressed  # Verifica no set global para refletir o estado real do sistema
     
     
     def is_modifier_active_or_recent(self, seconds=0.2):
@@ -54,15 +79,16 @@ class SafePressedTracker:
         Verifica se um modificador está pressionado AGORA 
         ou se foi solto nos últimos 'seconds' milissegundos.
         """
+        global_pressed = self.__class__.get_global_pressed()  # Pega o estado global atual
         with self._lock:
             # 1. Checagem imediata (está pressionado?)
             modifiers = {"ctrl", "alt", "shift", "super", "cmd", "win"}
-            if any(m in str(self._pressed).lower() for m in modifiers):
+            if any(m in str(global_pressed).lower() for m in modifiers):
                 return True
 
             # 2. Checagem histórica (foi solto recentemente?)
             agora = time.time()
-            for event in reversed(self._history):
+            for event in reversed(self.__class__.all_history):
                 # Se o evento é mais antigo que o limite, paramos de procurar
                 if agora - event["time"] > seconds:
                     break
@@ -79,9 +105,10 @@ class SafePressedTracker:
         clean_key = self._normalize(key)
         with self._lock:
             if clean_key in self._pressed:
-                self._pressed.remove(clean_key)
+                self._pressed.discard(clean_key)
+                self.__class__.all_pressed.discard(clean_key)  # Remove do set global
                 # Opcional: Adiciona ao histórico para o rastro forense
-                self._history.append({
+                self.__class__.all_history.append({
                     "key": clean_key, 
                     "action": "discard", 
                     "time": time.time()

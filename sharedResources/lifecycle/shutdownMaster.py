@@ -516,6 +516,27 @@ class LifecycleMaster:
         return MyLoop.submit(coro, *args, **kargs)
 
     @staticmethod
+    def cancel_waiting_the_end(task):
+        """cancela a tarefa e espera ela ser cancelada"""
+        task.cancel()
+
+        try:
+            MyLoop.gather(task, return_exceptions=True).result(timeout=10)
+        except Exception as e:
+            print("deu erro esperando a task ser cancelada e foi: ",e)
+            log_error_forensics_plus(e)
+    @classmethod
+    def cancel_tracked_task_(cls,task,wait_until_finish = True):
+        """Cancela uma tarefa rastreada de forma segura durante a execução normal do programa, recebe como parâmetro a propria tarefa!"""
+        # cls.tasksMap.remove_task_while_running(task)
+
+        # cls.call_soon(task.cancel)
+        task.cancel()
+        if wait_until_finish:
+            MyLoop.gather(task, return_exceptions=True)
+            cls.running_loop.get().run_until_complete(task)
+    
+    @staticmethod
     def gather(*coros, return_exceptions=False):
         """Garante thread-safe para asyncio.gather"""
 
