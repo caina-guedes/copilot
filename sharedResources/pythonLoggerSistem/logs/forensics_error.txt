@@ -1,296 +1,263 @@
-2026-04-01 13:50:22,652 [WARNING] [MainThread] error_tracker:229 - 
+2026-04-02 00:17:43,479 [WARNING] [stdout_thread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [InadequateMessage]
-📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py | Linha: 84
-💻 Código: `raise InadequateMessage(str(message) + " - key keyword not found this message", "kbPressOrRelease")`
-🕒 Horário: 2026-04-01 13:50:22.649775 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
- 💬 Mensagem: Mensagem inadequada (a - key keyword not found this message) para a função kbPressOrRelease
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-04-02 00:17:43.454994 | 🧵 Thread: stdout_thread  Task: ID: 2466412674608 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
-printar : True
+printar : False
 retornar : True
 
 Estado do ciclo de vida: INIT
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    message = 'a'
-    action = 'press'
-    controlsToIgnore = set()
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - <module>):
-    asyncio = <module 'asyncio' from 'C:\\Users\\cainã\\AppDat...\\pythoncore-3.14-64\\Lib\\asyncio\\__init__.py'>
-    json = <module 'json' from 'C:\\Users\\cainã\\AppData\\...hon\\pythoncore-3.14-64\\Lib\\json\\__init__.py'>
-    time = <module 'time' (built-in)>
-    pynput = <module 'pynput' from 'C:\\Users\\cainã\\AppData...\\Python314\\site-packages\\pynput\\__init__.py'>
-    Key = <enum 'Key'>
-    KeyboardController = <class 'pynput.keyboard._win32.Controller'>
-    Button = <enum 'Button'>
-    MouseController = <class 'pynput.mouse._win32.Controller'>
-    warnings = <module 'warnings' from 'C:\\Users\\cainã\\AppDa...l\\Python\\pythoncore-3.14-64\\Lib\\warnings.py'>
-    sys = <module 'sys' (built-in)>
-    Path = <class 'pathlib.Path'>
-    aprint = <function aprint at 0x000002076F10E2A0>
-    monitor_error = <function monitor_error at 0x000002076EBF3480>
-    log_error_forensics_plus = <function log_error_forensics_plus at 0x000002076EBF3690>
-    sys_monitor = <function sys_monitor at 0x000002076EBF3740>
-    LoggerManager = <class 'sharedResources.pythonLoggerSistem.logger.LoggerManager'>
-    keyboard = <pynput.keyboard._win32.Controller object at 0x000002076F0B9550>
-    mouse = <pynput.mouse._win32.Controller object at 0x000002076F0B96A0>
-    InadequateMessage = <class '__main__.InadequateMessage'>
-    mouseExecCommand = <function mouseExecCommand at 0x000002076F10E560>
-    kbPressOrRelease = <function kbPressOrRelease at 0x000002076F10E6C0>
-    InternalResponse = <class '__main__.InternalResponse'>
-    exec_mouse_or_kb = <function exec_mouse_or_kb at 0x000002076F10E8D0>
-    default_receiving_function = <function default_receiving_function at 0x000002076F10EA30>
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "<string>", line 1, in <module>
-    __import__('idlelib.run').run.main(True)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
-    ret = method(*args, **kwargs)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
-    exec(code, self.locals)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 246, in <module>
-    kbPressOrRelease("a","press",set())
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 84, in kbPressOrRelease
-    raise InadequateMessage(str(message) + " - key keyword not found this message", "kbPressOrRelease")
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
-    return func(*args, **kwargs)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 84, in kbPressOrRelease
-    raise InadequateMessage(str(message) + " - key keyword not found this message", "kbPressOrRelease")
-InadequateMessage: Mensagem inadequada (a - key keyword not found this message) para a função kbPressOrRelease
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-01 13:59:46,651 [WARNING] [MainThread] error_tracker:229 - 
+2026-04-02 00:21:13,098 [WARNING] [stdout_thread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
-📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py | Linha: 86
-💻 Código: `key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']`
-🕒 Horário: 2026-04-01 13:59:46.648581 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
- 💬 Mensagem: 'int' object has no attribute 'lower'
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-04-02 00:21:13.093989 | 🧵 Thread: stdout_thread  Task: ID: 2469535792208 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
-printar : True
+printar : False
 retornar : True
 
 Estado do ciclo de vida: INIT
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 1}
-    action = 'release'
-    controlsToIgnore = set()
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - exec_mouse_or_kb):
-    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 1}
-    macroExecutor = <class '__main__.MockMacroExecutor'>
-    frozen_controls_to_ignore = set()
-    controlsToIgnore = set()
-    action = 'release'
-    ExecutingMacro = {'value': False}
-    equipment = 'keyboard'
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "<string>", line 1, in <module>
-    __import__('idlelib.run').run.main(True)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
-    ret = method(*args, **kwargs)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
-    exec(code, self.locals)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 268, in <module>
-    exec_mouse_or_kb(command,MockMacroExecutor,frozen_controls_to_ignore)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 180, in exec_mouse_or_kb
-    before,after = kbPressOrRelease(message, action, controlsToIgnore)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 86, in kbPressOrRelease
-    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
-                                               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
-    return func(*args, **kwargs)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 86, in kbPressOrRelease
-    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
-                                               ^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'int' object has no attribute 'lower'
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-01 14:00:12,518 [WARNING] [MainThread] error_tracker:229 - 
+2026-04-02 00:22:57,610 [WARNING] [stdout_thread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
-📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py | Linha: 86
-💻 Código: `key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']`
-🕒 Horário: 2026-04-01 14:00:12.515986 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
- 💬 Mensagem: 'int' object has no attribute 'lower'
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-04-02 00:22:57.606308 | 🧵 Thread: stdout_thread  Task: ID: 1562999045200 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
-printar : True
+printar : False
 retornar : True
 
 Estado do ciclo de vida: INIT
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 1}
-    action = 'release'
-    controlsToIgnore = set()
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - exec_mouse_or_kb):
-    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 1}
-    macroExecutor = <class '__main__.MockMacroExecutor'>
-    frozen_controls_to_ignore = set()
-    controlsToIgnore = set()
-    action = 'release'
-    ExecutingMacro = {'value': False}
-    equipment = 'keyboard'
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "<string>", line 1, in <module>
-    __import__('idlelib.run').run.main(True)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
-    ret = method(*args, **kwargs)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
-    exec(code, self.locals)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 268, in <module>
-    exec_mouse_or_kb(command,MockMacroExecutor,frozen_controls_to_ignore)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 180, in exec_mouse_or_kb
-    before,after = kbPressOrRelease(message, action, controlsToIgnore)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 86, in kbPressOrRelease
-    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
-                                               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
-    return func(*args, **kwargs)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 86, in kbPressOrRelease
-    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
-                                               ^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'int' object has no attribute 'lower'
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-01 14:05:24,036 [WARNING] [MainThread] error_tracker:229 - 
+2026-04-02 00:25:31,953 [WARNING] [stdout_thread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
-📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py | Linha: 86
-💻 Código: `key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']`
-🕒 Horário: 2026-04-01 14:05:24.033050 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
- 💬 Mensagem: 'int' object has no attribute 'lower'
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-04-02 00:25:31.949237 | 🧵 Thread: stdout_thread  Task: ID: 1608307686960 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
-printar : True
+printar : False
 retornar : True
 
 Estado do ciclo de vida: INIT
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 1}
-    action = 'release'
-    controlsToIgnore = {('keyboard', 'left', 'release'), ('keyboard', 'v', 'release')}
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - exec_mouse_or_kb):
-    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 1}
-    macroExecutor = <class '__main__.MockMacroExecutor'>
-    frozen_controls_to_ignore = set()
-    controlsToIgnore = {('keyboard', 'left', 'release'), ('keyboard', 'v', 'release')}
-    action = 'release'
-    ExecutingMacro = {'value': False}
-    equipment = 'keyboard'
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "<string>", line 1, in <module>
-    __import__('idlelib.run').run.main(True)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
-    ret = method(*args, **kwargs)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
-    exec(code, self.locals)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 268, in <module>
-    exec_mouse_or_kb(command,MockMacroExecutor,frozen_controls_to_ignore)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 180, in exec_mouse_or_kb
-    before,after = kbPressOrRelease(message, action, controlsToIgnore)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 86, in kbPressOrRelease
-    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
-                                               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
-    return func(*args, **kwargs)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 86, in kbPressOrRelease
-    key_name = message['key'][4:] if 'key.' in message['key'].lower() else message['key']
-                                               ^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'int' object has no attribute 'lower'
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-01 14:07:32,030 [WARNING] [MainThread] error_tracker:229 - 
+2026-04-02 00:28:54,306 [WARNING] [stdout_thread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [InadequateMessage]
-📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py | Linha: 125
-💻 Código: `raise InadequateMessage(str(message) + str(e),"kbPressOrRelease")`
-🕒 Horário: 2026-04-01 14:07:32.027536 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
- 💬 Mensagem: Mensagem inadequada ({'key': 'cain', 'action': 'release', 'equipment': 'keyboard', 'deltaTime': 0}cain) para a função kbPressOrRelease
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: C:\Python314\Lib\asyncio\tasks.py | Linha: 488
+💻 Código: `return await fut`
+🕒 Horário: 2026-04-02 00:28:54.302145 | 🧵 Thread: stdout_thread  Task: ID: 1446289653296 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: 'str' object can't be awaited
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
-printar : True
+printar : False
 retornar : True
 
 Estado do ciclo de vida: INIT
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 'cain'}
-    action = 'release'
-    controlsToIgnore = {('keyboard', '1', 'release'), ('keyboard', 'cain', 'release'), ('keyboard', 'ctrl', 'release'), ('keyboard', 'v', 'release')}
-    key_name = 'cain'
-    key = 'cain'
-    before = 87254.8732071
+    fut = 'Waiting for shutdown to begin...'
+    timeout = 1.0
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - exec_mouse_or_kb):
-    message = {'action': 'release', 'deltaTime': 0, 'equipment': 'keyboard', 'key': 'cain'}
-    macroExecutor = <class '__main__.MockMacroExecutor'>
-    frozen_controls_to_ignore = set()
-    controlsToIgnore = {('keyboard', '1', 'release'), ('keyboard', 'cain', 'release'), ('keyboard', 'ctrl', 'release'), ('keyboard', 'v', 'release')}
-    action = 'release'
-    ExecutingMacro = {'value': False}
-    equipment = 'keyboard'
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "<string>", line 1, in <module>
-    __import__('idlelib.run').run.main(True)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
-    ret = method(*args, **kwargs)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
-    exec(code, self.locals)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 268, in <module>
-    exec_mouse_or_kb(command,MockMacroExecutor,frozen_controls_to_ignore)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 180, in exec_mouse_or_kb
-    before,after = kbPressOrRelease(message, action, controlsToIgnore)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 125, in kbPressOrRelease
-    raise InadequateMessage(str(message) + str(e),"kbPressOrRelease")
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 122, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 114, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 305, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 114, in kbPressOrRelease
-    keyboard.release(key)
-    ~~~~~~~~~~~~~~~~^^^^^
-  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\pynput\keyboard\_base.py", line 418, in release
-    resolved = self._resolve(key)
-  File "C:\Users\cainã\AppData\Roaming\Python\Python314\site-packages\pynput\keyboard\_base.py", line 583, in _resolve
-    raise ValueError(key)
-ValueError: cain
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
-    return func(*args, **kwargs)
-  File "D:\copilot\PythonSistemAutomation\watcher_utils\default_receiving_function.py", line 125, in kbPressOrRelease
-    raise InadequateMessage(str(message) + str(e),"kbPressOrRelease")
-InadequateMessage: Mensagem inadequada ({'key': 'cain', 'action': 'release', 'equipment': 'keyboard', 'deltaTime': 0}cain) para a função kbPressOrRelease
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 108, in worker
+    dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\asyncio\tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+TypeError: 'str' object can't be awaited
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-01 16:07:15,822 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+2026-04-02 00:42:45,678 [WARNING] [stdout_thread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
-📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher.py | Linha: 170
-💻 Código: `currentWindow, changed , os_call= window.get_active_window(event,self._pressed)`
-🕒 Horário: 2026-04-01 16:07:15.808578 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2493509377712 | Nome: on_event_consumer - primeiro loop | Coro: _event_consumer | Protected: False | Total Tasks Vivas: 9
- 💬 Mensagem: 'EventObserver' object has no attribute '_pressed'
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: D:\copilot\sharedResources\generalUtils\wait_for_data.py | Linha: 55
+💻 Código: `raise TypeError(f"Tipo não suportado: {type(source)}")`
+🕒 Horário: 2026-04-02 00:42:45.666873 | 🧵 Thread: stdout_thread  Task: ID: 3085665351824 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: Tipo não suportado: <class 'str'>
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    source = 'Waiting for shutdown to begin...'
+    timeout = 1.0
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - N/A):
+    Nenhum frame disponível
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 125, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 117, in worker
+    cls.log_error(e,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 308, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 110, in worker
+    dados_bytes = await wait_for_data(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\generalUtils\wait_for_data.py", line 55, in wait_for_data
+    raise TypeError(f"Tipo não suportado: {type(source)}")
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 110, in worker
+    dados_bytes = await wait_for_data(right_queue.get(), timeout=1.0)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\generalUtils\wait_for_data.py", line 55, in wait_for_data
+    raise TypeError(f"Tipo não suportado: {type(source)}")
+TypeError: Tipo não suportado: <class 'str'>
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-04-02 00:46:43,885 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
+📍 No arquivo: D:\copilot\PythonServer\core\handlers\os_watcher_handler.py | Linha: 92
+💻 Código: `print(f"📩 {get_current_time()} Do SOWatcher: {msg}")`
+🕒 Horário: 2026-04-02 00:46:43.882329 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2008088182864 | Nome: loop do receiver do watcher | Coro: receiver_loop | Protected: False | Total Tasks Vivas: 9
+ 💬 Mensagem: [Errno 22] Invalid argument
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
@@ -300,11 +267,12 @@ retornar : False
 Estado do ciclo de vida: RUNNING
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <PythonSistemAutomation.watcher.EventObserver object at 0x0000024491008980>
-    event = {'action': 'press', 'key': 's', 'timestamp': 94438.6519143, 'type': 'keyboard', ...}
-    chegou_da_queue = 94438.6531564
-    logo_antes_de_verificar_janela = 94438.6532058
-    e = AttributeError("'EventObserver' object has no attribute '_pressed'")
+    cls = <class 'PythonServer.core.handlers.os_watcher_handler.OSProcessorClass'>
+    websocket_or_queue = <Queue at 0x1d38a5c7890 maxsize=0 tasks=3>
+    message = [{'action': 'press', 'key': '\x03', 'timestamp': 3845.5072122, 'type': 'keyboard', ...}, {'action': 'release', 'key': '\x03', 'timestamp': 3845.592031, 'type': 'keyboard', ...}]
+    message_data = [{'action': 'press', 'key': '\x03', 'timestamp': 3845.5072122, 'type': 'keyboard', ...}, {'action': 'release', 'key': '\x03', 'timestamp': 3845.592031, 'type': 'keyboard', ...}]
+    msg = {'action': 'press', 'key': '\x03', 'timestamp': 3845.5072122, 'type': 'keyboard', ...}
+    e = OSError(22, 'Invalid argument')
 ------------------------------
 🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _run):
     self = <Handle Task.task_wakeup()>
@@ -312,147 +280,280 @@ Estado do ciclo de vida: RUNNING
 📜 RASTRO COMPLETO (Call Stack + Error):
   File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
     cls._current.run_forever()
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 180, in _event_consumer
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 121, in receiver_loop
     log_error_forensics_plus(e)
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 170, in _event_consumer
-    currentWindow, changed , os_call= window.get_active_window(event,self._pressed)
-                                                                     ^^^^^^^^^^^^^
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 92, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 170, in _event_consumer
-    currentWindow, changed , os_call= window.get_active_window(event,self._pressed)
-                                                                     ^^^^^^^^^^^^^
-AttributeError: 'EventObserver' object has no attribute '_pressed'
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 92, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-01 16:10:09,828 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+2026-04-02 00:56:13,852 [WARNING] [stdout_thread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
-📍 No arquivo: D:\copilot\PythonSistemAutomation\watcher.py | Linha: 170
-💻 Código: `currentWindow, changed , os_call= window.get_active_window(event,self._pressed_keys + self._pressed_buttons)`
-🕒 Horário: 2026-04-01 16:10:09.814960 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2227726295568 | Nome: on_event_consumer - primeiro loop | Coro: _event_consumer | Protected: False | Total Tasks Vivas: 9
- 💬 Mensagem: unsupported operand type(s) for +: 'SafePressedTracker' and 'SafePressedTracker'
+🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
+📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
+💻 Código: `cls.original_stdout.buffer.write(header + text)`
+🕒 Horário: 2026-04-02 00:56:13.846937 | 🧵 Thread: stdout_thread  Task: ID: 1695374114896 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: [Errno 22] Invalid argument
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
-printar : True
-retornar : False
+printar : False
+retornar : True
 
 Estado do ciclo de vida: RUNNING
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <PythonSistemAutomation.watcher.EventObserver object at 0x00000206AF1A4C20>
-    event = {'action': 'press', 'key': 's', 'timestamp': 94612.658112, 'type': 'keyboard', ...}
-    chegou_da_queue = 94612.6595489
-    logo_antes_de_verificar_janela = 94612.6596016
-    e = TypeError("unsupported operand type(s) for +: 'SafePressedTracker' and 'SafePressedTracker'")
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = b' '
+    is_error = False
+    header = b'\xaaU\x01\x00\x00\x00'
+    e = OSError(22, 'Invalid argument')
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _run):
-    self = <Handle Task.task_wakeup()>
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = ' '
+    is_error = False
+    lock_certo = <locked _thread.lock object at 0x0000018ABB3D8F90>
+    right_new_line = False
+    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+    quebra_de_linha = '\r\n'
+    prefix = ''
+    resposta = ' '
+    dados_bytes = b' '
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
-    cls._current.run_forever()
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 180, in _event_consumer
-    log_error_forensics_plus(e)
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 170, in _event_consumer
-    currentWindow, changed , os_call= window.get_active_window(event,self._pressed_keys + self._pressed_buttons)
-                                                                     ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
+    cls.realWriter(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
+    cls.sendAndHandshake(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
+    cls.log_error(e)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 170, in _event_consumer
-    currentWindow, changed , os_call= window.get_active_window(event,self._pressed_keys + self._pressed_buttons)
-                                                                     ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
-TypeError: unsupported operand type(s) for +: 'SafePressedTracker' and 'SafePressedTracker'
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-01 16:47:25,408 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+2026-04-02 00:57:47,384 [WARNING] [stdout_thread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
-📍 No arquivo: D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py | Linha: 308
-💻 Código: `warnings.warn("task que acabou de acabar não consta na lista das tasks vivas! task é: ",task)`
-🕒 Horário: 2026-04-01 16:47:25.387980 | 🧵 Thread: AsyncioLoopThread  Task: Nenhuma Task (Código Síncrono/Thread Pura)
- 💬 Mensagem: category must be a Warning subclass, not '_asyncio.Task'
+🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
+📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
+💻 Código: `cls.original_stdout.buffer.write(header + text)`
+🕒 Horário: 2026-04-02 00:57:47.378432 | 🧵 Thread: stdout_thread  Task: ID: 2915902340656 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: [Errno 22] Invalid argument
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
-printar : True
-retornar : False
+printar : False
+retornar : True
 
-Estado do ciclo de vida: SHUTTING_DOWN
+Estado do ciclo de vida: RUNNING
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    task = <Task finished name='on_event_consumer - primeir...gingResources\unified_monitor.py:69> result=None>
-    tracked = None
-    e = TypeError("category must be a Warning subclass, not '_asyncio.Task'")
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = b' '
+    is_error = False
+    header = b'\xaaU\x01\x00\x00\x00'
+    e = OSError(22, 'Invalid argument')
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _run):
-    self = <Handle TasksMapClass._on_task_finish() at D:\co...rces\lifecycle\trackedUtils\tasksMapClass.py:302>
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = ' '
+    is_error = False
+    lock_certo = <locked _thread.lock object at 0x000002A6E89C8F90>
+    right_new_line = False
+    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+    quebra_de_linha = '\r\n'
+    prefix = ''
+    resposta = ' '
+    dados_bytes = b' '
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
-    cls._current.run_forever()
-  File "D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py", line 326, in _on_task_finish
-    log_error_forensics_plus(e)
-  File "D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py", line 308, in _on_task_finish
-    warnings.warn("task que acabou de acabar não consta na lista das tasks vivas! task é: ",task)
-    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
+    cls.realWriter(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
+    cls.sendAndHandshake(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
+    cls.log_error(e)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\sharedResources\lifecycle\trackedUtils\tasksMapClass.py", line 308, in _on_task_finish
-    warnings.warn("task que acabou de acabar não consta na lista das tasks vivas! task é: ",task)
-    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: category must be a Warning subclass, not '_asyncio.Task'
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-01 17:16:45,760 [WARNING] [Thread-2 (waitMyShutdown)] error_tracker:229 - 
+2026-04-02 01:09:38,259 [WARNING] [stdout_thread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [RuntimeError]
-📍 No arquivo: C:\Python314\Lib\asyncio\base_events.py | Linha: 631
-💻 Código: `raise RuntimeError('This event loop is already running')`
-🕒 Horário: 2026-04-01 17:16:45.741833 | 🧵 Thread: Thread-2 (waitMyShutdown)  Task: Fora de um Event Loop
- 💬 Mensagem: This event loop is already running
+🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
+📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
+💻 Código: `cls.original_stdout.buffer.write(header + text)`
+🕒 Horário: 2026-04-02 01:09:38.252339 | 🧵 Thread: stdout_thread  Task: ID: 2175939820144 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: [Errno 22] Invalid argument
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = b' '
+    is_error = False
+    header = b'\xaaU\x01\x00\x00\x00'
+    e = OSError(22, 'Invalid argument')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = ' '
+    is_error = False
+    lock_certo = <locked _thread.lock object at 0x000001FA9F6C8F90>
+    right_new_line = False
+    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+    quebra_de_linha = '\r\n'
+    prefix = ''
+    resposta = ' '
+    dados_bytes = b' '
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
+    cls.realWriter(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
+    cls.sendAndHandshake(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
+    cls.log_error(e)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-04-02 01:10:32,930 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [TypeError]
+📍 No arquivo: D:\copilot\sharedResources\debuggingResources\unified_monitor.py | Linha: 80
+💻 Código: `return await func(*args, **kwargs)`
+🕒 Horário: 2026-04-02 01:10:32.917205 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2465582464400 | Nome: watcher_receivingQueue_worker | Coro: receivingQueue_worker | Protected: False | Total Tasks Vivas: 12
+ 💬 Mensagem: GlobalExecutor.enqueue() takes 4 positional arguments but 5 were given
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
 printar : True
 retornar : True
 
-Estado do ciclo de vida: SHUTTING_DOWN
+Estado do ciclo de vida: RUNNING
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <ProactorEventLoop running=True closed=False debug=False>
+    args = (<class 'PythonSistemAutomation.watcher_utils.GlobalMacroExecutor.GlobalExecutor'>, {'action': 'startMacro'}, set(), <PythonSistemAutomation.main.AutomationSystem object at 0x0000023E113D0980>, {'value': False})
+    kwargs = {}
+    token = <object object at 0x0000023E0CCD0D10>
+    start_time = 5274.7477062
+    elapsed = 1.1799999811046291e-05
+    e = TypeError('GlobalExecutor.enqueue() takes 4 positional arguments but 5 were given')
+    errors = True
+    func = <function GlobalExecutor.enqueue at 0x0000023E10338300>
+    func_name = 'enqueue'
+    real_group = 'GlobalExecutor'
+    real_scope = 'method'
+    stats = True
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - run_until_complete):
-    self = <ProactorEventLoop running=True closed=False debug=False>
-    future = <Task finished name='on_event_consumer - primeir...gingResources\unified_monitor.py:69> result=None>
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - receivingQueue_worker):
+    msg = {'action': 'startMacro'}
+    self = <PythonSistemAutomation.main.AutomationSystem object at 0x0000023E113D0980>
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 440, in waitMyShutdown
-    cls.autoShutdown()
-  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 351, in autoShutdown
-    cls.cleanup_manager.execute_hooks()
-  File "D:\copilot\sharedResources\lifecycle\gracious_cleanup_manager.py", line 163, in execute_hooks
-    func(*args, **kwargs)
-  File "D:\copilot\PythonSistemAutomation\main.py", line 246, in stop_observer
-    self.observer.stop()
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 470, in stop
-    LifecycleMaster.cancel_tracked_task_(self.on_event_consumer_task)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 536, in cancel_tracked_task_
-    cls.running_loop.get().run_until_complete(task)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonSistemAutomation\main.py", line 162, in receivingQueue_worker
+    await GlobalExecutor.enqueue(msg,self.controlsToIgnore,self,self.ExecutingMacro)
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
-    return func(*args, **kwargs)
-  File "D:\copilot\PythonSistemAutomation\watcher.py", line 470, in stop
-    LifecycleMaster.cancel_tracked_task_(self.on_event_consumer_task)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\copilot\sharedResources\lifecycle\shutdownMaster.py", line 536, in cancel_tracked_task_
-    cls.running_loop.get().run_until_complete(task)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "C:\Python314\Lib\asyncio\base_events.py", line 695, in run_until_complete
-    self._check_running()
-    ~~~~~~~~~~~~~~~~~~~^^
-  File "C:\Python314\Lib\asyncio\base_events.py", line 631, in _check_running
-    raise RuntimeError('This event loop is already running')
-RuntimeError: This event loop is already running
+  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 80, in unified_async_wrapper
+    return await func(*args, **kwargs)
+                 ~~~~^^^^^^^^^^^^^^^^^
+TypeError: GlobalExecutor.enqueue() takes 4 positional arguments but 5 were given
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-04-02 01:12:02,857 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
+📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
+💻 Código: `cls.original_stdout.buffer.write(header + text)`
+🕒 Horário: 2026-04-02 01:12:02.846108 | 🧵 Thread: stdout_thread  Task: ID: 1591579885104 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: [Errno 22] Invalid argument
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = b' '
+    is_error = False
+    header = b'\xaaU\x01\x00\x00\x00'
+    e = OSError(22, 'Invalid argument')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = ' '
+    is_error = False
+    lock_certo = <locked _thread.lock object at 0x0000017290D98F90>
+    right_new_line = False
+    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+    quebra_de_linha = '\r\n'
+    prefix = ''
+    resposta = ' '
+    dados_bytes = b' '
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
+    cls.realWriter(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
+    cls.sendAndHandshake(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
+    cls.log_error(e)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

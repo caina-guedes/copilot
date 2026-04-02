@@ -11,6 +11,8 @@ import os
 
 import sys
 from pathlib import Path
+
+from sharedResources.generalUtils.wait_for_data import wait_for_data, WaitTimeoutError
 caminho = Path(__file__).resolve().parent.parent.parent
 print("the path is:",caminho)
 sys.path.append(caminho)
@@ -103,18 +105,23 @@ class PrintInterceptor:
                 try:
                     while not cls.close_event.is_set():
                         # Pega o texto da fila (bloqueia aqui se estiver vazia)
+                        set_task_done = False
                         try:
                             # dados_bytes = right_queue.get()
-                            dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
+                            dados_bytes = await wait_for_data(right_queue, timeout=1.0)
+                            set_task_done = True
+                            # dados_bytes = await asyncio.wait_for(right_queue.get(), timeout=1.0)
                             if dados_bytes is None: break # Sinal de parada
                             cls.realWriter(dados_bytes,is_error)
-                        except asyncio.TimeoutError:
-                            pass
+                        except WaitTimeoutError:
+                            
+                            continue
                         except Exception as e:
                             cls.log_error(e,is_error)
                             cls.close()
                         finally:
-                            right_queue.task_done()  
+                            if set_task_done:
+                                right_queue.task_done()  
                 finally:
                     cls.close()
             
@@ -312,8 +319,9 @@ class PrintInterceptor:
                     else:
                         cls._is_new_line     = True
             cls.set_active_flag(True)
-        except:
-            pass
+        except Exception as e:
+            raise
+            # pass
             
         
     def flush(self):

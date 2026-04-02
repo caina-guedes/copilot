@@ -159,7 +159,7 @@ class AutomationSystem:
                         except asyncio.CancelledError:
                             print("receivingQueue_worker was cancelled.")
                             break
-                        GlobalExecutor.enqueue(msg,self.controlsToIgnore,self,self.ExecutingMacro)
+                        await GlobalExecutor.enqueue(msg,self.controlsToIgnore,self.ExecutingMacro)
                     except Exception as e:
                         log_error_forensics_plus(e, extra_message=f"Error in receivingQueue_worker")
             finally:
@@ -257,7 +257,7 @@ class AutomationSystem:
         self.observer.stop()
 
 
-async def main(sendinQueue = None,receivingQueue = None):
+async def main(senderQueue = None,receiverQueue = None):
     # loop = asyncio.get_running_loop()
     # LifecycleMaster.set_loop(loop)
     
@@ -265,12 +265,12 @@ async def main(sendinQueue = None,receivingQueue = None):
     try:
         not_sent_db = await WatcherNotsentEventsDatabase.create()  # Initialize the not sent events database
         print("inicializei o not_sent_db")
-        autoSystem = AutomationSystem(not_sent_db, sendinQueue, receivingQueue)
+        autoSystem = AutomationSystem(not_sent_db, senderQueue, receiverQueue)
         print("inicializei o automationSystem")
         logger.info("Starting event observer...")
         autoSystem.start_observer()
         print("comecei o start_observer")
-        if not sendinQueue or not receivingQueue:
+        if not senderQueue or not receiverQueue:
             await autoSystem.initializeWebsocket()
             print("comecei o websocket")
         else:

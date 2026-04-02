@@ -210,6 +210,7 @@ class MainDatabase:
             if params and i < len(params):
                 result += escape(params[i])
         return result
+    
     def _integrity_scanner(self, query, args, many):
         print("\n🔍 --- INICIANDO SCANNER DE INTEGRIDADE ---")
         # Se for many, pegamos o primeiro registro (já que o erro foi no lote)

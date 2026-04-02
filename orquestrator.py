@@ -46,7 +46,7 @@ whatToShow = {
 
     "frontEnd": False and (not onlyErrors),
     "frontEndError" : True,
-    "server"   : False and (not onlyErrors),
+    "server"   : True and (not onlyErrors),
     "serverError"  : True,
     "watcher"  : True and (not onlyErrors),
     "watcherError" : True
@@ -444,15 +444,15 @@ async def main():
 
         if not wait_for_port(8765):
             print("[orchestrator] Server não iniciou a tempo")
-            return
+            # return
 
-        watcher = start_watcher()
-        processes.append(watcher)
+        # watcher = start_watcher()
+        # processes.append(watcher)
 
         frontend = start_frontend()
         processes.append(frontend)
 
-        print("[orchestrator] Sistema em execução")
+        print("[orchestrator] frontend em execução")
         while server.poll() is None:
             time.sleep(0.5) 
         print("frontend se foi ")

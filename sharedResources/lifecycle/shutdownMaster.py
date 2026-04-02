@@ -593,8 +593,8 @@ threading.Thread(target=LifecycleMaster.waitMyShutdown).start()
 
 LifecycleMaster.register_cleanup_function(
     PrintInterceptor.close,
-    priority= 50,
-    name = "PrintInterceptor.close",
+    priority = 45,
+    name     = "PrintInterceptor.close",
     register_in_atexit = False
     )
 # atexit_manager.shutdown_function = LifecycleMaster.autoShutdown

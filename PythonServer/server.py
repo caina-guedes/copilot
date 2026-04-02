@@ -172,6 +172,7 @@ class WebSocketServerManager:
                     self.os_internal_communication_task = LifecycleMaster.run_async(
                         os_watcher_handler.OSProcessorClass.handle_internal_os_connection(self.receiverQueue, "receiver"),
                         name = "OSWatcherInternalQueueListener")
+                    await os_watcher_handler.OSProcessorClass.handle_internal_os_connection(self.senderQueue, "sender")
                 # Loop de espera do Shutdown
                 LifecycleMaster.shutdown_event.clear()
                 while not LifecycleMaster.shutdown_event.is_set():

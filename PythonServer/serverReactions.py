@@ -12,6 +12,7 @@ class answerMapping():
     main_instance= None
     serverConfig = None
     connections  = None
+    sender_queue = None
     def __init__(self, answer = None, serverConfig = None, connections = None, *args,**kargs):
         self.answer = answer
         self.serverConfig = serverConfig
@@ -19,6 +20,10 @@ class answerMapping():
         self.currentMacro = None
         self.__class__.main_instance = self
     
+    @classmethod
+    def set_sender_queue(cls,queue):
+        if cls.sender_queue is None:
+            cls.sender_queue = queue
     @classmethod
     def set_serverConfig(cls,serverConfig):
         # print(" a variável que veio como serverConfig é: ",serverConfig)
@@ -64,10 +69,13 @@ class answerMapping():
         # cls.create_active = True
 
     @classmethod
-    async def sendCommand(cls, command, connection):
+    async def sendCommand(cls, command, connection = None):
         print("the command to be sent is : ", command)
         try:
-            await connection.send(json.dumps(command))
+            if connection is None:
+                await cls.sender_queue.put(command)
+            else:
+                await connection.send(json.dumps(command))
         except Exception as e:
             log_error_forensics_plus(e)
             print("deu erro enviando o comando la no server reactions e é: ",e)
@@ -146,14 +154,16 @@ class answerMapping():
     @classmethod
     async def sendMacroToExecuteInWatcher(cls):
         try:
-            if cls.create_active:
+            if cls.create_active: # control flag to prevent multiple simultaneous macro executions
                 cls.create_active = False
             else:
                 return
             cls.currentMacro = cls.serverConfig.MacroConfig.currentMacro
             if not cls.currentMacro:
                 raise RuntimeError(f"tentando enviar ao watcher macro vazia ({cls.currentMacro})")
-            await cls.sendCommand({"action":"startMacro"}, getattr(cls.connections, "OS").receiver)
+            target_connection = getattr(cls.connections, "OS").receiver
+            
+            await cls.sendCommand({"action":"startMacro"}, target_connection)
             ### need to send this command above to all connections that will execute the macro
             if cls.serverConfig.MacroConfig.currentPendingCommands["current"] is None and cls.currentMacro is not None:
                 cls.serverConfig.MacroConfig.currentPendingCommands["current"] = {}
@@ -191,7 +201,7 @@ class answerMapping():
                         # print(f"added {filteredCommand} into currentPendingCommands")
                     
                     if not cls.serverConfig.MacroConfig.get_flag("stopRunningMacroFlag"):
-                        await cls.sendCommand(filteredCommand, getattr(cls.connections, destiny).receiver)
+                        await cls.sendCommand(filteredCommand, target_connection)
                     else:
                         print("killed macro during the sending process!")
                         break
@@ -200,7 +210,7 @@ class answerMapping():
                     print("não consegui identificar a origem/destino do comando: ", command)
 
             # reset states after macro execution
-            await cls.sendCommand({"action":"endMacro"}, getattr(cls.connections, destiny).receiver)
+            await cls.sendCommand({"action":"endMacro"}, target_connection)
             # just to see the entirer list of pending commands
             # for PendingCommand in cls.serverConfig.MacroConfig.currentPendingCommands["current"]:
                 # print(PendingCommand,"  " , cls.serverConfig.MacroConfig.currentPendingCommands["current"][PendingCommand])           

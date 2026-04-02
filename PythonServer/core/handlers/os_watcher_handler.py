@@ -137,6 +137,7 @@ class OSProcessorClass():
         else:
             if cls.sender_conn_or_queue is None:
                 cls.sender_conn_or_queue = queue
+                answerMapping.set_sender_queue(queue)
             else:
                 print("tentaram colocar uma queue como o sender_conn_or_queue dessa classe mas ja existe um aqui !!")
                 try:
