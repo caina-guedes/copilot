@@ -1,4 +1,3 @@
-import atexit
 import re
 import sqlite3
 
@@ -27,7 +26,8 @@ from sharedResources.DataBases.mainDatabase.event_logger import log_background_e
 from sharedResources.DataBases.mainDatabase.flush_worker import _flush_external, _flush_worker_external
 from sharedResources.DataBases.mainDatabase.querrys import querrys
 
-print("logo antes de definir a MainDatabase class ")
+# print("logo antes de definir a MainDatabase class ")
+
 @monitor_class
 class MainDatabase:
         # from cache_manager
@@ -301,11 +301,7 @@ class MainDatabase:
                 self.stopMacro()
             self.recordingMacroId = None
 
-        # if self.serverConfig.MacroConfig.requestToExecuteMacro:
-        #     self.serverConfig.MacroConfig.currentMacro = self.GetCurrentMacroFunction()
-            
-        #     if self.serverConfig.MacroConfig.currentMacro is not None:
-        #         self.answer = {"MacroreadyToUse": True}
+        
         ### tenho que adicionar uma flag pra saber que a macro ja terminou de ser executada pra fazer as devidas mudanças
         timeToFlush = False
         
@@ -357,6 +353,15 @@ LifecycleMaster.register_cleanup_function(MainDatabase.close,
                                         #   args=(MainDatabase.main_instance)
                                           ) 
 
+
+def limpaMacros(todas = False):
+    a= db.exec("select * from macros")
+    if todas:
+        db.exec(f"delete from macros")
+    else:
+        db.exec(f"delete from macros where id != {a[-1][0]}", commit = True)
+
+
 # prioridade 10 para garantir que seja chamado depois de outras funções de limpeza 
 # que possam depender do main database ainda estar aberto
 # print("logo antes do if ")
@@ -364,13 +369,7 @@ if __name__ == "__main__":
     print("entrei no if __name__ == '__main__'")
     db = MainDatabase(batch_size=10, flush_interval=3)
 
-    def limpaMacros(todas = False):
-        a= db.exec("select * from macros")
-        if todas:
-            db.exec(f"delete from macros")
-        else:
-            db.exec(f"delete from macros where id != {a[-1][0]}")
-
+    
     def winChange():
         return db.exec(f"""select * from window_events""")
     

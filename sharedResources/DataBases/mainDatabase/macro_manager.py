@@ -70,11 +70,13 @@ def GetCurrentMacroOnDb_external(self , *args,**kargs):
             # print('o numero de comandos é: ',len(currentMacro))
             # for comando in currentMacro:
             #     print(comando)
-            self.serverConfig.MacroConfig.currentMacro = currentMacro
+            self.serverConfig.MacroConfig.currentMacro = currentMacro 
+            # aqui ele seta a macro atual na configuração do servidor, 
+            # para que outras partes do código possam acessar sem precisar ir no DB toda hora.   
             if currentMacro is  not None:
                 self.answer = {"MacroreadyToUse": True}
                 print("macro ready to use!")
-                print('and it is: ',currentMacro)
+                # print('and it is: ',currentMacro)
 
             return currentMacro
         else:

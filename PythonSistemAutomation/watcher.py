@@ -236,7 +236,7 @@ class EventObserver:
                 GlobalExecutor.increase_executed_macro_commands()
         
         from PythonSistemAutomation.main import AutomationSystem
-        now = time.perf_counter()
+        now = time.time()
         if (now - self.last_movement ) < serverConfig.mouseMovementMinimumDelay or not AutomationSystem.config.send_position:
             return
         self.last_movement = now
@@ -267,7 +267,7 @@ class EventObserver:
             self._pressed_buttons.remove(str(button))
             event_type = 'release'
         event = {
-            'timestamp' : time.perf_counter(),
+            'timestamp' : time.time(),
             'type'  : "mouse",
             'action': event_type,   
              'x'    : x, 
@@ -289,7 +289,7 @@ class EventObserver:
                 GlobalExecutor.increase_executed_macro_commands()
         event = {
             # 'timestamp':datetime.now(timezone.utc).isoformat(),
-            'timestamp':time.perf_counter(),
+            'timestamp':time.time(),
             'type': 'mouse',
             'action': 'scroll',
             'position': {'x': x, 'y': y},
@@ -312,7 +312,7 @@ class EventObserver:
         key = treat_key_as_string(key)
         event = {
             # 'timestamp':datetime.now(timezone.utc).isoformat(),
-            'timestamp':time.perf_counter(),
+            'timestamp':time.time(),
             'type': 'keyboard',
             'action': 'press',
             'key': key
@@ -326,7 +326,10 @@ class EventObserver:
         if key == AutomationSystem.config.toggleRecordKey:
             print("toggleRecording")
             # event["action"] = "toggleRecording"
-            event['details'] = {"MacroTime": int(time.perf_counter()* 1000)}
+            # aqui eu mando o tempo do evento do frontend pro backend, 
+            # pra ter uma base de comparação e evitar problemas de timestamp 
+            # vindo do OS watcher e do frontend
+            event['details'] = {"MacroTime": int(time.time() * 1000)} 
         if key == AutomationSystem.config.ExecutaMacroKey:
             # print("ExecuteMacro")
             # event["action"] = "ExecCurrentMacro"
@@ -354,7 +357,7 @@ class EventObserver:
         key = treat_key_as_string(key)
         event = {
             # 'timestamp':datetime.now(timezone.utc).isoformat(),
-            'timestamp':time.perf_counter(),
+            'timestamp':time.time(),
             'type': 'keyboard',
             'action': 'release',
             'key': key

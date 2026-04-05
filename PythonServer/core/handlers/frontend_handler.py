@@ -45,7 +45,7 @@ async def handle_frontend(websocket):
             if "payload" in message and "ts" in message["payload"] and message["payload"]["ts"] != 0:
                 payload = message["payload"]
                 click_to_ignore = payload.get("click", None)
-                ts=payload.get("ts",0)
+                ts=payload.get("ts",0)/1000  # Convertendo de ms para s
                 prepared_command_toIgnore = {
                     "ts": ts,
                     "type": "mouse",
@@ -57,15 +57,17 @@ async def handle_frontend(websocket):
 
                 if click_to_ignore:
                     mouseCmd = state.server_config.mouseCommmand(prepared_command_toIgnore)
-                    state.server_config.FlushConfig.commandsToNotFlush.append(mouseCmd)
+                    state.server_config.FlushConfig.addcommandToNotFlush(mouseCmd)
+                    # state.server_config.FlushConfig.commandsToNotFlush.append(mouseCmd)
                 else:
                     print("no click to ignore found in the payload")
                     if ts == 0:
                         ts = time.time()
             else:
+                print("no payload  found in the frontend message, using current time as ts")
                 ts = str(time.time())
             # print("o ts vindo do frontend é: ",ts)
-            ts = float(ts)/1000 # normalização pra comparar com o que vem do OS Watcher
+            ts = float(ts) # normalização pra comparar com o que vem do OS Watcher
             # print("depois ele vira: ",ts)
 
             # 2. Execução de Comandos

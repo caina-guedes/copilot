@@ -69,6 +69,7 @@ class OSProcessorClass():
             cls.receiver_conn_or_queue = websocket_or_queue
             cls. receiver_loop_task = LifecycleMaster.run_async(cls.receiver_loop(websocket_or_queue), name="loop do receiver do watcher")
             # await websocket.wait_closed()
+    
     @classmethod
     async def receiver_loop(cls,websocket_or_queue):
         #loop intended to be cancelled by standard procedure of the lifecycle master or , if it is a websocket by closing it first

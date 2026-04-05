@@ -1,4 +1,5 @@
 import asyncio
+from collections import deque
 from dataclasses import dataclass, field
 import threading
 from sharedResources.debuggingResources.error_tracker import log_error_forensics_plus
@@ -34,11 +35,62 @@ class serverConfig(metaclass = DebugClassPrinter):
     _threading_rlock = threading.RLock()
     serverPort = 8765
     class mouseCommmand:
-        """ Mouse command references  to use for flushing purposes """
+        """ Mouse command references  to use for flushing purposes 
+         o self.values está vindo assim 
+
+         prepared_command_toIgnore = {
+                    "ts": ts,
+                    "type": "mouse",
+                    "button": click_to_ignore.get("button", "left"),
+                    "action": "click",
+                    "x": click_to_ignore.get("x", 0),
+                    "y": click_to_ignore.get("y", 0)
+                } if click_to_ignore else None
+        
+        """
         def __init__(self,values):
             self.values = values
+            self.front_end_ts = values.get("ts", None)
             self.pressDetected = False
             self.releaseDetected = False
+            self.totally_detected = False
+            self.back_end_press_ts = None
+            self.dessincronization_time = None
+            print(f"new mouseCommand: {self}")
+        
+        def set_pressDetected(self,value,back_end_ts):
+            # print(f"setando pressDetected para {value}")
+            if not self.pressDetected:
+                self.pressDetected = value
+                self.back_end_press_ts = back_end_ts
+                self.dessincronization_time = self.back_end_press_ts - self.front_end_ts
+                serverConfig.FlushConfig.tolerancia_de_dessincronizacao.append(self.dessincronization_time)
+                
+                # print('the desincronization time between the front_end and back_end events is: ', self.dessincronization_time, " seconds ")
+            else:
+                print("o pressDetected já estava como True, não vou setar de novo")
+            # print(f"no mouseCommand: {self}")
+        
+        def set_releaseDetected(self,value):
+            print(f"setando releaseDetected para {value}")
+            if not self.releaseDetected:
+                self.releaseDetected = value
+                if not self.pressDetected:
+                    print("""releaseDetected foi setado como True mesmo sem o pressDetected ter sido setado, 
+                          isso é estranho mas vou deixar assim por enquanto pq pode ser útil pra 
+                          detectar cliques que foram soltos antes de serem detectados como 
+                          pressionados""")
+                else:
+                    self.totally_detected = True
+            else:
+                print("o releaseDetected já estava como True, não vou setar de novo")
+            # print(f"no mouseCommand: {self}")
+
+        def __repr__(self):
+            return f"""MouseCommand(ts = {self.values.get('ts')}, type = {self.values.get('type')}, button = {self.values.get('button')}, action = {self.values.get('action')}, x = {self.values.get('x')}, y = {self.values.get('y')})
+            pressDetected = {self.pressDetected}
+            releaseDetected = {self.releaseDetected}
+            """
     # Comandos especiais de teclado
     specialCommands = {
         "ExecCurrentMacro": KeyRef("f2"),
@@ -98,6 +150,14 @@ class serverConfig(metaclass = DebugClassPrinter):
         MAX_TIME_DIFF = 500  # milliseconds
         MAX_PIXEL_DIFF = 5   # pixels
         force_flush = threading.Event()
+        just_added_command = False
+        tolerancia_de_dessincronizacao = deque(maxlen = 20) # em segundos, ou seja, 100ms de dessincronização é tolerável pra considerar que o evento é o mesmo mesmo que os timestamps não batam exatamente
+        
+        @classmethod
+        def addcommandToNotFlush(cls, command):
+            print("adicionando comando para não flushar: ", command)
+            cls.commandsToNotFlush.append(command)
+            cls.just_added_command = True
 
     # Outros parâmetros globais
     debug: bool = False
@@ -265,9 +325,16 @@ class SOWatcherActions:
                 print("tentando pegar o macro_time de: ",Kargs)
                 macro_time = Kargs.get("MacroTime",None)
                 print("o macro_time pego no Kargs é: ",macro_time)
+                passed_time = time.time() - float(macro_time) #deve ser poucas frações de segundos ou no máximo a duração da gravação de uma macro
+                if passed_time < 0:
+                    print("o macro_time pego do frontend é maior do que o tempo atual, isso é estranho mas vou deixar assim por enquanto. o macro_time é: ",macro_time, "e o tempo atual é: ", time.time())
+                    1/0
+
+                print(f"o tempo passado desde o macro_time é: {passed_time} segundos")
             else:
                 macro_time = str(time.time())
                 print("como não pegou nada no macro_time peguei o time.time de agora e é: ",macro_time)
+                1/0 # forçando erro para ver o relatório da forensics, isso não deveria acontecer pq o frontend sempre manda o MacroTime, mas é bom ter esse backup pra caso algo dê errado com o envio do MacroTime do frontend
             if serverConfig.MacroConfig.isRecording:
                 serverConfig.MacroConfig.set_flag("startMacroRecordingTime" , macro_time)
                 serverConfig.MacroConfig.set_flag("stopMacroRecordingTime" , None)

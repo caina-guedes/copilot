@@ -53,6 +53,7 @@ not_sent_events.db
 
 # Python
 __pycache__/
+
 *.py[cod]
 *$py.class
 *.so
