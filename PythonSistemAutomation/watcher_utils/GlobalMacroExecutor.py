@@ -91,11 +91,32 @@ class GlobalExecutor:
             print(f"umpressing {len(cls._pressed_keys)} keys  ")
             for original_key in list(cls._pressed_keys):# formata e tenta desapertar
                 print("the original_key is: ",original_key)
+                if original_key.find(".") == -1:
+                    print(f"the original_key {original_key} does not have the expected format with a dot, skipping...")
+                    try:
+                        1/0
+                    except Exception as e:
+                        log_error_forensics_plus(e, extra_message = f"the original_key {original_key} does not have the expected format with a dot, skipping...")
+                    continue
+           
+                if original_key.startswith("k."):
+                    key_for_command = original_key.replace("k.","")
+                    equipment = "keyboard"
+                
+                else:
+                    print(f"the original_key {original_key} does not start with the expected 'k.' or 'b.' , skipping...")
+                    try:
+                        1/0
+                    except Exception as e:
+                        log_error_forensics_plus(e, extra_message = f"the original_key {original_key} does not start with the expected 'k.' or 'b.' , skipping...")
+                    continue
+                right_key = "key" if equipment == "keyboard" else "button"
                 command = {
-                    "key" : original_key, 
-                    "action" : "release", 
-                    "equipment" : "keyboard",
-                    "deltaTime": 0}
+                        right_key : key_for_command,
+                        "action" : "release",
+                        "equipment" : equipment,
+                        "deltaTime" : 0}
+                
                 
                 try:
                     exec_mouse_or_kb(command,cls,frozen_controls_to_ignore) 
@@ -110,9 +131,18 @@ class GlobalExecutor:
         if cls._pressed_buttons is not None and len(cls._pressed_buttons)>0:
             print(f"umpressing {len(cls._pressed_buttons)} buttons  ")
             for original_button in list(cls._pressed_buttons): # tenta desapertar
+                if original_button.find(".") == -1:
+                    print(f"the original_button {original_button} does not have the expected format with a dot, skipping...")
+                    try:
+                        1/0
+                    except Exception as e:
+                        log_error_forensics_plus(e, extra_message = f"the original_button {original_button} does not have the expected format with a dot, skipping...")
+                    continue
+                
+                original_button = original_button.replace("b.","")
                 print("the original_button is: ",original_button)
                 command_for_mouse = {
-                    "button" : original_key, 
+                    "button" : original_button, 
                     "action" : "release", 
                     "equipment" : "mouse",
                     "deltaTime": 0}

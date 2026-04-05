@@ -39,7 +39,7 @@ class SafePressedTracker:
         Aceita objetos do pynput ou strings puras.
         """
         k = str(key_or_button)
-        return k.replace("Key.", "").replace("Button.", "").lower()
+        return k.replace("Key.", "k.").replace("Button.", "b.").lower()
 
     
     def add(self, key):

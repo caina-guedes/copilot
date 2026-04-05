@@ -1061,3 +1061,58 @@ Traceback (most recent call last):
     ~~~~~~~~~~~~~~~~~~~^^^^^^^
 sqlite3.OperationalError: no such table: dbstat
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-04-05 18:57:09,002 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
+📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
+💻 Código: `cls.original_stdout.buffer.write(header + text)`
+🕒 Horário: 2026-04-05 18:57:08.992839 | 🧵 Thread: stdout_thread  Task: ID: 1773983743536 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: [Errno 22] Invalid argument
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = b' '
+    is_error = False
+    header = b'\xaaU\x01\x00\x00\x00'
+    e = OSError(22, 'Invalid argument')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = ' '
+    is_error = False
+    lock_certo = <locked _thread.lock object at 0x0000019D08FB9350>
+    right_new_line = False
+    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+    quebra_de_linha = '\r\n'
+    prefix = ''
+    resposta = ' '
+    dados_bytes = b' '
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
+    cls.realWriter(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
+    cls.sendAndHandshake(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
+    cls.log_error(e)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

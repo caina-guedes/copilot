@@ -48400,3 +48400,1125 @@ Traceback (most recent call last):
     print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
     ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 OSError: [Errno 22] Invalid argument
+2026-04-05 16:46:57,182 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:46:59,343 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:28,579 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:29,249 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:29,640 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:30,553 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:30,869 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:35,019 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:35,327 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:41,759 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:42,064 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:47,482 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:47,798 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:49,226 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:49,534 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:51,077 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:51,393 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:52,312 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:48:52,627 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:49:02,261 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:49:02,575 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:49:22,574 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:49:22,889 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:49:24,076 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:49:24,393 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:49:25,744 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 16:49:26,054 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:22:20,696 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:22:21,015 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:22:29,001 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:22:30,586 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:22:31,763 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:22:32,075 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:22:39,176 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:22:39,490 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:22:41,744 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:22:42,056 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:22:44,749 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:22:45,092 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:23:00,403 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:23:00,757 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:23:22,554 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:23:22,866 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:23:37,657 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:23:38,017 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:23:42,650 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:23:42,957 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:23:54,213 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:23:54,587 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:24:04,969 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:24:05,283 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:24:07,546 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:24:07,850 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:24:11,585 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:24:11,914 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:24:26,834 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:24:27,179 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:24:35,110 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:24:35,418 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:24:36,679 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:24:36,991 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:25:07,424 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:25:07,740 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:25:09,071 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:25:09,384 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:25:24,324 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:25:24,628 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:25:45,752 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:25:46,059 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:26:06,750 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:26:07,119 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:26:43,226 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:26:43,529 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:26:49,820 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:26:50,139 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:26:51,211 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:26:51,559 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:27:01,502 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:27:01,805 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:27:36,047 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:27:36,350 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:27:43,492 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:27:43,799 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:27:53,091 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:27:53,402 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:27:56,765 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:27:57,111 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:28:27,521 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:28:27,829 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:28:30,356 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:28:30,670 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:28:44,705 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:28:45,018 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:33:29,075 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:33:29,388 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:35:10,375 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:35:10,688 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:36:05,671 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:36:05,979 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:38:33,913 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:38:34,279 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:39:59,337 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:39:59,694 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:40:03,599 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:40:03,912 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:41:26,436 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:41:26,780 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:41:34,570 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:41:34,943 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:41:40,234 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:41:40,579 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:43:41,713 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:43:42,029 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:43:43,325 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:43:43,632 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:47:25,833 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:47:26,140 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:47:32,588 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:47:33,134 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:47:34,749 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:47:35,052 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:47:38,400 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:47:38,703 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:47:40,887 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:47:41,229 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:53:21,061 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:53:21,375 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:53:29,150 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:53:29,457 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:53:31,791 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:53:32,093 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:53:33,505 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:53:33,807 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:56:29,508 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:56:29,821 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:56:31,238 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:56:31,546 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:09,130 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:09,693 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:10,505 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:10,927 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:11,239 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:12,068 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:12,379 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:12,692 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:13,004 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:13,327 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:15,167 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:15,471 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:22,685 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:22,997 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:23,310 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:23,622 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:23,935 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:24,247 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:24,559 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:24,872 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:25,184 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:25,497 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:26,169 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:26,481 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:26,825 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:27,778 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:28,090 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:28,402 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:28,715 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:29,027 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:29,340 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:29,652 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:31,370 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:32,823 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:36,729 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:37,041 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:56,417 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:56,727 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:58,024 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:57:58,336 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:58:13,579 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:58:14,938 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:58:15,251 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:58:15,562 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:58:15,868 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:58:16,179 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:58:17,047 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:58:17,400 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:58:17,971 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+2026-04-05 18:58:18,289 [ERROR] [AsyncioLoopThread] os_watcher_handler:123 - ❌ Erro no SOWatcher: [Errno 22] Invalid argument
+Traceback (most recent call last):
+  File "D:\copilot\PythonServer\core\handlers\os_watcher_handler.py", line 93, in receiver_loop
+    print(f"📩 {get_current_time()} Do SOWatcher: {msg}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
