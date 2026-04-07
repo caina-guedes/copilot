@@ -9,6 +9,16 @@ comando para iniciar o server
 PYTHONPATH=. python3 PythonServer/server.py
 
 
+
+por sorte consegui pegar um bug que só ocorre quando não tem nenhuma macro gravada.
+da erro quando o banco de dados está vazio  ai eu comecei a fazer as correções 
+mas isso tem que ser verificado ainda, o proximo passo é rodar o botão de executar 
+macro pra ver se vai ocorrer algum erro
+
+
+
+
+
 estou fazendo adaptações pra poder transformar o watcher e o server em 
 um processo único, pra isso preciso melhorar a start_runtime do lifecyclaMaster
 pois ela foi pensada pra rodar apenas a raiz do processo, agora eu talvez 

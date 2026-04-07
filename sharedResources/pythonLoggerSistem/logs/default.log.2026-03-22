@@ -1,8 +1,0 @@
-2026-03-22 10:05:11,213 [WARNING] [AsyncioLoopThread] os_watcher_handler:91 - ❌ 10:05:11 Conexão encerrada com o SOWatcher Sender. this is not for shutdown!!!!!
-2026-03-22 10:05:11,215 [WARNING] [AsyncioLoopThread] os_watcher_handler:151 - ❌ 10:05:11 Conexão encerrada com o SOWatcher Sender. this is not for shutdown!!!!!
-2026-03-22 10:07:28,076 [WARNING] [AsyncioLoopThread] os_watcher_handler:116 - 🖥️ 10:07:28 SOWatcher Connection Started!
-2026-03-22 10:12:39,406 [WARNING] [AsyncioLoopThread] os_watcher_handler:151 - ❌ 10:12:39 Conexão encerrada com o SOWatcher Sender. this is not for shutdown!!!!!
-2026-03-22 10:12:39,407 [WARNING] [AsyncioLoopThread] os_watcher_handler:91 - ❌ 10:12:39 Conexão encerrada com o SOWatcher Sender. this is not for shutdown!!!!!
-2026-03-22 12:05:38,250 [WARNING] [AsyncioLoopThread] os_watcher_handler:116 - 🖥️ 12:05:38 SOWatcher Connection Started!
-2026-03-22 12:07:02,050 [WARNING] [AsyncioLoopThread] os_watcher_handler:116 - 🖥️ 12:07:02 SOWatcher Connection Started!
-2026-03-22 12:35:37,310 [WARNING] [AsyncioLoopThread] os_watcher_handler:116 - 🖥️ 12:35:37 SOWatcher Connection Started!

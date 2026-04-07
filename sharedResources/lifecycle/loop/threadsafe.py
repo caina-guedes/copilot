@@ -75,10 +75,10 @@ def submit(
         # ===========================
         # CASO 1: já estamos no loop
         # ===========================
-        print(f"executing submit function for {coro} and state = {StateManager.state}")
+        # print(f"executing submit function for {coro} and state = {StateManager.state}")
         if threading.current_thread() is cls._thread:
             # print("estamos na mesma thread, tentando retornar o o asyncio.create_task")
-            print('estou na mesma thread do loop, criando a task diretamente')
+            # print('estou na mesma thread do loop, criando a task diretamente')
             task = asyncio.create_task(coro, name=name)
             print(f"creating task in loop thread: {task}", "loop")
             setattr(task, "protected", protected)
@@ -94,7 +94,7 @@ def submit(
             # cls._log(f"task registered: {name}", "loop")
 
             return task
-        print("não estou na mesma thread do loop, criando a task via call_soon_threadsafe")
+        # print("não estou na mesma thread do loop, criando a task via call_soon_threadsafe")
 
         # ==================================
         # CASO 2: estamos fora da thread

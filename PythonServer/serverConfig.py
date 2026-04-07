@@ -56,7 +56,7 @@ class serverConfig(metaclass = DebugClassPrinter):
             self.totally_detected = False
             self.back_end_press_ts = None
             self.dessincronization_time = None
-            print(f"new mouseCommand: {self}")
+            # print(f"new mouseCommand: {self}")
         
         def set_pressDetected(self,value,back_end_ts):
             # print(f"setando pressDetected para {value}")
@@ -72,7 +72,7 @@ class serverConfig(metaclass = DebugClassPrinter):
             # print(f"no mouseCommand: {self}")
         
         def set_releaseDetected(self,value):
-            print(f"setando releaseDetected para {value}")
+            # print(f"setando releaseDetected para {value}")
             if not self.releaseDetected:
                 self.releaseDetected = value
                 if not self.pressDetected:
@@ -128,7 +128,7 @@ class serverConfig(metaclass = DebugClassPrinter):
         def set_flag(cls, name, value):
             with cls._threading_lock:
                 if hasattr(cls, name):
-                    print(f"setando flag {name} no macroConfig para :",value)
+                    # print(f"setando flag {name} no macroConfig para :",value)
                     setattr(cls, name, value)
                 else:
                     raise AttributeError(f"{name} não existe em MacroConfig")
@@ -155,7 +155,7 @@ class serverConfig(metaclass = DebugClassPrinter):
         
         @classmethod
         def addcommandToNotFlush(cls, command):
-            print("adicionando comando para não flushar: ", command)
+            # print("adicionando comando para não flushar: ", command)
             cls.commandsToNotFlush.append(command)
             cls.just_added_command = True
 
@@ -191,7 +191,7 @@ class serverConfig(metaclass = DebugClassPrinter):
     def set_flag(cls,name,value):
         with cls._threading_rlock:
             if hasattr(cls,name):
-                print(f'setando flag: {name} no serverConfig')
+                # print(f'setando flag: {name} no serverConfig')
                 setattr(cls,name,value)
             else:
                 raise AttributeError(f"serverConfig has no attribute named {name}")
@@ -319,18 +319,18 @@ class SOWatcherActions:
             new_state = not current
             serverConfig.MacroConfig.set_flag("isRecording", new_state)
             # serverConfig.MacroConfig.isRecording = not serverConfig.MacroConfig.isRecording
-            print(Kargs)
+            # print(Kargs)
             # print(args[0])
             if Kargs and len(Kargs)>0:
-                print("tentando pegar o macro_time de: ",Kargs)
+                # print("tentando pegar o macro_time de: ",Kargs)
                 macro_time = Kargs.get("MacroTime",None)
-                print("o macro_time pego no Kargs é: ",macro_time)
+                # print("o macro_time pego no Kargs é: ",macro_time)
                 passed_time = time.time() - float(macro_time) #deve ser poucas frações de segundos ou no máximo a duração da gravação de uma macro
                 if passed_time < 0:
                     print("o macro_time pego do frontend é maior do que o tempo atual, isso é estranho mas vou deixar assim por enquanto. o macro_time é: ",macro_time, "e o tempo atual é: ", time.time())
                     1/0
 
-                print(f"o tempo passado desde o macro_time é: {passed_time} segundos")
+                # print(f"o tempo passado desde o macro_time é: {passed_time} segundos")
             else:
                 macro_time = str(time.time())
                 print("como não pegou nada no macro_time peguei o time.time de agora e é: ",macro_time)
@@ -363,7 +363,9 @@ class SOWatcherActions:
             """
             Wait for the macro execution to finish.
             """
-            await AsyncBridge.wait_event(serverConfig.MacroConfig.macroFinishedEvent)
+            if not serverConfig.MacroConfig.macroFinishedEvent.is_set():
+                await AsyncBridge.wait_event(serverConfig.MacroConfig.macroFinishedEvent)
+            
             return {"statusUpdate":"MacroExecutionFinished"}
         try:
             serverConfig.MacroConfig.set_flag("requestToExecuteMacro", True)
@@ -371,14 +373,14 @@ class SOWatcherActions:
             return wait_for_macro_execution
 
         except Exception as e:
-            log_error_forensics_plus(e)
-            print(f"Error getting current macro: {e}")
+            log_error_forensics_plus(e,extra_message=f"Error getting current macro!")
+
             return None
         finally:
             try:
-                print("entrei no finally da ExecCurrentMacroFunction")            
+                # print("entrei no finally da ExecCurrentMacroFunction")            
                 if kargs and "front_end_comand" in kargs and kargs["front_end_comand"]:
-                    print(f"entrei no if pq veio um front_end_comand = {kargs['front_end_comand']}")
+                    # print(f"entrei no if pq veio um front_end_comand = {kargs['front_end_comand']}")
                     if serverConfig.MacroConfig.requestToExecuteMacro:
                         #como referenciar a maindDb daqui? 
                         # vai no Db buscar a macro atual salva
@@ -386,7 +388,6 @@ class SOWatcherActions:
                         #como referenciar o answerMapping daqui? ele ja está no config?
                         serverConfig.answerMapping.answer = self.mainDb.answer
                         LifecycleMaster.run_async(serverConfig.answerMapping.sendMacroToExecuteInWatcher,name= "sendMacroToWatcher")
-                        
                         # if serverConfig.MacroConfig.currentMacro is not None:
                         #     self.mainDb.answer = {"MacroreadyToUse": True}
                 else:

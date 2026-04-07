@@ -60,13 +60,13 @@ def stopRecordingMacroOnDB_external(self):
 def GetCurrentMacroOnDb_external(self , *args,**kargs):
     """Get the current macro."""
     try: 
-        self.cursor.execute(querrys["selectUltimoIdDeMacro"])
-        row = self.cursor.fetchone()
+        row = self.exec(querrys["selectMacroAtiva"],fetch = "one")
+        
         if row:
             identifier = row[0]
             print(f"Current macro ID: {identifier}")
-            self.cursor.execute(querrys["translated_events_per_macro_id"], (identifier,))
-            currentMacro = self.cursor.fetchall()
+            currentMacro = self.exec(querrys["translated_events_per_macro_id"],args=(identifier,))
+            
             # print('o numero de comandos é: ',len(currentMacro))
             # for comando in currentMacro:
             #     print(comando)
@@ -74,13 +74,21 @@ def GetCurrentMacroOnDb_external(self , *args,**kargs):
             # aqui ele seta a macro atual na configuração do servidor, 
             # para que outras partes do código possam acessar sem precisar ir no DB toda hora.   
             if currentMacro is  not None:
-                self.answer = {"MacroreadyToUse": True}
+                self.answer = {"MacroreadyToUse": True,
+                               "MacroId": identifier,
+                               }
                 print("macro ready to use!")
                 # print('and it is: ',currentMacro)
 
             return currentMacro
         else:
             print("no registered macro yet")
+            self.answer = {"MacroreadyToUse": False,
+                           "MacroId": None,
+                           }
+            
+            self.serverConfig.MacroConfig.currentMacro = None
+            return None
     except Exception as e:
         print("exception occurrent while trying to get the current macro : (?)",e)
         log_error_forensics_plus(e,extra_message= "dentro da GetCurrentMacroOnDb_external")

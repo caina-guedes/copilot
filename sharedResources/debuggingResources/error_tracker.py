@@ -41,7 +41,7 @@ r.maxother = 100   # Limita outros objetos
 def monitor_error(func):
     # Detecta se a função original é async
     if inspect.iscoroutinefunction(func):
-        @functools.wraps(func) # 1. Copia o nome 'enqueue' para 'async_wrapper'
+        @functools.wraps(func) # 1. Copia o nome da função  para o  wrapper
         async def async_wrapper(*args, **kwargs):
             try:
                 return await func(*args, **kwargs)

@@ -9,7 +9,11 @@ import math
 import threading
 
 # --- ESTRUTURAS DE DADOS ---
-
+def _new_start_controls():
+    return {
+        "definition_time": None, # Timestamp de quando a função/método foi definida (para calcular tempo de vida)
+        "init_time": None, # Timestamp da primeira vez que foi chamada (para calcular
+    }
 def _new_stats():
     return {
         "calls": 0,
@@ -114,10 +118,12 @@ def _generate_table(title, data_dict):
 
 class CallRegistry:
     # _lock = Lock()
-    
+    # _definition_time = {}  # Guarda definições de funções/métodos (opcional, para futuras features)
+    # _first_init_times = {} # Guarda o timestamp da primeira vez que cada função/método foi chamada (para calcular tempo de vida)
     # Armazenamento persistente (Histórico)
     _functions = defaultdict(lambda: _new_stats())
     _classes = defaultdict(lambda: defaultdict(lambda: _new_stats()))
+    _start_control = defaultdict(lambda: _new_start_controls()) # Guarda tempos de definição e primeira chamada para funções e classes
     
     # Armazenamento volátil (O que está rodando AGORA)
     # Key: Token (Objeto único) -> Value: (tipo, grupo, nome, start_time)
@@ -132,8 +138,11 @@ class CallRegistry:
         try:
             if type_scope == 'func':
                 # Apenas acessar a chave cria o default (_new_stats)
+                # cls._definition_time[name] = time.time() # Guarda o momento da definição para calcular tempo de vida
                 _ = cls._functions[name]
             elif type_scope == 'method':
+                if group not in cls._definition_time:
+                    cls._definition_time[group] = time.time() # Guarda o momento da definição para calcular tempo de vida
                 _ = cls._classes[group][name]
         except Exception as e:
             print(f"[egister] deu erro e foi:{e}")
@@ -143,6 +152,8 @@ class CallRegistry:
         """Registra que uma função começou."""
         token = object() # Identificador único para esta execução específica
         start_time = time.perf_counter()
+        if name == "__init__" and group not in cls._first_init_times:
+            cls._first_init_times[group] = time.time() # Guarda o momento da primeira chamada do __init__ para calcular tempo de vida da classe
         # with cls._lock:
         cls._active_calls[token] = (type_scope, group, name, start_time)
         return token, start_time

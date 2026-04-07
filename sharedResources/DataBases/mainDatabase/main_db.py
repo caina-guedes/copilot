@@ -47,6 +47,8 @@ class MainDatabase:
     log_background_event = log_background_event_external
     main_instance = None
 
+    cursor_lock = Lock()
+
     def clean_answer(self):
         self.answer = None
 
@@ -69,6 +71,8 @@ class MainDatabase:
         self._configure_connection()
         self._initialize_main_bank()
         self._cache_codes()
+
+        
         # Buffer de eventos
         self._buffer_lock = Lock()
         with self._buffer_lock:
@@ -89,7 +93,7 @@ class MainDatabase:
         for command in BaseDbCommands:
             # print(command)
             try:
-                self.cursor.execute(command)
+                self.exec(command,fetch=None)
             except Exception as e:
                 log_error_forensics_plus(e)
                 # LoggerManager.log_exception_with_context(f'Exception during creation of main DB occurred, {e}',e)
@@ -98,7 +102,8 @@ class MainDatabase:
     def _configure_connection(self):
         for configCommand in querrys["_configure_connection"]:
             try:
-                self.cursor.execute(configCommand)
+                self.exec(configCommand,fetch=None)
+            
             except Exception as e:
                 print("[MainDatabase._configure_connection] deu erro configurando conexão do main db e foi: ", str(e))
 
@@ -114,34 +119,36 @@ class MainDatabase:
         """
 
         try:
-            if args and any(x == 'None' for x in args):
-                print("""fiz burradaaaa !!! meti um str(valor) onde não devia e agora ta vindo 'None' como argumento pra querry!!!""")
+            with self.__class__.cursor_lock:
+                if args and any(x == 'None' for x in args):
+                    print("""fiz burradaaaa !!! meti um str(valor) onde não devia e agora ta vindo 'None' como argumento pra querry!!!""")
 
-            if many:
-                # No caso de executemany, args DEVE ser uma lista de tuplas/dicionários
-                self.cursor.executemany(query, args)
-            else:
-                if args is None:
-                    self.cursor.execute(query)
+                if many:
+                    # No caso de executemany, args DEVE ser uma lista de tuplas/dicionários
+                    self.cursor.executemany(query, args)
                 else:
-                    self.cursor.execute(query, args)
-            # Trata o retorno
-            result = None
-            if fetch == "all":
-                result = self.cursor.fetchall()
-            elif fetch == "one":
-                result = self.cursor.fetchone()
-            elif fetch == "lastrowid":
-                result = self.cursor.lastrowid
-            
-            if commit:
-                self.conn.commit()
-            
-            return result
+                    if args is None:
+                        self.cursor.execute(query)
+                    else:
+                        self.cursor.execute(query, args)
+                # Trata o retorno
+                result = None
+                if fetch == "all":
+                    result = self.cursor.fetchall()
+                elif fetch == "one":
+                    result = self.cursor.fetchone()
+                elif fetch == "lastrowid":
+                    result = self.cursor.lastrowid
+                
+                if commit:
+                    self.conn.commit()
+                
+                return result
 
         except Exception as e:
             # DENTRO DO SEU EXCEPT, se many for True:
             self.error_value = None
+            log_error_forensics_plus(e)
             if many:
                 print("Iniciando Modo Perícia: testando registros um por um...")
                 achou = False
@@ -234,8 +241,8 @@ class MainDatabase:
         
         # 2. Pegar informações das colunas da tabela no Banco
         # Isso funciona no SQLite. Se usar outro banco, o comando muda.
-        self.cursor.execute(f"PRAGMA foreign_key_list({table_name})")
-        fks = self.cursor.fetchall() 
+        fks = self.exec(f"PRAGMA foreign_key_list({table_name})", fetch = "all")
+        
         # Estrutura do FK list no SQLite: (id, seq, table, from, to, on_update, on_delete, match)
         
         if not fks:
@@ -264,9 +271,9 @@ class MainDatabase:
 
                 # Query de teste: existe esse ID na tabela pai?
                 test_query = f"SELECT 1 FROM {fk_table_to} WHERE {fk_col_to} = ?"
-                self.cursor.execute(test_query, (valor_testado,))
+                result= self.exec(test_query,args= (valor_testado,),fetch="one")
                 
-                if not self.cursor.fetchone():
+                if not result:
                     print(f"🚨 CULPADA ENCONTRADA: Coluna '{fk_from}'")
                     print(f"   - O valor '{valor_testado}' NÃO EXISTE na tabela pai '{fk_table_to}'({fk_col_to}).")
                 else:
@@ -376,8 +383,8 @@ if __name__ == "__main__":
     limpaMacros()
     
     print("valores da tabela macros:")
-    db.cursor.execute("select * from macros")
-    a=db.cursor.fetchall()
+    a= db.exec("select * from macros")
+    
     for x in a:
         print(x)
     # import sqlite3
@@ -417,8 +424,8 @@ if __name__ == "__main__":
     for x in a:
         print(x)
         identifier=x[0]
-        db.cursor.execute(querrys["querry_traduzida"],(identifier,))
-        for comando in db.cursor.fetchall():
+        comandos = db.exec(querrys["querry_traduzida"],args=(identifier,))
+        for comando in comandos:
             if comando[-1] is not None:
                 winChangeIdsInCurrentMacro.append(comando[-1])
             print(comando)
@@ -462,17 +469,17 @@ HAVING cnt > 1
         # print(total_occurrences)
         continue ### só pra ver as ocorrencias agora mesmo !
         # deleta os registros antigos do grupo
-        db.cursor.execute("""
+        db.exec("""
             DELETE FROM window_events
             WHERE timestamp=? AND app=? AND class_name=? AND pid=? AND win_id=? AND title=? AND details=? 
                     AND id != ?
-        """, (app, class_name, pid, win_id, title, details,min_id))
+        """, args = (app, class_name, pid, win_id, title, details,min_id),fetch = None  )
 
-        db.cursor.execute("""
+        db.exec("""
         UPDATE window_events
         SET occurrences = ?
         WHERE id = ?
-    """, (total_occurrences, min_id))
+    """, args =  (total_occurrences, min_id), fetch = None)
         # # insere 1 registro com occurrences = total_occurrences
         # cur.execute("""
         #     INSERT INTO window_events (timestamp, app, class_name, pid, win_id, title, details, occurrences)

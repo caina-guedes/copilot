@@ -160,7 +160,11 @@ class answerMapping():
                 return
             cls.currentMacro = cls.serverConfig.MacroConfig.currentMacro
             if not cls.currentMacro:
-                raise RuntimeError(f"tentando enviar ao watcher macro vazia ({cls.currentMacro})")
+                print("macro vazia, não vou enviar nada para o watcher!")
+                cls.serverConfig.MacroConfig.macroFinishedEvent.set() # se a macro estiver vazia, eu seto o evento de macroFinished para não deixar o front_end esperando pra sempre, isso pode acontecer se por exemplo a macro atual tiver sido apagada do DB depois de eu ter setado o requestToExecuteMacro como True, ou seja, é um cenário possível e é bom ter esse backup pra evitar que o front_end fique esperando pra sempre por uma resposta que nunca vai chegar.
+                cls.serverConfig.MacroConfig.macroFinishedEvent.clear()
+                return
+                # raise RuntimeError(f"tentando enviar ao watcher macro vazia ({cls.currentMacro})")
             target_connection = getattr(cls.connections, "OS").receiver
             
             await cls.sendCommand({"action":"startMacro"}, target_connection)

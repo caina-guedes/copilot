@@ -235,7 +235,7 @@ class TwoWayConnection:
             log_error_forensics_plus(e)
             # LoggerManager.log_exception_with_context(f"deu ruim no receiver_loop {e}")
         finally:
-            print(" entrei no finally da função e vou setar o evento")
+            # print(" entrei no finally da função e vou setar o evento")
             self._receiver_task_cancel_complete_event.set()                  
             async with self._receiver_lock:
                 self.receiver_loop_running = False

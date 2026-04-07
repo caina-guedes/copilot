@@ -1,120 +1,10 @@
-2026-04-05 10:53:24,431 [WARNING] [stdout_thread] error_tracker:229 - 
+2026-04-06 14:15:09,616 [WARNING] [MainThread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
-📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
-💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 10:53:24.394590 | 🧵 Thread: stdout_thread  Task: ID: 2090429693008 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
- 💬 Mensagem: [Errno 22] Invalid argument
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : False
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = b' '
-    is_error = False
-    header = b'\xaaU\x01\x00\x00\x00'
-    e = OSError(22, 'Invalid argument')
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = ' '
-    is_error = False
-    lock_certo = <locked _thread.lock object at 0x000001E6B78FA6D0>
-    right_new_line = False
-    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-    quebra_de_linha = '\r\n'
-    prefix = ''
-    resposta = ' '
-    dados_bytes = b' '
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
-    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
-    cls.realWriter(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
-    cls.sendAndHandshake(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
-    cls.log_error(e)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
-    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 11:05:02,185 [WARNING] [stdout_thread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
-📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
-💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 11:05:02.174378 | 🧵 Thread: stdout_thread  Task: ID: 2050430843984 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
- 💬 Mensagem: [Errno 22] Invalid argument
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : False
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = b' '
-    is_error = False
-    header = b'\xaaU\x01\x00\x00\x00'
-    e = OSError(22, 'Invalid argument')
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = ' '
-    is_error = False
-    lock_certo = <locked _thread.lock object at 0x000001DD6771AE50>
-    right_new_line = False
-    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-    quebra_de_linha = '\r\n'
-    prefix = ''
-    resposta = ' '
-    dados_bytes = b' '
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
-    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
-    cls.realWriter(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
-    cls.sendAndHandshake(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
-    cls.log_error(e)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
-    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 11:05:27,267 [WARNING] [MainThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
-📍 No arquivo: D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py | Linha: 125
-💻 Código: `self.cursor.execute(query)`
-🕒 Horário: 2026-04-05 11:05:27.249277 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
- 💬 Mensagem: no such table: dbstat
+🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
+📍 No arquivo: D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py | Linha: 120
+💻 Código: `with self.cursor_lock:`
+🕒 Horário: 2026-04-06 14:15:09.610557 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: 'MainDatabase' object has no attribute 'cursor_lock'
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
@@ -124,45 +14,93 @@ retornar : True
 Estado do ciclo de vida: INIT
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <__main__.MainDatabase object at 0x000001C34E874AD0>
-    query = 'SELECT\n        name,\n        SUM(pgsize)/1024...   GROUP BY name\n        ORDER BY size_kb DESC;'
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x000001C6639517F0>
+    query = 'PRAGMA foreign_keys = ON;'
     args = None
-    fetch = 'all'
+    fetch = None
     many = False
     commit = False
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - tamanho_KBs_tabelas):
-
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _configure_connection):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x000001C6639517F0>
+    configCommand = 'PRAGMA foreign_keys = ON;'
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "<string>", line 1, in <module>
-    __import__('idlelib.run').run.main(True)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
-    ret = method(*args, **kwargs)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
-    exec(code, self.locals)
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 425, in <module>
-    tamanho_KBs_tabelas()
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 401, in tamanho_KBs_tabelas
-    result=db.exec("""SELECT
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 125, in exec
-    self.cursor.execute(query)
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\copilot\PythonServer\server.py", line 72, in <module>
+    initialize_server_state()
+  File "D:\copilot\PythonServer\server.py", line 60, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 69, in __init__
+    self._configure_connection()
+  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 103, in _configure_connection
+    self.exec(configCommand,fetch=None)
+  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 120, in exec
+    with self.cursor_lock:
+         ^^^^^^^^^^^^^^^^
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
   File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
     return func(*args, **kwargs)
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 125, in exec
-    self.cursor.execute(query)
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^
-sqlite3.OperationalError: no such table: dbstat
+  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 120, in exec
+    with self.cursor_lock:
+         ^^^^^^^^^^^^^^^^
+AttributeError: 'MainDatabase' object has no attribute 'cursor_lock'
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 12:01:19,803 [WARNING] [stdout_thread] error_tracker:229 - 
+2026-04-06 14:22:32,009 [WARNING] [MainThread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [AttributeError]
+📍 No arquivo: D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py | Linha: 120
+💻 Código: `with self.cursor_lock:`
+🕒 Horário: 2026-04-06 14:22:32.007075 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
+ 💬 Mensagem: 'MainDatabase' object has no attribute 'cursor_lock'
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : True
+retornar : False
+
+Estado do ciclo de vida: INIT
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x000001A0C47BC590>
+    query = 'PRAGMA foreign_keys = ON;'
+    args = None
+    fetch = None
+    many = False
+    commit = False
+    e = AttributeError("'MainDatabase' object has no attribute 'cursor_lock'")
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _configure_connection):
+    self = <sharedResources.DataBases.mainDatabase.main_db.MainDatabase object at 0x000001A0C47BC590>
+    configCommand = 'PRAGMA foreign_keys = ON;'
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\PythonServer\server.py", line 72, in <module>
+    initialize_server_state()
+  File "D:\copilot\PythonServer\server.py", line 60, in initialize_server_state
+    state.mainDb = MainDbClass(serverConfig=serverConfig)
+  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 69, in __init__
+    self._configure_connection()
+  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 103, in _configure_connection
+    self.exec(configCommand,fetch=None)
+  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 149, in exec
+    log_error_forensics_plus(e)
+  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 120, in exec
+    with self.cursor_lock:
+         ^^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 120, in exec
+    with self.cursor_lock:
+         ^^^^^^^^^^^^^^^^
+AttributeError: 'MainDatabase' object has no attribute 'cursor_lock'
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-04-06 14:25:04,096 [WARNING] [stdout_thread] error_tracker:229 - 
 ======================================================================
 🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
 📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
 💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 12:01:19.797599 | 🧵 Thread: stdout_thread  Task: ID: 2329893911632 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+🕒 Horário: 2026-04-06 14:25:04.085075 | 🧵 Thread: stdout_thread  Task: ID: 2071378771024 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
  💬 Mensagem: [Errno 22] Invalid argument
 extra_message = 
 internal vars from log_error_forencis_plus:
@@ -183,7 +121,7 @@ Estado do ciclo de vida: RUNNING
     cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
     text = ' '
     is_error = False
-    lock_certo = <locked _thread.lock object at 0x0000021E78BDA4D0>
+    lock_certo = <locked _thread.lock object at 0x000001E2471C9350>
     right_new_line = False
     target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
     quebra_de_linha = '\r\n'
@@ -212,288 +150,13 @@ Traceback (most recent call last):
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
 OSError: [Errno 22] Invalid argument
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 12:27:44,705 [WARNING] [stdout_thread] error_tracker:229 - 
+2026-04-06 14:28:37,203 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
-📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
-💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 12:27:44.699928 | 🧵 Thread: stdout_thread  Task: ID: 1750982048848 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
- 💬 Mensagem: [Errno 22] Invalid argument
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : False
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = b' '
-    is_error = False
-    header = b'\xaaU\x01\x00\x00\x00'
-    e = OSError(22, 'Invalid argument')
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = ' '
-    is_error = False
-    lock_certo = <locked _thread.lock object at 0x00000197AEE7A610>
-    right_new_line = False
-    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-    quebra_de_linha = '\r\n'
-    prefix = ''
-    resposta = ' '
-    dados_bytes = b' '
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
-    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
-    cls.realWriter(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
-    cls.sendAndHandshake(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
-    cls.log_error(e)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
-    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 12:28:52,349 [WARNING] [stdout_thread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
-📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
-💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 12:28:52.343139 | 🧵 Thread: stdout_thread  Task: ID: 2497723350576 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
- 💬 Mensagem: [Errno 22] Invalid argument
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : False
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = b' '
-    is_error = False
-    header = b'\xaaU\x01\x00\x00\x00'
-    e = OSError(22, 'Invalid argument')
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = ' '
-    is_error = False
-    lock_certo = <locked _thread.lock object at 0x000002458C27AE90>
-    right_new_line = False
-    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-    quebra_de_linha = '\r\n'
-    prefix = ''
-    resposta = ' '
-    dados_bytes = b' '
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
-    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
-    cls.realWriter(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
-    cls.sendAndHandshake(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
-    cls.log_error(e)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
-    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 12:36:02,962 [WARNING] [stdout_thread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
-📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
-💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 12:36:02.952820 | 🧵 Thread: stdout_thread  Task: ID: 2183580401200 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
- 💬 Mensagem: [Errno 22] Invalid argument
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : False
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = b' '
-    is_error = False
-    header = b'\xaaU\x01\x00\x00\x00'
-    e = OSError(22, 'Invalid argument')
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = ' '
-    is_error = False
-    lock_certo = <locked _thread.lock object at 0x000001FC67C6A650>
-    right_new_line = False
-    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-    quebra_de_linha = '\r\n'
-    prefix = ''
-    resposta = ' '
-    dados_bytes = b' '
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
-    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
-    cls.realWriter(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
-    cls.sendAndHandshake(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
-    cls.log_error(e)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
-    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 13:02:34,772 [WARNING] [stdout_thread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
-📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
-💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 13:02:34.766530 | 🧵 Thread: stdout_thread  Task: ID: 1845138996784 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
- 💬 Mensagem: [Errno 22] Invalid argument
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : False
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = b' '
-    is_error = False
-    header = b'\xaaU\x01\x00\x00\x00'
-    e = OSError(22, 'Invalid argument')
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = ' '
-    is_error = False
-    lock_certo = <locked _thread.lock object at 0x000001AD9B18AE50>
-    right_new_line = False
-    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-    quebra_de_linha = '\r\n'
-    prefix = ''
-    resposta = ' '
-    dados_bytes = b' '
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
-    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
-    cls.realWriter(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
-    cls.sendAndHandshake(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
-    cls.log_error(e)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
-    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 13:03:05,202 [WARNING] [stdout_thread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
-📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
-💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 13:03:05.196108 | 🧵 Thread: stdout_thread  Task: ID: 2360931695696 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
- 💬 Mensagem: [Errno 22] Invalid argument
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : False
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = b' '
-    is_error = False
-    header = b'\xaaU\x01\x00\x00\x00'
-    e = OSError(22, 'Invalid argument')
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = ' '
-    is_error = False
-    lock_certo = <locked _thread.lock object at 0x00000225B2BCAE90>
-    right_new_line = False
-    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-    quebra_de_linha = '\r\n'
-    prefix = ''
-    resposta = ' '
-    dados_bytes = b' '
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
-    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
-    cls.realWriter(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
-    cls.sendAndHandshake(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
-    cls.log_error(e)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
-    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 14:41:57,009 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [UnboundLocalError]
-📍 No arquivo: D:\copilot\PythonServer\core\handlers\frontend_handler.py | Linha: 69
-💻 Código: `ts = float(ts)/1000 # normalização pra comparar com o que vem do OS Watcher`
-🕒 Horário: 2026-04-05 14:41:57.001983 | 🧵 Thread: AsyncioLoopThread  Task: ID: 1689239232464 | Nome: Task-9 | Coro: conn_handler | Protected: N/A | Total Tasks Vivas: 11
- 💬 Mensagem: cannot access local variable 'ts' where it is not associated with a value
+🕵️ INVESTIGAÇÃO PROFUNDA: [RuntimeError]
+📍 No arquivo: D:\copilot\PythonServer\serverReactions.py | Linha: 163
+💻 Código: `raise RuntimeError(f"tentando enviar ao watcher macro vazia ({cls.currentMacro})")`
+🕒 Horário: 2026-04-06 14:28:37.176640 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2174646060368 | Nome: sendMacroToWatcher | Coro: sendMacroToExecuteInWatcher | Protected: False | Total Tasks Vivas: 12
+ 💬 Mensagem: tentando enviar ao watcher macro vazia (None)
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
@@ -503,417 +166,66 @@ retornar : False
 Estado do ciclo de vida: RUNNING
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    websocket = <websockets.asyncio.server.ServerConnection object at 0x000001894E3C7C50>
-    tipo = 'front_end'
-    error = True
-    message_raw = '{"command":"Conexão do front-end estabelecida",...:0,"y":0,"button":"left"},"source":"front_end"}}'
-    message = {'command': 'Conexão do front-end estabelecida', 'payload': {'click': {'button': 'left', 'x': 0, 'y': 0}, 'source': 'front_end', 'ts': 0}}
-    e = UnboundLocalError("cannot access local variable 'ts' where it is not associated with a value")
+    cls = <class 'PythonServer.serverReactions.answerMapping'>
+    e = RuntimeError('tentando enviar ao watcher macro vazia (None)')
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - server_router):
-    websocket = <websockets.asyncio.server.ServerConnection object at 0x000001894E3C7C50>
-    msg = '{"tipo":"front_end"}'
-    initial_data = {'tipo': 'front_end'}
-    tipo = 'front_end'
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _run):
+    self = <Handle <_asyncio.TaskStepMethWrapper object at 0x000001FA52FFBF40>()>
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
   File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
     cls._current.run_forever()
-  File "D:\copilot\PythonServer\server.py", line 112, in server_router
-    await frontend_handler.handle_frontend(websocket)
-  File "D:\copilot\sharedResources\debuggingResources\error_tracker.py", line 47, in async_wrapper
-    return await func(*args, **kwargs)
-  File "D:\copilot\PythonServer\core\handlers\frontend_handler.py", line 128, in handle_frontend
+  File "D:\copilot\PythonServer\serverReactions.py", line 222, in sendMacroToExecuteInWatcher
     log_error_forensics_plus(e)
-  File "D:\copilot\PythonServer\core\handlers\frontend_handler.py", line 69, in handle_frontend
-    ts = float(ts)/1000 # normalização pra comparar com o que vem do OS Watcher
-               ^^
+  File "D:\copilot\PythonServer\serverReactions.py", line 163, in sendMacroToExecuteInWatcher
+    raise RuntimeError(f"tentando enviar ao watcher macro vazia ({cls.currentMacro})")
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\PythonServer\core\handlers\frontend_handler.py", line 69, in handle_frontend
-    ts = float(ts)/1000 # normalização pra comparar com o que vem do OS Watcher
-               ^^
-UnboundLocalError: cannot access local variable 'ts' where it is not associated with a value
+  File "D:\copilot\PythonServer\serverReactions.py", line 163, in sendMacroToExecuteInWatcher
+    raise RuntimeError(f"tentando enviar ao watcher macro vazia ({cls.currentMacro})")
+RuntimeError: tentando enviar ao watcher macro vazia (None)
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 14:55:34,005 [WARNING] [stdout_thread] error_tracker:229 - 
+2026-04-06 15:27:07,230 [WARNING] [AsyncioLoopThread] error_tracker:229 - 
 ======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
-📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
-💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 14:55:33.999500 | 🧵 Thread: stdout_thread  Task: ID: 2471887486512 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
- 💬 Mensagem: [Errno 22] Invalid argument
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : False
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = b"\xf0\x9f\x93\xa9 14:55:33 Do SOWatcher: {'time...release', 'key': '\\x03', 'windowChange': False}"
-    is_error = False
-    header = b'\xaaU\x8c\x00\x00\x00'
-    e = OSError(22, 'Invalid argument')
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = "📩 14:55:33 Do SOWatcher: {'timestamp': 17754117...release', 'key': '\\x03', 'windowChange': False}"
-    is_error = False
-    lock_certo = <locked _thread.lock object at 0x0000023F8837AE50>
-    right_new_line = True
-    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-    quebra_de_linha = '\r\n'
-    prefix = ''
-    resposta = "📩 14:55:33 Do SOWatcher: {'timestamp': 17754117...release', 'key': '\\x03', 'windowChange': False}"
-    dados_bytes = b"\xf0\x9f\x93\xa9 14:55:33 Do SOWatcher: {'time...release', 'key': '\\x03', 'windowChange': False}"
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
-    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
-    cls.realWriter(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
-    cls.sendAndHandshake(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
-    cls.log_error(e)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
-    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 15:18:46,998 [WARNING] [stdout_thread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
-📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
-💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 15:18:46.992946 | 🧵 Thread: stdout_thread  Task: ID: 2349189807184 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
- 💬 Mensagem: [Errno 22] Invalid argument
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : False
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = b' '
-    is_error = False
-    header = b'\xaaU\x01\x00\x00\x00'
-    e = OSError(22, 'Invalid argument')
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = ' '
-    is_error = False
-    lock_certo = <locked _thread.lock object at 0x00000222F6DDA610>
-    right_new_line = False
-    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-    quebra_de_linha = '\r\n'
-    prefix = ''
-    resposta = ' '
-    dados_bytes = b' '
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
-    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
-    cls.realWriter(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
-    cls.sendAndHandshake(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
-    cls.log_error(e)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
-    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 15:45:31,324 [WARNING] [stdout_thread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
-📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
-💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 15:45:31.314087 | 🧵 Thread: stdout_thread  Task: ID: 2170861043248 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
- 💬 Mensagem: [Errno 22] Invalid argument
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : False
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = b' '
-    is_error = False
-    header = b'\xaaU\x01\x00\x00\x00'
-    e = OSError(22, 'Invalid argument')
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = ' '
-    is_error = False
-    lock_certo = <locked _thread.lock object at 0x000001F971A4AE50>
-    right_new_line = False
-    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-    quebra_de_linha = '\r\n'
-    prefix = ''
-    resposta = ' '
-    dados_bytes = b' '
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
-    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
-    cls.realWriter(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
-    cls.sendAndHandshake(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
-    cls.log_error(e)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
-    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 15:51:36,731 [WARNING] [stdout_thread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
-📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
-💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 15:51:36.721598 | 🧵 Thread: stdout_thread  Task: ID: 2011788983856 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
- 💬 Mensagem: [Errno 22] Invalid argument
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : False
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = b' '
-    is_error = False
-    header = b'\xaaU\x01\x00\x00\x00'
-    e = OSError(22, 'Invalid argument')
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = ' '
-    is_error = False
-    lock_certo = <locked _thread.lock object at 0x000001D46835AE50>
-    right_new_line = False
-    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-    quebra_de_linha = '\r\n'
-    prefix = ''
-    resposta = ' '
-    dados_bytes = b' '
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
-    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
-    cls.realWriter(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
-    cls.sendAndHandshake(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
-    cls.log_error(e)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
-    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 16:06:33,951 [WARNING] [stdout_thread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
-📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
-💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 16:06:33.939067 | 🧵 Thread: stdout_thread  Task: ID: 2319211871312 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
- 💬 Mensagem: [Errno 22] Invalid argument
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : False
-retornar : True
-
-Estado do ciclo de vida: RUNNING
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = b' '
-    is_error = False
-    header = b'\xaaU\x01\x00\x00\x00'
-    e = OSError(22, 'Invalid argument')
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
-    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
-    text = ' '
-    is_error = False
-    lock_certo = <locked _thread.lock object at 0x0000021BFC0AAE50>
-    right_new_line = False
-    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
-    quebra_de_linha = '\r\n'
-    prefix = ''
-    resposta = ' '
-    dados_bytes = b' '
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
-    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
-    cls.realWriter(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
-    cls.sendAndHandshake(dados_bytes,is_error)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
-    cls.log_error(e)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
-    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
-    cls.original_stdout.buffer.write(header + text)
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
-OSError: [Errno 22] Invalid argument
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 16:06:46,836 [WARNING] [MainThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
-📍 No arquivo: D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py | Linha: 125
-💻 Código: `self.cursor.execute(query)`
-🕒 Horário: 2026-04-05 16:06:46.834173 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
- 💬 Mensagem: no such table: dbstat
+🕵️ INVESTIGAÇÃO PROFUNDA: [RuntimeError]
+📍 No arquivo: D:\copilot\PythonServer\serverReactions.py | Linha: 163
+💻 Código: `raise RuntimeError(f"tentando enviar ao watcher macro vazia ({cls.currentMacro})")`
+🕒 Horário: 2026-04-06 15:27:07.215666 | 🧵 Thread: AsyncioLoopThread  Task: ID: 2843103007264 | Nome: sendMacroToWatcher | Coro: sendMacroToExecuteInWatcher | Protected: False | Total Tasks Vivas: 12
+ 💬 Mensagem: tentando enviar ao watcher macro vazia (None)
 extra_message = 
 internal vars from log_error_forencis_plus:
 errorExtruture.devMode : True
 printar : True
-retornar : True
+retornar : False
 
-Estado do ciclo de vida: INIT
+Estado do ciclo de vida: RUNNING
 ------------------------------
 📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <__main__.MainDatabase object at 0x000002548D783230>
-    query = 'SELECT\n        name,\n        SUM(pgsize)/1024...   GROUP BY name\n        ORDER BY size_kb DESC;'
-    args = None
-    fetch = 'all'
-    many = False
-    commit = False
+    cls = <class 'PythonServer.serverReactions.answerMapping'>
+    e = RuntimeError('tentando enviar ao watcher macro vazia (None)')
 ------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - tamanho_KBs_tabelas):
-
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - _run):
+    self = <Handle <_asyncio.TaskStepMethWrapper object at 0x00000295F62F8070>()>
 ======================================================================
 📜 RASTRO COMPLETO (Call Stack + Error):
-  File "<string>", line 1, in <module>
-    __import__('idlelib.run').run.main(True)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
-    ret = method(*args, **kwargs)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
-    exec(code, self.locals)
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 425, in <module>
-    tamanho_KBs_tabelas()
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 401, in tamanho_KBs_tabelas
-    result=db.exec("""SELECT
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 125, in exec
-    self.cursor.execute(query)
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\copilot\sharedResources\lifecycle\loop\start_and_stop.py", line 34, in _run
+    cls._current.run_forever()
+  File "D:\copilot\PythonServer\serverReactions.py", line 222, in sendMacroToExecuteInWatcher
+    log_error_forensics_plus(e)
+  File "D:\copilot\PythonServer\serverReactions.py", line 163, in sendMacroToExecuteInWatcher
+    raise RuntimeError(f"tentando enviar ao watcher macro vazia ({cls.currentMacro})")
 -------------------- [Ponto de Captura do Erro] --------------------
 Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
-    return func(*args, **kwargs)
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 125, in exec
-    self.cursor.execute(query)
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^
-sqlite3.OperationalError: no such table: dbstat
+  File "D:\copilot\PythonServer\serverReactions.py", line 163, in sendMacroToExecuteInWatcher
+    raise RuntimeError(f"tentando enviar ao watcher macro vazia ({cls.currentMacro})")
+RuntimeError: tentando enviar ao watcher macro vazia (None)
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 16:09:33,866 [WARNING] [MainThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
-📍 No arquivo: D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py | Linha: 125
-💻 Código: `self.cursor.execute(query)`
-🕒 Horário: 2026-04-05 16:09:33.864475 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
- 💬 Mensagem: no such table: dbstat
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : True
-retornar : True
-
-Estado do ciclo de vida: INIT
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <__main__.MainDatabase object at 0x000002A349963230>
-    query = 'SELECT\n        name,\n        SUM(pgsize)/1024...   GROUP BY name\n        ORDER BY size_kb DESC;'
-    args = None
-    fetch = 'all'
-    many = False
-    commit = False
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - tamanho_KBs_tabelas):
-
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "<string>", line 1, in <module>
-    __import__('idlelib.run').run.main(True)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
-    ret = method(*args, **kwargs)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
-    exec(code, self.locals)
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 425, in <module>
-    tamanho_KBs_tabelas()
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 401, in tamanho_KBs_tabelas
-    result=db.exec("""SELECT
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 125, in exec
-    self.cursor.execute(query)
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
-    return func(*args, **kwargs)
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 125, in exec
-    self.cursor.execute(query)
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^
-sqlite3.OperationalError: no such table: dbstat
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 16:11:39,807 [WARNING] [stdout_thread] error_tracker:229 - 
+2026-04-06 15:47:41,152 [WARNING] [stdout_thread] error_tracker:229 - 
 ======================================================================
 🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
 📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
 💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 16:11:39.797537 | 🧵 Thread: stdout_thread  Task: ID: 2223797550640 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+🕒 Horário: 2026-04-06 15:47:41.143524 | 🧵 Thread: stdout_thread  Task: ID: 1892516412976 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
  💬 Mensagem: [Errno 22] Invalid argument
 extra_message = 
 internal vars from log_error_forencis_plus:
@@ -934,7 +246,7 @@ Estado do ciclo de vida: RUNNING
     cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
     text = ' '
     is_error = False
-    lock_certo = <locked _thread.lock object at 0x00000205C4E7AE50>
+    lock_certo = <locked _thread.lock object at 0x000001B8A2E14150>
     right_new_line = False
     target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
     quebra_de_linha = '\r\n'
@@ -963,110 +275,12 @@ Traceback (most recent call last):
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
 OSError: [Errno 22] Invalid argument
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 16:11:47,954 [WARNING] [MainThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
-📍 No arquivo: D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py | Linha: 125
-💻 Código: `self.cursor.execute(query)`
-🕒 Horário: 2026-04-05 16:11:47.952008 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
- 💬 Mensagem: no such table: dbstat
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : True
-retornar : True
-
-Estado do ciclo de vida: INIT
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <__main__.MainDatabase object at 0x000001D18BBE3230>
-    query = 'SELECT\n        name,\n        SUM(pgsize)/1024...   GROUP BY name\n        ORDER BY size_kb DESC;'
-    args = None
-    fetch = 'all'
-    many = False
-    commit = False
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - tamanho_KBs_tabelas):
-
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "<string>", line 1, in <module>
-    __import__('idlelib.run').run.main(True)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
-    ret = method(*args, **kwargs)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
-    exec(code, self.locals)
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 425, in <module>
-    tamanho_KBs_tabelas()
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 401, in tamanho_KBs_tabelas
-    result=db.exec("""SELECT
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 125, in exec
-    self.cursor.execute(query)
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
-    return func(*args, **kwargs)
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 125, in exec
-    self.cursor.execute(query)
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^
-sqlite3.OperationalError: no such table: dbstat
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 16:13:50,450 [WARNING] [MainThread] error_tracker:229 - 
-======================================================================
-🕵️ INVESTIGAÇÃO PROFUNDA: [OperationalError]
-📍 No arquivo: D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py | Linha: 125
-💻 Código: `self.cursor.execute(query)`
-🕒 Horário: 2026-04-05 16:13:50.448443 | 🧵 Thread: MainThread  Task: Fora de um Event Loop
- 💬 Mensagem: no such table: dbstat
-extra_message = 
-internal vars from log_error_forencis_plus:
-errorExtruture.devMode : True
-printar : True
-retornar : True
-
-Estado do ciclo de vida: INIT
-------------------------------
-📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
-    self = <__main__.MainDatabase object at 0x000001A0A6D73230>
-    query = 'SELECT\n        name,\n        SUM(pgsize)/1024...   GROUP BY name\n        ORDER BY size_kb DESC;'
-    args = None
-    fetch = 'all'
-    many = False
-    commit = False
-------------------------------
-🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - tamanho_KBs_tabelas):
-
-======================================================================
-📜 RASTRO COMPLETO (Call Stack + Error):
-  File "<string>", line 1, in <module>
-    __import__('idlelib.run').run.main(True)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 172, in main
-    ret = method(*args, **kwargs)
-  File "C:\Users\cainã\AppData\Local\Python\pythoncore-3.14-64\Lib\idlelib\run.py", line 590, in runcode
-    exec(code, self.locals)
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 425, in <module>
-    tamanho_KBs_tabelas()
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 401, in tamanho_KBs_tabelas
-    result=db.exec("""SELECT
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 125, in exec
-    self.cursor.execute(query)
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^
--------------------- [Ponto de Captura do Erro] --------------------
-Traceback (most recent call last):
-  File "D:\copilot\sharedResources\debuggingResources\unified_monitor.py", line 122, in unified_sync_wrapper
-    return func(*args, **kwargs)
-  File "D:\copilot\sharedResources\DataBases\mainDatabase\main_db.py", line 125, in exec
-    self.cursor.execute(query)
-    ~~~~~~~~~~~~~~~~~~~^^^^^^^
-sqlite3.OperationalError: no such table: dbstat
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2026-04-05 18:57:09,002 [WARNING] [stdout_thread] error_tracker:229 - 
+2026-04-06 15:48:03,724 [WARNING] [stdout_thread] error_tracker:229 - 
 ======================================================================
 🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
 📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
 💻 Código: `cls.original_stdout.buffer.write(header + text)`
-🕒 Horário: 2026-04-05 18:57:08.992839 | 🧵 Thread: stdout_thread  Task: ID: 1773983743536 | Nome: Task-2 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+🕒 Horário: 2026-04-06 15:48:03.716386 | 🧵 Thread: stdout_thread  Task: ID: 2347051170896 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
  💬 Mensagem: [Errno 22] Invalid argument
 extra_message = 
 internal vars from log_error_forencis_plus:
@@ -1087,7 +301,117 @@ Estado do ciclo de vida: RUNNING
     cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
     text = ' '
     is_error = False
-    lock_certo = <locked _thread.lock object at 0x0000019D08FB9350>
+    lock_certo = <locked _thread.lock object at 0x0000022276709350>
+    right_new_line = False
+    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+    quebra_de_linha = '\r\n'
+    prefix = ''
+    resposta = ' '
+    dados_bytes = b' '
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
+    cls.realWriter(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
+    cls.sendAndHandshake(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
+    cls.log_error(e)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-04-06 15:52:01,480 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
+📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
+💻 Código: `cls.original_stdout.buffer.write(header + text)`
+🕒 Horário: 2026-04-06 15:52:01.470667 | 🧵 Thread: stdout_thread  Task: ID: 2275949263952 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: [Errno 22] Invalid argument
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = b' '
+    is_error = False
+    header = b'\xaaU\x01\x00\x00\x00'
+    e = OSError(22, 'Invalid argument')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = ' '
+    is_error = False
+    lock_certo = <locked _thread.lock object at 0x00000211E9424150>
+    right_new_line = False
+    target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+    quebra_de_linha = '\r\n'
+    prefix = ''
+    resposta = ' '
+    dados_bytes = b' '
+======================================================================
+📜 RASTRO COMPLETO (Call Stack + Error):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 129, in run
+    asyncio.run(worker(right_queue=right_queue,is_error = is_error))
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 115, in worker
+    cls.realWriter(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 279, in realWriter
+    cls.sendAndHandshake(dados_bytes,is_error)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 246, in sendAndHandshake
+    cls.log_error(e)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 312, in log_error
+    relatorio = cls.log_error_forensics_plus(e,printar =False,retornar = True, cancelLogging = True)
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+-------------------- [Ponto de Captura do Erro] --------------------
+Traceback (most recent call last):
+  File "D:\copilot\sharedResources\generalUtils\print_interceptor.py", line 235, in sendAndHandshake
+    cls.original_stdout.buffer.write(header + text)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2026-04-06 16:34:45,690 [WARNING] [stdout_thread] error_tracker:229 - 
+======================================================================
+🕵️ INVESTIGAÇÃO PROFUNDA: [OSError]
+📍 No arquivo: D:\copilot\sharedResources\generalUtils\print_interceptor.py | Linha: 235
+💻 Código: `cls.original_stdout.buffer.write(header + text)`
+🕒 Horário: 2026-04-06 16:34:45.680314 | 🧵 Thread: stdout_thread  Task: ID: 2940236250192 | Nome: Task-1 | Coro: worker | Protected: N/A | Total Tasks Vivas: 1
+ 💬 Mensagem: [Errno 22] Invalid argument
+extra_message = 
+internal vars from log_error_forencis_plus:
+errorExtruture.devMode : True
+printar : False
+retornar : True
+
+Estado do ciclo de vida: RUNNING
+------------------------------
+📦 VARIÁVEIS NO MOMENTO DO ERRO (Local):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = b' '
+    is_error = False
+    header = b'\xaaU\x01\x00\x00\x00'
+    e = OSError(22, 'Invalid argument')
+------------------------------
+🏗️ VARIÁVEIS NO MOMENTO DA CHAMADA (Caller - realWriter):
+    cls = <class 'sharedResources.generalUtils.print_interceptor.PrintInterceptor'>
+    text = ' '
+    is_error = False
+    lock_certo = <locked _thread.lock object at 0x000002AC93069350>
     right_new_line = False
     target = <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
     quebra_de_linha = '\r\n'

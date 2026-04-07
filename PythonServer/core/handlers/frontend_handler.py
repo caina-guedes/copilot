@@ -81,9 +81,9 @@ async def handle_frontend(websocket):
                 
                 # Executa a função do comando
                 funcao_correta = state.commands[command_name]
-                print(" a função que vou usar é: ")
-                print(funcao_correta)
-                print(funcao_correta.__name__)
+                # print(" a função que vou usar é: ")
+                # print(funcao_correta)
+                # print(funcao_correta.__name__)
                 response = state.commands[command_name](MacroTime = ts , front_end_comand = True)
                 logger.info(f"✅ {get_current_time()} Comando {command_name} executado!")
                 

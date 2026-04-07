@@ -49,25 +49,25 @@ def is_duplicate_click(ev,debug = True):
         # print("the event to check is: ", ev)
     if ev.get("type") != "mouse":
         if debug:
-            print("not a mouse event, returning False")
-            # pass
+            pass
+            # print("not a mouse event, returning False")
         return False
     if len(FlushConfig.commandsToNotFlush) == 0:
         if debug:
-            print("no commands to not flush, returning False")
-            # pass
+            pass
+            # print("no commands to not flush, returning False")
         return False
 
     comparingRecords = []
     try:
         quant= len(FlushConfig.commandsToNotFlush)
-        print("o tamanho de FlushConfig.commandsToNotFlush é: ", quant)
+        # print("o tamanho de FlushConfig.commandsToNotFlush é: ", quant)
         if quant>1:
             print("problema com a lista de comandos a não flushar, tem mais de um comando nela, isso não deveria acontecer." )
 
-        for command in FlushConfig.commandsToNotFlush:
-            print("e esse é:")
-            print(command)
+        # for command in FlushConfig.commandsToNotFlush:
+        #     print("e esse é:")
+        #     print(command)
         totally_detect_comands = []
         for front_end_ev_class in FlushConfig.commandsToNotFlush:
             front_end_ev = front_end_ev_class.values
@@ -77,8 +77,8 @@ def is_duplicate_click(ev,debug = True):
             # Comparar botões
             if ev.get("key").replace("Button.","") != front_end_ev.get("button", None):
                 if debug:
-                    print("button mismatch")
-                    # pass
+                    pass
+                    # print("button mismatch")
                 comparingRecords.append(False)
                 continue
 
@@ -91,11 +91,11 @@ def is_duplicate_click(ev,debug = True):
                     # regra de tempo máximo para considerar como clique duplicado
                     comparingRecords.append(False)
                     if debug:
-                        print("timestamp mismatch for press event  :",ev, "time difference is: ", time_diff)
+                        # print("timestamp mismatch for press event  :",ev, "time difference is: ", time_diff)
                         time_diff = abs(ev["ts"] - front_end_ev['ts'])
-                        print(f"front_end_event ts is: {front_end_ev['ts']}")
-                        print(f"event ts is: {ev['ts']}")
-                        print(f"the time difference is: {time_diff} seconds and the max allowed difference is: {FlushConfig.MAX_TIME_DIFF} seconds")
+                        # print(f"front_end_event ts is: {front_end_ev['ts']}")
+                        # print(f"event ts is: {ev['ts']}")
+                        # print(f"the time difference is: {time_diff} seconds and the max allowed difference is: {FlushConfig.MAX_TIME_DIFF} seconds")
                         # pass
                     continue
                 # Comparar coordenadas
@@ -105,9 +105,9 @@ def is_duplicate_click(ev,debug = True):
                     # regra de distancia maxima!
                     comparingRecords.append(False)
                     if debug:
-                        print("press coordinate mismatch for event :", ev)
-                        print(f"coordinate difference is: dx={dx}, dy={dy} and max diff is: {FlushConfig.MAX_PIXEL_DIFF}")
-                        # pass
+                        pass
+                        # print("press coordinate mismatch for event :", ev)
+                        # print(f"coordinate difference is: dx={dx}, dy={dy} and max diff is: {FlushConfig.MAX_PIXEL_DIFF}")
                     continue
                 front_end_ev_class.set_pressDetected(True, ev["ts"])
                 comparingRecords.append(True)
@@ -118,17 +118,18 @@ def is_duplicate_click(ev,debug = True):
                 time_diff = back_ts - front_ts
                 # time_dif = ev["ts"] - front_end_ev["ts"]
                 if time_diff <= 0: # evento ocorreu antes do front_end_ev
-                    print("timestamp mismatch  for release event : ", ev)
-                    print(f"this release event occurred {time_diff * (-1)}s before the press event captured in the front_end")
+                    # print("timestamp mismatch  for release event : ", ev)
+                    # print(f"this release event occurred {time_diff * (-1)}s before the press event captured in the front_end")
                     
                     comparingRecords.append(False)
                     if debug:
-                        print("release timestamp mismatch for event : ", ev )
+                        # print("release timestamp mismatch for event : ", ev )
+                        pass
                     continue
                 else:
-                    print(f"release timestamp ok, time difference is: {(time_diff)} seconds, for event : ", ev)
+                    # print(f"release timestamp ok, time difference is: {(time_diff)} seconds, for event : ", ev)
                     if front_end_ev_class.pressDetected and not front_end_ev_class.releaseDetected:
-                        print(f"press detected and release timestamp ok, setting releaseDetected to True for event : ", ev)
+                        # print(f"press detected and release timestamp ok, setting releaseDetected to True for event : ", ev)
                         front_end_ev_class.set_releaseDetected(True)
                         comparingRecords.append(True)
                         if front_end_ev_class.totally_detected:
@@ -141,27 +142,14 @@ def is_duplicate_click(ev,debug = True):
                 print(f"unknown action type: {ev['action']}, for event : ", ev)
             # Se todas as comparações passaram, é um clique duplicado
             if debug:
-                print("duplicate click detected and it is:" , ev)
-                # pass
+                pass
+                # print("duplicate click detected and it is:" , ev)
             # comparingRecords.append(True)
         for command in totally_detect_comands:
             # print("comando totalmente detectado, removendo da lista de comandos a não flushar: ", command)
             FlushConfig.commandsToNotFlush.remove(command)
 
-        # for index, front_end_ev_class in enumerate(FlushConfig.commandsToNotFlush):
-        #     if comparingRecords[index]:
-        #         # print("removendo o evento duplicado da lista de comandos a não flushar: ", front_end_ev_class.values)
-        #         if ev["action"] == "press":
-        #             FlushConfig.commandsToNotFlush[index].set_pressDetected(True)
-        #         if ev["action"] == "release":
-        #             FlushConfig.commandsToNotFlush[index].set_releaseDetected(True)
-                
-        #         if FlushConfig.commandsToNotFlush[index].pressDetected and FlushConfig.commandsToNotFlush[index].releaseDetected:
-        #             print("ambos press e release detectados, removendo o comando da lista de comandos a não flushar: ", front_end_ev_class)
-
-        #             FlushConfig.commandsToNotFlush.pop(index)
-                
-        #         break
+        
         result = any(comparingRecords)
         if debug:
             print("result of duplicate click check is: ", result)
@@ -330,8 +318,7 @@ def _flush_external(self, final_flush=False):
                                 many = True, 
                                 commit = True)
                                 
-            # self.cursor.executemany(querrys["insertEvent"], events_to_insert)
-            # self.conn.commit()
+            
             # print("flush de eventos realizado com sucesso.")
             sucess = True
             self._last_flush = time.time()
